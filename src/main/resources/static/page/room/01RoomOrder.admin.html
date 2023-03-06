@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MoLife 後台</title>
+    <title>房型訂單</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -70,64 +70,6 @@
     />
 
     <style>
-      input[type="checkbox"] {
-        height: 0;
-        width: 0;
-        visibility: hidden;
-      }
-
-      label {
-        cursor: pointer;
-        width: 40px;
-        height: 20px;
-        background: rgb(232, 43, 43);
-        display: block;
-        border-radius: 100px;
-        position: relative;
-        /* margin-top: -20px; */
-      }
-
-      label:after {
-        content: "";
-        position: absolute;
-        top: 1px;
-        left: 1px;
-        width: 18px;
-        height: 18px;
-        background: #fff;
-        border-radius: 90px;
-        transition: 0.3s;
-      }
-
-      /* .switch-txt::before,
-      .switch-txt::after {
-        display: block;
-        color: #fff;
-        font-weight: bold;
-        box-sizing: border-box;
-      }
-      .switch-txt::before {
-        content: attr(turnOn);
-        color: #fff;
-      }
-      .switch-txt::after {
-        content: attr(turnOff);
-        color: #ccc;
-      } */
-
-      input:checked + label {
-        background: #60f760;
-      }
-
-      label:active:after {
-        width: 40px;
-      }
-
-      input:checked + label:after {
-        left: calc(100% - 5px);
-        transform: translateX(-100%);
-      }
-
       .apply_btn {
         width: 55px;
         height: 30px;
@@ -137,12 +79,83 @@
         background-color: #007bff;
         font-size: 14px;
       }
+
+      .container-4 {
+        overflow: hidden;
+        width: 200px;
+        vertical-align: middle;
+        white-space: nowrap;
+        transform: translateX(800px);
+      }
+
+      .container-4 input#search {
+        width: 200px;
+        height: 40px;
+        background: white;
+        border-color: #007bff;
+        font-size: 10pt;
+        float: left;
+        color: #fff;
+        padding-left: 15px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+      }
+
+      .container-4 input#search::-webkit-input-placeholder {
+        color: #007bff;
+      }
+      .container-4 input#search:-moz-placeholder {
+        /* Firefox 18- */
+        color: #007bff;
+      }
+      .container-4 input#search::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #007bff;
+      }
+      .container-4 input#search:-ms-input-placeholder {
+        color: #007bff;
+      }
+
+      .container-4 button.icon {
+        -webkit-border-top-right-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: none;
+        background: white;
+        height: 40px;
+        width: 40px;
+        color: white;
+        opacity: 0;
+        font-size: 10pt;
+        -webkit-transition: all 0.55s ease;
+        -moz-transition: all 0.55s ease;
+        -ms-transition: all 0.55s ease;
+        -o-transition: all 0.55s ease;
+        transition: all 0.55s ease;
+      }
+
+      .container-4:hover button.icon,
+      .container-4:active button.icon,
+      .container-4:focus button.icon {
+        outline: none;
+        opacity: 1;
+        margin-left: -40px;
+      }
+      .container-4:hover button.icon:hover {
+        background: #007bff;
+      }
     </style>
+
     <script
       src="https://kit.fontawesome.com/2672c0b72c.js"
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- Preloader -->
@@ -212,102 +225,6 @@
               </form>
             </div>
           </li>
-
-          <!-- Messages Dropdown Menu -->
-          <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li> -->
-          <!-- Notifications Dropdown Menu -->
-          <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li> -->
         </ul>
       </nav>
       <!-- /.navbar -->
@@ -422,42 +339,6 @@
                       <p>訂單管理</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -528,42 +409,6 @@
                       <p>捐款紀錄查詢</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Buttons</p>
-                    </a>
-                  </li> -->
-                  <!-- <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ribbons</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -594,12 +439,6 @@
                       <p>公告管理</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -607,7 +446,7 @@
                 <a href="./admin.chatroom.html" class="nav-link">
                   <i class="nav-icon fas fa-table"></i>
                   <p>
-                    留言管理
+                    聊天室管理
                     <span class="right badge badge-danger">New</span>
                   </p>
                 </a>
@@ -628,7 +467,7 @@
               <div class="col-sm-6">
                 <h1 class="m-0">
                   <i class="fa-solid fa-paw" style="padding-right: 20px"></i>
-                  房型管理介面
+                  房型訂單頁面
                 </h1>
               </div>
               <!-- /.col -->
@@ -637,7 +476,7 @@
                   <li class="breadcrumb-item">
                     <a href="./index.html">首頁</a>
                   </li>
-                  <li class="breadcrumb-item active">房型管理</li>
+                  <li class="breadcrumb-item active">房型訂單頁面</li>
                 </ol>
               </div>
               <!-- /.col -->
@@ -655,18 +494,20 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title">上架房型列表</h3>
-                    <a href="/page/admin/RoomAdd.html"
-                      ><button
-                        type="button"
-                        class="apply_btn"
-                        style="width: 80px; transform: translateX(1000px)"
-                      >
-                        新增房型
-                      </button></a
-                    >
+                    <h3 class="card-title">會員訂房列表</h3>
+                    <div class="form-inline">
+                      <div class="box">
+                        <div class="container-4">
+                          <input
+                            type="text"
+                            class="search_num"
+                            placeholder="輸入訂單編號"
+                          />
+                          <button class="icon">搜尋</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-
                   <!-- /.card-header -->
                   <div class="card-body">
                     <table
@@ -675,12 +516,14 @@
                     >
                       <thead>
                         <tr>
-                          <th>房型編號</th>
+                          <th>訂單編號</th>
                           <th>房型名稱</th>
-                          <th>價位</th>
-                          <th>容納寵物數量</th>
-                          <th>房間狀態</th>
-                          <th>操作</th>
+                          <th>入住日期</th>
+                          <th>退房日期</th>
+                          <th>訂單金額</th>
+                          <th>評價內容</th>
+                          <th>訂單狀態</th>
+                          <th>修改訂單</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -688,59 +531,57 @@
                           <td>Trident</td>
                           <td>Internet Explorer 4.0</td>
                           <td>Win 95+</td>
-                          <td>4</td>
-                          <td>
-                            <div class="form-check form-switch">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="flexSwitchCheckChecked"
-                                checked
-                              />
-                              <label
-                                class="form-check-label"
-                                for="flexSwitchCheckChecked"
-                                ><p style="transform: translateX(50px)">
-                                  上架中
-                                </p></label
-                              >
-                            </div>
-                          </td>
-                          <td>
-                            <div>
-                              <a href="/page/admin/RoomRevise.html">
-                                <button type="button" class="apply_btn">
-                                  修改
-                                </button></a
-                              >
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Trident</td>
-                          <td>Internet Explorer 5.0</td>
                           <td>Win 95+</td>
-                          <td>5</td>
+                          <td>4</td>
+                          <td>X</td>
                           <td>
-                            <div class="form-check form-switch">
+                            <div class="form-check">
                               <input
                                 class="form-check-input"
-                                type="checkbox"
-                                id="flexSwitchCheckChecked1"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
                                 checked
                               />
                               <label
                                 class="form-check-label"
-                                for="flexSwitchCheckChecked1"
-                                ><p style="transform: translateX(45px)">
-                                  上架中
-                                </p></label
+                                for="flexRadioDefault1"
                               >
+                                未入住
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault2"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="flexRadioDefault2"
+                              >
+                                check in
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault2"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="flexRadioDefault2"
+                              >
+                                check out
+                              </label>
                             </div>
                           </td>
                           <td>
-                            <div>
-                              <a href="#">
+                            <div style="transform: translateY(10px)">
+                              <a href="/page/admin/ReviseRoomOrder.html">
                                 <button type="button" class="apply_btn">
                                   修改
                                 </button></a
@@ -748,16 +589,6 @@
                             </div>
                           </td>
                         </tr>
-
-                        <!-- <tfoot>
-                        <tr>
-                          <th>Rendering engine</th>
-                          <th>Browser</th>
-                          <th>Platform(s)</th>
-                          <th>Engine version</th>
-                          <th>CSS grade</th>
-                        </tr>
-                      </tfoot> -->
                       </tbody>
                     </table>
                   </div>
@@ -837,6 +668,12 @@
           autoWidth: false,
           responsive: true,
         });
+      });
+
+      //按下收尋抓到的值
+      $("button.icon").on("click", function () {
+        let test = $("input.search_num").val().trim();
+        console.log(test);
       });
     </script>
   </body>

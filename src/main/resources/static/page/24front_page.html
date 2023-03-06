@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首頁</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../plugins/themify-icons/themify-icons.css"
+    />
+
+    <link rel="stylesheet" href="../../styles/front_page/front_page.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/main_styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/bootstrap4/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/contact_styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/contact_responsive.css"
+    />
+
+    <link rel="stylesheet" href="../../styles/room/room.css" />
+
+    <script
+      src="https://kit.fontawesome.com/2672c0b72c.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <!-- Header -->
+    <!-- <header class="header trans_300"> -->
+
+    <!-- Main Navigation -->
+    <!-- <div class="main_nav_container bg-yellow">
+          <div>
+            <div class="row">
+              <div class="col-lg-12 text-right">
+                <div class="logo_container">
+                  <a href="./front_page.html">
+                    <img src="../../images/home/logoMoLife.png" />
+                  </a>
+                </div>
+                <nav class="navbar">
+                  <ul class="navbar_menu">
+                    <li><a href="#">寵物旅館</a></li>
+                    <li><a href="#">商品專區</a></li>
+                    <li><a href="#">寵物募款</a></li>
+                    <li><a href="#">寵物論壇</a></li>
+                    <li><a href="../chatRoom/contact.html">聯絡我們</a></li>
+                    <li><a href="#">管理員後台</a></li>
+                  </ul>
+                  <ul class="navbar_user">
+                    <a href="#"
+                      ><img class="icon" src="../../images/home/car.png"
+                    /></a>
+                    <a href="#"
+                      ><img class="icon" src="../../images/home/ring.png"
+                    /></a>
+                    <a href="#"
+                      ><img class="icon" src="../../images/home/man.png"
+                    /></a>
+                  </ul>
+                  <div class="hamburger_container">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+    </header> -->
+
+    <!-- 輪播 -->
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <div
+        class="carousel-inner"
+        style="padding-left: 50px; padding-right: 50px"
+      >
+        <div class="carousel-item active">
+          <img
+            src="../../images/front_page/front.03pet.jpg"
+            class="d-block w-100"
+            style="height: 700px"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="../../images/front_page/front.01pet.jpg"
+            class="d-block w-100"
+            style="height: 700px"
+          />
+        </div>
+        <div class="carousel-item">
+          <img
+            src="../../images/front_page/front.09pet.jpg"
+            class="d-block w-100"
+            style="height: 700px"
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- <section id='news'>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-md-8 offset-md-2 text-center'>
+              <div class="animated bounce">
+                 <h3><i class="fa-solid fa-paw"></i>  最新消息  <i class="fa-solid fa-paw"></i></h3>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                    <img src="../../images/front_page/front.06pet.jpg" style="height: 300px; width: 250px;">
+                </div>
+                <div class='col-md-1'></div>
+                <div class='col-md-8 text-start' style="padding-left: 50px; margin-top: 50px;">
+                    <P><i class="fa-solid fa-magnifying-glass"></i> 最新消息一</P>
+                    <P><i class="fa-solid fa-magnifying-glass"></i> 最新消息二</P>
+                    <P><i class="fa-solid fa-magnifying-glass"></i> 最新消息三</P>
+                </div>
+            </div>
+            </div>           
+          </div>
+        </div>
+      </section> -->
+
+    <section id="news">
+      <div class="container" style="margin-top: 50px">
+        <div class="row">
+          <div class="col text-center">
+            <div class="section_title">
+              <h2 style="color: #646e78">
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 最新消息
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+              </h2>
+            </div>
+            <div class="section_content" style="padding-top: 80px">
+              <div class="animated bounce">
+                <h3>
+                  <i class="fa-solid fa-magnifying-glass"></i
+                  >貓咪是天生近視眼？！原來貓咪眼中，你是長這樣的！
+                </h3>
+              </div>
+              <p style="font-size: 20px">
+                正常人類可以看清楚六十公尺以內的物體，而貓咪只能看清楚六公尺以內的物品。所以跟人類相比，貓真的是「超級近視眼」喔！
+                雖然貓咪視力是近視，但動態視力比人類好很多喔！因為貓咪眼中的「桿狀細胞」數量超出人類
+                因此，貓咪雖然沒辦法看清楚細節，但對高速移動的東西很敏銳，可以幫助他們在狩獵過程中，迅速捕捉快速改變方向的小動物！
+              </p>
+              <div class="animated bounce">
+                <h3>
+                  <i class="fa-solid fa-magnifying-glass"></i
+                  >狗狗互聞屁屁不只是打招呼？！狗狗聞屁屁的 3 個原因
+                </h3>
+              </div>
+              <p style="font-size: 20px">
+                1.
+                狗狗聞屁屁，最常見的原因就是「打招呼」，這就跟奴才會「點頭、說你好」一樣喔!
+                2.
+                狗狗的肛門腺有性別、年齡、身體資訊等等，聞屁屁可以更了解對方的狀態喔！
+                3.
+                狗狗的鼻子有犁鼻器，可以聞到賀爾蒙的味道，聞屁屁也是找伴侶的方式
+              </p>
+              <div class="animated bounce">
+                <h3>
+                  <i class="fa-solid fa-magnifying-glass"></i
+                  >毛小孩健康的肉球小知識!
+                </h3>
+              </div>
+              <p style="font-size: 20px">
+                1. 飽滿有彈性 2. 溫度適中 （38 – 39度） 3. 光滑有光澤 4.
+                氣味正常，但當毛孩身體不舒服，肉球也會變乾燥、失去光澤喔！
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hot_item">
+      <div class="container" style="margin-top: 50px">
+        <div class="row">
+          <div class="col text-center">
+            <div class="section_title">
+              <h2 style="color: #646e78">
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 熱門商品
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row blogs_container" style="padding-top: 50px">
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/front.dog_food.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Kirkland Signature 科克蘭 雞肉&米配方乾狗糧 12公斤
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">開始購物</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/front.cat_food.png);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Hill's 希爾思 處方 貓用 k/d 腎臟病護理處方貓飼料 8.5LB
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">開始購物</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/rabbit_food.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Rabbit Diet 愛兔窈窕美味餐 蘋果口味 3KG
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">開始購物</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hot_room">
+      <div class="container" style="margin-top: 100px">
+        <div class="row">
+          <div class="col text-center">
+            <div class="section_title">
+              <h2 style="color: #646e78">
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 熱門房型
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row blogs_container" style="padding-top: 50px">
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/home/dog1.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/front_room01.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/home/cat1.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hot_article">
+      <div class="container" style="margin-top: 100px">
+        <div class="row">
+          <div class="col text-center">
+            <div class="section_title">
+              <h2 style="color: #646e78">
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 熱門文章
+                <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row blogs_container" style="padding-top: 50px">
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/dog.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/front.02pet.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 blog_item_col">
+            <div class="blog_item">
+              <div
+                class="blog_background"
+                style="
+                  background-image: url(../../images/front_page/front.04pet.jpg);
+                  height: 300px;
+                "
+              ></div>
+              <div
+                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
+                style="transform: translateY(30px)"
+              >
+                <h4 class="blog_title">
+                  Here are the trends I see coming this fall
+                </h4>
+                <span class="blog_meta">by admin | dec 01, 2017</span>
+                <a class="blog_more" href="#">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <!-- <div class="row">
+			<div class="col">
+				<div id="google_map">
+					<div class="map_container" style="margin-top: 50px;">
+						<div id="map"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+      <footer class="bg-yellow">
+      
+		  
+          <div class="row">
+			
+            <div class="col-lg-5">
+              <div
+                class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center"
+              >
+			  <div class="container">
+				<ul class="footer_nav">
+					<li><a href="#">討論區</a></li>
+					<li><a href="#">FAQs</a></li>
+					<li><a href="../chatRoom/contact.html">聯絡我們</a></li>
+				  </ul>
+			  </div>
+                
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div
+                class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center"
+              >
+                <ul>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-facebook" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-twitter" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-instagram" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-skype" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-pinterest" aria-hidden="true"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+            <div class="row">
+              <div class="col-lg-12 text-center">
+                <div class="footer_nav_container">
+                  <div class="container">
+                    <div class="cr">
+                      ©2022 All Rights Reserverd. Made with
+                      <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                      <a href="#">Colorlib</a> &amp; distributed by
+                      <a href="./front_page.html">Tibame TGA-105 第四組</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+      </footer> -->
+
+    <div id="footer" style="margin-top: 200px"></div>
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../styles/bootstrap4/popper.js"></script>
+    <script src="../../styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="../../plugins/easing/easing.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="../../js/contact_custom.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 引入 header / footer /scrollTop-->
+    <script>
+      $(function () {
+        $("#header").load("../../header.html");
+        $("#footer").load("../../footer.html");
+        $("#scrollTop").load("../../scrollTop.html");
+      });
+    </script>
+  </body>
+</html>

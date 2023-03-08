@@ -38,7 +38,7 @@ public class RoomorderController {
 	// ==============後台訂單頁面join查詢 需做分頁=================
 	@GetMapping("/getOrderpage")
 //	public ResponseEntity<List<Map<String, Object>>> getorderPage() {
-	
+
 	public ResponseEntity<Page<RoomorderVO>> getorderPage(@RequestParam(required = false) String search, // 中文字查詢
 			@RequestParam(required = false) Integer searchStatus, // 根據入住狀態查詢
 			@RequestParam(defaultValue = "room_check_date") String orderBy, // 根據什麼欄位排序
@@ -48,7 +48,7 @@ public class RoomorderController {
 			@RequestParam(defaultValue = "0") @Min(0) Integer offset) {
 
 		RoomorderVO roomorderVO = new RoomorderVO();
-		
+
 		RoomderQueryParams roomderQueryParams = new RoomderQueryParams();
 		roomderQueryParams.setSearch(search);
 		roomderQueryParams.setSearchStatus(searchStatus);
@@ -58,11 +58,11 @@ public class RoomorderController {
 		roomderQueryParams.setOffset(offset);
 
 		List<Map<String, Object>> roomorderList1 = roomorderService.getRoomorderPages(roomorderVO);
-		
+
 //		List<RoomorderVO> roomorderList = roomorderService.getRoomorderPages(roomorderVO);
-		
+
 		Integer total = roomorderService.countOrder(roomderQueryParams);
-		
+
 		Page<RoomorderVO> page = new Page<RoomorderVO>();
 		page.setLimit(limit);
 		page.setOffset(offset);
@@ -138,7 +138,7 @@ public class RoomorderController {
 	@GetMapping("/roomorderDetial/{memberId}")
 	public ResponseEntity<List<Map<String, Object>>> getOrderDetailsByMemID(@PathVariable Integer memberId) {
 
-		System.out.println("------------" + memberId );
+		System.out.println("------------" + memberId);
 
 		RoomorderVO roomorderVO = new RoomorderVO();
 
@@ -170,6 +170,28 @@ public class RoomorderController {
 		RoomorderVO roomorderVO = roomorderService.getRoomorderById(roomOrderId);
 
 //		//不存在返回404
+		if (roomorderVO == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+
+		// 修改訂單數據
+
+		roomorderService.updateRoomorder(roomOrderId, roomorderRequest);
+
+		RoomorderVO updateRoomorder = roomorderService.getRoomorderById(roomOrderId);
+
+		return ResponseEntity.status(HttpStatus.OK).body(updateRoomorder);
+
+	}
+
+	// ==============================取消訂單專用================
+	@PutMapping("/roomordersCancel/{roomOrderId}")
+	public ResponseEntity<RoomorderVO> updateRoomorderForCancel(@PathVariable Integer roomOrderId,
+			@RequestBody @Valid RoomorderRequest roomorderRequest) {
+		// 檢查訂單是否存在
+		RoomorderVO roomorderVO = roomorderService.getRoomorderById(roomOrderId);
+
+//				//不存在返回404
 		if (roomorderVO == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}

@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>新增房型頁面</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css"
+    />
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -62,14 +67,21 @@
     ></script>
 
     <style>
-      #preview {
-        border: 1px solid lightgray;
-        display: inline-block;
-        width: 100px;
-        min-height: 150px;
-        position: relative;
+      .flex {
+        display: flex;
+        margin-top: 30px;
       }
-      #preview span.text {
+
+      .preview {
+        border: 1px solid lightgray;
+        /* display: inline-block; */
+        width: 200px;
+        height: 100px;
+        margin-top: 20px;
+        /* position: relative; */
+      }
+
+      .preview span.text {
         position: absolute;
         display: inline-block;
         left: 50%;
@@ -78,19 +90,17 @@
         z-index: -1;
         color: lightgray;
       }
-      #preview img.preview_img {
+
+      .preview img.preview_img {
         width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       /* ======================= */
- 
-
-
-
     </style>
-
-
   </head>
+
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- Preloader -->
@@ -160,7 +170,6 @@
               </form>
             </div>
           </li>
-
         </ul>
       </nav>
       <!-- /.navbar -->
@@ -223,9 +232,9 @@
             >
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-copy"></i>
                   <p>
                     用戶管理
                     <i class="right fas fa-angle-left"></i>
@@ -259,7 +268,7 @@
                   <p>
                     商城後台管理
                     <i class="fas fa-angle-left right"></i>
-                    <span class="badge badge-info right">6</span>
+                    <span class="badge badge-info right"></span>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -275,7 +284,6 @@
                       <p>訂單管理</p>
                     </a>
                   </li>
-                 
                 </ul>
               </li>
 
@@ -283,35 +291,29 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    旅館後台管理
+                    寵物房型管理
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/room/01Roommanage.admin.html"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>房型管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/room/01RoomOrder.admin.html"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>訂單管理</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>評價管理</p>
-                    </a>
-                  </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -320,7 +322,7 @@
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     前台頁面管理
-                    <span class="right badge badge-danger">New</span>
+                    <span class="right badge badge-danger"></span>
                   </p>
                 </a>
               </li>
@@ -346,7 +348,6 @@
                       <p>捐款紀錄查詢</p>
                     </a>
                   </li>
-                  
                 </ul>
               </li>
 
@@ -377,7 +378,6 @@
                       <p>公告管理</p>
                     </a>
                   </li>
-                  
                 </ul>
               </li>
 
@@ -386,7 +386,7 @@
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     聊天室管理
-                    <span class="right badge badge-danger">New</span>
+                    <span class="right badge badge-danger"></span>
                   </p>
                 </a>
               </li>
@@ -444,20 +444,12 @@
                   <form>
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">房型編號</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          placeholder="編號"
-                        />
-                      </div>
-                      <div class="form-group">
                         <label for="exampleInputPassword1">房型名稱</label>
                         <input
                           type="text"
                           class="form-control"
-                          id="exampleInputPassword1"
+                          id="roomName"
+                          name="roomName"
                           placeholder="請輸入房型名稱"
                         />
                       </div>
@@ -466,7 +458,8 @@
                         <input
                           type="text"
                           class="form-control"
-                          id="exampleInputPassword1"
+                          id="roomDescription"
+                          name="roomDescription"
                           placeholder="請輸入房間描述"
                         />
                       </div>
@@ -476,51 +469,33 @@
                         <input
                           type="text"
                           class="form-control"
-                          id="exampleInputName1"
-                          placeholder="Name"
+                          id="roomPrice"
+                          name="roomPrice"
+                          placeholder="房型價格"
                         />
                       </div>
 
                       <div class="form-group">
-                        <label for="exampleInputName1">房型數量</label>
+                        <label for="exampleInputName1">可容納寵物數量</label>
                         <input
                           type="number"
                           class="form-control"
-                          id="exampleInputName1"
-                          placeholder="Name"
+                          id="roomNum"
+                          name="roomNum"
+                          placeholder="寵物數量"
                         />
                       </div>
 
-                      <div class="form-group">
-                        <label>寵物種類</label>
-                        <select class="form-control">
-                          <option>貓咪房</option>
-                          <option>狗狗房</option>
-                          <option>兔兔房</option>
-                          <!-- <option>option 4</option>
-                          <option>option 5</option> -->
-                        </select>
-
-                        <div class="form-group">
-                          <label>可容納寵物數量</label>
-                          <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <!-- <option>option 4</option>
-                            <option>option 5</option> -->
-                          </select>
-                      </div>
-                      <div class="form-group">
+                      <div class="form-group" style="">
                         <label for="exampleInputStatus1">狀態</label>
 
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault100"
-                          id="flexRadioDefault200"
-                          style="transform: translateX(60px)"
+                          name="roomStatus"
+                          value="1"
                           checked
+                          style="transform: translateX(60px)"
                         />
                         <label
                           class="form-check-label"
@@ -532,8 +507,8 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault100"
-                          id="flexRadioDefault201"
+                          name="roomStatus"
+                          value="0"
                           style="transform: translateX(120px)"
                         />
                         <label
@@ -545,77 +520,73 @@
                         </label>
                       </div>
                       <div class="form-check"></div>
-                      <div class="form-group">
-                        <label for="exampleInputFile">上傳房型照片</label>
-                        <div class="input-group" >
-                          <div class="custom-file">
-                            <input
-                              type="file"
-                              class="custom-file-input"
-                              id="exampleInputFile"
-                            />
-                            <label
-                              class="custom-file-label"
-                              for="exampleInputFile"
-                              >選擇檔案</label
-                            >
+                      <div class="flex">
+                        <div class="form-group">
+                          <label for="exampleInputFile">房型照片-1</label>
+                          <div class="">
+                            <div class="">
+                              <input
+                                type="file"
+                                class=""
+                                id="exampleInputFile"
+                              />
+                              <!-- <label class="custom-file-label" for="exampleInputFile">選擇檔案</label> -->
+                            </div>
+                            <div id="preview" class="preview">
+                              <span class="text">預覽圖</span>
+                            </div>
                           </div>
-                          <div id="preview">
-                            <span class="text">預覽圖</span>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputFile2">房型照片-2</label>
+                          <div class="">
+                            <div class="">
+                              <input
+                                type="file"
+                                class=""
+                                id="exampleInputFile2"
+                                name="exampleInputFile2"
+                              />
+                              <!-- <label class="custom-file-label" for="exampleInputFile">選擇檔案</label> -->
+                            </div>
+                            <div id="preview2" class="preview">
+                              <span class="text">預覽圖</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputFile3">房型照片-3</label>
+                          <div class="">
+                            <div class="">
+                              <input
+                                type="file"
+                                class=""
+                                id="exampleInputFile3"
+                              />
+                              <!-- <label class="custom-file-label" for="exampleInputFile">選擇檔案</label> -->
+                            </div>
+                            <div id="preview3" class="preview">
+                              <span class="text">預覽圖</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-
-                      <div class="form-check"></div>
-                      <div class="form-group">
-                        <label for="exampleInputFile">上傳房型照片</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input
-                              type="file"
-                              class="custom-file-input"
-                              id="exampleInputFile"
-                            />
-                            <label
-                              class="custom-file-label"
-                              for="exampleInputFile"
-                              >選擇檔案</label
-                            >
-                          </div>
-                         
-                        </div>
-                      </div>
-
-                      <div class="form-check"></div>
-                      <div class="form-group">
-                        <label for="exampleInputFile">上傳房型照片</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input
-                              type="file"
-                              class="custom-file-input"
-                              id="exampleInputFile"
-                            />
-                            <label
-                              class="custom-file-label"
-                              for="exampleInputFile"
-                              >選擇檔案</label
-                            >
-                          </div>
-                          
-                          
-                        </div>
-                      </div>
-                     
                     </div>
                     <!-- /.card-body -->
 
-                    <div class="card-footer" style="display: flex; justify-content: center; align-items: center">
+                    <div
+                      class="card-footer"
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
                       <!-- <a href="./admin.limit.html"> -->
-                        <button type="submit" class="btn btn-primary" >
-                          新增並儲存
-                        </button>
-                        <!-- </a > -->
+                      <button type="submit" class="btn btn-primary">
+                        新增並儲存
+                      </button>
+                      <!-- </a > -->
                     </div>
                   </form>
                 </div>
@@ -626,7 +597,6 @@
         </section>
       </div>
       <!-- /.content-wrapper -->
-    
 
       <footer class="main-footer">
         <strong
@@ -677,7 +647,7 @@
     <script src="../../AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../AdminLTE-3.2.0/dist/js/adminlte.js"></script>
-    
+
     <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
     <!-- Page specific script -->
@@ -818,7 +788,6 @@
           options: donutOptions,
         });
 
-        
         var barChartCanvas = $("#barChart").get(0).getContext("2d");
         var barChartData = $.extend(true, {}, areaChartData);
         var temp0 = areaChartData.datasets[0];
@@ -926,32 +895,118 @@
 
     <script>
       //=======================================上傳商品圖片與查看預覽圖====================================
-        //上傳商品圖片
-        var p_file_el = document.getElementById("exampleInputFile");
-        var preview_el = document.getElementById("preview");
+      //上傳商品圖片
+      var p_file_el = document.getElementById("exampleInputFile");
+      var preview_el = document.getElementById("preview");
+      var p_file_el2 = document.getElementById("exampleInputFile2");
+      var preview_el2 = document.getElementById("preview2");
+      var p_file_el3 = document.getElementById("exampleInputFile3");
+      var preview_el3 = document.getElementById("preview3");
+      var pic_1 = "";
+      var pic_2 = "";
+      var pic_3 = "";
 
-        var preview_img = function (file) {
-          var reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.addEventListener("load", function () {
-            console.log(reader.result);
+      var preview_img = function (file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener("load", function () {
+          console.log(reader.result);
+          pic_1 = reader.result;
 
-            let img_str =
-              '<img src="' + reader.result + '" class="preview_img">';
-            preview_el.innerHTML = img_str;
-          });
-        };
-        p_file_el.addEventListener("change", function (e) {
-          if (this.files.length > 0) {
-            console.log(this.files[0]);
-            preview_img(this.files[0]);
-          } else {
-            preview_el.innerHTML = ' <span class="text">預覽圖</span>';
-          }
+          let img_str = '<img src="' + reader.result + '" class="preview_img">';
+          preview_el.innerHTML = img_str;
         });
-        //==============================送出資料===========================
-       
+      };
+      p_file_el.addEventListener("change", function (e) {
+        if (this.files.length > 0) {
+          console.log(this.files[0]);
+          preview_img(this.files[0]);
+        } else {
+          preview_el.innerHTML = ' <span class="text">預覽圖</span>';
+        }
+      });
 
+      var preview_img2 = function (file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener("load", function () {
+          console.log(reader.result);
+          pic_2 = reader.result;
+          let img_str = '<img src="' + reader.result + '" class="preview_img">';
+          preview_el2.innerHTML = img_str;
+        });
+      };
+      p_file_el2.addEventListener("change", function (e) {
+        if (this.files.length > 0) {
+          console.log(this.files[0]);
+          preview_img2(this.files[0]);
+        } else {
+          preview_el2.innerHTML = ' <span class="text">預覽圖</span>';
+        }
+      });
+      var preview_img3 = function (file) {
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.addEventListener("load", function () {
+          console.log(reader.result);
+          pic_3 = reader.result;
+
+          let img_str = '<img src="' + reader.result + '" class="preview_img">';
+          preview_el3.innerHTML = img_str;
+        });
+      };
+      p_file_el3.addEventListener("change", function (e) {
+        if (this.files.length > 0) {
+          console.log(this.files[0]);
+          preview_img3(this.files[0]);
+        } else {
+          preview_el3.innerHTML = ' <span class="text">預覽圖</span>';
+        }
+      });
+
+      //==============================送出資料===========================
+
+      $(function () {
+        var Data = "";
+        $("form").submit(function (event) {
+          event.preventDefault();
+
+          console.log(pic_1);
+          console.log(pic_2);
+          console.log(pic_3);
+          //get the form data
+          var formData = {
+            roomName: $("input[name=roomName]").val(),
+            roomDescription: $("input[name=roomDescription]").val(),
+            roomPrice: $("input[name=roomPrice]").val(),
+            petNumber: $("input[name=roomNum]").val(),
+            // petType: $("select[name=petType]").val(),
+            // petTotal: $("select[name=petTotal]").val(),
+            roomStatus: $("input[name=roomStatus]:checked").val(),
+            roomPic1: pic_1,
+            roomPic2: pic_2,
+            roomPic3: pic_3,
+            // room_pic1: pic_1.split(',')[1],
+            // room_pic2: pic_2.split(',')[1],
+            // room_pic3: pic_3.split(',')[1],
+          };
+          console.log(formData);
+          // process the form
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:8081/petrooms/createroom",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            encode: true,
+          }).done(function (data) {
+            console.log(data);
+            swal({
+              type: "success",
+              title: "新增成功~",
+            });
+          });
+        });
+      });
     </script>
   </body>
 </html>

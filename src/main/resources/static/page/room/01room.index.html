@@ -19,6 +19,19 @@
       integrity="sha512-hoGlO+71fSG6lgS60I4bKvsFVB+bAnrVFDYlwSXoyNLppDcoupwJB7KbWq/63iACKn3gcgK9jMXd+T+YDeVrGQ=="
       crossorigin="anonymous"
     />
+    <!-- owl.carousel START -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/room/carousel_style.css"
+    />
+
+    <!-- owl.carousel END -->
 
     <!-- bootstrap -->
     <link
@@ -46,9 +59,18 @@
         transition: 1s;
         height: 100%;
       }
+
+      .owl-carousel {
+        height: 260px;
+      }
+
       .weed-wrapper {
         opacity: 0;
         height: 0;
+      }
+
+      .owl-item {
+        margin: 80px 20px 20px 20px;
       }
     </style>
   </head>
@@ -78,7 +100,7 @@
         <div class="carousel-item active">
           <div
             class="main_slider"
-            style="background-image: url(../../images/home/cat1.jpg)"
+            style="background-image: url(../../images/home/bg_1.jpg)"
           >
             <div class="container fill_height">
               <div class="row align-items-center fill_height">
@@ -92,7 +114,9 @@
         <div class="carousel-item">
           <div
             class="main_slider"
-            style="background-image: url(../../images/home/dog3.jpeg)"
+            style="
+              background-image: url(../../images/home/SojournerCatRoomRemodel12.jpg);
+            "
           >
             <div class="container fill_height">
               <div class="row align-items-center fill_height">
@@ -106,7 +130,7 @@
         <div class="carousel-item">
           <div
             class="main_slider"
-            style="background-image: url(../../images/home/dog5.jpg)"
+            style="background-image: url(../../images/home/bg_2.jpg)"
           >
             <div class="container fill_height">
               <div class="row align-items-center fill_height">
@@ -148,88 +172,8 @@
             </div>
           </div>
         </div>
-        <div class="row blogs_container">
-          <div class="col-lg-3 blog_item_col">
-            <div class="blog_item" data-aos="fade-down" data-aos-delay="300">
-              <div
-                class="blog_background"
-                style="background-image: url(../../images/home/cat2.jpg)"
-              ></div>
-              <div
-                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
-              >
-                <h4 class="blog_title">貓咪尊貴房</h4>
-                <a class="detail" href="/page/room/roomDetail.html">詳情</a>
-                <!-- <span class="blog_meta">描述</span> -->
-                <!-- <a
-                  class="blog_more"
-                  id="
-                collect"
-                  href="#"
-                  >加入收臧</a
-                > -->
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-lg-3 blog_item_col"
-            data-aos="fade-down"
-            data-aos-delay="800"
-          >
-            <div class="blog_item">
-              <div
-                class="blog_background"
-                style="background-image: url(../../images/home/rabbit.jpg)"
-              ></div>
-              <div
-                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
-              >
-                <h4 class="blog_title">兔子舒適房</h4>
-                <span class="blog_meta">描述</span>
-                <a class="blog_more" href="#">加入收臧</a>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-lg-3 blog_item_col"
-            data-aos="fade-down"
-            data-aos-delay="1000"
-          >
-            <div class="blog_item">
-              <div
-                class="blog_background"
-                style="background-image: url(../../images/home/dog1.jpg)"
-              ></div>
-              <div
-                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
-              >
-                <h4 class="blog_title">狗狗尊貴房</h4>
-                <span class="blog_meta">描述</span>
-                <a class="blog_more" href="#">加入收臧</a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="col-lg-3 blog_item_col"
-            data-aos="fade-down"
-            data-aos-delay="1200"
-          >
-            <div class="blog_item">
-              <div
-                class="blog_background"
-                style="background-image: url(../../images/home/cat1.jpg)"
-              ></div>
-              <div
-                class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
-              >
-                <h4 class="blog_title">貓咪尊爵房</h4>
-                <span class="blog_meta">描述</span>
-                <a class="blog_more" href="#">加入收臧</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="owl-carousel owl-theme"></div>
+        <div class="row blogs_container"></div>
       </div>
     </div>
     <!-- card_end -->
@@ -249,7 +193,7 @@
                     class="row justify-content-center align-items-center figure_img"
                   >
                     <img
-                      src="../../images/home/gallery-1.jpg"
+                      src="../../images/home/bg_1.jpg"
                       alt=""
                       class="img_card"
                     />
@@ -424,6 +368,7 @@
       </article>
     </div>
     <!-- contact_end -->
+
     <!-- Footer_start -->
     <div id="footer"></div>
     <!-- Footer_end -->
@@ -497,8 +442,44 @@
     });
   }
 </script>
-<!-- Ａos 淡入淡出特效_end -->
 
+<script>
+  $(function () {
+    // $("#getData").on("click", function () {
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:8081/petrooms",
+      dataType: "json",
+      encode: true,
+    })
+      .done(function (data) {
+        console.log(data);
+        // for (let i = 0; i < data.length; i++) {
+        //   $(".blogs_container").append(`<div class="col-lg-3 blog_item_col"><div class="blog_item" data-aos="fade-down" data-aos-delay="300"><div class="blog_background" style="background-image: url(data:;base64,${data[i].roomPic1})"></div><div class="blog_content d-flex flex-column align-items-center justify-content-center text-center"><h4 class="blog_title">${data[i].roomName}</h4><p>${data[i].roomDescription}</p><a class="detail" href="/page/room/01RoomDetail.html?id=${data[i].petNumber}">詳情</a></div></div></div>`);
+
+        // }
+        // // pushJson.innerHTML = data[0].username;
+        $.each(data, function (index, data) {
+          console.log();
+          $(
+            `<div class=" blog_item_col"><div class="blog_item" data-aos="fade-down" data-aos-delay="300"><div class="blog_background" style="background-image: url(data:;base64,${data.roomPic1})"></div><div class="blog_content d-flex flex-column align-items-center justify-content-center text-center"><h4 class="blog_title">${data.roomName}</h4><p>${data.roomDescription}</p><a class="detail" href="/page/room/01RoomDetail.html?id=${data.roomTypeId}">詳情</a></div></div></div>`
+          ).appendTo(".owl-carousel");
+          // $(`<div>${data.roomName}</div>`).appendTo(".owl-carousel");
+        });
+
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          autoplay: true,
+          autoplayTimeout: 3000, //2000ms = 2s;
+          autoplayHoverPause: true,
+        });
+      })
+      .fail(function (error) {
+        console.log(error);
+      });
+  });
+</script>
+<script></script>
 <!-- jquery -->
 <script src="../../js/jquery-3.2.1.min.js"></script>
 <!-- bootstrap -->

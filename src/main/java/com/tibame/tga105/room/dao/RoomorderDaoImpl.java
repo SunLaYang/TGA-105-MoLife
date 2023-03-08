@@ -213,7 +213,7 @@ public class RoomorderDaoImpl implements RoomorderDao {
 
 	@Override
 	public List<Map<String, Object>> getRoomorderByMemberId(RoomorderVO roomorderVO, Integer memberId) {
-		String sql = "SELECT o.roomorder_id, r.room_name, o.room_check_date, o.room_total_amount, o.order_status "
+		String sql = "SELECT o.roomorder_id, r.room_name, o.room_check_date, o.room_total_amount, o.order_status, o.room_order_status "
 				+ "FROM roomorder o " + "JOIN room_order_detail d ON o.roomorder_id = d.roomorder_id "
 				+ "JOIN petroom r ON d.room_type_id = r.room_type_id " + "WHERE o.member_id = :memberId";
 

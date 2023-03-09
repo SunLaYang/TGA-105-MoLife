@@ -2,9 +2,12 @@ package com.tibame.tga105.shop.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +18,15 @@ public class ProductImage {
 	@Column(name = "product_image_id")
 	private Integer productImageId;
 
-	@Column(name = "product_id")
-	private Integer productId;
-
 	@Column(name = "product_image_type")
 	private Integer productImageType;
 
 	@Column(name = "product_image")
 	private String productImage;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "product_id")
+	private Product product;
 
 	public Integer getProductImageId() {
 		return productImageId;
@@ -30,14 +34,6 @@ public class ProductImage {
 
 	public void setProductImageId(Integer productImageId) {
 		this.productImageId = productImageId;
-	}
-
-	public Integer getProductId() {
-		return productId;
-	}
-
-	public void setProductId(Integer productId) {
-		this.productId = productId;
 	}
 
 	public Integer getProductImageType() {
@@ -58,8 +54,8 @@ public class ProductImage {
 
 	@Override
 	public String toString() {
-		return "ProductImageBean [productImageId=" + productImageId + ", productId=" + productId + ", productImageType="
-				+ productImageType + ", productImage=" + productImage + "]";
+		return "ProductImageBean [productImageId=" + productImageId + ", productImageType=" + productImageType
+				+ ", productImage=" + productImage + "]";
 	}
 
 }

@@ -1,5 +1,9 @@
 package com.tibame.tga105.shop.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,12 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "product")
-@NamedEntityGraph(name = "product.fk", attributeNodes = { @NamedAttributeNode("categoryBean"),
-		@NamedAttributeNode("animalTypeBean") })
+@NamedEntityGraph(name = "product.fk", attributeNodes = { @NamedAttributeNode("category"),
+		@NamedAttributeNode("animalType") })
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,11 +59,22 @@ public class Product {
 	@JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
 	private Category category;
 
-	public AnimalType getAnimalTypeBean() {
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ProductImage> productImages = new ArrayList<>();
+
+	public List<ProductImage> getProductImages() {
+		return productImages;
+	}
+
+	public void setProductImages(List<ProductImage> productImages) {
+		this.productImages = productImages;
+	}
+
+	public AnimalType getAnimalType() {
 		return this.animalType;
 	}
 
-	public Category getCategoryBean() {
+	public Category getCategory() {
 		return this.category;
 	}
 
@@ -136,7 +152,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "ProductBean [productId=" + productId + ", productName=" + productName + ", productDetails="
+		return "Product [productId=" + productId + ", productName=" + productName + ", productDetails="
 				+ productDetails + ", productPrice=" + productPrice + ", productQty=" + productQty + ", productStatus="
 				+ productStatus + ", productCreateDate=" + productCreateDate + ", animalTypeId=" + animalTypeId
 				+ ", categoryId=" + categoryId + "]";

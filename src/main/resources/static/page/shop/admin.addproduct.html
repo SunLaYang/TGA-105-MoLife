@@ -842,15 +842,13 @@
         $("#productForm").submit(function (event) {
           event.preventDefault(); // 防止表單提交
           let formData = {
-            product: {
-              productName: $("input[name=productName]").val().trim(),
-              productDetails: $("textarea[name=productDetails]").val().trim(),
-              productPrice: $("input[name=productPrice]").val(),
-              productQty: $("input[name=productQty]").val(),
-              productStatus: $("#productStatus").val(),
-              animalTypeId: $("#animalTypeId").val(),
-              categoryId: $("#categoryId").val(),
-            },
+            productName: $("input[name=productName]").val().trim(),
+            productDetails: $("textarea[name=productDetails]").val().trim(),
+            productPrice: $("input[name=productPrice]").val(),
+            productQty: $("input[name=productQty]").val(),
+            productStatus: $("#productStatus").val(),
+            animalTypeId: $("#animalTypeId").val(),
+            categoryId: $("#categoryId").val(),
             productImages: [
               {
                 productImageType: 0,

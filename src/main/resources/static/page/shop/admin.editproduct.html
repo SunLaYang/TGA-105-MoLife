@@ -846,13 +846,13 @@
           type: "GET",
           dataType: "json",
           success: function (data) {
-            $("input[name=productName]").val(data.product.productName);
-            $("textarea[name=productDetails]").val(data.product.productDetails);
-            $("input[name=productPrice]").val(data.product.productPrice);
-            $("input[name=productQty]").val(data.product.productQty);
-            $("#productStatus").val(data.product.productStatus);
-            $("#animalTypeId").val(data.product.animalTypeId);
-            $("#categoryId").val(data.product.categoryId);
+            $("input[name=productName]").val(data.productName);
+            $("textarea[name=productDetails]").val(data.productDetails);
+            $("input[name=productPrice]").val(data.productPrice);
+            $("input[name=productQty]").val(data.productQty);
+            $("#productStatus").val(data.productStatus);
+            $("#animalTypeId").val(data.animalTypeId);
+            $("#categoryId").val(data.categoryId);
             $.each(data.productImages, function (i, item) {
               switch (item.productImageType) {
                 case 0:
@@ -903,16 +903,14 @@
         $("#productForm").submit(function (event) {
           event.preventDefault(); // 防止表單提交
           let formData = {
-            product: {
-              productId: productId,
-              productName: $("input[name=productName]").val().trim(),
-              productDetails: $("textarea[name=productDetails]").val().trim(),
-              productPrice: $("input[name=productPrice]").val(),
-              productQty: $("input[name=productQty]").val(),
-              productStatus: $("#productStatus").val(),
-              animalTypeId: $("#animalTypeId").val(),
-              categoryId: $("#categoryId").val(),
-            },
+            productId: productId,
+            productName: $("input[name=productName]").val().trim(),
+            productDetails: $("textarea[name=productDetails]").val().trim(),
+            productPrice: $("input[name=productPrice]").val(),
+            productQty: $("input[name=productQty]").val(),
+            productStatus: $("#productStatus").val(),
+            animalTypeId: $("#animalTypeId").val(),
+            categoryId: $("#categoryId").val(),
             productImages: [
               {
                 productImageId: imageId1,

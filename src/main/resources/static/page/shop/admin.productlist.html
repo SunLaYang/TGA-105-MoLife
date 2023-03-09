@@ -702,7 +702,7 @@
             $.each(data, function (i, item) {
               let productStatus = "";
               let statusColor = "";
-              if (item.product.productStatus == 0) {
+              if (item.productStatus == 0) {
                 productStatus = "未上架";
                 statusColor = "text-secondary";
               } else {
@@ -725,26 +725,22 @@
               </div>
             </td>
             <td class="align-middle">
-                  ${item.product.productName}
+                  ${item.productName}
             </td>
             <td class="align-middle">
-              ${item.product.productDetails}
+              ${item.productDetails}
             </td>
-            <td class="align-middle">${item.product.productPrice}</td>
-            <td class="align-middle">${item.product.productQty}</td>
-            <td class="align-middle">${
-              item.product.animalTypeBean.animalType
-            }</td>
-            <td class="align-middle">${
-              item.product.categoryBean.categoryName
-            }</td>
+            <td class="align-middle">${item.productPrice}</td>
+            <td class="align-middle">${item.productQty}</td>
+            <td class="align-middle">${item.animalType.animalType}</td>
+            <td class="align-middle">${item.category.categoryName}</td>
             <td class="align-middle">${new Date(
-              item.product.productCreateDate
+              item.productCreateDate
             ).toLocaleDateString()}</td>
             <td class="align-middle ${statusColor}">${productStatus}</td>
             <td class="align-middle">
                       <a href="admin.editproduct.html?id=${
-                        item.product.productId
+                        item.productId
                       }" class="text-danger"
                         ><span
                           class="material-symbols-outlined align-middle">

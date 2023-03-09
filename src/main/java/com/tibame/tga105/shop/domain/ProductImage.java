@@ -24,9 +24,13 @@ public class ProductImage {
 	@Column(name = "product_image")
 	private String productImage;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 	public Integer getProductImageId() {
 		return productImageId;

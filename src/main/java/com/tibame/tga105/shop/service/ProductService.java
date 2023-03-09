@@ -1,7 +1,6 @@
 package com.tibame.tga105.shop.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,33 +27,25 @@ public class ProductService {
 		return null;
 	}
 
-//	public boolean insert(ProductDTO productDTO) {
-//		if (productDTO != null) {
-//			productDao.insert(productDTO.getProduct());
-//
-//			Integer id = productDTO.getProduct().getProductId();
-//			List<ProductImageBean> productImages = productDTO.getProductImages();
-//			productImages = productImages.stream().map((item) -> {
-//				item.setProductId(id);
-//				return item;
-//			}).collect(Collectors.toList());
-//
-//			productImageDAO.insertBatch(productImages);
-//
-//			return true;
-//		}
-//		return false;
-//	}
-//
-//	public boolean update(ProductDTO productDTO) {
-//		if (productDTO != null) {
-//			productDao.update(productDTO.getProduct());
-//
-//			productImageDAO.updateBatch(productDTO.getProductImages());
-//
-//			return true;
-//		}
-//		return false;
-//	}
+	public boolean insert(Product product) {
+		if (product != null) {
+			product.getProductImages().forEach(productImage -> productImage.setProduct(product));
+			productRepository.save(product);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean update(Product product) {
+		if (product != null) {
+			Product original = productRepository.findByProductId(product.getProductId());
+			if (original != null) {
+				product.getProductImages().forEach(productImage -> productImage.setProduct(product));
+				productRepository.save(product);
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

@@ -35,6 +35,8 @@ public class MemDAO implements MemDAO_interface {
 
 	private static final String UPDATE = "UPDATE member set member_password=?, member_last_name=?, member_first_name=?, member_nickname=?, member_phone=?, member_address=?, member_picture_id=?, last_edit_date=?, last_online_date=?, last_post_date=?, member_status=?, post_suspended=?, post_reported_num=? where member_id = ?";
 
+	private static final String UPDATEBYADMIN = "UPDATE member set member_password=?, member_last_name=?, member_first_name=?, member_nickname=?, member_phone=?, member_address=?, member_picture_id=?, member_status=? where member_id = ?";
+	
 	private static final String LOGIN = "SELECT * FROM member where member_email=? and member_password=?";
 
 	static {
@@ -333,4 +335,44 @@ public class MemDAO implements MemDAO_interface {
 		}
 		return memVO;
 	}
+
+	@Override
+	public void updateByAdmin(MemVO memVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(UPDATEBYADMIN);
+			
+			pstmt.setString(1, memVO.getMemPsd());
+			pstmt.setString(2, memVO.getMemLname());
+			pstmt.setString(3, memVO.getMemFname());
+			pstmt.setString(4, memVO.getMemNickname());
+			pstmt.setString(5, memVO.getMemPhone());
+			pstmt.setString(6, memVO.getMemAddress());
+			pstmt.setBytes(7, memVO.getMemPicId());
+			pstmt.setInt(8, memVO.getMemStatus().intValue());
+			pstmt.setInt(9, memVO.getMemId().intValue());
+			
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+		}
+		
+	}
+		
+	
 }

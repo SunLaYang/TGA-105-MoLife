@@ -41,8 +41,6 @@ public class RoomorderServiceImpl implements RoomorderService {
 		return roomorderDao.getRoomorderById(roomOrderId);
 	}
 
-
-
 	// 創建訂單需要分成兩部分
 	@Transactional // 新增交易控制避免數據不一致
 	@Override
@@ -66,6 +64,13 @@ public class RoomorderServiceImpl implements RoomorderService {
 
 	}
 
+	// ================取消訂單專用==============
+	@Override
+	public void updateRoomorderForCancel(Integer roomOrderId, RoomorderRequest roomorderRequest) {
+		roomorderDao.updateRoomorderForCancel(roomOrderId, roomorderRequest);
+
+	}
+
 	@Override
 	public void deleteRoomOrder(Integer roomOrderId) {
 
@@ -86,56 +91,55 @@ public class RoomorderServiceImpl implements RoomorderService {
 
 	@Override
 	public List<Map<String, Object>> getRoomorderByMemberId(RoomorderVO roomorderVO, Integer memberId) {
-		return roomorderDao.getRoomorderByMemberId(roomorderVO,memberId);
+		return roomorderDao.getRoomorderByMemberId(roomorderVO, memberId);
 	}
 
-	//=======================================房型訂單日期業務邏輯=================================================
+	// =======================================房型訂單日期業務邏輯=================================================
 	@Override
 	public List<Map<String, Object>> getRoomorderDate(Integer roomTypeId) {
-		
-		//先取出當天日期，然後去比對這天日期的月起始日跟月結束日
+
+		// 先取出當天日期，然後去比對這天日期的月起始日跟月結束日
 		LocalDate beginDate = LocalDate.now();
-		//當月月份 + 2 代表查詢這三個月 5代表查半年內
+		// 當月月份 + 2 代表查詢這三個月 5代表查半年內
 		LocalDate lastDayOfMonth = beginDate.plusMonths(5).with(TemporalAdjusters.lastDayOfMonth());
-		
-		//宣告回傳的資料
+
+		// 宣告回傳的資料
 //		 List<Map<String, Object>> checkDateList = new ArrayList<Map<String, Object>>();
-		
-		 //撈出資料庫的資廖
-		 List<Map<String, Object>> cdList = roomorderDao.getRoomorderDate(roomTypeId,beginDate,lastDayOfMonth);
-		 
-		 //宣告回傳資料 調用下列getCdList方法
-		 List<Map<String, Object>> checkDateList  = getCdList(cdList);
-		 	
-		 //回傳資料
+
+		// 撈出資料庫的資廖
+		List<Map<String, Object>> cdList = roomorderDao.getRoomorderDate(roomTypeId, beginDate, lastDayOfMonth);
+
+		// 宣告回傳資料 調用下列getCdList方法
+		List<Map<String, Object>> checkDateList = getCdList(cdList);
+
+		// 回傳資料
 		return checkDateList;
 	}
-	
-	//實作getCdList方法
-	private List<Map<String, Object>> getCdList(List<Map<String, Object>> cdList){
-		
+
+	// 實作getCdList方法
+	private List<Map<String, Object>> getCdList(List<Map<String, Object>> cdList) {
+
 		List<Map<String, Object>> checkDateList = new ArrayList<Map<String, Object>>();
-		
-		//第一次先遍歷資料庫撈出來的資料
-		for(Map<String, Object> data : cdList) {
-			
+
+		// 第一次先遍歷資料庫撈出來的資料
+		for (Map<String, Object> data : cdList) {
+
 			String bDate = data.get("room_checkin_date").toString();
 			String eDate = data.get("room_checkout_date").toString();
-			
-			//把string格式化成localDate 資料型別
+
+			// 把string格式化成localDate 資料型別
 			DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			LocalDate date1 = LocalDate.parse(bDate, fmt);
 			LocalDate date2 = LocalDate.parse(eDate, fmt);
-			
-			//取出起訖日的日期區間
+
+			// 取出起訖日的日期區間
 			long daysBetween = ChronoUnit.DAYS.between(date1, date2);
-			
+
 			System.out.println(date1);
 			System.out.println(date2);
-            System.out.println("日期 " + bDate + " 和日期 " + eDate + " 之間相差 " + daysBetween + " 天");
-            
-            
-            //第二次遍歷 把起訖日的差額拆分成為一天，列出區間的每一天
+			System.out.println("日期 " + bDate + " 和日期 " + eDate + " 之間相差 " + daysBetween + " 天");
+
+			// 第二次遍歷 把起訖日的差額拆分成為一天，列出區間的每一天
 //            {
 //            	"beginDate": "2023-03-09",
 //            	"room_type_id": "2",
@@ -151,24 +155,24 @@ public class RoomorderServiceImpl implements RoomorderService {
 //            	"room_type_id": "2",
 //            	"lastDayOfMonth": "2023-03-12"
 //            	}
-            //類似上述這樣
-            
-            for(long i = 0;i < daysBetween; i++) {
-            	Map<String, Object> map = new HashMap<String, Object>();
-            	map.put("room_type_id", data.get("room_type_id").toString() );
-            	map.put("beginDate", date1.plusDays(i).toString());
-            	map.put("lastDayOfMonth", date1.plusDays(i + 1).toString());
-            	
-            	//把完成拆分的每一筆資料塞回回傳的List
-            	checkDateList.add(map);
-            	
-            }
-            
+			// 類似上述這樣
+
+			for (long i = 0; i < daysBetween; i++) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("room_type_id", data.get("room_type_id").toString());
+				map.put("beginDate", date1.plusDays(i).toString());
+				map.put("lastDayOfMonth", date1.plusDays(i + 1).toString());
+
+				// 把完成拆分的每一筆資料塞回回傳的List
+				checkDateList.add(map);
+
+			}
+
 		}
-		
+
 		return checkDateList;
 	}
-	
+
 //	public static void main(String[] args) {
 //		 LocalDate currentDate = LocalDate.now();
 //	        System.out.println("當前日期是: " + currentDate);

@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>修改訂單</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css"
+    />
 
     <!-- Google Font: Source Sans Pro -->
     <link
@@ -61,6 +66,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
       <!-- Preloader -->
@@ -191,10 +197,10 @@
               data-accordion="false"
             >
               <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
+             with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-copy"></i>
                   <p>
                     用戶管理
                     <i class="right fas fa-angle-left"></i>
@@ -228,7 +234,7 @@
                   <p>
                     商城後台管理
                     <i class="fas fa-angle-left right"></i>
-                    <span class="badge badge-info right">6</span>
+                    <span class="badge badge-info right"></span>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
@@ -251,27 +257,27 @@
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
-                    旅館後台管理
+                    寵物房型管理
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/room/01Roommanage.admin.html"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>房型管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/room/01RoomOrder.admin.html"
+                      class="nav-link"
+                    >
                       <i class="far fa-circle nav-icon"></i>
                       <p>訂單管理</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>評價管理</p>
                     </a>
                   </li>
                 </ul>
@@ -282,7 +288,7 @@
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     前台頁面管理
-                    <span class="right badge badge-danger">New</span>
+                    <span class="right badge badge-danger"></span>
                   </p>
                 </a>
               </li>
@@ -346,7 +352,7 @@
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     聊天室管理
-                    <span class="right badge badge-danger">New</span>
+                    <span class="right badge badge-danger"></span>
                   </p>
                 </a>
               </li>
@@ -404,42 +410,56 @@
                   <form>
                     <div class="card-body">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">會員編號</label>
+                        <label for="exampleInputEmail1">訂單編號</label>
                         <input
                           type="number"
+                          name="roomOrderId"
                           class="form-control"
-                          id="exampleInputEmail1"
-                          placeholder="number"
+                          disabled
+                          id="roomOrderId"
+                          placeholder="roomOrderId"
                         />
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">房型名稱</label>
+                        <label for="exampleInputPassword1">姓名</label>
                         <input
                           type="text"
                           class="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="roomname"
+                          id="payerName"
+                          name="payerName"
+                          placeholder="payerName"
                         />
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputName1">房型價格</label>
+                        <label for="exampleInputName1">電話</label>
                         <input
                           type="number"
+                          name="payerPhone"
                           class="form-control"
-                          id="exampleInputName1"
-                          placeholder="price"
+                          id="payerPhone"
+                          placeholder="payerPhone"
                         />
                       </div>
-
                       <div class="form-group">
-                        <label>寵物數量</label>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <!-- <option>option 4</option>
-                            <option>option 5</option> -->
-                        </select>
+                        <label for="exampleInputName1">寵物數量</label>
+                        <input
+                          type="number "
+                          name="totalOfPet"
+                          class="form-control"
+                          id="totalOfPet"
+                          placeholder="totalOfPet"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">訂單金額</label>
+                        <input
+                          type="number"
+                          name="roomTotalAmount"
+                          class="form-control"
+                          id="roomTotalAmount"
+                          placeholder="roomTotalAmount
+                      "
+                        />
                       </div>
                       <br />
                       <div class="row">
@@ -447,8 +467,10 @@
                           <label for="">入住日期</label>
                           <input
                             type="date"
+                            name="roomCheckInDate"
                             placeholder="入住日期"
                             class="form-control"
+                            id="roomCheckInDate"
                             required
                           />
                         </div>
@@ -456,8 +478,10 @@
                           <label for="">退房日期</label>
                           <input
                             type="date"
+                            name="roomCheckOutDate"
                             placeholder="退房日期"
                             class="form-control"
+                            id="roomCheckOutDate"
                             required
                           />
                         </div>
@@ -469,8 +493,8 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault100"
-                          id="flexRadioDefault200"
+                          value="0"
+                          name="orderStatus"
                           style="transform: translateX(60px)"
                           checked
                         />
@@ -484,8 +508,8 @@
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault100"
-                          id="flexRadioDefault201"
+                          value="1"
+                          name="orderStatus"
                           style="transform: translateX(120px)"
                         />
                         <label
@@ -493,25 +517,30 @@
                           for="flexRadioDefault201"
                           style="transform: translateX(120px)"
                         >
-                          check in
+                          Check In
                         </label>
-                      </div>
-                      <div>
                         <input
                           class="form-check-input"
                           type="radio"
-                          name="flexRadioDefault100"
-                          id="flexRadioDefault201"
-                          style="transform: translateX(120px)"
+                          value="2"
+                          name="orderStatus"
+                          style="
+                            transform: translateX(120px);
+                            margin-left: 35px;
+                          "
                         />
                         <label
                           class="form-check-label"
                           for="flexRadioDefault201"
-                          style="transform: translateX(120px)"
+                          style="
+                            margin-left: 55px;
+                            transform: translateX(120px);
+                          "
                         >
-                          check out
+                          Check Out
                         </label>
                       </div>
+                      <div></div>
                     </div>
                     <!-- /.card-body -->
 
@@ -832,6 +861,88 @@
         );
       }
       // ]]>
+    </script>
+    <script>
+      let memberId2 = "";
+      rderStatus = "";
+      $(function () {
+        var url = location.href;
+        let id = "";
+
+        console.log(url);
+        if (url.indexOf("?") != -1) {
+          let ary1 = url.split("?");
+          let ary2 = ary1[1].split("&");
+          let ary3 = ary2[0].split("=");
+          id = ary3[1];
+          console.log(id);
+        }
+        $.ajax({
+          type: "GET",
+          url: `http://localhost:8081/roomorders/${id}`,
+          dataType: "json",
+          encode: true,
+        })
+          .done(function (data) {
+            console.log(data);
+            $("#roomOrderId").val(data.roomOrderId);
+            $("#payerName").val(data.payerName);
+            $("#payerPhone").val(data.payerPhone);
+            $("#roomTotalAmount").val(data.roomTotalAmount);
+            $("#totalOfPet").val(data.totalOfPet);
+            $("#roomTypeId").val(data.roomTypeId);
+            $("#roomCheckInDate").val(data.roomCheckInDate);
+            $("#roomCheckOutDate").val(data.roomCheckOutDate);
+            memberId2 = data.memberId;
+            roomOrderStatus = data.roomOrderStatus;
+            // $('input[name="roomOrderStatus"]')[1].checked = true;
+            if (data.orderStatus === 1) {
+              $("input[name=orderStatus][value='1']").attr("checked", true);
+            } else if (data.orderStatus === 0) {
+              $("input[name=orderStatus][value='0']").attr("checked", true);
+            } else {
+              $("input[name=orderStatus][value='2']").attr("checked", true);
+            }
+          })
+          .fail(function (error) {
+            console.log(error);
+          });
+      });
+      $(function () {
+        var Data = "";
+        $("form").submit(function (event) {
+          event.preventDefault();
+
+          //get the form data
+          var formData = {
+            memberId: memberId2,
+            roomOrderStatus: roomOrderStatus,
+            payerName: $("input[name=payerName]").val(),
+            payerPhone: $("input[name=payerPhone]").val(),
+            roomCheckInDate: $("input[name=roomCheckInDate]").val(),
+            roomCheckOutDate: $("input[name=roomCheckOutDate]").val(),
+            roomOrderId: $("input[name=roomOrderId]").val(),
+            roomTotalAmount: $("input[name=roomTotalAmount]").val(),
+            orderStatus: $("input[name=orderStatus]:checked").val(),
+            totalOfPet: $("input[name=totalOfPet]").val(),
+          };
+          console.log(formData);
+          // process the form
+          $.ajax({
+            type: "PUT",
+            url: `http://localhost:8081/roomorders/${formData.roomOrderId}`,
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            encode: true,
+          }).done(function (data) {
+            console.log(data);
+            swal({
+              type: "success",
+              title: "修改成功~",
+            });
+          });
+        });
+      });
     </script>
   </body>
 </html>

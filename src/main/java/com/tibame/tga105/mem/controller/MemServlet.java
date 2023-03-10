@@ -226,6 +226,126 @@ public class MemServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+		/******************************************************************************************/
+
+		if ("getOne_For_Update_By_Admin".equals(action)) {// 來自listAllMem.jsp
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			// 接收請求參數
+			Integer memId = Integer.valueOf(req.getParameter("memId"));
+
+			// 開始查詢
+			MemService memSvc = new MemService();
+			MemVO memVO = memSvc.getOneMem(memId);
+			// 查詢完成，轉交
+
+			req.setAttribute("memVO", memVO);
+			String url = "/mem/update_mem_by_admin.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+		}
+
+		/******************************************************************************************/
+		if ("updateByAdmin".equals(action)) {
+			
+			HttpSession session = req.getSession();
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			Integer memId = Integer.valueOf(req.getParameter("memId").trim());
+
+			String memLname = req.getParameter("memLname");
+			String memLnameReg = "^[(\u4e00-\u9fa5)]{1,10}$";
+			if (memLname == null || memLname.trim().length() == 0) {
+				errorMsgs.add("會員姓氏: 請勿空白");
+			} else if (!memLname.trim().matches(memLnameReg)) {
+				errorMsgs.add("會員姓氏: 只能是中文字，且長度只能在1到10之間");
+			}
+
+			String memFname = req.getParameter("memFname");
+			String memFnameReg = "^[(\u4e00-\u9fa5)]{1,10}$";
+			if (memFname == null || memFname.trim().length() == 0) {
+				errorMsgs.add("會員名字: 請勿空白");
+			} else if (!memFname.trim().matches(memFnameReg)) {
+				errorMsgs.add("會員名字: 只能是中文字，且長度只能在1到10之間");
+			}
+
+			String memNickname = req.getParameter("memNickname");
+			String memNicknameReg = "^[(\u4e00-\u9fa5)]{1,10}$";
+			if (memNickname == null || memNickname.trim().length() == 0) {
+				errorMsgs.add("會員暱稱: 請勿空白");
+			} else if (!memNickname.trim().matches(memNicknameReg)) {
+				errorMsgs.add("會員暱稱: 只能是中文字，且長度只能在1到10之間");
+			}
+
+			String memPsd = req.getParameter("memPsd");
+			String memPsdReg = "^[(a-zA-Z0-9_)]{6,16}$";
+			if (memPsd == null || memPsd.trim().length() == 0) {
+				errorMsgs.add("會員密碼: 請勿空白");
+			} else if (!memPsd.trim().matches(memPsdReg)) {
+				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+
+			String memPhone = req.getParameter("memPhone");
+			String memPhoneReg = "^09[0-9]{8}$";
+			if (memPhone == null || memPhone.trim().length() == 0) {
+				errorMsgs.add("手機號碼: 請勿空白");
+			} else if (!memPhone.trim().matches(memPhoneReg)) {
+				errorMsgs.add("手機號碼請符合台灣手機號碼格式");
+			}
+
+			String memAddress = req.getParameter("memAddress");
+
+			Integer memStatus = Integer.valueOf(req.getParameter("memStatus"));
+			
+			
+			MemVO tempVO =(MemVO) session.getAttribute("memVO");
+			tempVO.setMemLname(memLname);
+			tempVO.setMemFname(memFname);
+			tempVO.setMemNickname(memNickname);
+			tempVO.setMemPsd(memPsd);
+			tempVO.setMemPhone(memPhone);
+			tempVO.setMemAddress(memAddress);
+			tempVO.setMemStatus(memStatus);
+			InputStream in = req.getPart("memPicId").getInputStream();
+			byte[] memPicId = null;
+			if (in.available() != 0) {
+				memPicId = new byte[in.available()];
+				in.read(memPicId);
+				tempVO.setMemPicId(memPicId);
+				in.close();
+			} 
+
+
+			// Send the user back to the form, if there were errors
+			if (!errorMsgs.isEmpty()) {
+				req.setAttribute("memVO", tempVO);
+				RequestDispatcher failureView = req.getRequestDispatcher("/mem/update_mem_input.jsp");
+				failureView.forward(req, res);
+				System.out.println(errorMsgs);
+				return;
+			}
+
+			/*************************** 2.開始修改資料 *****************************************/
+			MemService memSvc = new MemService();
+			tempVO = memSvc.updateMem(tempVO);
+
+			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+			req.setAttribute("memVO", tempVO);
+			String url = "/mem/listAllMem.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+
+		}
+
+		/******************************************************************************************/
+		
+		
+		
 
 		if ("insert".equals(action)) { // 來自memadd.jsp的請求
 
@@ -377,7 +497,7 @@ public class MemServlet extends HttpServlet {
 				erroMsgs.add("請輸入會員帳號");
 			}
 			if (!erroMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/admin/loginEmp.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/mem/loginMem.jsp");
 				failureView.forward(req, res);
 				return;
 			}
@@ -385,7 +505,7 @@ public class MemServlet extends HttpServlet {
 				erroMsgs.add("請輸入密碼");
 			}
 			if (!erroMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/admin/loginEmp.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/mem/loginMem.jsp");
 				failureView.forward(req, res);
 				return;
 			}
@@ -434,7 +554,7 @@ public class MemServlet extends HttpServlet {
 				
 				
 			req.setAttribute("memVO", memVO);
-			String url = "/mem/listOneMem.jsp";
+			String url = "/member/listOneMem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			MemVO tempVO =(MemVO) session.getAttribute("memVO");
 //			System.out.println(tempVO.getMemNickname());

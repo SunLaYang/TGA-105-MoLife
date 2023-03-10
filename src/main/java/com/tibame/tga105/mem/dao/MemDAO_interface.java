@@ -17,5 +17,6 @@ public interface MemDAO_interface {
   
   MemVO login(String memEmail, String memPsd);
   
+  void updateByAdmin(MemVO paramMemVO);
   
 }

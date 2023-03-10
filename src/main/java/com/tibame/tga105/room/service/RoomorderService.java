@@ -21,6 +21,9 @@ public interface RoomorderService {
 	
 	void updateRoomorder(Integer roomOrderId, RoomorderRequest roomorderRequest);
 	
+	//取消訂單專用
+	void updateRoomorderForCancel(Integer roomOrderId, RoomorderRequest roomorderRequest);
+	
 	void deleteRoomOrder(Integer roomOrderId);
 	
 	//=============================

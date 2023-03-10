@@ -130,6 +130,30 @@ public class RoomorderDaoImpl implements RoomorderDao {
 		namedParameterJdbcTemplate.update(sql, map);
 
 	}
+	
+	//=================取消訂單專用================
+		@Override
+		public void updateRoomorderForCancel(Integer roomOrderId, RoomorderRequest roomorderRequest) {
+			String sql = "UPDATE roomorder SET member_id = :memberId, room_total_amount = :roomTotalAmount, room_order_status = :roomOrderStatus, total_of_pet = :totalOfPet, room_checkin_date = :roomCheckInDate, room_checkout_date = :roomCheckOutDate, payer_name = :payerName, payer_phone = :payerPhone, order_status = :orderStatus  WHERE roomorder_id = :roomOrderId";
+
+			Map<String, Object> map = new HashMap<>();
+			
+			map.put("roomOrderId", roomOrderId);
+
+			map.put("memberId", roomorderRequest.getMemberId());
+			map.put("roomTotalAmount", roomorderRequest.getRoomTotalAmount());
+			map.put("roomOrderStatus", roomorderRequest.getRoomOrderStatus());
+			map.put("totalOfPet", roomorderRequest.getTotalOfPet());
+			map.put("roomCheckInDate", roomorderRequest.getRoomCheckInDate());
+			map.put("roomCheckOutDate",roomorderRequest.getRoomCheckOutDate());
+			map.put("payerName", roomorderRequest.getPayerName());
+			map.put("payerPhone", roomorderRequest.getPayerPhone());
+			map.put("orderStatus", roomorderRequest.getOrderStatus());
+
+			namedParameterJdbcTemplate.update(sql, map);
+			
+		}
+
 
 	// ===========刪除訂單===========================
 	@Override
@@ -213,7 +237,7 @@ public class RoomorderDaoImpl implements RoomorderDao {
 
 	@Override
 	public List<Map<String, Object>> getRoomorderByMemberId(RoomorderVO roomorderVO, Integer memberId) {
-		String sql = "SELECT o.roomorder_id, r.room_name, o.room_check_date, o.room_total_amount, o.order_status "
+		String sql = "SELECT o.roomorder_id, r.room_name, o.room_check_date, o.room_total_amount, o.order_status, o.room_order_status, o.room_checkin_date, o.room_checkout_date "
 				+ "FROM roomorder o " + "JOIN room_order_detail d ON o.roomorder_id = d.roomorder_id "
 				+ "JOIN petroom r ON d.room_type_id = r.room_type_id " + "WHERE o.member_id = :memberId";
 

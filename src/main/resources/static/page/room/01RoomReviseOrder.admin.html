@@ -167,7 +167,7 @@
               />
             </div>
             <div class="info">
-              <a href="#" class="d-block">Linda Lee</a>
+              <a href="#" class="d-block">Ryan Sun</a>
             </div>
           </div>
 
@@ -627,16 +627,6 @@
     <!-- Page specific script -->
     <script>
       $(function () {
-        /* ChartJS
-         * -------
-         * Here we will create a few charts using ChartJS
-         */
-
-        //--------------
-        //- AREA CHART -
-        //--------------
-
-        // Get context with jQuery - using jQuery's .get() method.
         var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
 
         var areaChartData = {
@@ -864,7 +854,8 @@
     </script>
     <script>
       let memberId2 = "";
-      rderStatus = "";
+      var roomOrderStatus = "";
+      var OrderStatus_origin = "";
       $(function () {
         var url = location.href;
         let id = "";
@@ -895,10 +886,11 @@
             $("#roomCheckOutDate").val(data.roomCheckOutDate);
             memberId2 = data.memberId;
             roomOrderStatus = data.roomOrderStatus;
+            OrderStatus_origin = data.orderStatus;
             // $('input[name="roomOrderStatus"]')[1].checked = true;
-            if (data.orderStatus === 1) {
+            if (data.roomOrderStatus === 1) {
               $("input[name=orderStatus][value='1']").attr("checked", true);
-            } else if (data.orderStatus === 0) {
+            } else if (data.roomOrderStatus === 0) {
               $("input[name=orderStatus][value='0']").attr("checked", true);
             } else {
               $("input[name=orderStatus][value='2']").attr("checked", true);
@@ -912,18 +904,17 @@
         var Data = "";
         $("form").submit(function (event) {
           event.preventDefault();
-
           //get the form data
           var formData = {
             memberId: memberId2,
-            roomOrderStatus: roomOrderStatus,
+            orderStatus: OrderStatus_origin,
             payerName: $("input[name=payerName]").val(),
             payerPhone: $("input[name=payerPhone]").val(),
             roomCheckInDate: $("input[name=roomCheckInDate]").val(),
             roomCheckOutDate: $("input[name=roomCheckOutDate]").val(),
             roomOrderId: $("input[name=roomOrderId]").val(),
             roomTotalAmount: $("input[name=roomTotalAmount]").val(),
-            orderStatus: $("input[name=orderStatus]:checked").val(),
+            roomOrderStatus: $("input[name=orderStatus]:checked").val(),
             totalOfPet: $("input[name=totalOfPet]").val(),
           };
           console.log(formData);
@@ -938,7 +929,9 @@
             console.log(data);
             swal({
               type: "success",
-              title: "修改成功~",
+              title: "編輯成功!",
+            }).then((value) => {
+              window.location.href = "/page/room/01RoomOrder.admin.html";
             });
           });
         });

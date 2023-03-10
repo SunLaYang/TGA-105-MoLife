@@ -128,9 +128,6 @@
           <li class="nav-item d-none d-sm-inline-block">
             <a href="./index.html" class="nav-link">首頁</a>
           </li>
-          <!-- <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li> -->
         </ul>
 
         <!-- Right navbar links -->
@@ -660,16 +657,6 @@
     <!-- Page specific script -->
     <script>
       $(function () {
-        /* ChartJS
-         * -------
-         * Here we will create a few charts using ChartJS
-         */
-
-        //--------------
-        //- AREA CHART -
-        //--------------
-
-        // Get context with jQuery - using jQuery's .get() method.
         var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
 
         var areaChartData = {
@@ -980,15 +967,11 @@
             roomDescription: $("input[name=roomDescription]").val(),
             roomPrice: $("input[name=roomPrice]").val(),
             petNumber: $("input[name=roomNum]").val(),
-            // petType: $("select[name=petType]").val(),
-            // petTotal: $("select[name=petTotal]").val(),
+
             roomStatus: $("input[name=roomStatus]:checked").val(),
             roomPic1: pic_1,
             roomPic2: pic_2,
             roomPic3: pic_3,
-            // room_pic1: pic_1.split(',')[1],
-            // room_pic2: pic_2.split(',')[1],
-            // room_pic3: pic_3.split(',')[1],
           };
           console.log(formData);
           // process the form

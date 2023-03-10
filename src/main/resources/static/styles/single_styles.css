@@ -881,10 +881,7 @@ section
 	background: #fe4c50;
 	content: '';
 }
-.product_details_title p
-{
-	color: #;
-}
+
 
 /*********************************
 4. Breadcrumbs
@@ -944,7 +941,7 @@ section
 	left: 0;
 	width: 100%;
 	height: 100%;
-	border: solid 1px #fe4c50;
+	border: solid 1.5px #ffc107;
 	content: '';
 	visibility: hidden;
 }

@@ -27,15 +27,7 @@
     crossorigin="anonymous" />
   <!-- bootstrap -->
   <link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css" />
-  <!-- <link
-      href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      rel="stylesheet"
-    /> -->
-  <!-- datetimepicker -->
-  <!-- <link
-      href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-      rel="stylesheet"
-    /> -->
+  
   <!-- font-awesome -->
   <link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- breadcrumbs -->
@@ -239,7 +231,7 @@
             <ul class="row article_item">
               <li class="col row justify-content-center order2">
                 <figure class="row justify-content-center align-items-center figure_img">
-                  <img src="../../images/home/Q416-BAG-petiquette-static1.jpg" alt="" class="img_card" />
+                  <img src="../../images/home/gallery-4.jpg" alt="" class="img_card" />
                 </figure>
               </li>
               <li class="col row justify-content-center align-items-center order1 article-txt">
@@ -531,19 +523,7 @@
         new_roomCheckInDate = `${roomCheckInDate[2]}-${roomCheckInDate[0]}-${roomCheckInDate[1]}`
         new_roomCheckOutDate = `${roomCheckOutDate[2]}-${roomCheckOutDate[0]}-${roomCheckOutDate[1]}`
         console.log(new_roomCheckOutDate)
-        // var formData1 = {
-        //   memberId: '1',
-        //   roomTypeId: "1",
-        //   totalOfPet: $("input[name=pet]").val(),
-        //   roomCheckInDate: "2023-02-17",
-        //   roomCheckOutDate: "2023-02-18",
-        //   payerName: "阿亨",
-        //   roomOrderStatus: "0",
-        //   payerPhone: "0919924232",
-        //   orderStatus: "1",
-        //   roomTotalAmount: $("input[name=total]").val(),
 
-        // };
         var formData2 = {
           memberId: '3',
           roomTypeId: id,
@@ -689,7 +669,7 @@
       }
     });
     var roomName = '';
-
+    var totalCount = 0;
     $(function () {
       var url = location.href;
       let id = ''
@@ -728,7 +708,7 @@
         encode: true
       }).done(function (data) {
         console.log(data);
-
+        totalCount = data.roomPrice;
         $(".detailImg").append(`<li class="active imgCard"><img src="data:;base64,${data.roomPic1}" alt="" data-image="http://localhost:8080/image1/1"style="width: 100%; height: 100%; object-fit: cover" /></li>`)
         $(".detailImg").append(`<li class="imgCard"><img src="data:;base64,${data.roomPic2}" alt="" data-image="http://localhost:8080/image1/1"style="width: 100%; height: 100%; object-fit: cover" /></li>`)
         $(".detailImg").append(`<li class="imgCard"><img src="data:;base64,${data.roomPic3}" alt="" data-image="http://localhost:8080/image1/1"style="width: 100%; height: 100%; object-fit: cover" /></li>`)
@@ -737,6 +717,7 @@
         $(".detail_price").append(`<div class="product_price">$${data.roomPrice}</div>`)
         $("#roomTypeId").val(data.roomTypeId);
         $("#memberName").val(data.roomName);
+        $("#pet").attr("max", data.petNumber);
         console.log(data.roomName);
         roomName = data.roomName;
         // var yyyy = new Date().getFullYear();
@@ -790,7 +771,7 @@
       var end = new Date($("#endDate").val());
       var dif = end.getTime() - start.getTime();
       var day = Math.floor(dif / (1000 * 60 * 60 * 24));
-      var count = day * petNum * 500;
+      var count = day * petNum * totalCount;
       $("#total").val(count);
       console.log(day)
     })
@@ -800,7 +781,7 @@
       var end = new Date($("#endDate").val());
       var dif = end.getTime() - start.getTime();
       var day = Math.floor(dif / (1000 * 60 * 60 * 24));
-      var count = day * petNum * 500;
+      var count = day * petNum * totalCount;
       $("#total").val(count);
       console.log(day)
     })
@@ -810,7 +791,7 @@
       var end = new Date($("#endDate").val());
       var dif = end.getTime() - start.getTime();
       var day = Math.floor(dif / (1000 * 60 * 60 * 24));
-      var count = day * petNum * 500;
+      var count = day * petNum * totalCount;
       $("#total").val(count);
 
       console.log(day)

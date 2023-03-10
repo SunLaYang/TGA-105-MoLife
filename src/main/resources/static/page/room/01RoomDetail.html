@@ -27,15 +27,7 @@
     crossorigin="anonymous" />
   <!-- bootstrap -->
   <link rel="stylesheet" type="text/css" href="../../styles/bootstrap4/bootstrap.min.css" />
-  <!-- <link
-      href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      rel="stylesheet"
-    /> -->
-  <!-- datetimepicker -->
-  <!-- <link
-      href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
-      rel="stylesheet"
-    /> -->
+
   <!-- font-awesome -->
   <link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <!-- breadcrumbs -->
@@ -605,7 +597,8 @@
         // process the form
         $.ajax({
           type: "POST",
-          url: "http://localhost:8081/roomorders",
+          // url: "http://localhost:8081/roomorders",
+          url: "/roomorders",
           data: JSON.stringify(formData2),
           contentType: "application/json",
           encode: true
@@ -627,8 +620,8 @@
   <!-- 引入 header / footer /scrollTop-->
   <script>
     $(function () {
-      $("#header").load("../../header.html");可容納寵物數量
-      $("#footer").load("../../footer.html");
+      // $("#header").load("../../header.html");
+      // $("#footer").load("../../footer.html");
       $("#scrollTop").load("../../scrollTop.html");
     });
   </script>
@@ -746,7 +739,9 @@
       };
       $.ajax({
         type: "GET",
-        url: `http://localhost:8081/roomorderDate/${id}`,
+        // url: `http://localhost:8081/roomorderDate/${id}`,
+        url: `/roomorderDate/${id}`,
+
         dataType: "json",
         encode: true
       }).done(function (data) {
@@ -765,7 +760,8 @@
 
       $.ajax({
         type: "GET",
-        url: `http://localhost:8081/petrooms/${id}`,
+        // url: `http://localhost:8081/petrooms/${id}`,
+        url: `/petrooms/${id}`,
         dataType: "json",
         encode: true
       }).done(function (data) {
@@ -785,7 +781,8 @@
         // var yyyy = new Date().getFullYear();
         $.ajax({
           type: "GET",
-          url: `http://localhost:8081/room/like/count?roomName=${data.roomName}`,
+          // url: `http://localhost:8081/room/like/count?roomName=${data.roomName}`,
+          url: `/room/like/count?roomName=${data.roomName}`,
           dataType: "json",
           encode: true
         }).done(function (data) {
@@ -879,7 +876,8 @@
     $(document).on("click", "#likeRoom", function () {
       $.ajax({
         type: "GET",
-        url: `http://localhost:8081/room/like?roomName=${roomName}&memberId=${4}`,
+        // url: `http://localhost:8081/room/like?roomName=${roomName}&memberId=${4}`,
+        url: `/room/like?roomName=${roomName}&memberId=${4}`,
         dataType: "json",
         encode: true
       }).done(function (data) {

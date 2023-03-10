@@ -454,17 +454,13 @@
     })
       .done(function (data) {
         console.log(data);
-        // for (let i = 0; i < data.length; i++) {
-        //   $(".blogs_container").append(`<div class="col-lg-3 blog_item_col"><div class="blog_item" data-aos="fade-down" data-aos-delay="300"><div class="blog_background" style="background-image: url(data:;base64,${data[i].roomPic1})"></div><div class="blog_content d-flex flex-column align-items-center justify-content-center text-center"><h4 class="blog_title">${data[i].roomName}</h4><p>${data[i].roomDescription}</p><a class="detail" href="/page/room/01RoomDetail.html?id=${data[i].petNumber}">詳情</a></div></div></div>`);
-
-        // }
-        // // pushJson.innerHTML = data[0].username;
         $.each(data, function (index, data) {
           console.log();
-          $(
-            `<div class=" blog_item_col"><div class="blog_item" data-aos="fade-down" data-aos-delay="300"><div class="blog_background" style="background-image: url(data:;base64,${data.roomPic1})"></div><div class="blog_content d-flex flex-column align-items-center justify-content-center text-center"><h4 class="blog_title">${data.roomName}</h4><p>${data.roomDescription}</p><a class="detail" href="/page/room/01RoomDetail.html?id=${data.roomTypeId}">詳情</a></div></div></div>`
-          ).appendTo(".owl-carousel");
-          // $(`<div>${data.roomName}</div>`).appendTo(".owl-carousel");
+          if (data.roomStatus) {
+            $(
+              `<div class=" blog_item_col"><div class="blog_item" data-aos="fade-down" data-aos-delay="300"><div class="blog_background" style="background-image: url(data:;base64,${data.roomPic1})"></div><div class="blog_content d-flex flex-column align-items-center justify-content-center text-center"><h4 class="blog_title">${data.roomName}</h4><p>${data.roomDescription}</p><a class="detail" href="/page/room/01RoomDetail.html?id=${data.roomTypeId}">詳情</a></div></div></div>`
+            ).appendTo(".owl-carousel");
+          }
         });
 
         $(".owl-carousel").owlCarousel({

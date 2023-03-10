@@ -52,7 +52,6 @@ public class RoomorderServiceImpl implements RoomorderService {
 
 		// 創建訂單
 		Integer roomOrderId = roomorderDao.createRoomorder(roomorderRequest);// 先在roomorder table新增資料
-
 		roomorderDao.createRoomOrderDetail(roomOrderId, roomorderRequest);// 同時要去room order detail表新增
 
 		return roomOrderId;

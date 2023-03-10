@@ -1,0 +1,140 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+/* ======================================================== */
+
+/* 提案募款 */
+
+.wrapper-pps .wrapper{
+    position: absolute;
+    margin-left: 300px;
+}
+
+.proposal { 
+    display: inline-block;
+    border: none;   
+    width: 140px;
+    height: 40px;
+    background-color: #a7754d;
+    border-radius: 5px; 
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ======================================================== */
+
+
+/* 搜尋與下拉式選單 */
+.wrapper-box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+}
+
+/* 整個物件 */
+.wrapper-box .wrapper{
+    position: absolute;
+    margin-left: 50px;
+}
+
+/* 主框框 */
+.wrapper-box .wrapper .search_box{
+    width: 220px;
+    background-color: #a7754d;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+}
+
+/* bar最左邊的線*/
+.wrapper-box .wrapper .search_box .dropdown{
+    width: 170px;
+    height: 100%;
+    border-right: solid #a7754d;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 下拉式選單的標題 */
+/* user-select:none->無法選取 */
+.wrapper-box .wrapper .search_box .dropdown .default_option{
+    padding: 1px 10px;
+    font-size: 18px;
+    color: white;
+    user-select: none;
+}
+
+/* 下拉式選單的選項*/
+.wrapper-box .wrapper .search_box .dropdown ul {
+    position: absolute;
+    top:40px;
+    left: 20px;
+    width: 90px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    background-color: #DCCCBB ;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* 下拉式選單function-click appear */
+.wrapper-box .wrapper .search_box .dropdown ul.active{
+    display: block;
+}
+
+/* 下拉選單內容框 */
+.wrapper-box .warpper .search_box .dropdown ul li{
+    padding-bottom: 20px;
+    user-select: none;
+}
+
+.wrapper-box .wrapper .search_box .dropdown ul li:last child{
+    padding-bottom: 0;
+}
+
+/* 游標指向選單內容框後的顏色 */
+.wrapper-box .wrapper .search_box .dropdown ul li:hover{
+    color: #a7754d;
+}
+
+/* 製作下拉選單icon (上右下左)*/
+.wrapper-box .wrapper .search_box .dropdown:before{
+    content:"";
+    position: absolute;
+    top: 12px;;
+    right: 12px;
+    border: 8px solid;
+    border-color:white transparent transparent transparent;
+}
+
+/* 搜尋bar內框 */
+.wrapper-box .wrapper .search_box .search_field .input{
+    width: 35px;
+    height: 100%;
+    background-color:white;
+}
+
+/* 放大鏡icon及cursors style*/
+.wrapper-box .wrapper .search_box .search_field .fa-solid{
+    position: absolute;
+    top:5px;
+    right: 7.5px;
+    font-size: 20px;
+    color:#a7754d;
+    cursor: pointer; 
+}
+
+
+/* ======================================================== */

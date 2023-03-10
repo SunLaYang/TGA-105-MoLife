@@ -985,7 +985,9 @@
             console.log(data);
             swal({
               type: "success",
-              title: "新增成功~",
+              title: "新增成功!",
+            }).then((value) => {
+              window.location.href = "/page/room/01Roommanage.admin.html";
             });
           });
         });

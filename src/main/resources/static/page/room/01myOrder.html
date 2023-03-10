@@ -299,7 +299,8 @@
   $("#table-data").DataTable({
     ajax: function (data, callback, settings) {
       axios
-        .get("http://localhost:8081/roomorderDetial/3")
+        // .get("http://localhost:8081/roomorderDetial/3")
+         .get("/roomorderDetial/3")
         .then((result) => {
           console.log(result)
           
@@ -413,7 +414,8 @@
       if (result.value) {
         $.ajax({
           type: "GET",
-          url: `http://localhost:8081/roomorders/${roomorder_id}`,
+          // url: `http://localhost:8081/roomorders/${roomorder_id}`,
+          url: `/roomorders/${roomorder_id}`,
           dataType: "json",
           encode: true
         }).done(function (data) {
@@ -425,7 +427,8 @@
           delete datailRoom.roomorder_id;
           $.ajax({
             type: "PUT",
-            url: `http://localhost:8081/roomordersCancel/${roomorder_id}`,
+            // url: `http://localhost:8081/roomordersCancel/${roomorder_id}`,
+            url: `/roomordersCancel/${roomorder_id}`,
             data: JSON.stringify(datailRoom),
             contentType: "application/json",
             encode: true

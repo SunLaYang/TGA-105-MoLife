@@ -15,5 +15,6 @@ public interface ContactUsRepository extends JpaRepository<ContactUs, Integer> {
     @Query(value = "select * from contact_us where msg_id = ?", nativeQuery = true)
     ContactUs getByMsgId(Integer msgId);
 
-
+    @Query(value = "select member_id from member where member_email = ?", nativeQuery = true)
+    Integer getIdByEmail(String memEmail);
 }

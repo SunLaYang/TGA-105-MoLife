@@ -135,21 +135,32 @@
                   <th class="border-top-0" scope="col">操作</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="cart-container">
                 <tr>
                   <th scope="row">
                     Kirkland Signature Chicken & Rice Dry Dog Food 12 kg
                   </th>
                   <td>$900</td>
                   <td>
-                    <div class="quantity_selector">
-                      <span class="minus"
-                        ><i class="fa fa-minus" aria-hidden="true"></i
-                      ></span>
-                      <span id="quantity_value">1</span>
-                      <span class="plus"
-                        ><i class="fa fa-plus" aria-hidden="true"></i
-                      ></span>
+                    <div class="input-group pl-5" style="max-width: 160px">
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-outline-secondary minus-btn"
+                          type="button">
+                          -
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control quantity-input"
+                        value="1" />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-secondary plus-btn"
+                          type="button">
+                          +
+                        </button>
+                      </div>
                     </div>
                   </td>
                   <td>$900</td>
@@ -161,14 +172,25 @@
                   </th>
                   <td>$900</td>
                   <td>
-                    <div class="quantity_selector">
-                      <span class="minus"
-                        ><i class="fa fa-minus" aria-hidden="true"></i
-                      ></span>
-                      <span id="quantity_value">2</span>
-                      <span class="plus"
-                        ><i class="fa fa-plus" aria-hidden="true"></i
-                      ></span>
+                    <div class="input-group pl-5" style="max-width: 160px"">
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-outline-secondary minus-btn"
+                          type="button">
+                          -
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control quantity-input"
+                        value="1" />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-secondary plus-btn"
+                          type="button">
+                          +
+                        </button>
+                      </div>
                     </div>
                   </td>
                   <td>$1800</td>
@@ -180,14 +202,25 @@
                   </th>
                   <td>$900</td>
                   <td>
-                    <div class="quantity_selector">
-                      <span class="minus"
-                        ><i class="fa fa-minus" aria-hidden="true"></i
-                      ></span>
-                      <span id="quantity_value">3</span>
-                      <span class="plus"
-                        ><i class="fa fa-plus" aria-hidden="true"></i
-                      ></span>
+                    <div class="input-group pl-5" style="max-width: 160px"">
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-outline-secondary minus-btn"
+                          type="button">
+                          -
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control quantity-input"
+                        value="1" />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-secondary plus-btn"
+                          type="button">
+                          +
+                        </button>
+                      </div>
                     </div>
                   </td>
                   <td>$2700</td>
@@ -331,12 +364,27 @@
     </div>
 
     <script src="../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../styles/bootstrap4/popper.js"></script>
-    <script src="../../styles/bootstrap4/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
     <script src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
+    <script>
+      // 事件委派，將點擊事件綁定在 cart-container 父元素上
+      $('.cart-container').on('click', '.minus-btn', function() {
+        var input = $(this).parent().parent().find('.quantity-input');
+        var value = parseInt(input.val());
+        if (value > 1) {
+          input.val(value - 1);
+        }
+      });
+    
+      $('.cart-container').on('click', '.plus-btn', function() {
+        var input = $(this).parent().parent().find('.quantity-input');
+        var value = parseInt(input.val());
+        input.val(value + 1);
+      });
+    </script>
   </body>
 </html>

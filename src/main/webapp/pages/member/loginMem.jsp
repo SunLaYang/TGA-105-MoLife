@@ -22,7 +22,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO"); //MemServlet.java (Concroll
 <title>會員登入</title>
 
 <!--index_css-->
-<link rel="stylesheet" type="text/css" href="N_1_index.css" />
+<!-- <link rel="stylesheet" type="text/css" href="N_1_index.css" /> -->
 
 <!--Bootstrap導入程式-->
 <link
@@ -116,7 +116,7 @@ div.btn_click {
 				</ul>
 			</c:if>
 		</div>
-		<form METHOD="post" ACTION="/TGA-105-MoLife/memberController" name="login"
+		<form METHOD="post" ACTION="/memberController" name="login"
 			enctype="multipart/form-data">
 			<div class="col text-center">
 				<div class="mail.text">

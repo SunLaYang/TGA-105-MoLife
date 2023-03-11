@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tibame.tga105.others.model.entity.News;
 import com.tibame.tga105.others.service.NewsService;
-import com.tibame.tga105.shop.service.ProductService;
 
 @Controller
 @RequestMapping("/page/others")
@@ -18,9 +17,6 @@ public class NewsController {
 
     @Autowired
     private NewsService newsService;
-    
-    @Autowired
-    private ProductService productService;
 
     //後台最新消息頁面(讀取資料庫)
     @RequestMapping("/24admin.news.html")
@@ -30,12 +26,9 @@ public class NewsController {
     }
 
     //前台首頁最新消息(讀取資料庫)
-    @GetMapping  ("/24front_page.html")
+    @GetMapping("/24front_page.html")
     public String getNews(Model model){
         model.addAttribute("news", newsService.readNews());
-        model.addAttribute("product1", productService.selectId(1));
-        model.addAttribute("product3", productService.selectId(3));
-        model.addAttribute("product4", productService.selectId(4));
         return "24front_page";
     }
 

@@ -1,0 +1,222 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+/* ======================================================== */
+
+/* 提案募款 */
+
+.wrapper-pps .wrapper{
+    position: absolute;
+    margin-left: 300px;
+}
+
+.proposal { 
+    display: inline-block;
+    border: none;   
+    width: 140px;
+    height: 40px;
+    background-color: #a7754d;
+    color:white;
+    border-radius: 5px; 
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* ======================================================== */
+
+/* 搜尋與下拉式選單 */
+.wrapper-box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+}
+
+/* 整個物件 */
+.wrapper-box .wrapper{
+    position: absolute;
+    margin-left: 50px;
+}
+
+/* 主框框 */
+.wrapper-box .wrapper .search_box{
+    width: 220px;
+    background-color: #a7754d;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+}
+
+/* bar最左邊的線*/
+.wrapper-box .wrapper .search_box .dropdown{
+    width: 170px;
+    height: 100%;
+    border-right: solid #a7754d;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 下拉式選單的標題 */
+/* user-select:none->無法選取 */
+.wrapper-box .wrapper .search_box .dropdown .default_option{
+    padding: 1px 10px;
+    font-size: 18px;
+    color: white;
+    user-select: none;
+}
+
+/* 下拉式選單的選項*/
+.wrapper-box .wrapper .search_box .dropdown ul {
+    position: absolute;
+    top:40px;
+    left: 20px;
+    width: 90px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    background-color: #DCCCBB ;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* 下拉式選單function-click appear */
+.wrapper-box .wrapper .search_box .dropdown ul.active{
+    display: block;
+}
+
+/* 下拉選單內容框 */
+.wrapper-box .warpper .search_box .dropdown ul li{
+    padding-bottom: 20px;
+    user-select: none;
+}
+
+.wrapper-box .wrapper .search_box .dropdown ul li:last child{
+    padding-bottom: 0;
+}
+
+/* 游標指向選單內容框後的顏色 */
+.wrapper-box .wrapper .search_box .dropdown ul li:hover{
+    color: #a7754d;
+}
+
+/* 製作下拉選單icon (上右下左)*/
+.wrapper-box .wrapper .search_box .dropdown:before{
+    content:"";
+    position: absolute;
+    top: 12px;;
+    right: 12px;
+    border: 8px solid;
+    border-color:white transparent transparent transparent;
+}
+
+/* 搜尋bar內框 */
+.wrapper-box .wrapper .search_box .search_field .input{
+    width: 30px;
+    height: 100%;
+    background-color:white;
+}
+
+/* 放大鏡icon及cursors style*/
+.wrapper-box .wrapper .search_box .search_field .fa-solid{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color:#a7754d;
+    cursor: pointer; 
+}
+
+
+/* ======================================================== */
+
+
+/* 計畫大標題 */
+.plan-title{
+    border-top: 1px solid #d8dfe7;
+    color: #a7754d;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    margin-top: 25px;
+    padding-left: 50px;
+}
+
+/*募款計畫卡片*/
+.card{
+    border-radius: 20px;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* 卡片的img */
+.card-img-top{
+    height: 50%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+
+/* 卡片title */
+.card-title {
+    font-size: 20px;
+}
+
+.card-text{
+    font-size: 16px;
+}
+
+
+.plan-btn{
+    width:120px;
+    height: 40px;
+    display: inline-block;
+    border:white  1px solid;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-color: #DCCCBB;
+    letter-spacing: 0.5px;
+}
+
+/* ======================================================== */
+
+/* 問答標題 */
+.qa-title{
+    border-top: 1px solid #d8dfe7;
+    color:#808080;
+    font-weight: bold;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 50px;
+}
+
+/* 問答框 */
+.card-qa{
+    margin-top: 40px;
+    padding-left: 50px;
+}
+
+/* 問題*/
+.card-qa-title{
+    font-size: 20px;
+    color:#404040;
+}
+
+/* 答案*/
+.card-qa-text{
+    font-size: 20px;
+    /* color:#808080; */
+    color:#404040;
+}

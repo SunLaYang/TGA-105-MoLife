@@ -1,0 +1,305 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+
+/* -------------------------------------------------- */
+
+/* 提案募款 */
+
+.wrapper-pps .wrapper{
+    position: absolute;
+    margin-left: 300px;
+}
+
+.proposal { 
+    display: inline-block;
+    border: none;   
+    width: 140px;
+    height: 40px;
+    background-color: #a7754d;
+    color:white;
+    border-radius: 5px; 
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+/* -------------------------------------------------- */
+
+/* 搜尋與下拉式選單 */
+.wrapper-box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    list-style: none;
+}
+
+/* 整個物件 */
+.wrapper-box .wrapper{
+    position: absolute;
+    margin-left: 50px;
+}
+
+/* 主框框 */
+.wrapper-box .wrapper .search_box{
+    width: 220px;
+    background-color: #a7754d;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    padding: 5px;
+}
+
+/* bar最左邊的線*/
+.wrapper-box .wrapper .search_box .dropdown{
+    width: 170px;
+    height: 100%;
+    border-right: solid #a7754d;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 下拉式選單的標題 */
+/* user-select:none->無法選取 */
+.wrapper-box .wrapper .search_box .dropdown .default_option{
+    padding: 1px 10px;
+    font-size: 18px;
+    color: white;
+    user-select: none;
+}
+
+/* 下拉式選單的選項*/
+.wrapper-box .wrapper .search_box .dropdown ul {
+    position: absolute;
+    top:40px;
+    left: 20px;
+    width: 90px;
+    border-radius: 5px;
+    padding: 5px;
+    display: none;
+    background-color: #DCCCBB ;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* 下拉式選單function-click appear */
+.wrapper-box .wrapper .search_box .dropdown ul.active{
+    display: block;
+}
+
+/* 下拉選單內容框 */
+.wrapper-box .warpper .search_box .dropdown ul li{
+    padding-bottom: 20px;
+    user-select: none;
+}
+
+.wrapper-box .wrapper .search_box .dropdown ul li:last child{
+    padding-bottom: 0;
+}
+
+/* 游標指向選單內容框後的顏色 */
+.wrapper-box .wrapper .search_box .dropdown ul li:hover{
+    color: #a7754d;
+}
+
+/* 製作下拉選單icon (上右下左)*/
+.wrapper-box .wrapper .search_box .dropdown:before{
+    content:"";
+    position: absolute;
+    top: 12px;;
+    right: 12px;
+    border: 8px solid;
+    border-color:white transparent transparent transparent;
+}
+
+/* 搜尋bar內框 */
+.wrapper-box .wrapper .search_box .search_field .input{
+    width: 30px;
+    height: 100%;
+    background-color:white;
+}
+
+/* 放大鏡icon及cursors style*/
+.wrapper-box .wrapper .search_box .search_field .fa-solid{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    color:#a7754d;
+    cursor: pointer; 
+}
+
+/* ----------------------------------- */
+/* 募款計畫內容 */
+
+.plan-container{
+    margin-top: 150px;
+    margin-left:10%;
+    margin-right:10%;
+}
+
+.plan-name2{
+    background-color:#EEEEEE;
+    width: 100%;
+    padding: 13px;
+    color: black;
+    font-size: 35px; 
+    text-align: center;
+    font-weight: bold;
+}
+
+.col-md-7 p{
+    color: black;
+    font-size: 18px;
+}
+
+
+
+/* -------------------------------------------------- */
+/* 狀態更新 */
+
+/* 外框框 */
+.update{
+    margin-left:10%;
+    margin-right:10%;
+    margin-top: 20px;
+}
+
+/* 狀態更新標題 */
+.update-title{
+    font-size: 26px; 
+    text-align: center; 
+    color: #DCCCBB;   
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+/* 欄位名稱 */
+.update-thead{
+    font-size: 18px; 
+    text-align: center;
+    color: #DCCCBB;
+}
+
+.update-tbody{
+    font-size: 18px; 
+}
+
+#update-photo-button , #update-vidoe-link-button{
+    width: 90%;
+    margin: 2px;
+    padding: 3px;
+    background-color:#DCCCBB;
+    border:white  2px solid;   
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* -------------------------------------------------- */
+
+/* 捐款畫面 */
+.wrapper-pay{
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;
+    /* 垂直置中 */
+    align-content: center;      
+    flex-wrap: wrap;
+}
+
+.payment{
+    /* background-color:#646E78; */
+    border:  #EAB464 1px solid;
+    max-width: 360px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 80px;    
+    padding:35px;
+    padding-top: 50px;
+    border-radius: 5px;  
+}
+
+.payment h2{
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color:  #EAB464;
+}
+
+.form .label{
+    border: none;
+    display: block;
+    color: black;
+    margin: 2px;
+}
+
+/* 輸入框 */
+.form .input{
+    padding: 2px;
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #A7754D ;
+    border-radius: 5px;
+    word-wrap: 3px;
+    outline: none;
+    color: black;
+}
+
+.card-group{
+    display: flex;
+}
+
+.card-item{
+    width:47%;
+    margin: 2px;
+}
+
+.icon-relativeP{
+    position: relative;
+}
+
+.icon-relative .fa-solid , 
+.icon-relative .fa-regular{
+    position:absolute;
+    bottom: 8px;
+    left: 15px;
+    font-size: 16px;
+    color: #d3d3d3;
+}
+
+.pay-btn{
+    margin-top: 25px;
+    margin-left: 72px;
+    padding: 5px 50px 5px 50px ;
+    border:white  1px solid;
+    background-color: #EAB464;
+    text-align: center;
+    letter-spacing: 1px;
+    color:white;
+    border-radius: 5px; 
+}
+
+.pay-logo{
+    position:absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width:100px;
+    height: 100px;
+    background-color: #DCCCBB;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.);
+    text-align:center;
+}

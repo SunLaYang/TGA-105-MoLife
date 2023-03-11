@@ -1,5 +1,9 @@
 package com.tibame.tga105.others.controller;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> origin/linda
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tibame.tga105.mem.model.MemVO;
+import com.tibame.tga105.others.model.dao.ContactUsRepository;
 import com.tibame.tga105.others.model.entity.ContactUs;
 import com.tibame.tga105.others.model.entity.PostInfo;
 import com.tibame.tga105.others.service.ContactUsService;
@@ -30,6 +34,9 @@ public class ContactUsController {
 
     @Autowired
     private PostInfoService postInfoService;
+    
+    @Autowired
+    private ContactUsRepository contactUsRepository;
 
     @Autowired
     private JavaMailSender javaMailSender;
@@ -58,10 +65,11 @@ public class ContactUsController {
 
     //前台聯絡我們頁面(新增表單)
     @PostMapping("/addMsg")
-    public String addMsg(ContactUs contactUs, MemVO mem){
+    public String addMsg(ContactUs contactUs){
         ContactUs contactUs1 = new ContactUs();
         contactUs1.setName(contactUs.getName());
         contactUs1.setEmail(contactUs.getEmail());
+<<<<<<< HEAD
 
 //      List<MemVO> mem = new ArrayList<MemVO>();
 //      for(int i = 0; i < mem.size(); i++) {
@@ -73,6 +81,19 @@ public class ContactUsController {
 //         }    
 //      }
         
+=======
+        
+//        List<MemVO> mem = new ArrayList<MemVO>();
+//        for(int i = 0; i < mem.size(); i++) {
+//        	if(mem.get(i).getMemEmail().equals(contactUs.getEmail())) {
+//        	   Integer memId = contactUsRepository.getIdByEmail(contactUs.getEmail());
+//        	   contactUs1.setMemberId(memId);
+//            }else {
+//        	   contactUs1.setMemberId(null);
+//            }	
+//        }
+
+>>>>>>> origin/linda
         contactUs1.setMemberId(2);
         contactUs1.setChatTitle(contactUs.getChatTitle());
         contactUs1.setChatContent(contactUs.getChatContent());

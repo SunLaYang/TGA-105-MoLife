@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoLife</title>
+
+    <link th:href="@{https://unpkg.com/aos@next/dist/aos.css}" href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet"/>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css}"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css}"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+
+    <link
+      href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css"
+      th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/animate.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/plugins/themify-icons/themify-icons.css}"
+      href="../../plugins/themify-icons/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}"
+      href="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.css"
+    />
+
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/contact_styles.css}"
+      href="../../styles/contact_styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/contact_responsive.css}"
+      href="../../styles/contact_responsive.css"
+    />
+
+    <link rel="stylesheet" th:href="@{/styles/room/room.css}" href="../../styles/room/room.css" />
+
+    <script
+      src="https://kit.fontawesome.com/2672c0b72c.js"
+      th:src="@{https://kit.fontawesome.com/2672c0b72c.js}"
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/javascript">
+      $(function (){
+        // 綁定表單提交事件
+        $('#formMsg').on('submit', function(e) {
+          // 防止表單直接被提交
+          e.preventDefault();
+
+          // 獲取表單數據
+          let formData = {
+            name: $('input[name=name]').val(),
+            email: $('input[name=email]').val(),
+            chatTitle: $('textarea[name=chatTitle]').val(),
+            chatContent: $('textarea[name=chatContent]').val()
+          };
+
+          // 透過 Ajax 將表單數據提交到後端
+          $.ajax({
+            url: '/page/others/addMsg',
+            type: 'POST',
+            data: JSON.stringify(formData),
+            dataType: 'json',
+            success: function(response) {
+              // 接收後端的回應並進行處理
+              console.log(response);
+              alert('表單已成功提交！');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              console.log(textStatus, errorThrown);
+              alert('表單提交失敗！');
+            }
+          });
+        });
+      });
+    </script>
+   
+  </head>
+  <body>
+
+   <!-- Header -->
+      <header class="header trans_300">
+        <!-- Main Navigation -->
+        <div class="main_nav_container bg-yellow">
+          <div>
+            <div class="row">
+              <div class="col-lg-12 text-right">
+                <div class="logo_container">
+                  <a href="24front_page.html">
+                    <img src="../../images/home/logoMoLife.png" />
+                  </a>
+                </div>
+                <nav class="navbar">
+                  <ul class="navbar_menu">
+                    <li><a href="../room/01room.index.html">寵物旅館</a></li>
+                    <li><a href="../shop/shop.html">商品專區</a></li>
+                    <li><a href="#">寵物募款</a></li>
+                    <li><a href="24forum.index.html">寵物論壇</a></li>
+                    <li><a href="24contact.html">聯絡我們</a></li>
+                    <li><a href="24admin.index.html">管理員後台</a></li>
+                  </ul>
+                  <ul class="navbar_user">
+                    <a href="../shop/shop-cart.html"
+                      ><img class="icon" src="../../images/home/car.png"
+                    /></a>
+                    <a href="24post_info.html"
+                      ><img class="icon" src="../../images/home/ring.png"
+                    /></a>
+                    <a href="#"
+                      ><img class="icon" src="../../images/home/man.png"
+                    /></a>
+                  </ul>
+                  <div class="hamburger_container">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- content -->
+    <div class="container contact_container">
+      <div class="row">
+        <div class="col">
+          <!-- Breadcrumbs -->
+
+          <div class="breadcrumbs d-flex flex-row align-items-center">
+            <ul>
+              <li><a href="24front_page.html">首頁</a></li>
+              <li class="active">
+                <a href="24contact.html"
+                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                  >聯絡我們</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map Container -->
+
+      <div class="row">
+        <div class="col">
+          <div id="google_map">
+            <div class="map_container" style="height: 700px;">
+              <div id="map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.4676870452995!2d121.54106421400304!3d25.052132843720486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abe6b0446815%3A0xf006dde8c27afcc7!2z57ev6IKyVGliYU1l6ZmE6Kit5Y-w5YyX6IG36KiT5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1675851960218!5m2!1szh-TW!2stw"
+                  width="1400"
+                  height="700"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Us -->
+
+      <div class="row" style="margin-top: 240px" data-aos="flip-down">
+        <div class="col-lg-6 contact_col">
+          <div class="contact_contents">
+            <h2 style="color: #646e78">
+              <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 聯絡我們
+              <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+            </h2>
+
+            <h4 style="color: #646e78">感謝您光臨Mo Life!</h4>
+            <p style="color: #646e78; font-size: 20px">
+              如有任何問題可透過以下聯絡方式或填寫表單與我們聯繫
+            </p>
+            <p style="color: #646e78; font-size: 20px">我們將很高興為您服務!</p>
+            <div>
+              <p style="color: #646e78; font-size: 20px">(02) 2712-0589</p>
+              <p style="color: #646e78; font-size: 20px">
+                service@tibameemail.com
+              </p>
+            </div>
+            <div>
+              <p style="color: #646e78; font-size: 20px">
+                104台北市中山區南京東路三段219號5樓
+              </p>
+            </div>
+            <div>
+              <p style="color: #646e78; font-size: 20px">
+                Open hours: 8.00-18.00 Mon-Sun
+              </p>
+            </div>
+          </div>
+
+          <!-- Follow Us -->
+
+          <div class="follow_us_contents">
+            <h1 style="padding-left: 37px; color: #646e78">Follow Us</h1>
+            <ul class="social d-flex flex-row">
+              <li>
+                <a href="#" style="background-color: #3a61c9"
+                  ><i class="fa fa-facebook" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" style="background-color: #41a1f6"
+                  ><i class="fa fa-twitter" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" style="background-color: #fb4343"
+                  ><i class="fa fa-google-plus" aria-hidden="true"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" style="background-color: #8f6247"
+                  ><i class="fa fa-instagram" aria-hidden="true"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6 get_in_touch_col">
+          <div class="get_in_touch_contents">
+            <h2 style="color: #646e78">
+              <i class="fa-solid fa-paw" style="color: #dcccbb"></i> 聯絡表單
+              <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+            </h2>
+            <p style="color: #646e78; font-size: 20px">
+              我們會盡快回覆您 謝謝!
+            </p>
+            <form method="post" id="formMsg" action="/page/others/addMsg">
+              <div>
+                <input
+                  id="input_name"
+                  class="form_input input_name input_ph"
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  required="required"
+                  data-error="Name is required."
+                />
+                <input
+                  id="input_email"
+                  class="form_input input_email input_ph"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  required="required"
+                  data-error="Valid email is required."
+                />
+
+                <textarea
+                  id="input_message1"
+                  class="input_ph input_message"
+                  name="chatTitle"
+                  placeholder="Title"
+                  rows="1"
+                  required
+                  data-error="Please, write us a message."
+                ></textarea>
+                <textarea
+                  id="input_message2"
+                  class="input_ph input_message"
+                  name="chatContent"
+                  placeholder="Message"
+                  rows="3"
+                  required
+                  data-error="Please, write us a message."
+                ></textarea>
+              </div>
+              <div>
+                <button
+                  id="review_submit"
+                  type="submit"
+                  class="warning_button message_submit_btn trans_300"
+                  value="Submit"
+                  style="background-color: #eab464"
+                >
+                  <b style="font-size: 18px">送出表單</b>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+      <div class="row my-5"></div>
+
+      <footer class="bg-yellow" style="margin-top:200px;">
+        <div class="row">
+          <div class="col-lg-5">
+            <div
+              class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+              <div class="container">
+                <ul class="footer_nav">
+                  <li><a href="#">討論區</a></li>
+                  <li><a href="24faq.html">FAQs</a></li>
+                  <li><a href="24contact.html">聯絡我們</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div
+              class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+              <ul>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-facebook" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-twitter" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-pinterest" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="footer_nav_container">
+              <div class="container">
+                <div class="cr">
+                  ©2022 All Rights Reserverd. Made with
+                  <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                  <a href="#">Colorlib</a> &amp; distributed by
+                  <a href="24front_page.html"
+                    >Tibame TGA-105 第四組</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <script th:src="@{/js/jquery-3.2.1.min.js}" src="../../js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{/styles/bootstrap4/popper.js}" src="../../styles/bootstrap4/popper.js"></script>
+    <script th:src="@{/plugins/Isotope/isotope.pkgd.min.js}" src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script th:src="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.js}" src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script th:src="@{/plugins/easing/easing.js}" src="../../plugins/easing/easing.js"></script>
+    <script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}" src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script th:src="@{/js/contact_custom.js}" src="../../js/contact_custom.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js}"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+
+    <script th:src="@{https://unpkg.com/aos@2.3.1/dist/aos.js}" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoLife</title>
+
+<link rel="stylesheet"
+	th:href="@{https://unpkg.com/aos@next/dist/aos.css}"
+	href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css}"
+	rel="stylesheet"
+	integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet"
+	th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css}"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+
+<link href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css"
+	th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.css}"
+	href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}"
+	href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/plugins/OwlCarousel2-2.2.1/animate.css}"
+	href="../../plugins/OwlCarousel2-2.2.1/animate.css" />
+<link rel="stylesheet"
+	th:href="@{/plugins/themify-icons/themify-icons.css}"
+	href="../../plugins/themify-icons/themify-icons.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}"
+	href="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.css" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/main_styles.css}"
+	href="../../styles/main_styles.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/bootstrap4/bootstrap.min.css}"
+	href="../../styles/bootstrap4/bootstrap.min.css" />
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/contact_styles.css}"
+	href="../../styles/contact_styles.css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/contact_responsive.css}"
+	href="../../styles/contact_responsive.css" />
+
+<!-- Ionicons -->
+<link rel="stylesheet"
+	th:href="@{https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"
+	href="../../AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css" />
+
+<!-- Theme style -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE-3.2.0/dist/css/adminlte.min.css}"
+	href="../../AdminLTE-3.2.0/dist/css/adminlte.min.css" />
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}"
+	href="../../AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css" />
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css}"
+	href="../../AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css" />
+<!-- summernote -->
+<link rel="stylesheet"
+	th:href="@{/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css}"
+	href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css" />
+
+<link rel="stylesheet" th:href="@{/styles/room/room.css}"
+	href="../../styles/room/room.css" />
+
+<script src="https://kit.fontawesome.com/2672c0b72c.js"
+	th:src="@{https://kit.fontawesome.com/2672c0b72c.js}"
+	crossorigin="anonymous"></script>
+
+<style>
+  ul.nav.nav-pills li.nav-item a.nav-link.active {
+	  background-color: #eab464;
+  }
+
+  #add-btn {
+	  background-color: #eab464;
+	  border-color: #eab464;
+  }
+
+  .apply_btn {
+	  width: 70px;
+	  height: 35px;
+	  border-radius: 8px;
+	  border: none;
+	  color: white;
+	  background-color: #eab464;
+	  font-size: 16px;
+  }
+
+  #gotop {
+	  position: fixed;
+	  border-radius: 50px;
+	  right: 20px;
+	  bottom: 30px;
+	  padding: 10px 16px;
+	  font-size: 25px;
+	  background: rgba(228, 211, 211, 0.36);
+	  color: #dcccbb;
+	  cursor: pointer;
+	  z-index: 1000;
+  }
+</style>
+
+</head>
+<body>
+
+	<!-- Header -->
+	<header class="header trans_300">
+		<!-- Main Navigation -->
+		<div class="main_nav_container bg-yellow">
+			<div>
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<div class="logo_container">
+							<a href="24front_page.html"> <img
+								src="../../images/home/logoMoLife.png" />
+							</a>
+						</div>
+						<nav class="navbar">
+							<ul class="navbar_menu">
+								<li><a href="../room/01room.index.html">寵物旅館</a></li>
+								<li><a href="../shop/shop.html">商品專區</a></li>
+								<li><a href="#">寵物募款</a></li>
+								<li><a href="24forum.index.html">寵物論壇</a></li>
+								<li><a href="24contact.html">聯絡我們</a></li>
+								<li><a href="24admin.index.html">管理員後台</a></li>
+							</ul>
+							<ul class="navbar_user">
+								<a href="../shop/shop-cart.html"><img class="icon"
+									src="../../images/home/car.png" /></a>
+								<a href="24post_info.html"><img class="icon"
+									src="../../images/home/ring.png" /></a>
+								<a href="#"><img class="icon"
+									src="../../images/home/man.png" /></a>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- content -->
+	<div class="container contact_container">
+		<div class="row">
+			<div class="col">
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center">
+					<ul>
+						<li><a href="24front_page.html">首頁</a></li>
+						<li class="active"><a href="24forum.index.html"><i
+								class="fa fa-angle-right" aria-hidden="true"></i>寵物論壇</a></li>
+					</ul>
+				</div>
+
+				<!-- 輪播 -->
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="1" aria-label="Slide 2"></button>
+						<button type="button" data-bs-target="#carouselExampleIndicators"
+							data-bs-slide-to="2" aria-label="Slide 3"></button>
+					</div>
+					<div class="carousel-inner" style="margin-bottom: 150px;">
+						<div class="carousel-item active">
+							<img src="../../images/front_page/pets.jpg" class="d-block w-100"
+								style="height: 500px" />
+						</div>
+						<div class="carousel-item">
+							<img src="../../images/front_page/pets1.jpg"
+								class="d-block w-100" style="height: 500px" />
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+
+				<div style="text-align: center; font-size: 25px; color: #dcccbb;">
+					<marquee behavior="alternate">歡迎大家分享交流文章~~
+						嚴禁商業「廣告文」與「連結」，也提醒寵友們在用詞上務必謹慎，網路上匿名發言仍需負相關法律責任喔!</marquee>
+				</div>
+
+				<!-- Main content -->
+				<section class="content">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="card">
+								<div class="card-header p-2">
+									<ul class="nav nav-pills">
+										<li class="nav-item"><a class="nav-link active"
+											href="#activity" data-toggle="tab">最新文章</a></li>
+										<li class="nav-item"><a class="nav-link" href="#settings"
+											data-toggle="tab">新增文章</a></li>
+									</ul>
+								</div>
+
+								<!-- /.card-header -->
+								<div class="card-body">
+									<div class="tab-content">
+
+										<div class="active tab-pane" id="activity">
+											<!-- Post -->
+											<div class="post">
+												<div class="row" style="margin-bottom: 30px;">
+													<div class="col-md-5">
+														<i class="fa-solid fa-paw"
+															style="color: #dcccbb; font-size: 25px;"></i> <span
+															class="username" style="padding-left: 10px;">tibame456@gmail.com</span>
+													</div>
+													<div class="col-md-7">
+														<span class="description" style="float: right;">2023/03/24</span>
+													</div>
+												</div>
+
+												<!-- /.user-block -->
+												<div class="row">
+													<div class="col-6">
+														<img class="img-fluid" data-aos="zoom-in"
+															src="../../images/front_page/dog3.jpg" alt="Photo"
+															style="height: 300px; width: 380px;">
+													</div>
+													<div class="col-6" style="margin-top: 40px;">
+														<h4 style="padding-bottom: 20px; text-align: center;">
+															[急問]有沒有人可以幫忙代養2個月，每個月給3萬酬勞<br>
+														</h4>
+														<p style="font-size: 18px">因為近期需要出差2個月的緣故,我家的瑪爾濟斯沒有人照顧,所以希望可以找個人幫忙!
+															請留下匯款帳號及電話方便之後聯絡好心人及匯款~拜託了!!!</p>
+													</div>
+												</div>
+												<div class="row" style="padding-top: 30px;">
+													<div class="col-md-4">
+														<form>
+															檢舉文章事由: <select class="form-control">
+																<option value="0">網路詐騙</option>
+																<option value="1">暴力內容</option>
+																<option value="2">其他商家廣告內容</option>
+																<option value="3">恐怖主義相關內容</option>
+																<option value="4">騷擾、霸凌和威脅</option>
+																<option value="5">色情內容</option>
+																<option value="6">寵物買賣</option>
+																<option value="7">冒用他人身分</option>
+																<option value="8">惡意洗版</option>
+																<option value="9">非法活動</option>
+																<option value="10">侵權</option>
+																<option value="11">其他</option>
+															</select>
+														</form>
+													</div>
+													<div class="col-sm-2" style="transform: translateY(25px);">
+														<a href="#">
+															<button type="submit" class="apply_btn"
+																style="float: right;">檢舉</button>
+														</a>
+													</div>		
+												</div>
+											</div>
+											<!-- /.post -->
+
+											<!-- Post -->
+											<div class="post">
+												<div class="row" style="margin-bottom: 30px;">
+													<div class="col-md-5">
+														<i class="fa-solid fa-paw"
+															style="color: #dcccbb; font-size: 25px;"></i> <span
+															class="username" style="padding-left: 10px;">tibame@gmail.com</span>
+													</div>
+													<div class="col-md-7">
+														<span class="description" style="float: right;">2023/03/23</span>
+													</div>
+												</div>
+
+												<!-- /.user-block -->
+												<div class="row">
+													<div class="col-6">
+														<img class="img-fluid" data-aos="zoom-in"
+															src="../../images/front_page/front.02pet.jpg" alt="Photo"
+															style="height: 300px;">
+													</div>
+													<div class="col-6" style="margin-top: 40px;">
+														<h4 style="padding-bottom: 20px; text-align: center;">
+															大家知道國際小狗日嗎<br>
+														</h4>
+														<p style="font-size: 18px">今天3月23日，是國際小狗日！不知道大家知不知道這個節日誒
+
+															是一個叫 Colleen Paige 的美國人，他努力的推動「認養代替購買」。
+
+															後來又創立了「國際小狗日」，希望說可以讓更多人看見狗狗的可愛，進而提高領養率，達到每年至少1萬隻小狗被收養的目標。</p>
+													</div>
+												</div>
+												<div class="row" style="padding-top: 30px;">
+													<div class="col-md-4">
+														<form>
+															檢舉文章事由: <select class="form-control">
+																<option value="0">網路詐騙</option>
+																<option value="1">暴力內容</option>
+																<option value="2">其他商家廣告內容</option>
+																<option value="3">恐怖主義相關內容</option>
+																<option value="4">騷擾、霸凌和威脅</option>
+																<option value="5">色情內容</option>
+																<option value="6">寵物買賣</option>
+																<option value="7">冒用他人身分</option>
+																<option value="8">惡意洗版</option>
+																<option value="9">非法活動</option>
+																<option value="10">侵權</option>
+																<option value="11">其他</option>
+															</select>
+														</form>
+													</div>
+													<div class="col-sm-2" style="transform: translateY(25px);">
+														<a href="#">
+															<button type="submit" class="apply_btn"
+																style="float: right;">檢舉</button>
+														</a>
+													</div>
+												</div>
+											</div>
+											<!-- /.post -->
+
+											<!-- Post -->
+											<div class="post">
+												<div class="row" style="margin-bottom: 30px;">
+													<div class="col-md-5">
+														<i class="fa-solid fa-paw"
+															style="color: #dcccbb; font-size: 25px;"></i> <span
+															class="username" style="padding-left: 10px;">tibame123@gmail.com</span>
+													</div>
+													<div class="col-md-7">
+														<span class="description" style="float: right;">2023/02/15</span>
+													</div>
+												</div>
+
+												<!-- /.user-block -->
+												<div class="row">
+													<div class="col-6">
+														<img class="img-fluid" data-aos="zoom-in"
+															src="../../images/front_page/rabbit1.jpg" alt="Photo"
+															style="height: 300px;">
+													</div>
+													<div class="col-6" style="margin-top: 40px;">
+														<h4 style="padding-bottom: 20px; text-align: center;">
+															現實版彼得兔IG網紅Puipui，擁有11萬粉絲的治癒系兔子!<br>
+														</h4>
+														<p style="font-size: 18px">純粹想跟大家分享我個人很愛的一隻兔子Puipui
+
+															Puipui是一隻荷蘭垂耳兔，毛色跟彼得兔幾乎一模一樣, 她的主人很厲害，常常幫她做可愛的衣服，幫她打扮並拍照,
+
+															因此每張照片都超可愛，超夢幻! 是我的精神糧食之一，分享給喜愛兔子的大家!
+															最後附上Puipui的IG帳號，希望大家追蹤追起來~ IG：puipui_the_bunny</p>
+													</div>
+												</div>
+												<div class="row" style="padding-top: 30px;">
+													<div class="col-md-4">
+														<form>
+															檢舉文章事由: <select class="form-control">
+																<option value="0">網路詐騙</option>
+																<option value="1">暴力內容</option>
+																<option value="2">其他商家廣告內容</option>
+																<option value="3">恐怖主義相關內容</option>
+																<option value="4">騷擾、霸凌和威脅</option>
+																<option value="5">色情內容</option>
+																<option value="6">寵物買賣</option>
+																<option value="7">冒用他人身分</option>
+																<option value="8">惡意洗版</option>
+																<option value="9">非法活動</option>
+																<option value="10">侵權</option>
+																<option value="11">其他</option>
+															</select>
+														</form>
+													</div>
+													<div class="col-sm-2" style="transform: translateY(25px);">
+														<a href="#">
+															<button type="submit" class="apply_btn"
+																style="float: right;">檢舉</button>
+														</a>
+													</div>
+												</div>
+											</div>
+											<!-- /.post -->
+
+											<!-- Post -->
+											<div class="post">
+												<div class="row" style="margin-bottom: 30px;">
+													<div class="col-md-5">
+														<i class="fa-solid fa-paw"
+															style="color: #dcccbb; font-size: 25px;"></i> <span
+															class="username" style="padding-left: 10px;">tibame666@gmail.com</span>
+													</div>
+													<div class="col-md-7">
+														<span class="description" style="float: right;">2023/01/04</span>
+													</div>
+												</div>
+
+												<!-- /.user-block -->
+												<div class="row">
+													<div class="col-6">
+														<img class="img-fluid" data-aos="zoom-in"
+															src="../../images/front_page/front.06pet.jpg" alt="Photo"
+															style="width: 400px; height: 450px">
+													</div>
+													<div class="col-6">
+														<h4 style="padding-bottom: 20px; text-align: center;">
+															關於貓咪身體很不舒服的表情<br>
+														</h4>
+														<p style="font-size: 18px">今天逛推特，看到推主 @nyantostos
+															分享貓咪不舒服的表情，原文如下：
+
+															『これが強い痛みを感じた時の猫の顔です。目を細め、耳を寝かせて外側に向けます。また口周りに力が入り、ヒゲがピンっと伸びるのが特徴です。例えば手術、抜歯、膵炎、がん、膿瘍、骨折など耐え難い痛みを感じた時にこの顔をします。猫は痛みを隠す達人ですが、顔に出ます。覚えておきましょう👨‍⚕️』
+
+															幫大家翻譯一下： 『這是貓咪很痛時的表情。 瞇起眼睛，把耳朵低下來向外延伸。 此外，嘴巴用力、鬍鬚向外伸展。
+															例如：動手術、拔牙、胰臟炎、癌症、膿腫、骨折等難以忍受的疼痛時，就會有這種表情。
+															貓咪是忍痛專家，所以當他們有這樣的表情時，請特別注意 👨‍⚕️』 順帶一提，推主 @nyantostos
+															是為獸醫師和研究員喔！常常分享一些有趣的推文，有興趣的可以去追蹤一下！</p>
+													</div>
+												</div>
+												<div class="row" style="padding-top: 30px;">
+													<div class="col-md-4">
+														<form>
+															檢舉文章事由: <select class="form-control">
+																<option value="0">網路詐騙</option>
+																<option value="1">暴力內容</option>
+																<option value="2">其他商家廣告內容</option>
+																<option value="3">恐怖主義相關內容</option>
+																<option value="4">騷擾、霸凌和威脅</option>
+																<option value="5">色情內容</option>
+																<option value="6">寵物買賣</option>
+																<option value="7">冒用他人身分</option>
+																<option value="8">惡意洗版</option>
+																<option value="9">非法活動</option>
+																<option value="10">侵權</option>
+																<option value="11">其他</option>
+															</select>
+														</form>
+													</div>
+													<div class="col-sm-2" style="transform: translateY(25px);">
+														<a href="#">
+															<button type="submit" class="apply_btn"
+																style="float: right;">檢舉</button>
+														</a>
+													</div>
+												</div>
+											</div>
+											<!-- /.post -->
+										</div>
+										<!-- /.tab-pane -->
+
+										<div class="tab-pane" id="settings">
+											<form>
+												<div class="card-body">
+													<div class="form-group">
+														<label for="exampleInputTitle1">文章標題</label> <input
+															type="text" class="form-control" id="exampleInputTitle1"
+															placeholder="Title" />
+													</div>
+													<div class="form-group">
+														<label for="exampleInputContent1">文章內容</label> <input
+															type="text" class="form-control"
+															id="exampleInputContent1" placeholder="Content" />
+													</div>
+													<!-- <div class="form-group">
+                                <label>文章類型</label>
+                                <select class="form-control">
+                                  <option>狗</option>
+                                  <option>貓</option>
+                                  <option>兔</option>
+                                  <option>其他</option>
+                                </select>
+                              </div> -->
+													<div class="form-group">
+														<label for="exampleInputFile">上傳圖片</label>
+														<div class="input-group">
+															<div class="custom-file">
+																<input type="file" class="custom-file-input"
+																	id="exampleInputFile" /> <label
+																	class="custom-file-label" for="exampleInputFile">選擇檔案</label>
+															</div>
+															<div class="input-group-append">
+																<span class="input-group-text">上傳</span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- /.card-body -->
+
+												<div class="card-footer">
+													<a href="#">
+														<button id="add-btn" type="submit" class="btn btn-primary">
+															上傳文章</button>
+													</a>
+												</div>
+											</form>
+
+										</div>
+										<!-- /.tab-pane -->
+									</div>
+									<!-- /.tab-content -->
+
+								</div>
+								<!-- /.card-body -->
+							</div>
+							<!-- /.card -->
+						</div>
+						<!-- /.col -->
+					</div>
+				</section>
+				<!-- /.content -->
+			</div>
+		</div>
+	</div>
+
+	<div id="gotop">
+		<i class="fa-sharp fa-solid fa-circle-up"></i>
+	</div>
+
+	<!-- Footer -->
+	<div class="row my-5"></div>
+
+	<footer class="bg-yellow" style="margin-top: 200px;">
+		<div class="row">
+			<div class="col-lg-5">
+				<div
+					class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+					<div class="container">
+						<ul class="footer_nav">
+							<li><a href="#">討論區</a></li>
+							<li><a href="24faq.html">FAQs</a></li>
+							<li><a href="24contact.html">聯絡我們</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div
+					class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+					<ul>
+						<li><a href="#"><i class="fa fa-facebook"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+						</li>
+						<li><a href="#"><i class="fa fa-pinterest"
+								aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="footer_nav_container">
+					<div class="container">
+						<div class="cr">
+							©2022 All Rights Reserverd. Made with <i class="fa fa-heart-o"
+								aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp;
+							distributed by <a href="24front_page.html">Tibame TGA-105 第四組</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script th:src="@{/js/jquery-3.2.1.min.js}"
+		src="../../js/jquery-3.2.1.min.js"></script>
+	<script th:src="@{/styles/bootstrap4/popper.js}"
+		src="../../styles/bootstrap4/popper.js"></script>
+	<script th:src="@{/styles/bootstrap4/bootstrap.min.js}"
+		src="../../styles/bootstrap4/bootstrap.min.js"></script>
+	<script th:src="@{/plugins/Isotope/isotope.pkgd.min.js}"
+		src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
+	<script th:src="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"
+		src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script th:src="@{/plugins/easing/easing.js}"
+		src="../../plugins/easing/easing.js"></script>
+
+	<script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"
+		src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+	<script th:src="@{/js/contact_custom.js}"
+		src="../../js/contact_custom.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js}"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+
+	<!-- jQuery -->
+	<script th:src="@{/AdminLTE-3.2.0/plugins/jquery/jquery.min.js}"
+		src="../../AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script
+		th:src="@{/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js}"
+		src="../../AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- AdminLTE App -->
+	<script th:src="@{/AdminLTE-3.2.0/dist/js/adminlte.min.js}"
+		src="../../AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+
+	<script>
+		$("#gotop").click(function() {
+			jQuery("html,body").animate({
+				scrollTop : 0,
+			}, 1000);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 300) {
+				$("#gotop").fadeIn("fast");
+			} else {
+				$("#gotop").stop().fadeOut("fast");
+			}
+		});
+	</script>
+
+	<script th:src="@{https://unpkg.com/aos@next/dist/aos.js}"
+		src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+		AOS.init();
+	</script>
+</body>
+</html>

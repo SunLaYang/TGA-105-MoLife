@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tibame.tga105.shop.domain.AnimalType;
-import com.tibame.tga105.shop.service.AnimalTypeService;
+import com.tibame.tga105.shop.service.ProductAnimalTypeService;
 
 @RestController
 @RequestMapping("/animaltypes")
 public class AnimalTypeController {
 	@Autowired
-	private AnimalTypeService animalTypeService;
+	private ProductAnimalTypeService animalTypeService;
 
 	@GetMapping
 	public List<AnimalType> selectAll() {

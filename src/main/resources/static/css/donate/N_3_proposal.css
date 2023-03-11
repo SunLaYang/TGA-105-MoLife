@@ -1,0 +1,32 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+
+/* --------------------------------------- */
+/* 提案募款表單 */
+
+.content {
+    margin-top:20px; 
+    margin-left:570px;
+    /* width: 1000px; */
+}
+
+.proposal-submit{
+    margin-left: 760px;
+    width: 85px;
+    background-color:#DCCCBB;
+    border:white  2px solid;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+
+}
+

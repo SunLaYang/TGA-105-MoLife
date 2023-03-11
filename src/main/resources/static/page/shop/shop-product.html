@@ -122,18 +122,21 @@
                     <ul>
                       <li class="active">
                         <img
+                          id="img1"
                           src="../../images/front_page/front.dog_food.jpg"
                           alt=""
                           data-image="../../images/front_page/front.dog_food.jpg" />
                       </li>
                       <li>
                         <img
+                          id="img2"
                           src="../../images/front_page/dog.jpg"
                           alt=""
                           data-image="../../images/front_page/dog.jpg" />
                       </li>
                       <li>
                         <img
+                          id="img3"
                           src="../../images/front_page/front.08pet.jpg"
                           alt=""
                           data-image="../../images/front_page/front.08pet.jpg" />
@@ -156,32 +159,15 @@
           <div class="col-lg-5">
             <div class="product_details">
               <div class="product_details_title my-4">
-                <h2>Kirkland Signature Chicken & Rice Dry Dog Food 12 kg</h2>
-                <p class="my-3">
-                  適用於各種年齡層的成犬，新鮮雞肉和蛋提供蛋白質，天然纖維照顧腸胃健康，多種穀物，蔬菜和水果，添加礦物質提供理想成分。
-                </p>
+                <h2 id="productName"></h2>
+                <p class="my-3" id="productDetails"></p>
               </div>
               <div
                 class="free_delivery d-flex flex-row align-items-center justify-content-center my-5">
-                <span class="ti-truck"></span><span>free delivery</span>
+                <span class="ti-truck"></span><span>免運費</span>
               </div>
-              <!-- <div class="original_price"></div> -->
-              <div class="product_price mt-4">$900</div>
-              <!-- <ul class="star_rating">
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-              </ul> -->
-              <div class="product_color">
-                <!-- <span>Select Color:</span>
-                <ul>
-                  <li style="background: #e54e5d"></li>
-                  <li style="background: #252525"></li>
-                  <li style="background: #60b3f3"></li>
-                </ul> -->
-              </div>
+              <div class="product_price mt-4"></div>
+              <div class="product_color"></div>
               <div
                 class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
                 <span>數量:</span>
@@ -334,5 +320,67 @@
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
+    <script>
+      // 取得商品ID
+      let urlParams = new URLSearchParams(window.location.search);
+      let productId = urlParams.get("id");
+      let image1 = null;
+      let image2 = null;
+      let image3 = null;
+
+      function init() {
+        $.ajax({
+          url: "/products/" + productId,
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            $("#productName").text(data.productName);
+            $("#productDetails").text(data.productDetails);
+            $(".product_price").text("$" + data.productPrice);
+            $.each(data.productImages, function (i, item) {
+              switch (item.productImageType) {
+                case 0:
+                  image1 = item.productImage;
+                  break;
+                case 1:
+                  image2 = item.productImage;
+                  break;
+                case 2:
+                  image3 = item.productImage;
+                  break;
+              }
+            });
+
+            $(".single_product_image_background").css(
+              "background-image",
+              "url(/productimages/" + (image1 === null ? "" : image1) + ")"
+            );
+
+            $("#img1").attr({
+              src: "/productimages/" + (image1 === null ? "" : image1),
+              "data-image": "/productimages/" + (image1 === null ? "" : image1),
+            });
+
+            $("#img2").attr({
+              src: "/productimages/" + (image2 === null ? "" : image2),
+              "data-image": "/productimages/" + (image2 === null ? "" : image2),
+            });
+
+            $("#img3").attr({
+              src: "/productimages/" + (image3 === null ? "" : image3),
+              "data-image": "/productimages/" + (image3 === null ? "" : image3),
+            });
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log("error");
+            console.log(xhr);
+          },
+        });
+      }
+
+      $(function () {
+        init();
+      });
+    </script>
   </body>
 </html>

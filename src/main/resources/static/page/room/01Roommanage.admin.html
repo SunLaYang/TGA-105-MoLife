@@ -557,7 +557,8 @@
         $("#example2").DataTable({
           ajax: function (data, callback, settings) {
             axios
-              .get("http://localhost:8081/petrooms")
+              // .get("http://localhost:8081/petrooms")
+              .get("/petrooms")
               .then((result) => {
                 console.log(result);
                 callback({ data: result.data });

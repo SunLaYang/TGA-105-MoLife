@@ -16,14 +16,14 @@ import com.tibame.tga105.mem.dao.MemDAO_interface;
 
 public class MemJNDIDAO implements MemDAO_interface {
 	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+//	static {
+//		try {
+//			Context ctx = new InitialContext();	
+//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+//		} catch (NamingException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	private static final String INSERT_STMT = "INSERT INTO member (member_email, member_password, member_last_name, member_first_name, member_nickname, member_phone, member_address, member_picture_id, registration_date, last_edit_date, last_online_date, last_post_date, member_status, post_suspended, post_reported_num) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

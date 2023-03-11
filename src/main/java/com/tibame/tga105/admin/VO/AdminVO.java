@@ -121,7 +121,7 @@ public class AdminVO implements Serializable{
 	
 	
 	
-//	 讓authname 可以藉由 auth_id join進Admin	
+//	 讓authname 可以藉由 employee_auth_id join進Admin	
 	public com.tibame.tga105.auth.VO.AuthVO getAuthVO(){
 		com.tibame.tga105.auth.service.AuthService authSvc = new com.tibame.tga105.auth.service.AuthService();
 		com.tibame.tga105.auth.VO.AuthVO authVO = authSvc.getOneAuth(empAuthId);

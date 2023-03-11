@@ -7,7 +7,7 @@
 //MemServlet.java (Concroller) 存入req的memVO物件 (包括幫忙取出的memVO, 也包括輸入資料錯誤時的memVO物件)
 MemVO memVO = (MemVO) request.getAttribute("memVO"); 
 %>
---<%=memVO == null%>--${memVO.memId}--
+<%-- --<%=memVO == null%>--${memVO.memId}-- --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,9 +118,9 @@ th, td {
 	<div>
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
-				<a href="#contact">帳號設定</a> <a href="#oreder_search">訂單查詢</a> <a
-					href="#goodsadd">商品收藏</a> <a href="#roomadd">房型收藏</a> <a
-					href="#sponsoradd">募資收藏</a> <a href="#notifymailbox">通知信箱</a>
+				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a href="#oreder_search" style="margin-bottom: 10%;">訂單查詢</a> <a
+					href="#goodsadd" style="margin-bottom: 10%;">商品收藏</a> <a href="#roomadd" style="margin-bottom: 10%;">房型收藏</a> <a
+					href="#sponsoradd" style="margin-bottom: 10%;">募資收藏</a> <a href="#notifymailbox" style="margin-bottom: 10%;">通知信箱</a>
 			</div>
 
 
@@ -139,7 +139,7 @@ th, td {
 						</c:if>
 					</div>
 
-					<FORM METHOD="post" ACTION="/molife/memberController" name="Update"
+					<FORM METHOD="post" ACTION="/memberController" name="Update"
 						enctype="multipart/form-data">
 						<table>
 							<tr>
@@ -159,12 +159,12 @@ th, td {
 							</tr>
 							<tr>
 								<td>密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
+								<td><input type="TEXT" name="memPsd" size="30" type="password" placeholder="Password"
 									value="${sessionScope.memVO.getMemPsd()}" /></td>
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
+								<td><input type="TEXT" name="memPsd" size="30" type="password" placeholder="Password"
 									value="${sessionScope.memVO.getMemPsd()}" /></td>
 							</tr>
 							<tr>

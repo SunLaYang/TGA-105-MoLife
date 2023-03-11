@@ -311,9 +311,9 @@ public class AdminJNDIDAO implements AdminDAOInterface {
 	}
 
 	@Override
-	public AdminVO login(AdminVO adminVO) {
+	public AdminVO login(String empAcc, String empPsd) {
 
-//		AdminVO adminVO = null;
+		AdminVO adminVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

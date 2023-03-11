@@ -3,6 +3,7 @@
 import java.util.List;
 import java.util.Objects;
 
+import com.tibame.tga105.admin.AdminJDBCDAO;
 import com.tibame.tga105.admin.VO.AdminVO;
 import com.tibame.tga105.admin.dao.AdminDAOInterface;
 import com.tibame.tga105.admin.dao.impl.AdminDaoImpl;
@@ -11,40 +12,32 @@ public class AdminService {
 	 AdminDAOInterface dao;
 	
 	public AdminService() {
-//		dao = new AdminJDBCDAO();
-		dao = new AdminDaoImpl();
+		dao = new AdminJDBCDAO();
+//		dao = new AdminDaoImpl();
 	}
 	
-	public AdminVO addAdmin(String empAcc, String empPsd, String empName, byte[] empPicId, String empEmail, Integer empAuthId, Integer empStatus) {
-		
-		AdminVO adminVO = new AdminVO();
-		adminVO.setEmpAcc(empAcc);
-		adminVO.setEmpPsd(empPsd);
-		adminVO.setEmpName(empName);
-		adminVO.setEmpPicId(empPicId);
-		adminVO.setEmpEmail(empEmail);
-		adminVO.setEmpAuthId(empAuthId);
-		adminVO.setEmpStatus(empStatus);
-		dao.insert(adminVO);		
-		
-		return adminVO;
-	}
-	
-	//預留給 Struts 2 或 Spring MVC 用
-	public void addAdmin(AdminVO adminVO) {
-		dao.insert(adminVO);
-	}
-	
-	public AdminVO updateByEmp(AdminVO tempVO) {
-		
-//		AdminVO adminVO = new AdminVO();
+//	public AdminVO addAdmin(AdminVO ) {
 //		
+//		AdminVO adminVO = new AdminVO();
+//		adminVO.setEmpAcc(empAcc);
 //		adminVO.setEmpPsd(empPsd);
 //		adminVO.setEmpName(empName);
 //		adminVO.setEmpPicId(empPicId);
 //		adminVO.setEmpEmail(empEmail);
-//		adminVO.setAdminId(adminId);
-//		dao.bossedit(adminVO);
+//		adminVO.setEmpAuthId(empAuthId);
+//		adminVO.setEmpStatus(empStatus);
+//		dao.insert(adminVO);		
+//		
+//		return adminVO;
+//	}
+	
+	//預留給 Struts 2 或 Spring MVC 用
+	public AdminVO addAdmin(AdminVO adminVO) {
+		dao.insert(adminVO);
+		return adminVO;
+	}
+	
+	public AdminVO updateByEmp(AdminVO tempVO) {
 		
 		this.dao.empedit(tempVO);
 		
@@ -58,16 +51,6 @@ public class AdminService {
 	
 	public AdminVO updateByBoss(AdminVO tempVO) {
 		
-//		AdminVO adminVO = new AdminVO();
-//		
-//		adminVO.setEmpPsd(empPsd);
-//		adminVO.setEmpName(empName);
-//		adminVO.setEmpPicId(empPicId);
-//		adminVO.setEmpEmail(empEmail);
-//		adminVO.setEmpAuthId(empAuthId);
-//		adminVO.setEmpStatus(empStatus);
-//		adminVO.setAdminId(adminId);
-//		dao.bossedit(adminVO);
 		this.dao.empedit(tempVO);
 		return tempVO;
 	}
@@ -87,14 +70,12 @@ public class AdminService {
 		return dao.findByPrimaryKey(adminId);
 	}
 
-	public AdminVO login(AdminVO adminVO) {
-		final String empAcc = adminVO.getEmpAcc();
-		final String empPsd = adminVO.getEmpPsd();
+	public AdminVO login(String empAcc, String empPsd) {
 		if (!checkValue(empAcc) || !checkValue(empPsd)) {
 			System.out.println("帳號或密碼錯誤");
 			return null;
 		}
-		return dao.login(adminVO);
+		return dao.login(empAcc, empPsd);
 		
 	}
 	

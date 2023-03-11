@@ -51,11 +51,11 @@ public class Product {
 	@Column(name = "category_id")
 	private Integer categoryId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "animal_type_id", referencedColumnName = "animal_type_id", insertable = false, updatable = false)
 	private AnimalType animalType;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
 	private Category category;
 

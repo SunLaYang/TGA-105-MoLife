@@ -640,7 +640,7 @@
                                 </div>
                               </div>
                               <div class="red_button add_to_cart_button">
-                                <a href="#">加入購物車</a>
+                                <a href="" data-productid="${item.productId}">加入購物車</a>
                               </div>
                             </div>`;
             });
@@ -656,6 +656,16 @@
 
       $(function () {
         init();
+
+        $(".product-grid").on(
+          "click",
+          ".add_to_cart_button a",
+          function (event) {
+            event.preventDefault();
+            let productId = $(this).data("productid");
+            // 在這裡執行你想要的操作，例如將產品添加到購物車
+          }
+        );
       });
     </script>
   </body>

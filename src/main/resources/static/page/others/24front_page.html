@@ -69,6 +69,10 @@
         cursor: pointer;
         z-index: 1000;
       }
+      
+      div.section_title::after{
+         background-color: #eab464;
+      }
     </style>
   </head>
   <body>
@@ -236,11 +240,11 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title">
-                  Kirkland Signature 科克蘭 雞肉&米配方乾狗糧 12公斤
+                <h4 class="blog_title" th:text="${product1.productName}">
+<!--                   Kirkland Signature 科克蘭 雞肉&米配方乾狗糧 12公斤 -->
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
               </div>
             </div>
           </div>
@@ -257,11 +261,11 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title">
-                  Hill's 希爾思 處方 貓用 k/d 腎臟病護理處方貓飼料 8.5LB
+                <h4 class="blog_title" th:text="${product3.productName}">
+<!--                   Hill's 希爾思 處方 貓用 k/d 腎臟病護理處方貓飼料 8.5LB -->
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
               </div>
             </div>
           </div>
@@ -278,11 +282,11 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title">
-                  Rabbit Diet 愛兔窈窕美味餐 蘋果口味 3KG
+                <h4 class="blog_title" th:text="${product4.productName}">
+<!--                   Rabbit Diet 愛兔窈窕美味餐 蘋果口味 3KG -->
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
               </div>
             </div>
           </div>
@@ -320,7 +324,7 @@
                   狗狗平民房
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../room/01RoomDetail.html">查看更多</a>
               </div>
             </div>
           </div>
@@ -341,7 +345,7 @@
                   狗狗尊貴房
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../room/01RoomDetail.html">查看更多</a>
               </div>
             </div>
           </div>
@@ -362,7 +366,7 @@
                   貓咪尊貴房
                 </h4>
                 
-                <a class="blog_more" href="#">查看更多</a>
+                <a class="blog_more" href="../room/01RoomDetail.html">查看更多</a>
               </div>
             </div>
           </div>

@@ -7,18 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tibame.tga105.others.model.dao.ContactUsRepository;
-import com.tibame.tga105.others.model.dao.PostInfoRepository;
 import com.tibame.tga105.others.model.entity.ContactUs;
-import com.tibame.tga105.others.model.entity.PostInfo;
 import com.tibame.tga105.others.service.ContactUsService;
 
 @Service
 public class ContactUsServiceImpl implements ContactUsService {
+	
     @Autowired
     private ContactUsRepository contactUsRepository;
-    
-    @Autowired
-    private PostInfoRepository postInfoRepository;
 
     @Override
     public ContactUs createMsg(ContactUs contactUs) {

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tibame.tga105.others.model.entity.Forum;
 import com.tibame.tga105.others.model.entity.ForumReport;
+import com.tibame.tga105.others.model.entity.PostInfo;
 import com.tibame.tga105.others.service.ForumReportService;
+import com.tibame.tga105.others.service.PostInfoService;
 
 @Controller
 @RequestMapping("/page/others")
@@ -22,7 +24,11 @@ public class ForumReportController {
 	
     @Autowired
     private ForumReportService forumReportService;
+    
+    @Autowired
+    private PostInfoService postInfoService;
 
+    //後台論壇管理讀取檢舉文章(讀資料庫)
     @GetMapping("/24admin.forum.html")
     public String getReport(Model model){
         List<ForumReport> forumReportList = forumReportService.readReport();
@@ -30,6 +36,7 @@ public class ForumReportController {
         return "24admin.forum";
     }
 
+    //後台論壇管理審核檢舉
     @GetMapping("/24admin.forum_review.html")
     public String getReportById(Integer forumArticleReportNo, Model model) throws ChangeSetPersister.NotFoundException {
         ForumReport forumReport = forumReportService.readById(forumArticleReportNo);
@@ -41,6 +48,7 @@ public class ForumReportController {
         }
     }
 
+    //前台新增檢舉
     @PostMapping("/addReport")
     public ForumReport addReport(Forum forum){
         ForumReport forumReport = new ForumReport();
@@ -54,13 +62,26 @@ public class ForumReportController {
         return forumReportService.createReport(forumReport);
     }
 
+    //後台論壇管理檢舉成立
     @RequestMapping("/acceptReport")
-    public String acceptReport(ForumReport forumReport){
+    public String acceptReport(ForumReport forumReport, PostInfo postInfo){
     	forumReport.setForumArticleStatus(1);
         forumReportService.updateById(3, forumReport);
+        
+        postInfo = new PostInfo();
+        postInfo.setMemberId(1);
+        postInfo.setAdminId(1);
+        postInfo.setInfoTitle("寵物論壇");
+        postInfo.setContent("您的文章因違反規定被檢舉,已下架您的文章!");
+        postInfo.setInfoDate(new Date());
+        postInfo.setInfoStatus(0);
+        postInfo.setInfoType(1);
+        postInfoService.createInfo(postInfo);
+        
         return "redirect:/page/others/24admin.forum.html";
     }
 
+    //後台論壇管理檢舉不成立
     @RequestMapping("/refuseReport")
     public String refuseReport(ForumReport forumReport){
         forumReport.setForumArticleStatus(0);
@@ -68,6 +89,7 @@ public class ForumReportController {
         return "redirect:/page/others/24admin.forum.html";
     }
 
+    //後台論壇管理下架已審核之文章 
     @RequestMapping("/deleteReport/{forumArticleReportNo}")
     public String deleteReport(@PathVariable Integer forumArticleReportNo){
         forumReportService.deleteById(forumArticleReportNo);

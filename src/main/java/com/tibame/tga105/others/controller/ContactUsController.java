@@ -1,6 +1,5 @@
 package com.tibame.tga105.others.controller;
 
-import java.io.Console;
 import java.util.Date;
 import java.util.List;
 
@@ -63,12 +62,18 @@ public class ContactUsController {
         ContactUs contactUs1 = new ContactUs();
         contactUs1.setName(contactUs.getName());
         contactUs1.setEmail(contactUs.getEmail());
-//        if(contactUs.getEmail().equals(mem.getMemEmail())) {
-//        	contactUs1.setMemberId(mem.getMemId());
-//        }else {
-//        	contactUs1.setMemberId(null);
-//        }			
-        contactUs1.setMemberId(1);
+
+//      List<MemVO> mem = new ArrayList<MemVO>();
+//      for(int i = 0; i < mem.size(); i++) {
+//         if(mem.get(i).getMemEmail().equals(contactUs.getEmail())) {
+//            Integer memId = contactUsRepository.getIdByEmail(contactUs.getEmail());
+//            contactUs1.setMemberId(memId);
+//         }else {
+//            contactUs1.setMemberId(null);
+//         }    
+//      }
+        
+        contactUs1.setMemberId(2);
         contactUs1.setChatTitle(contactUs.getChatTitle());
         contactUs1.setChatContent(contactUs.getChatContent());
         contactUs1.setCreateTime(new Date());
@@ -87,9 +92,9 @@ public class ContactUsController {
             message.setSubject("MoLife: 聯絡我們表單回覆");
             message.setText(contactUs.getResponse());
             javaMailSender.send(message);
-        }else if(contactUs.getMemberId() != null){
+        }else {
         	postInfo = new PostInfo();
-            postInfo.setMemberId(1);
+            postInfo.setMemberId(contactUs.getMemberId());
             postInfo.setAdminId(1);
             postInfo.setInfoTitle("聯絡我們");
             postInfo.setContent(contactUs.getResponse());

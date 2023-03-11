@@ -11,6 +11,6 @@ public interface AdminDAOInterface {
 	public void delete(Integer adminId);
 	public AdminVO findByPrimaryKey(Integer adminId);
 	public List<AdminVO> getAll();	
-	public AdminVO login(AdminVO adminVO);
+	public AdminVO login(String empAcc, String empPsd);
 
 }

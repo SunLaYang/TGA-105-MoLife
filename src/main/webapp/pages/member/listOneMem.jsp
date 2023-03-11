@@ -119,9 +119,9 @@ th, td {
 	<div>
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
-				<a href="#contact">帳號設定</a> <a href="#oreder_search">訂單查詢</a> <a
-					href="#goodsadd">商品收藏</a> <a href="#roomadd">房型收藏</a> <a
-					href="#sponsoradd">募資收藏</a> <a href="#notifymailbox">通知信箱</a>
+				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a href="#oreder_search" style="margin-bottom: 10%;">訂單查詢</a> <a
+					href="#goodsadd" style="margin-bottom: 10%;">商品收藏</a> <a href="#roomadd" style="margin-bottom: 10%;">房型收藏</a> <a
+					href="#sponsoradd" style="margin-bottom: 10%;">募資收藏</a> <a href="#notifymailbox" style="margin-bottom: 10%;">通知信箱</a>
 			</div>
 			<div class="col text-center">
 				<div class="memlistonebox">
@@ -175,7 +175,7 @@ th, td {
 							<td></td>
 							<td>
 								<FORM METHOD="post"
-									ACTION="<%=request.getContextPath()%>/memberController"
+									ACTION="/memberController"
 									style="margin-bottom: 0px" enctype="multipart/form-data">
 									<input class="btn btn-primary edit_button" type="submit"
 										value="修改"

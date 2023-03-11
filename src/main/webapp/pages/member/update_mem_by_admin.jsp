@@ -7,7 +7,7 @@
 //MemServlet.java (Concroller) 存入req的memVO物件 (包括幫忙取出的memVO, 也包括輸入資料錯誤時的memVO物件)
 MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
---<%=memVO == null%>--${memVO.memId}--
+<%-- --<%=memVO == null%>--${memVO.memId}-- --%>
 
 <html lang="en">
 <head>
@@ -65,8 +65,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#" role="button"><i class="fas fa-bars"></i></a>
-				</li>
+					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
 					href="24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
@@ -78,8 +77,8 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
 				<li class="nav-item"><a class="nav-link"
-					data-widget="navbar-search" href="#" role="button">
-						<i class="fas fa-search"></i>
+					data-widget="navbar-search" href="#" role="button"> <i
+						class="fas fa-search"></i>
 				</a>
 					<div class="navbar-search-block">
 						<form class="form-inline">
@@ -203,9 +202,9 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 			<a href="./24admin.index.html" class="brand-link"> <img
 				src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
 				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-				style="opacity: 0.8" /> <span
-				class="brand-text font-weight-light" style="padding-left: 20px">MoLife<i
-					class="fa-solid fa-paw" style="padding-left: 20px"></i></span>
+				style="opacity: 0.8" /> <span class="brand-text font-weight-light"
+				style="padding-left: 20px">MoLife<i class="fa-solid fa-paw"
+					style="padding-left: 20px"></i></span>
 			</a>
 
 			<!-- Sidebar -->
@@ -444,7 +443,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="min-height: 994.367px;">
 			<!-- Content Header (Page header) -->
 			<div class="content-header">
 				<div class="container-fluid">
@@ -479,60 +478,65 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 						<!-- left column -->
 						<div class="col-md-8" style="transform: translateX(200px)">
 							<!-- general form elements -->
-							<div class="card card-primary" style="margin-bottom:10px">
+							<div class="card card-primary" style="margin-bottom: 10px">
 								<div class="card-header">
 									<h3 class="card-title">管理員修改會員資料</h3>
 								</div>
+
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
 								<!-- /.card-header -->
 								<!-- form start -->
-								<form>
+								<form METHOD="post" ACTION="/memberController"
+									name="updateByAdmin" enctype="multipart/form-data">
 									<div class="card-body">
 										<div class="form-group">
 											<label for="exampleInputEmail1">會員姓氏</label> <input
-												type="TEXT" class="form-control" id="memberLname"
-												placeholder="MemLName"
-												value="${sessionScope.memVO.getMemLname()}" />
+												type="TEXT" name="memLname" class="form-control"
+												id="memberLname" placeholder="MemLName"
+												value="${memVO.getMemLname()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">會員名稱</label> <input
-												type="TEXT" class="form-control" id="memberFname"
-												placeholder="MemFName"
-												value="${sessionScope.memVO.getMemFname()}" />
+												type="TEXT" name="memFname" class="form-control"
+												id="memberFname" placeholder="MemFName"
+												value="${memVO.getMemFname()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">會員暱稱</label> <input
-												type="TEXT" class="form-control" id="memNickname"
-												placeholder="memNickname"
-												value="${sessionScope.memVO.getMemNickname()}" />
+												type="TEXT" name="memNickname" class="form-control"
+												id="memNickname" placeholder="memNickname"
+												value="${memVO.getMemNickname()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">會員密碼</label> <input
-												type="password" class="form-control" id="memPsd"
-												placeholder="memPsd"
-												value="${sessionScope.memVO.getMemPsd()}" />
+												type="password" name="memPsd" class="form-control"
+												id="memPsd" placeholder="memPsd"
+												value="${memVO.getMemPsd()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">確認密碼</label> <input
-												type="password" class="form-control" id="memPsd"
-												placeholder="memPsd"
-												value="${sessionScope.memVO.getMemPsd()}" />
+												type="password" name="memPsd" class="form-control"
+												id="memPsd" placeholder="memPsd"
+												value="${memVO.getMemPsd()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputName1">會員手機</label> <input
-												type="text" class="form-control" id="memPhone"
-												placeholder="memPhone" />
-										</div>
-										<div class="form-group">
-											<label for="exampleInputName1">會員手機</label> <input
-												type="text" class="form-control" id="memPhone"
-												placeholder="memPhone"
-												value="${sessionScope.memVO.getMemPhone()}" />
+												type="text" name="memPhone" class="form-control"
+												id="memPhone" placeholder="memPhone"
+												value="${memVO.getMemPhone()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputName1">會員地址</label> <input
-												type="text" class="form-control" id="memPhone"
-												placeholder="memPhone"
-												value="${sessionScope.memVO.getMemAddress()}" />
+												type="text" name="memAddress" class="form-control"
+												id="memPhone" placeholder="memPhone"
+												value="${memVO.getMemAddress()}" />
 										</div>
 										<!--                       <div class="form-group"> -->
 										<!--                         <label>員工權限</label> -->
@@ -542,33 +546,29 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 										<!--                           <option>全部</option> -->
 										<!--                           <option>option 4</option>
 <!--                           <option>option 5</option> -->
-										-->
+	
 										<!--                         </select> -->
 										<!--                       </div> -->
 										<div class="form-group">
-											<label for="exampleInputStatus1">狀態</label> <input
-												class="form-check-input" type="radio"
-												name="flexRadioDefault100" id="flexRadioDefault200"
-												style="transform: translateX(60px)" checked />
-											<label class="form-check-label" for="flexRadioDefault200"
-												style="transform: translateX(60px)">
-												啟用 </label> <input class="form-check-input" type="radio"
-												name="flexRadioDefault100" id="flexRadioDefault201"
-												style="transform: translateX(120px)" />
-											<label class="form-check-label" for="flexRadioDefault201"
-												style="transform: translateX(120px)">
-												禁用 </label>
+											<label for="exampleInputStatus1">狀態</label>
+											 <input class="form-check-input" type="radio" name="memStatus" id= active value="1" style="transform: translateX(60px)" checked />
+											 
+											 <label	class="form-check-label" for="active" style="transform: translateX(60px)"> 啟用 </label> 
+											 
+											 <input class="form-check-input" type="radio" name="memStatus" id="deactive" value="0" style="transform: translateX(120px)" /> 
+											 
+											 <label class="form-check-label" for="deactive" style="transform: translateX(120px)"> 禁用 </label>
 										</div>
 
 										<div class="form-group">
 											<label for="exampleInputFile">會員頭像編輯</label>
 											<div class="input-group">
 												<div class="custom-file">
-													<input type="file" class="memPicId" id="memPicId" />
-													<label class="custom-file-label" for="exampleInputFile">選擇檔案</label>
+													<input type="file" class="memPicId" name="memPicId"
+														id="memPicId" /> 
+<!-- 														<button type="submit"></button> -->
 												</div>
 												<div class="input-group-append">
-													<span class="input-group-text">上傳</span>
 												</div>
 											</div>
 										</div>
@@ -589,11 +589,10 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 
 									<div class="card-footer">
 										<a href="#"> <input type="hidden" name="action"
-											value="updateByAdmin"> <input type="hidden" name="memId"
-											value="${sessionScope.memVO.getMemId()}">
-<!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
-<!-- 											</button>  -->
-											<input class="btn btn-primary update_button" type="submit"
+											value="updateByAdmin"> <input type="hidden"
+											name="memId" value="${memVO.memId}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
+											<!-- 											</button>  --> <input
+											class="btn btn-primary update_button" type="submit"
 											value="確認修改">
 										</a>
 									</div>
@@ -608,8 +607,8 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 		<!-- /.content-wrapper -->
 
 		<footer class="main-footer">
-			<strong>MoLife <i class="fa-solid fa-paw"></i>
-				&copy; 2022 <a href="./24front_page.html">TGA105-第四組</a>.
+			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
+				href="./24front_page.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

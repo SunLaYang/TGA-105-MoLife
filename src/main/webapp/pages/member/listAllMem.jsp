@@ -624,7 +624,7 @@ input:checked+label:after {
 												<th>會員頭像</th>
 												<th>會員狀態</th>
 <!-- 												<th>會員狀態</th> -->
-<!-- 												<th>修改</th> -->
+												<th>修改</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -660,10 +660,10 @@ input:checked+label:after {
 													<td>${memVO.memFname}</td>
 													<td>${memVO.memNickname}</td>
 													<td>${memVO.memEmail}</td>
-													<td>${memVO.memPsd}</td>
+													<td >${memVO.memPsd}</td>
 													<td>${memVO.memPhone}</td>
 													<td>${memVO.memAddress}</td>
-													<td><img src="/molife/MemPicView?memId=${memVO.memId}"
+													<td><img src="/MemPicView?memId=${memVO.memId}"
 														width="200" height="200" id="mempic"></td>
 													<td>${memVO.memStatus}</td>
 
@@ -677,7 +677,7 @@ input:checked+label:after {
 <!-- 													</td> -->
 													<td>
 														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/memberController"
+															ACTION="/memberController"
 															style="margin-bottom: 0px;" enctype="multipart/form-data">
 															<input class="btn btn-primary login_button" type="submit" value="修改"> <input
 																type="hidden" name="memId" value="${memVO.memId}">

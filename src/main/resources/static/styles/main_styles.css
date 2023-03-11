@@ -568,7 +568,8 @@ section
 }
 .navbar_menu li a:hover
 {
-	color: #b5aec4;
+	color: #BE3F48;
+	text-decoration: none;
 }
 .navbar_user
 {
@@ -814,7 +815,9 @@ section
 {
 	color: #fe4c50;
 }
-
+.pagination{
+	justify-content: center !important;
+}
 /*********************************
 3.7 Main Slider
 *********************************/
@@ -826,7 +829,7 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	margin-top: 150px;
+	margin-top: 100px;
 }
 .main_slider_content
 {

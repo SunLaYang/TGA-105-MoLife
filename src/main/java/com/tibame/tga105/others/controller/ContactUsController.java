@@ -1,5 +1,6 @@
 package com.tibame.tga105.others.controller;
 
+import java.io.Console;
 import java.util.Date;
 import java.util.List;
 
@@ -79,7 +80,6 @@ public class ContactUsController {
     //後台回覆留言表單並傳送通知信給會員
     @PostMapping("/replyMsg")
     public String updateMsg(ContactUs contactUs, PostInfo postInfo){
-        contactUsService.updateById(contactUs.getMsgId(),contactUs);
         if(contactUs.getMemberId() == null){
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("lindali0715a@gmail.com");
@@ -87,7 +87,18 @@ public class ContactUsController {
             message.setSubject("MoLife: 聯絡我們表單回覆");
             message.setText(contactUs.getResponse());
             javaMailSender.send(message);
+        }else if(contactUs.getMemberId() != null){
+        	postInfo = new PostInfo();
+            postInfo.setMemberId(1);
+            postInfo.setAdminId(1);
+            postInfo.setInfoTitle("聯絡我們");
+            postInfo.setContent(contactUs.getResponse());
+            postInfo.setInfoDate(new Date());
+            postInfo.setInfoStatus(0);
+            postInfo.setInfoType(5);
+            postInfoService.createInfo(postInfo);
         }
+        contactUsService.updateById(contactUs.getMsgId(),contactUs);
         return "redirect:/page/others/24admin.chatroom.html";
     }
 

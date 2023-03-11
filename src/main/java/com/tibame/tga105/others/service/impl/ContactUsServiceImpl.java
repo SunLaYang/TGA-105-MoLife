@@ -45,17 +45,6 @@ public class ContactUsServiceImpl implements ContactUsService {
         ContactUs contactUs1 = contactUsRepository.findById(msgId).get();
         if(contactUs1 != null){
             contactUs1.setMemberId(contactUs.getMemberId());
-//            if(contactUs.getMemberId() != null) {
-//            	PostInfo postInfo1 = new PostInfo();
-//                postInfo1.setMemberId(contactUs.getMemberId());
-//                postInfo1.setAdminId(1);
-//                postInfo1.setInfoTitle("聯絡我們");
-//                postInfo1.setContent(contactUs.getResponse());
-//                postInfo1.setInfoDate(new Date());
-//                postInfo1.setInfoStatus(0);
-//                postInfo1.setInfoType(5);
-//                postInfoRepository.save(postInfo1);
-//            }
             contactUs1.setName(contactUs.getName());
             contactUs1.setEmail(contactUs.getEmail());
             contactUs1.setChatTitle(contactUs.getChatTitle());
@@ -63,6 +52,7 @@ public class ContactUsServiceImpl implements ContactUsService {
             contactUs1.setReplyStatus(1);
             contactUs1.setCreateTime(new Date());
             contactUs1.setResponse(contactUs.getResponse());
+            contactUs1.setMsgId(msgId);
         }
         return contactUsRepository.save(contactUs1);
 

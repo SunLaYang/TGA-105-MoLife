@@ -26,7 +26,10 @@ public class ProductCartService {
 			if (pc == null) {
 				productCartRepository.save(productCart);
 				return true;
-			}
+			} else if (productCart.getProductNumber() > 1){
+				pc.setProductNumber(productCart.getProductNumber());
+				return true;
+			} 
 		}
 		return false;
 	}

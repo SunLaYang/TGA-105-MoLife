@@ -11,8 +11,8 @@ public class MemService {
 	MemDAO_interface dao;
 	
 	public MemService() {
-//		dao = new MemJDBCDAO();
-		dao = new MemJNDIDAO();
+		dao = new MemJDBCDAO();
+//		dao = new MemJNDIDAO();
 		
 	};
 
@@ -28,6 +28,12 @@ public class MemService {
 		this.dao.update(tempVO);
 		return tempVO;
 	}
+	
+	public MemVO updateMemByAdmin(MemVO tempVO) {
+		this.dao.updateByAdmin(tempVO);
+		return tempVO;
+	}
+	
 
 	public void deleteMem(Integer memId) {
 		this.dao.delete(memId);

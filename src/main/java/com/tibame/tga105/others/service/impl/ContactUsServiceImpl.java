@@ -12,8 +12,10 @@ import com.tibame.tga105.others.service.ContactUsService;
 
 @Service
 public class ContactUsServiceImpl implements ContactUsService {
+	
     @Autowired
-    private ContactUsRepository contactUsRepository;    
+
+    private ContactUsRepository contactUsRepository;
 
     @Override
     public ContactUs createMsg(ContactUs contactUs) {

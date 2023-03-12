@@ -1,5 +1,6 @@
 package com.tibame.tga105.others.controller;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,6 +67,19 @@ public class ContactUsController {
         ContactUs contactUs1 = new ContactUs();
         contactUs1.setName(contactUs.getName());
         contactUs1.setEmail(contactUs.getEmail());
+
+
+//      List<MemVO> mem = new ArrayList<MemVO>();
+//      for(int i = 0; i < mem.size(); i++) {
+//         if(mem.get(i).getMemEmail().equals(contactUs.getEmail())) {
+//            Integer memId = contactUsRepository.getIdByEmail(contactUs.getEmail());
+//            contactUs1.setMemberId(memId);
+//         }else {
+//            contactUs1.setMemberId(null);
+//         }    
+//      }
+        
+
         
 //        List<MemVO> mem = new ArrayList<MemVO>();
 //        for(int i = 0; i < mem.size(); i++) {

@@ -138,7 +138,7 @@ th, td {
 						</c:if>
 					</div>
 
-					<FORM METHOD="post" ACTION="/molife/memberController" name="memRegistery"
+					<FORM METHOD="post" ACTION="/memberController" name="memRegistery"
 						enctype="multipart/form-data">
 						<table>
 							<tr>
@@ -163,7 +163,7 @@ th, td {
 							</tr>
 							<tr>
 								<td>密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
+								<td><input type="password" name="memPsd" size="30" placeholder="Password"
 									value="<%=(memVO == null) ? "" : memVO.getMemPsd()%>" /></td>
 							</tr>
 							<tr>

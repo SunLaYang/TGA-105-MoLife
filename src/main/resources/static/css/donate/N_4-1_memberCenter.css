@@ -1,0 +1,24 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+
+/* 提案募款紀錄 */
+.proposal-record{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+/* 我的捐款紀錄 */
+.pay-record{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}

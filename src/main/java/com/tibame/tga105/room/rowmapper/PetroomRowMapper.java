@@ -9,6 +9,7 @@ import com.tibame.tga105.room.model.PetroomVo;
 
 public class PetroomRowMapper implements RowMapper<PetroomVo> {
 
+	//要先確認sql是否有把用到的欄位都查詢出來
 	@Override
 	public PetroomVo mapRow(ResultSet rs, int rowNum) throws SQLException {
 		

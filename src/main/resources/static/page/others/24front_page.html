@@ -25,12 +25,6 @@
     <link
       rel="stylesheet"
       type="text/css"
-      th:href="@{/styles/main_styles.css}"
-      href="../../styles/main_styles.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
       th:href="@{/styles/bootstrap4/bootstrap.min.css}"
       href="../../styles/bootstrap4/bootstrap.min.css"
     />
@@ -46,6 +40,13 @@
       type="text/css"
       th:href="@{/styles/contact_responsive.css}"
       href="../../styles/contact_responsive.css"
+    />
+    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/main_styles.css}"
+      href="../../styles/main_styles.css"
     />
 
     <link th:href="@{/styles/room/room.css}" rel="stylesheet" href="../../styles/room/room.css" />
@@ -76,6 +77,11 @@
       div.section_title::after{
          background-color: #eab464;
       }
+      
+      .navbar ul li a:hover{
+         color:#fe4c50;
+      }
+      
     </style>
   </head>
   <body>
@@ -210,7 +216,7 @@
               <div>
                 <h3 th:text="${news2.newsTitle}"><i class="fa-solid fa-magnifying-glass"></i></h3>
               </div>
-              <p th:text="${news2.newsContent}" style="font-size: 20px" data-aos="flip-up"></p>
+              <p th:text="${news2.newsContent}" style="font-size: 20px" ></p>
             </div>
           </div>
         </div>
@@ -231,7 +237,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000" >
+            <div class="blog_item" data-aos-duration="1000" >
               <div
                 class="blog_background"
                 style="
@@ -252,7 +258,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
+            <div class="blog_item" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -273,7 +279,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
+            <div class="blog_item" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="
@@ -311,7 +317,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000">
+            <div class="blog_item" data-aos-duration="1000">
               <div
                 class="blog_background"
                 style="
@@ -332,7 +338,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
+            <div class="blog_item" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -353,7 +359,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
+            <div class="blog_item" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="
@@ -391,7 +397,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000">
+            <div class="blog_item" data-aos-duration="1000">
               <div
                 class="blog_background"
                 style="
@@ -412,7 +418,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
+            <div class="blog_item" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -433,7 +439,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
+            <div class="blog_item" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="

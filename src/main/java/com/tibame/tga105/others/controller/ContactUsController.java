@@ -1,9 +1,7 @@
 package com.tibame.tga105.others.controller;
 
-<<<<<<< HEAD
-=======
+
 import java.util.ArrayList;
->>>>>>> origin/linda
 import java.util.Date;
 import java.util.List;
 
@@ -69,7 +67,7 @@ public class ContactUsController {
         ContactUs contactUs1 = new ContactUs();
         contactUs1.setName(contactUs.getName());
         contactUs1.setEmail(contactUs.getEmail());
-<<<<<<< HEAD
+
 
 //      List<MemVO> mem = new ArrayList<MemVO>();
 //      for(int i = 0; i < mem.size(); i++) {
@@ -81,7 +79,7 @@ public class ContactUsController {
 //         }    
 //      }
         
-=======
+
         
 //        List<MemVO> mem = new ArrayList<MemVO>();
 //        for(int i = 0; i < mem.size(); i++) {
@@ -93,7 +91,6 @@ public class ContactUsController {
 //            }	
 //        }
 
->>>>>>> origin/linda
         contactUs1.setMemberId(2);
         contactUs1.setChatTitle(contactUs.getChatTitle());
         contactUs1.setChatContent(contactUs.getChatContent());

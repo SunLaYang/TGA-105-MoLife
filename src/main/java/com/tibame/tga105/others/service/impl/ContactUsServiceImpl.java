@@ -14,11 +14,8 @@ import com.tibame.tga105.others.service.ContactUsService;
 public class ContactUsServiceImpl implements ContactUsService {
 	
     @Autowired
-<<<<<<< HEAD
+
     private ContactUsRepository contactUsRepository;
-=======
-    private ContactUsRepository contactUsRepository;    
->>>>>>> origin/linda
 
     @Override
     public ContactUs createMsg(ContactUs contactUs) {

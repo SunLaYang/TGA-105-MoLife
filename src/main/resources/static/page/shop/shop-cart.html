@@ -46,6 +46,18 @@
       .quantity_selector {
         height: 30px;
       }
+
+      .image-container {
+        width: 50px;
+        height: 50px;
+        overflow: hidden; /* 隱藏溢出的內容 */
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 填充剪裁適應容器 */
+      }
     </style>
   </head>
 
@@ -126,10 +138,11 @@
             <table class="table">
               <thead>
                 <tr>
+                  <th class="border-top-0" scope="col">圖片</th>
                   <th class="border-top-0" scope="col">商品</th>
                   <th class="border-top-0" scope="col">單價</th>
                   <th class="border-top-0" scope="col">
-                    <div class="mx-5" style="padding-left: 33px">數量</div>
+                    <div class="mx-4">數量</div>
                   </th>
                   <th class="border-top-0" scope="col">總計</th>
                   <th class="border-top-0" scope="col">操作</th>
@@ -137,12 +150,17 @@
               </thead>
               <tbody class="cart-container">
                 <tr>
-                  <th scope="row">
+                  <td class="align-middle">
+                    <div class="image-container">
+                      <img src="/productimages/${img}" alt="product image" />
+                    </div>
+                  </td>
+                  <td scope="row">
                     Kirkland Signature Chicken & Rice Dry Dog Food 12 kg
-                  </th>
+                  </td>
                   <td>$900</td>
                   <td>
-                    <div class="input-group pl-5" style="max-width: 160px">
+                    <div class="input-group" style="max-width: 110px">
                       <div class="input-group-prepend">
                         <button
                           class="btn btn-outline-secondary minus-btn"
@@ -167,12 +185,17 @@
                   <td><a href="" class="text-danger">刪除</a></td>
                 </tr>
                 <tr>
-                  <th scope="row">
+                  <td class="align-middle">
+                    <div class="image-container">
+                      <img src="/productimages/${img}" alt="product image" />
+                    </div>
+                  </td>
+                  <td scope="row">
                     Kirkland Signature Chicken & Rice Dry Dog Food 12 kg
-                  </th>
+                  </td>
                   <td>$900</td>
                   <td>
-                    <div class="input-group pl-5" style="max-width: 160px"">
+                    <div class="input-group" style="max-width: 110px">
                       <div class="input-group-prepend">
                         <button
                           class="btn btn-outline-secondary minus-btn"
@@ -193,37 +216,7 @@
                       </div>
                     </div>
                   </td>
-                  <td>$1800</td>
-                  <td><a href="" class="text-danger">刪除</a></td>
-                </tr>
-                <tr>
-                  <th scope="row">
-                    Kirkland Signature Chicken & Rice Dry Dog Food 12 kg
-                  </th>
                   <td>$900</td>
-                  <td>
-                    <div class="input-group pl-5" style="max-width: 160px"">
-                      <div class="input-group-prepend">
-                        <button
-                          class="btn btn-outline-secondary minus-btn"
-                          type="button">
-                          -
-                        </button>
-                      </div>
-                      <input
-                        type="text"
-                        class="form-control quantity-input"
-                        value="1" />
-                      <div class="input-group-append">
-                        <button
-                          class="btn btn-outline-secondary plus-btn"
-                          type="button">
-                          +
-                        </button>
-                      </div>
-                    </div>
-                  </td>
-                  <td>$2700</td>
                   <td><a href="" class="text-danger">刪除</a></td>
                 </tr>
               </tbody>
@@ -372,16 +365,16 @@
     <script src="../../js/single_custom.js"></script>
     <script>
       // 事件委派，將點擊事件綁定在 cart-container 父元素上
-      $('.cart-container').on('click', '.minus-btn', function() {
-        var input = $(this).parent().parent().find('.quantity-input');
+      $(".cart-container").on("click", ".minus-btn", function () {
+        var input = $(this).parent().parent().find(".quantity-input");
         var value = parseInt(input.val());
         if (value > 1) {
           input.val(value - 1);
         }
       });
-    
-      $('.cart-container').on('click', '.plus-btn', function() {
-        var input = $(this).parent().parent().find('.quantity-input');
+
+      $(".cart-container").on("click", ".plus-btn", function () {
+        var input = $(this).parent().parent().find(".quantity-input");
         var value = parseInt(input.val());
         input.val(value + 1);
       });

@@ -26,48 +26,69 @@
   <!--sweetalert-->  
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   
-  
-
+  <!-- header & footer (有修改路徑)-->
+  <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/bootstrap4/bootstrap.min.css"
+    />
+  <link rel="stylesheet" type="text/css" href="../../styles/main_styles.css" />
+   <link rel="stylesheet" href="../../styles/room/room.css" />
 
 </head>
 
 
 <body>
-  <!-- Header -->
-  <div id="header"></div>
-
-  <!-- Main Navigation -->
-    <div class="main_nav_container bg-yellow">
-      <div>
-        <div class="row">
-          <div class="col-lg-12 text-right">
-            <div class="logo_container">
-              <a href="#">
-                <img src="../../images/home/logoMoLife.png" />
-              </a>
-            </div>
-            <nav class="navbar">
-              <ul class="navbar_menu">
-                <li><a href="#">寵物旅館</a></li>
-                <li><a href="#">商品專區</a></li>
-                <li><a href="#">寵物募款</a></li>
-                <li><a href="#">寵物論壇</a></li>
-                <li><a href="#">聯絡我們</a></li>
-                <li><a href="#">管理員後台</a></li>
-              </ul>
-              <ul class="navbar_user">
-                <a href="#"><img class="icon" src="../../images/home/car.png" /></a>
-                <a href="#"><img class="icon" src="../../images/home/ring.png" /></a>
-                <a href="#"><img class="icon" src="../../images/home/man.png" /></a>
-              </ul>
-              <div class="hamburger_container">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+ <!-- Header -->
+  <header class="header trans_300">
+    <!-- Main Navigation -->
+      <div class="main_nav_container bg-yellow">
+        <div>
+          <div class="row">
+            <div class="col-lg-12 text-right">
+              <div class="logo_container">
+                <a href="../../page/front_page.html"> <!-- ?? -->
+                  <img src="../../images/home/logoMoLife.png" />
+                </a>
               </div>
-            </nav>
+              <nav class="navbar">
+                <ul class="navbar_menu">
+                  <li>
+                    <a href="./01room.index.html">寵物旅館</a>
+                  </li>
+                  <li><a href="#">商品專區</a></li>
+                  <li><a href="#">寵物募款</a></li>
+                  <li><a href="#">寵物論壇</a></li>
+                  <li>
+                    <a href="#">聯絡我們</a>
+                  </li>
+                  <li><a href="../../page/index.html">管理員後台</a></li><!-- ?? -->
+                </ul>
+                <ul class="navbar_user">
+                  <a href="#"
+                    ><img class="icon" src="../../images/home/car.png"
+                  /></a>
+                  <a href="#"
+                    ><img class="icon" src="../../images/home/ring.png"
+                  /></a>
+                  <a href="#"
+                    ><img class="icon" src="../../images/home/man.png"
+                  /></a>
+                </ul>
+                <div class="hamburger_container">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+</header>
+<br>
+<br>
+<br>
+<br>
+
 
  <!--carousel slide-->
  <div id="carouselExampleDark" class="carousel carousel-dark slide"  data-bs-ride="carousel">
@@ -106,7 +127,7 @@
  <div class="container1">
   <ol class="breadcrumb" style="background-color:transparent;">
     <li class="breadcrumb-item"><a href="###" style="color:black;">首頁</a></li>
-    <li class="breadcrumb-item"><a href="N_1_index.jsp" style="color:black;">寵物募款</a></li>
+    <li class="breadcrumb-item"><a href="N_1_index" style="color:black;">寵物募款</a></li>
     <li class="breadcrumb-item active" aria-current="page" style="color:#A7754D; text-decoration: underline;">我要提案募款</li>
   </ol>
   </div>
@@ -133,7 +154,7 @@
           
             <div class="form-group">
               <label for="proposal_date">日期</label>
-              <input type="date" id="proposal_date" class="form-control" name="proposalDate">
+              <input type="date" id="proposal_date" class="form-control" name="proposalDate" style="color:black !important;">
                 <script>
                   $(document).ready(function () {
                   var time = new Date();
@@ -156,7 +177,7 @@
             <div class="form-group">
               <label for="animal_type">動物種類</label>
               <span style="color:red">${errors.animalTypeId}</span>
-              <select id="animal_type" name="animalTypeId" class="form-control custom-select">
+              <select id="animal_type" name="animalTypeId" class="form-control custom-select" style="color:black !important;">
                 <option selected disabled value="null">請選擇動物種類</option>
                 <option value="1">狗狗</option>
                 <option value="2">貓貓</option>
@@ -213,8 +234,44 @@
   </div> 
 </form>
 
-<!-- 彈跳視窗問題-->
-<!-- 
+
+<!-- 彈跳視窗-->  
+<script>
+var submitBtn = document.getElementById("proposal-submit");
+submitBtn.addEventListener("click", function() {
+  // 在這裡加入修改邏輯，如果修改成功就顯示訊息，否則留在同一頁面
+  if (isProposalUpdatedSuccessfully()) {
+	  console.log("修改成功！");
+    alert("修改成功！");
+  } else {
+    // 如果修改失敗，就留在同一頁面，不需要顯示訊息
+    location.reload();
+  }
+});
+
+function isProposalUpdatedSuccessfully() {
+  // 在這裡檢查修改是否成功，如果成功就回傳 true，否則回傳 false
+  var inputs = document.getElementsByClassName("form-control");
+//迭代所有的 input 欄位，如果有任何一個欄位沒有值，就假設修改失敗
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].getElementsByClassName("form-control")[0].value === "") {
+      return false;
+      console.log("修改失敗");
+    }
+  }
+  // 如果所有的 input 欄位都有值，就假設修改成功
+  return true;
+}
+
+
+</script>
+
+
+
+
+
+
+ <!--  
 <script>
   // 取得提交按钮元素
   var submitBtn = document.getElementById("proposal-submit");
@@ -222,7 +279,8 @@
   submitBtn.addEventListener("click", function() {
     alert("修改成功！");
   });
-</script> -->
+</script> --> 
+
 
 <!-- 照片選擇JS -->
 <script>
@@ -236,20 +294,50 @@ var p_file_el = document.getElementById("p_file");
 <br>
 
 <!-- Footer -->
-<!-- Footer_start -->
-<div id="footer"></div>
-<!-- Footer_end -->
-
-
-<!-- å¼å¥ header / footer /scrollTop-->
-<script>
-  $(function () {
-    $("#header").load("../../header.html");
-    $("#footer").load("../../footer.html");
-    $("#scrollTop").load("../../scrollTop.html");
-  });
-</script>
-
+<footer class="footer bg-yellow">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div
+						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+						<ul class="footer_nav">
+							<li><a href="#">討論區</a></li>
+							<li><a href="#">FAQs</a></li>
+							<li><a href="contact.html">聯絡我們</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div
+						class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+						<ul>
+							<li><a href="#"><i class="fa fa-facebook"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"
+									aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer_nav_container">
+						<div class="cr">
+							©2022 All Rights Reserverd. Template by <a href="#">Colorlib</a>
+							&amp; distributed by <a href="https://themewagon.com">Tibame
+								TGA-105 第四組</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</footer>
 </body>
-
+<script src="../../js/custom.js"></script>
 </html>

@@ -177,9 +177,10 @@ public class GetOnePlanServlet extends HttpServlet {
 			bean.setPaymentAmount(paymentAmount);
 			paymentService.addPayment(bean);
 
-			//新增完成 回首頁
-			System.out.println("新增完成");
-			response.sendRedirect(request.getContextPath()+"/pages/donate/N_1_index");
+			//新增完成 Redirect回首頁
+			System.out.println("新增完成,getContextPath()=" + request.getContextPath());
+			response.sendRedirect(request.getContextPath()+"/pages/donate/N_1_index");	
+			
 			
 		}
 		

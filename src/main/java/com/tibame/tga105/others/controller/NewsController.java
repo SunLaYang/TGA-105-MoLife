@@ -30,7 +30,7 @@ public class NewsController {
     }
 
     //前台首頁最新消息(讀取資料庫)
-    @GetMapping  ("/24front_page.html")
+    @GetMapping("/24front_page.html")
     public String getNews(Model model){
         model.addAttribute("news", newsService.readNews());
         model.addAttribute("product1", productService.selectId(1));

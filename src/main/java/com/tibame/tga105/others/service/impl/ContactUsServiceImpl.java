@@ -14,6 +14,7 @@ import com.tibame.tga105.others.service.ContactUsService;
 public class ContactUsServiceImpl implements ContactUsService {
 	
     @Autowired
+
     private ContactUsRepository contactUsRepository;
 
     @Override
@@ -51,6 +52,6 @@ public class ContactUsServiceImpl implements ContactUsService {
             contactUs1.setMsgId(msgId);
         }
         return contactUsRepository.save(contactUs1);
-
     }
+    
 }

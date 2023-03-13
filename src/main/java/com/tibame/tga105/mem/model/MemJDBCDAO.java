@@ -17,7 +17,7 @@ public class MemJDBCDAO implements MemDAO_interface {
 
 	String userid = "root";
 
-	String passwd = "password";
+	String passwd = "123456";
 
 	private static final String INSERT_STMT = "INSERT INTO member (member_email, member_password, member_last_name, member_first_name, member_nickname, member_phone, member_address, member_picture_id, registration_date, last_edit_date, last_online_date, last_post_date, member_status, post_suspended, post_reported_num) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

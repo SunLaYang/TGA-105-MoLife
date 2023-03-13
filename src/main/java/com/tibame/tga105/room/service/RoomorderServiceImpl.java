@@ -134,9 +134,9 @@ public class RoomorderServiceImpl implements RoomorderService {
 			// 取出起訖日的日期區間
 			long daysBetween = ChronoUnit.DAYS.between(date1, date2);
 
-			System.out.println(date1);
-			System.out.println(date2);
-			System.out.println("日期 " + bDate + " 和日期 " + eDate + " 之間相差 " + daysBetween + " 天");
+//			System.out.println(date1);
+//			System.out.println(date2);
+//			System.out.println("日期 " + bDate + " 和日期 " + eDate + " 之間相差 " + daysBetween + " 天");
 
 			// 第二次遍歷 把起訖日的差額拆分成為一天，列出區間的每一天
 //            {

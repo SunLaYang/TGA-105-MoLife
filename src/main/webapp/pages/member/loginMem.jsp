@@ -59,44 +59,65 @@ div.btn_click {
 	margin-bottom: 20px;
 }
 </style>
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/bootstrap4/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../styles/main_styles.css"
+    />
+    <link rel="stylesheet" href="../../styles/room/room.css" />
 </head>
 
 <body>
 	<!-- Header -->
-	<div id="header"></div>
-
-	<!-- Main Navigation -->
-	<div class="main_nav_container bg-yellow">
-		<div>
-			<div class="row">
-				<div class="col-lg-12 text-right">
-					<div class="logo_container">
-						<a href="#"> <img src="../../images/home/logoMoLife.png" />
-						</a>
-					</div>
-					<nav class="navbar">
-						<ul class="navbar_menu">
-							<li><a href="#">寵物旅館</a></li>
-							<li><a href="#">商品專區</a></li>
-							<li><a href="#">寵物募款</a></li>
-							<li><a href="#">寵物論壇</a></li>
-							<li><a href="#">聯絡我們</a></li>
-							<li><a href="#">管理員後台</a></li>
-						</ul>
-						<ul class="navbar_user">
-							<a href="#"><img class="icon" src="../../images/home/car.png" /></a>
-							<a href="#"><img class="icon"
-								src="../../images/home/ring.png" /></a>
-							<a href="#"><img class="icon" src="../../images/home/man.png" /></a>
-						</ul>
-						<div class="hamburger_container">
-							<i class="fa fa-bars" aria-hidden="true"></i>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</div>
+	 <header class="header trans_300">
+    <!-- Main Navigation -->
+    <div class="main_nav_container bg-yellow">
+      <div>
+        <div class="row">
+          <div class="col-lg-12 text-right">
+            <div class="logo_container">
+              <a href="../../page/front_page.html">
+                <img src="../../images/home/logoMoLife.png" />
+              </a>
+            </div>
+            <nav class="navbar">
+              <ul class="navbar_menu">
+                <li>
+                  <a href="./01room.index.html">寵物旅館</a>
+                </li>
+                <li><a href="#">商品專區</a></li>
+                <li><a href="#">寵物募款</a></li>
+                <li><a href="#">寵物論壇</a></li>
+                <li>
+                  <a href="#">聯絡我們</a>
+                </li>
+                <li><a href="../../page/index.html">管理員後台</a></li>
+              </ul>
+              <ul class="navbar_user">
+                <a href="#"
+                  ><img class="icon" src="../../images/home/car.png"
+                /></a>
+                <a href="#"
+                  ><img class="icon" src="../../images/home/ring.png"
+                /></a>
+                <a href="#"
+                  ><img class="icon" src="../../images/home/man.png"
+                /></a>
+              </ul>
+              <div class="hamburger_container">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 
 
@@ -121,11 +142,11 @@ div.btn_click {
 			<div class="col text-center">
 				<div class="mail.text">
 					<label for="exampleInputEmail1" style="color: #8d98a7;">信箱</label>
-					<input type="TEXT" name="memEmail" size="30" /> <br /> <br />
+					<input type="TEXT" name="memEmail" size="35" /> <br /> <br />
 				</div>
 				<div class="psd.text">
 					<label for="exampleInputPassword1" style="color: #8d98a7;">密碼</label>
-					<input type="TEXT" name="memPsd" size="30" />
+					<input type="TEXT" name="memPsd" size="35" />
 				</div>
 			</div>
 
@@ -159,16 +180,50 @@ div.btn_click {
 
 	<!-- Footer -->
 	<!-- Footer_start -->
-	<div id="footer"></div>
-	<!-- Footer_end -->
-
-	<!-- 引入 header / footer /scrollTop-->
-	<script>
-		$(function() {
-			$("#header").load("../../header.html");
-			$("#footer").load("../../footer.html");
-			$("#scrollTop").load("../../scrollTop.html");
-		});
-	</script>
+	<footer class="footer bg-yellow">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div
+						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+						<ul class="footer_nav">
+							<li><a href="#">討論區</a></li>
+							<li><a href="#">FAQs</a></li>
+							<li><a href="contact.html">聯絡我們</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div
+						class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+						<ul>
+							<li><a href="#"><i class="fa fa-facebook"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-instagram"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-skype"
+									aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-pinterest"
+									aria-hidden="true"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="footer_nav_container">
+						<div class="cr">
+							©2022 All Rights Reserverd. Template by <a href="#">Colorlib</a>
+							&amp; distributed by <a href="https://themewagon.com">Tibame
+								TGA-105 第四組</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
+<script src="../../js/custom.js"></script>
 </html>

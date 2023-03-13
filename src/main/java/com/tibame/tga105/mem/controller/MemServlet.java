@@ -168,6 +168,7 @@ public class MemServlet extends HttpServlet {
 //			}
 
 			MemVO tempVO = (MemVO) session.getAttribute("memVO");
+			System.out.println(tempVO.getMemNickname());
 			tempVO.setMemLname(memLname);
 			tempVO.setMemFname(memFname);
 			tempVO.setMemNickname(memNickname);

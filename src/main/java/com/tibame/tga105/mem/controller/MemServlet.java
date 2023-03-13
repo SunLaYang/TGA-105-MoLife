@@ -95,7 +95,7 @@ public class MemServlet extends HttpServlet {
 			MemVO memVO = memSvc.getOneMem(memId);
 			// 查詢完成，轉交
 
-			req.getSession().setAttribute("memVO", memVO);
+			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/update_mem_input.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			MemVO tempVO =(MemVO) session.getAttribute("memVO");
@@ -168,7 +168,7 @@ public class MemServlet extends HttpServlet {
 //			}
 
 			MemVO tempVO = (MemVO) session.getAttribute("memVO");
-			System.out.println(tempVO.getMemNickname());
+			System.out.println(tempVO.getPostSuspended());
 			tempVO.setMemLname(memLname);
 			tempVO.setMemFname(memFname);
 			tempVO.setMemNickname(memNickname);
@@ -210,7 +210,7 @@ public class MemServlet extends HttpServlet {
 			// Send the user back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 //				req.setAttribute("memVO", tempVO);
-				req.getSession().setAttribute("memVO", tempVO);
+				req.setAttribute("memVO", tempVO);
 				String url = "/pages/member/update_mem_input.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/update_mem_input.jsp");
 //				failureView.forward(req, res);
@@ -225,7 +225,7 @@ public class MemServlet extends HttpServlet {
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 //			req.setAttribute("memVO", tempVO);
-			req.getSession().setAttribute("memVO", tempVO);
+			req.setAttribute("memVO", tempVO);
 			String url = "/pages/member/listOneMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -342,8 +342,7 @@ public class MemServlet extends HttpServlet {
 
 			// Send the user back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
-				req.getSession().setAttribute("memVO", tempVO);
-//				req.setAttribute("memVO", tempVO);
+				req.setAttribute("memVO", tempVO);
 				String url = "/pages/member/update_mem_by_admin.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
@@ -355,7 +354,7 @@ public class MemServlet extends HttpServlet {
 			tempVO = memSvc.updateMemByAdmin(tempVO);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-			req.getSession().setAttribute("memVO", tempVO);
+			req.setAttribute("memVO", tempVO);
 //			req.setAttribute("memVO", tempVO);
 			String url = "/pages/member/listAllMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -463,7 +462,7 @@ public class MemServlet extends HttpServlet {
 			memVO.setRegistrationDate(registrationDate);
 
 			if (!errorMsgs.isEmpty()) {
-				req.getSession().setAttribute("memVO", memVO);
+				req.setAttribute("memVO", memVO);
 				String url = "/pages/member/addMem.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/addMem.jsp");
 //				failureView.forward(req, res);
@@ -474,7 +473,7 @@ public class MemServlet extends HttpServlet {
 			MemService memSvc = new MemService();
 			memVO = memSvc.addMem(memVO);
 
-			req.getSession().setAttribute("success", "-(註冊成功)");
+			req.setAttribute("success", "-(註冊成功)");
 			String url = "/pages/member/loginMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -562,7 +561,7 @@ public class MemServlet extends HttpServlet {
 				}
 				session.setAttribute("memVO", memVO);
 
-				req.getSession().setAttribute("login", true);
+				req.setAttribute("login", true);
 
 				Cookie cookie = new Cookie("memberId", memVO.getMemId().toString());
 				Cookie cookie2 = new Cookie("memberNickName", memVO.getMemNickname());
@@ -574,13 +573,13 @@ public class MemServlet extends HttpServlet {
 				res.addCookie(cookie2);
 			}
 
-//			req.setAttribute("memVO", memVO);
-			req.getSession().setAttribute("memVO", memVO);
+			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/listOneMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			MemVO tempVO =(MemVO) session.getAttribute("memVO");
+			MemVO tempVO =(MemVO) session.getAttribute("memVO");
 //			System.out.println(tempVO.getMemNickname());
 //			successView.forward(req, res);
+		
 			res.sendRedirect(url);
 
 		}

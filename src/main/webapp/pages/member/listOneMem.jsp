@@ -187,10 +187,10 @@ th, td {
 						<tr>
 							<td>會員註冊時間</td>
 							<td>${memVO.registrationDate}</td>
-							<!--               <tr> -->
-							<!--                 <td>會員檢舉</td> -->
-							<%--                 <td>${memVO.postSuspended}</td> --%>
-							<!--               </tr> -->
+<!-- 							              <tr> -->
+<!-- 							                <td>會員檢舉</td> -->
+<%-- 							                <td>${memVO.postSuspended}</td> --%>
+<!-- 							              </tr> -->
 						<tr>
 							<td></td>
 							<td>

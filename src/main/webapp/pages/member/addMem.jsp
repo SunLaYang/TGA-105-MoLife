@@ -124,7 +124,7 @@ th, td {
 		</div>
 	</header>
 
-	<div>
+	<div  style="margin-top: 5%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
 				<!-- 				<a href="#contact">帳號設定</a> <a href="#oreder_search">訂單查詢</a> <a -->
@@ -136,10 +136,10 @@ th, td {
 			<div class="col text-center">
 				<div class="memlistonebox">
 					<p style="font-size: 32px; margin-right: 50%; margin-bottom: 2%;">會員註冊</p>
-					<div style="margin-right: 45%;">
+					<div style="margin-right: 50%;">
 						<%-- 錯誤表列 --%>
 						<c:if test="${not empty errorMsgs}">
-							<font style="color: red">請修正以下錯誤:</font>
+							<font style="color: red; margin-left:6%;">請修正以下錯誤:</font>
 							<ul>
 								<c:forEach var="message" items="${errorMsgs}">
 									<li style="color: red">${message}</li>

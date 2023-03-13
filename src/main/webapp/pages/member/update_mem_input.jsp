@@ -124,7 +124,7 @@ th, td {
 		</div>
 	</header>
 
-	<div>
+	<div style="margin-top:8%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
 				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a
@@ -136,16 +136,16 @@ th, td {
 			</div>
 
 
-			<div class="col text-center">
+			<div class="col text-center" style="margin-left:2%; margin-top: -4%;">
 				<div class="memlistonebox">
-					<p style="font-size: 26px; margin-right: 50%; margin-bottom: 2%;">會員資料編輯</p>
-					<div style="margin-right: 45%;">
+					<p style="font-size: 32px; margin-right: 50%; margin-bottom: 2%;">會員資料編輯</p>
+					<div style="margin-right: 45%; margin-bottom: 1%;">
 						<%-- 錯誤表列 --%>
 						<c:if test="${not empty errorMsgs}">
-							<font style="color: red">請修正以下錯誤:</font>
+							<font style="color: red; margin-right:8%;">請修正以下錯誤:</font>
 							<ul>
 								<c:forEach var="message" items="${sessionScope.errorMsgs}">
-									<li style="color: red">${message}</li>
+									<li style="color: red; margin-right:13%;">${message}</li>
 								</c:forEach>
 							</ul>
 						</c:if>

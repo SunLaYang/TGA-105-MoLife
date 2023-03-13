@@ -235,52 +235,6 @@
 </form>
 
 
-<!-- 彈跳視窗-->  
-<script>
-var submitBtn = document.getElementById("proposal-submit");
-submitBtn.addEventListener("click", function() {
-  // 在這裡加入修改邏輯，如果修改成功就顯示訊息，否則留在同一頁面
-  if (isProposalUpdatedSuccessfully()) {
-	  console.log("修改成功！");
-    alert("修改成功！");
-  } else {
-    // 如果修改失敗，就留在同一頁面，不需要顯示訊息
-    location.reload();
-  }
-});
-
-function isProposalUpdatedSuccessfully() {
-  // 在這裡檢查修改是否成功，如果成功就回傳 true，否則回傳 false
-  var inputs = document.getElementsByClassName("form-control");
-//迭代所有的 input 欄位，如果有任何一個欄位沒有值，就假設修改失敗
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].getElementsByClassName("form-control")[0].value === "") {
-      return false;
-      console.log("修改失敗");
-    }
-  }
-  // 如果所有的 input 欄位都有值，就假設修改成功
-  return true;
-}
-
-
-</script>
-
-
-
-
-
-
- <!--  
-<script>
-  // 取得提交按钮元素
-  var submitBtn = document.getElementById("proposal-submit");
-  // 在按钮上註冊點擊事件監聽器
-  submitBtn.addEventListener("click", function() {
-    alert("修改成功！");
-  });
-</script> --> 
-
 
 <!-- 照片選擇JS -->
 <script>

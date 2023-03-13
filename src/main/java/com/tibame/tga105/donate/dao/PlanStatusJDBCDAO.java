@@ -67,16 +67,17 @@ public class PlanStatusJDBCDAO implements PlanStatusDAO_interface {
 	// admin-查詢某個進度狀態的捐款 donatePayResultAdmin.jsp
 	private static final String GET_Pay_ByStatusId_STMT = 
 			"SELECT PY.payment_date, plan_name, PY.plan_id, plan_status, PY.member_id, PY.payment_id, PY.payment_amount\r\n"
-			+ "FROM ( \r\n"
-			+ "		(payment AS PY \r\n"
-			+ "		INNER JOIN plan AS P\r\n"
-			+ "        ON PY.plan_id = P.plan_id\r\n"
-			+ "		)\r\n"
-			+ "INNER JOIN plan_status AS PS\r\n"
-			+ "ON PY.plan_status_id = PS.plan_status_id \r\n"
-			+ "	)\r\n"
-			+ "WHERE PY.plan_status_id = ?\r\n"
-			+ "ORDER BY payment_date DESC;";
+					+ "FROM( \r\n"
+					+ "	 (payment AS PY\r\n"
+					+ "	  INNER JOIN plan AS P\r\n"
+					+ "	  ON PY.plan_id = P.plan_id\r\n"
+					+ "	  )\r\n"
+					+ "	  INNER JOIN plan_status AS PS\r\n"
+					+ "	  ON P.plan_status_id = PS.plan_status_id\r\n"
+					+ "	)\r\n"
+					+ "WHERE P.plan_status_id=?\r\n"
+					+ "GROUP BY payment_id\r\n"
+					+ "ORDER BY payment_id DESC;";
 	@Override
 	public List<PaymentVO> getPayByStatusId(Integer planStatusId) {
 		List<PaymentVO> list = null ;

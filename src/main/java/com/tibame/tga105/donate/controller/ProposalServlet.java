@@ -190,9 +190,9 @@ public class ProposalServlet extends HttpServlet {
 		bean.setMemberId(memberId);
 		planService.addPlan(bean);	
 		
-		// 新增完成 回首頁
+		// 新增完成 跳轉成功頁面
 		System.out.println("新增完成");
-		res.sendRedirect(req.getContextPath()+"/pages/donate/N_1_index");
+		res.sendRedirect(req.getContextPath()+"/pages/donate/N_7_proposalSuccess");
 		
 	}
 	

@@ -14,4 +14,8 @@ public interface PaymentDAO_interface {
 
 	// 3.新增付款
 	public PaymentVO insert(PaymentVO paymentVO);
+	
+	// 4.捐款成功頁面
+	public List<PaymentVO> successPage(Integer memberId);
+	
 }

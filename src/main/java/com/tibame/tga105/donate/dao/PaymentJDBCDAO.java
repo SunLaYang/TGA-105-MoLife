@@ -25,16 +25,15 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 			"SELECT PY.payment_date, PY.payment_id, plan_name, PY.plan_id, plan_status, PY.payment_amount\r\n"
 			+ "FROM( \r\n"
 			+ "	 (payment AS PY\r\n"
-			+ "	 INNER JOIN plan AS P\r\n"
-			+ "	 ON PY.plan_id = P.plan_id\r\n"
-			+ "	 )\r\n"
-			+ "INNER JOIN plan_status AS PS\r\n"
-			+ "ON PY.plan_status_id = PS.plan_status_id\r\n"
-			+ ")\r\n"
+			+ "	  INNER JOIN plan AS P\r\n"
+			+ "	  ON PY.plan_id = P.plan_id\r\n"
+			+ "	  )\r\n"
+			+ "	  INNER JOIN plan_status AS PS\r\n"
+			+ "	  ON P.plan_status_id = PS.plan_status_id\r\n"
+			+ "	)\r\n"
 			+ "WHERE PY.member_id=?\r\n"
 			+ "GROUP BY payment_id\r\n"
-			+ "ORDER BY payment_date DESC;";
-
+			+ "ORDER BY payment_id DESC;";
 	@Override
 	public List<PaymentVO> getMy(Integer memberId) {
 		List<PaymentVO> list = null;
@@ -80,15 +79,16 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 	// 2.後台-List所有會員捐款紀錄
 	private static final String GET_ALLPLAN_STMT = 
 			"SELECT PY.payment_date, plan_name, PY.plan_id, plan_status, PY.member_id, PY.payment_id, PY.payment_amount\r\n"
-			+ "FROM ( \r\n"
-			+ "		(payment AS PY \r\n"
-			+ "		INNER JOIN plan AS P\r\n"
-			+ "        ON PY.plan_id = P.plan_id\r\n"
-			+ "		)\r\n"
-			+ "INNER JOIN plan_status AS PS\r\n"
-			+ "ON PY.plan_status_id = PS.plan_status_id \r\n"
+			+ "FROM( \r\n"
+			+ "	 (payment AS PY\r\n"
+			+ "	  INNER JOIN plan AS P\r\n"
+			+ "	  ON PY.plan_id = P.plan_id\r\n"
+			+ "	  )\r\n"
+			+ "	  INNER JOIN plan_status AS PS\r\n"
+			+ "	  ON P.plan_status_id = PS.plan_status_id\r\n"
 			+ "	)\r\n"
-			+ "ORDER BY payment_date DESC;";
+			+ "GROUP BY payment_id\r\n"
+			+ "ORDER BY payment_id DESC;";
 
 	@Override
 	public List<PaymentVO> getAllPay() {
@@ -126,7 +126,7 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 	}
 
 	// 3.新增付款
-	private static final String INSERT_STMT = "INSERT INTO payment (plan_id, member_id, plan_status_id, payment_date, payment_amount) VALUES (?, ?, ?, ?, ?);";
+	private static final String INSERT_STMT = "INSERT INTO payment (plan_id, member_id, payment_date, payment_amount) VALUES (?, ?, ?, ?);";
 
 	@Override
 	public PaymentVO insert(PaymentVO bean) {
@@ -138,9 +138,8 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 
 				pstmt.setInt(1, bean.getPlanId());
 				pstmt.setInt(2, bean.getMemeberId());
-				pstmt.setInt(3, bean.getPlanStatusId());
-				pstmt.setTimestamp(4, bean.getPaymentDate());
-				pstmt.setInt(5, bean.getPaymentAmount());
+				pstmt.setTimestamp(3, bean.getPaymentDate());
+				pstmt.setInt(4, bean.getPaymentAmount());
 
 				int i = pstmt.executeUpdate();
 				if (i==1) {
@@ -153,5 +152,44 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 		}
 		return result;
 	}
+	
+	
+	
+	// 4.捐款成功頁面
+	private static final String SUCCESS_STMT = 
+			"SELECT payment_id, payment_date, payment_amount\r\n"
+			+ "FROM molife.payment\r\n"
+			+ "WHERE member_id=?\r\n"
+			+ "ORDER BY plan_id DESC\r\n"
+			+ "LIMIT 1;";
+	public List<PaymentVO> successPage(Integer memberId) {
+		List<PaymentVO> list = null;
+		
+		if (memberId != null) {
+			ResultSet rs = null;
+			try (
+				Connection con = ds.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(SUCCESS_STMT);) {
+				
+				pstmt.setInt(1, memberId);
+				rs = pstmt.executeQuery();
+				list = new ArrayList<PaymentVO>();
+				while (rs.next()) {
+					PaymentVO paymentVO = new PaymentVO();
+					paymentVO.setPaymentId(rs.getInt("payment_id"));
+					paymentVO.setPaymentDate(rs.getTimestamp("payment_date"));
+					paymentVO.setPaymentAmount(rs.getInt("payment_amount"));
+					
+					list.add(paymentVO);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+
+	}
+	
 
 }

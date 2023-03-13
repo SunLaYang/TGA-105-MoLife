@@ -71,7 +71,7 @@
                     <li><a href="#">管理員後台</a></li>
                   </ul>
                   <ul class="navbar_user">
-                    <a href="#"
+                    <a href="shop-cart.html"
                       ><img class="icon" src="../../images/home/car.png"
                     /></a>
                     <a href="#"
@@ -662,7 +662,7 @@
           ".add_to_cart_button a",
           function (event) {
             event.preventDefault();
-            let productId = $(this).data("productId");
+            let productId = $(this).data("productid");
             let cartData = {
               memberId: 1,
               product: {

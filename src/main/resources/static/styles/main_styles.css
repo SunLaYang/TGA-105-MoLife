@@ -556,8 +556,13 @@ section
 {
 	display: block;
 	color: #1e1e27;
+<<<<<<< HEAD
 	font-size: 20px !important;
 	font-weight: bold !important;
+=======
+	font-size: 13px;
+	font-weight: 500;
+>>>>>>> parent of 78b010a (0313)
 	text-transform: uppercase;
 	padding: 20px;
 	-webkit-transition: color 0.3s ease;
@@ -813,10 +818,14 @@ section
 }
 .logo_container a span
 {
+<<<<<<< HEAD
 	color: #1e1e27;
 }
 .pagination{
 	justify-content: center !important;
+=======
+	color: #fe4c50;
+>>>>>>> parent of 78b010a (0313)
 }
 /*********************************
 3.7 Main Slider

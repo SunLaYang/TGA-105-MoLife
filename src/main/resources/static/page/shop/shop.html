@@ -64,7 +64,7 @@
                 <nav class="navbar">
                   <ul class="navbar_menu">
                     <li><a href="#">寵物旅館</a></li>
-                    <li><a href="#">商品專區</a></li>
+                    <li><a href="shop.html">商品專區</a></li>
                     <li><a href="#">寵物募款</a></li>
                     <li><a href="#">寵物論壇</a></li>
                     <li><a href="../chatRoom/contact.html">聯絡我們</a></li>
@@ -100,7 +100,7 @@
               <ul>
                 <li><a href="index.html">首頁</a></li>
                 <li class="active">
-                  <a href="index.html"
+                  <a href="shop.html"
                     ><i class="fa fa-angle-right" aria-hidden="true"></i
                     >商品專區</a
                   >
@@ -624,25 +624,25 @@
               });
 
               list_html += `
-                            <div class="product-item men">
-                              <div class="product product_filter">
-                                <div class="product_image" style="min-height: 220px;">
-                                  <img src="/productimages/${img}" style="max-height: 100%;"/>
-                                </div>
-                                <div class="favorite"></div>
-                                <div class="product_info">
-                                  <h6 class="product_name">
-                                    <a href="shop-product.html?id=${item.productId}"
-                                      >${item.productName}</a
-                                    >
-                                  </h6>
-                                  <div class="product_price">$${item.productPrice}</div>
-                                </div>
-                              </div>
-                              <div class="red_button add_to_cart_button">
-                                <a href="" data-productid="${item.productId}">加入購物車</a>
-                              </div>
-                            </div>`;
+                                  <div class="product-item men">
+                                    <div class="product product_filter">
+                                      <div class="product_image" style="min-height: 220px;">
+                                        <img src="/productimages/${img}" style="max-height: 100%;"/>
+                                      </div>
+                                      <div class="favorite"></div>
+                                      <div class="product_info">
+                                        <h6 class="product_name">
+                                          <a href="shop-product.html?id=${item.productId}"
+                                            >${item.productName}</a
+                                          >
+                                        </h6>
+                                        <div class="product_price">$${item.productPrice}</div>
+                                      </div>
+                                    </div>
+                                    <div class="red_button add_to_cart_button">
+                                      <a href="" data-productid="${item.productId}">加入購物車</a>
+                                    </div>
+                                  </div>`;
             });
             $(".product-grid").html(list_html);
             initIsotopeFiltering();
@@ -663,7 +663,31 @@
           function (event) {
             event.preventDefault();
             let productId = $(this).data("productid");
-            // 在這裡執行你想要的操作，例如將產品添加到購物車
+            let cartData = {
+              memberId: 1,
+              product: {
+                productId: productId,
+              },
+              productNumber: 1,
+            };
+            // 商品添加到購物車
+            $.ajax({
+              url: "/productcarts",
+              type: "POST",
+              contentType: "application/json",
+              data: JSON.stringify(cartData),
+              success: function (data) {
+                if (data) {
+                  alert("商品成功加入購物車!");
+                } else {
+                  alert("商品已存在購物車!");
+                }
+              },
+              error: function (xhr, textStatus, errorThrown) {
+                console.log("error");
+                console.log(xhr);
+              },
+            });
           }
         );
       });

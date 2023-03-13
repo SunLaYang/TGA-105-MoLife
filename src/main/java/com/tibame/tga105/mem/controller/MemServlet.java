@@ -460,6 +460,8 @@ public class MemServlet extends HttpServlet {
 			}
 
 			memVO.setRegistrationDate(registrationDate);
+			
+			req.getSession().setAttribute("memVO", memVO);
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", memVO);

@@ -74,16 +74,11 @@ public class ForumReportController {
         postInfo.setMemberId(1);
         postInfo.setAdminId(1);
         postInfo.setInfoTitle("寵物論壇");
-
-        postInfo.setContent("您的文章因違反規定被檢舉,已下架您的文章!");
-
         postInfo.setContent("親愛的會員您好!您的文章因違反規定而被檢舉,已下架您的文章!");
-
         postInfo.setInfoDate(new Date());
         postInfo.setInfoStatus(0);
         postInfo.setInfoType(1);
         postInfoService.createInfo(postInfo);
-
 
         return "redirect:/page/others/24admin.forum.html";
     }

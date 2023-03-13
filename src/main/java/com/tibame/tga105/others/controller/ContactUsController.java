@@ -68,7 +68,6 @@ public class ContactUsController {
         contactUs1.setName(contactUs.getName());
         contactUs1.setEmail(contactUs.getEmail());
 
-
 //      List<MemVO> mem = new ArrayList<MemVO>();
 //      for(int i = 0; i < mem.size(); i++) {
 //         if(mem.get(i).getMemEmail().equals(contactUs.getEmail())) {
@@ -78,18 +77,6 @@ public class ContactUsController {
 //            contactUs1.setMemberId(null);
 //         }    
 //      }
-        
-
-        
-//        List<MemVO> mem = new ArrayList<MemVO>();
-//        for(int i = 0; i < mem.size(); i++) {
-//        	if(mem.get(i).getMemEmail().equals(contactUs.getEmail())) {
-//        	   Integer memId = contactUsRepository.getIdByEmail(contactUs.getEmail());
-//        	   contactUs1.setMemberId(memId);
-//            }else {
-//        	   contactUs1.setMemberId(null);
-//            }	
-//        }
 
         contactUs1.setMemberId(2);
         contactUs1.setChatTitle(contactUs.getChatTitle());

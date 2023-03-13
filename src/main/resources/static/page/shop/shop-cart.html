@@ -149,7 +149,7 @@
                 </tr>
               </thead>
               <tbody class="cart-container">
-                <tr>
+                <!-- <tr>
                   <td class="align-middle">
                     <div class="image-container">
                       <img src="/productimages/${img}" alt="product image" />
@@ -218,7 +218,7 @@
                   </td>
                   <td>$900</td>
                   <td><a href="" class="text-danger">刪除</a></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -357,26 +357,183 @@
     </div>
 
     <script src="../../js/jquery-3.2.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
     <script src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
     <script src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
     <script>
-      // 事件委派，將點擊事件綁定在 cart-container 父元素上
-      $(".cart-container").on("click", ".minus-btn", function () {
-        var input = $(this).parent().parent().find(".quantity-input");
-        var value = parseInt(input.val());
-        if (value > 1) {
-          input.val(value - 1);
-        }
-      });
+      function init() {
+        $.ajax({
+          url: "/productcarts",
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            let list_html = "";
+            $.each(data, function (i, item) {
+              let img = "";
+              $.each(item.product.productImages, function (i, unit) {
+                if (unit.productImageType == 0 && unit.productImage != null) {
+                  img = unit.productImage;
+                }
+              });
 
-      $(".cart-container").on("click", ".plus-btn", function () {
-        var input = $(this).parent().parent().find(".quantity-input");
-        var value = parseInt(input.val());
-        input.val(value + 1);
+              list_html += `
+              <tr>
+                  <td class="align-middle">
+                    <div class="image-container">
+                      <img src="/productimages/${img}" alt="product image" />
+                    </div>
+                  </td>
+                  <td scope="row">
+                    ${item.product.productName}
+                  </td>
+                  <td>$${item.product.productPrice}</td>
+                  <td>
+                    <div class="input-group" style="max-width: 110px">
+                      <div class="input-group-prepend">
+                        <button
+                          class="btn btn-outline-secondary minus-btn"
+                          type="button">
+                          -
+                        </button>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control quantity-input"
+                        value="${item.productNumber}"
+                        data-productCartId="${item.productCartId}"
+                        data-productQty="${item.product.productQty}"
+                        data-productId="${item.product.productId}"
+                        readonly="true"
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="btn btn-outline-secondary plus-btn"
+                          type="button">
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                  <td>$${item.product.productPrice * item.productNumber}</td>
+                  <td><a href="" class="text-danger">刪除</a></td>
+                </tr>`;
+            });
+            $("tbody").html(list_html);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log("error");
+            console.log(xhr);
+          },
+        });
+      }
+
+      $(function () {
+        init();
+
+        // 商品數量
+        $(".cart-container").on("click", ".minus-btn", function () {
+          let input = $(this).parent().parent().find(".quantity-input");
+          let value = parseInt(input.val());
+          if (value <= 1) return;
+          let productCartId = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productcartid");
+          let productQty = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productqty");
+          let productId = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productid");
+
+          let Data = {
+            productCartId: productCartId,
+            memberId: 1,
+            product: {
+              productId: productId,
+            },
+            productNumber: value - 1,
+          };
+
+          $.ajax({
+            type: "PUT",
+            url: "/productcarts",
+            contentType: "application/json",
+            data: JSON.stringify(Data),
+            success: function (data) {
+              // 成功處理響應
+              input.val(value - 1);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              // 處理錯誤
+              console.log("error");
+              console.log(jqXHR);
+            },
+          });
+        });
+
+        $(".cart-container").on("click", ".plus-btn", function () {
+          let input = $(this).parent().parent().find(".quantity-input");
+          let value = parseInt(input.val());
+          let productCartId = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productcartid");
+          let productQty = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productqty");
+          let productId = $(this)
+            .parent()
+            .parent()
+            .find(".quantity-input")
+            .data("productid");
+
+          if (value > input.data("productQty")) return;
+
+          let Data = {
+            productCartId: productCartId,
+            memberId: 1,
+            product: {
+              productId: productId,
+            },
+            productNumber: value + 1,
+          };
+
+          $.ajax({
+            type: "PUT",
+            url: "/productcarts",
+            contentType: "application/json",
+            data: JSON.stringify(Data),
+            success: function (data) {
+              // 成功處理響應
+              input.val(value + 1);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              // 處理錯誤
+              console.log("error");
+              console.log(jqXHR);
+            },
+          });
+        });
       });
     </script>
   </body>

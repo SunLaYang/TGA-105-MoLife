@@ -640,7 +640,7 @@
                                       </div>
                                     </div>
                                     <div class="red_button add_to_cart_button">
-                                      <a href="" data-productid="${item.productId}">加入購物車</a>
+                                      <a href="" data-productId="${item.productId}">加入購物車</a>
                                     </div>
                                   </div>`;
             });
@@ -662,7 +662,7 @@
           ".add_to_cart_button a",
           function (event) {
             event.preventDefault();
-            let productId = $(this).data("productid");
+            let productId = $(this).data("productId");
             let cartData = {
               memberId: 1,
               product: {

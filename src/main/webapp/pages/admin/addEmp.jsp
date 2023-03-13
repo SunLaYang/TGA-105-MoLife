@@ -527,22 +527,20 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 										
 										<div class="form-group">
 											<label for="exampleInputStatus1">員工狀態</label>
-											 <input class="form-check-input" type="radio" name="empStatus" id= deactive value="0" style="transform: translateX(60px)" checked />
+											 <input class="form-check-input" type="radio" name="empStatus" id= deactive value="0" style="transform: translateX(60px)" checked/>
 											 
 											 <label	class="form-check-label" for="active" style="transform: translateX(60px)"> 禁用 </label> 
 											 
-											 <input class="form-check-input" type="radio" name="memStatus" id="deactive" value="1" style="transform: translateX(120px)" /> 
+											 <input class="form-check-input" type="radio" name="empStatus" id="active" value="1" style="transform: translateX(120px)" checked/> 
 											 
-											 <label class="form-check-label" for="deactive" style="transform: translateX(120px)"> 啟用 </label>
+											 <label class="form-check-label" for="active" style="transform: translateX(120px)"> 啟用 </label>
 										</div>
 
 										<div class="form-group">
 											<label for="exampleInputFile">上傳員工大頭貼</label>
 											<div class="input-group">
 												<div class="custom-file">
-													<input type="file" name="empPicId" id="empPicId" /> <label
-														class="custom-file-label" for="exampleInputFile">選擇檔案</label>
-												</div>
+													<input type="file" name="empPicId" id="empPicId" /> 
 											</div>
 										</div>
 										<!-- <div class="form-check">

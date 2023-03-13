@@ -494,7 +494,7 @@
                 <label for="">入住日期：</label>
                 <div class="form-group">
                   <div class="input-group date" id="date_start">
-                    <input type="text" id="startDate" name="startDate" class="date-input" />
+                    <input type="text" id="startDate" name="startDate" class="date-input" autocomplete="off"/>
                   </div>
                 </div>
               </div>
@@ -503,7 +503,7 @@
                 <label for="">退房日期：</label>
                 <div class="form-group">
                   <div class="input-group date" id="date_end">
-                    <input type="text" id="endDate" name="endDate" class="date-input" />
+                    <input type="text" id="endDate" name="endDate" class="date-input" autocomplete="off"  />
 
                   </div>
                 </div>
@@ -665,11 +665,19 @@
           encode: true
         }).done(function (data) {
           console.log(data)
+          // swal({
+          //   type: "success",
+          //   title: "預定成功~",
+          // });
+
           swal({
-            type: "success",
-            title: "預定成功~",
-          });
-          $('#exampleModal').modal('toggle');
+              type: "success",
+              title: "預定成功!",
+            }).then((value) => {
+              $('#exampleModal').modal('toggle');
+              location.reload();
+            });
+          // $('#exampleModal').modal('toggle');
         });
       });
     });

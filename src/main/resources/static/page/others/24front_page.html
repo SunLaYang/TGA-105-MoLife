@@ -70,16 +70,13 @@
         cursor: pointer;
         z-index: 1000;
       }
-<<<<<<< HEAD
-      
-=======
->>>>>>> origin/linda
-      div.section_title::after{
-         background-color: #eab464;
-      }
-      
+
       .navbar ul li a:hover{
          color:#fe4c50;
+      }
+      
+      div.section_title::after{
+         background-color: #eab464;
       }
       
     </style>
@@ -216,7 +213,7 @@
               <div>
                 <h3 th:text="${news2.newsTitle}"><i class="fa-solid fa-magnifying-glass"></i></h3>
               </div>
-              <p th:text="${news2.newsContent}" style="font-size: 20px" ></p>
+              <p th:text="${news2.newsContent}" style="font-size: 20px" data-aos="flip-up"></p>
             </div>
           </div>
         </div>
@@ -237,7 +234,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="1000" >
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000" >
               <div
                 class="blog_background"
                 style="
@@ -249,8 +246,8 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title" th:text="${product1.productName}">
-<!--                   Kirkland Signature 科克蘭 雞肉&米配方乾狗糧 12公斤 -->
+                <h4 class="blog_title">
+                  Kirkland Signature 科克蘭 雞肉&米配方乾狗糧 12公斤
                 </h4>
                 
                 <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
@@ -258,7 +255,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="2000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -270,8 +267,8 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title" th:text="${product3.productName}">
-<!--                   Hill's 希爾思 處方 貓用 k/d 腎臟病護理處方貓飼料 8.5LB -->
+                <h4 class="blog_title">
+                  Hill's 希爾思 處方 貓用 k/d 腎臟病護理處方貓飼料 8.5LB
                 </h4>
                 
                 <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
@@ -279,7 +276,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
-            <div class="blog_item" data-aos-duration="3000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="
@@ -291,8 +288,8 @@
                 class="blog_content d-flex flex-column align-items-center justify-content-center text-center"
                 style="transform: translateY(30px)"
               >
-                <h4 class="blog_title" th:text="${product4.productName}">
-<!--                   Rabbit Diet 愛兔窈窕美味餐 蘋果口味 3KG -->
+                <h4 class="blog_title">
+                  Rabbit Diet 愛兔窈窕美味餐 蘋果口味 3KG
                 </h4>
                 
                 <a class="blog_more" href="../shop/shop-product.html">查看更多</a>
@@ -317,7 +314,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="1000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000">
               <div
                 class="blog_background"
                 style="
@@ -338,7 +335,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="2000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -359,7 +356,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col" style="margin-bottom: 50px">
-            <div class="blog_item" data-aos-duration="3000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="
@@ -397,7 +394,7 @@
         </div>
         <div class="row blogs_container" style="padding-top: 50px">
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="1000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="1000">
               <div
                 class="blog_background"
                 style="
@@ -418,7 +415,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="2000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="2000">
               <div
                 class="blog_background"
                 style="
@@ -439,7 +436,7 @@
             </div>
           </div>
           <div class="col-lg-4 blog_item_col">
-            <div class="blog_item" data-aos-duration="3000">
+            <div class="blog_item" data-aos="fade-up" data-aos-duration="3000">
               <div
                 class="blog_background"
                 style="

@@ -167,19 +167,18 @@ public class GetOnePlanServlet extends HttpServlet {
 			} 
 			
 			// if success - calling service to add proposal and forward to index
-			Integer planStatusId = 3 ;
 			PaymentVO bean = new PaymentVO();
-			bean.setPlanId(planId1);
 			//?? memeberId
 			bean.setMemeberId(1);
-			bean.setPlanStatusId(planStatusId);
+			bean.setPlanId(planId1);
 			bean.setPaymentDate(paymentDate);
 			bean.setPaymentAmount(paymentAmount);
 			paymentService.addPayment(bean);
 
-			//新增完成 回首頁
-			System.out.println("新增完成");
-			response.sendRedirect(request.getContextPath()+"/pages/donate/N_1_index");
+			//新增完成 跳轉成功頁面
+			System.out.println("新增完成,getContextPath()=" + request.getContextPath());
+			response.sendRedirect(request.getContextPath()+"/pages/donate/N_6_paySuccess");	
+			
 			
 		}
 		

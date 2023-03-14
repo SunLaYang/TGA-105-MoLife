@@ -1,0 +1,25 @@
+/* 麵包屑 */
+.path{
+    margin-left: 50px;
+}
+
+.breadcrumb-item {
+    font-size: 22px;
+}
+
+/* ======================================================== */
+
+.payResult{
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;    
+    /* 垂直置中 */
+    align-content: center;      
+    flex-wrap: wrap;
+    text-align: center;  
+    /* 文字水平置中 */
+}
+
+.textResult{
+    color: gray;
+}

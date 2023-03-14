@@ -198,6 +198,8 @@
           </div>
           <div class="detail_price">
           </div>
+          <p></p>
+          <div class="detail_petcount">可容納寵物數量為: </div>
           
           <div class="product_color">
             <span>設備詳情:</span>
@@ -231,6 +233,7 @@
             <span>其他配備:</span>
             <ul>
               <li>
+                
                 <!-- 設備圖片 -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#Eab464"
                   class="bi bi-house-heart-fill" viewBox="0 0 16 16">
@@ -481,7 +484,8 @@
             
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="payerName" name="payerName" />
+              <input type="text" class="form-control" id="payerName" name="payerName" maxlength="50" oninput="checkName()" required/>
+              <div class="invalid-feedback">請輸入50個字符以內的中英文字符，並且不能有符號!</div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">電話</label>
@@ -493,7 +497,7 @@
                 <label for="">入住日期：</label>
                 <div class="form-group">
                   <div class="input-group date" id="date_start">
-                    <input type="text" id="startDate" name="startDate" class="date-input" />
+                    <input type="text" id="startDate" name="startDate" class="date-input" autocomplete="off"/>
                   </div>
                 </div>
               </div>
@@ -502,7 +506,7 @@
                 <label for="">退房日期：</label>
                 <div class="form-group">
                   <div class="input-group date" id="date_end">
-                    <input type="text" id="endDate" name="endDate" class="date-input" />
+                    <input type="text" id="endDate" name="endDate" class="date-input" autocomplete="off"  />
 
                   </div>
                 </div>
@@ -515,9 +519,69 @@
                 <input type="number" min="0" id="pet" name="pet" required class="form-control" />
               </div>
               <div class="mb-3 w-100 margin-l-20">
-                <label for="exampleInputPassword1" class="form-label">金額總計</label>
-                <input type="Number" class="form-control" id="total" name="total" disabled />
+                <label for="exampleInputPassword1 " class="form-label"
+                >付款方式</label
+              >
+              <select
+                class="form-select form-control"
+                aria-label="Default select example"
+                id="payMethod"  
+                name="payMethod"
+              >
+                <option value="PayOnSite">現場付款</option>
+                <option value="CreditCard">信用卡</option>
+              </select>
               </div>
+            </div>
+            <div id="credit-wrapper" style="display: none;">
+              <div class="">
+                <div class="mb-3 w-100 margin-r-20">
+
+                  <label for="exampleInputPassword1 " class="form-label"
+                  >信用卡卡號</label
+                >
+                  <input class="form-control" id="card_number" tabindex="1" maxlength="19" type="text" name="card_number" placeholder="Card number"  />
+                </div>
+                <!-- <div class="mb-3 w-100 margin-l-20">
+                </div> -->
+              </div>
+              <div class="d-flex">
+                <div class="mb-3 w-100 margin-r-20">
+
+                  <label for="exampleInputPassword1 " class="form-label"
+                  >到期日</label
+                >
+                <div class="d-flex">
+                  <input class="form-control" id="card_expiration_date_month" tabindex="2" type="text" placeholder="mm" maxlength="2"  />
+                  <div class="dividing" style="margin: 0 40px"> / </div>
+                  <input class="form-control" id="card_expiration_date_year" tabindex="3" type="text" placeholder="yy" maxlength="4"  />
+
+                </div>
+                </div>
+                <div class="mb-3 w-100 margin-l-20">
+                  <label for="exampleInputPassword1 " class="form-label"
+                  >安全碼</label
+                >
+                <input class="form-control"  id="card_cvx" tabindex="4" maxlength="3" type="text"  />
+
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="mb-3 w-100 margin-r-20">
+
+                <label for="exampleInputPassword1" class="form-label"
+                >金額總計</label
+              >
+              <input
+              type="Number"
+              class="form-control"
+              id="total"  
+              name="total"
+              disabled
+              />
+              </div>
+
             </div>
 
             <div class="mb-3 form-check">
@@ -604,11 +668,19 @@
           encode: true
         }).done(function (data) {
           console.log(data)
+          // swal({
+          //   type: "success",
+          //   title: "預定成功~",
+          // });
+
           swal({
-            type: "success",
-            title: "預定成功~",
-          });
-          $('#exampleModal').modal('toggle');
+              type: "success",
+              title: "預定成功!",
+            }).then((value) => {
+              $('#exampleModal').modal('toggle');
+              location.reload();
+            });
+          // $('#exampleModal').modal('toggle');
         });
       });
     });
@@ -757,7 +829,7 @@
 
       });
       
-
+     
       $.ajax({
         type: "GET",
         // url: `http://localhost:8081/petrooms/${id}`,
@@ -778,6 +850,9 @@
         $("#pet").attr("max", data.petNumber);
         console.log(data.roomName);
         roomName = data.roomName;
+        let petNumber = data.petNumber;
+        $(".detail_petcount").append(`<span>${petNumber}</span>`);
+
         // var yyyy = new Date().getFullYear();
         $.ajax({
           type: "GET",
@@ -803,7 +878,6 @@
   </script>
   <script>
     var yyyy = new Date().getFullYear();
-    // var tommorrow = new Date().getDate() + 1;
     var holiday = [];
     console.log(holiday)
 
@@ -873,6 +947,7 @@
       }
     });
 
+    //=========按讚===============
     $(document).on("click", "#likeRoom", function () {
       $.ajax({
         type: "GET",
@@ -921,6 +996,19 @@
   });
 </script>
 
+<!-- 輸入姓名判斷 -->
+<script>
+  function checkName() {
+  const nameInput = document.getElementById("payerName");
+  const nameRegex = /^[\u4e00-\u9fa5a-zA-Z]{1,20}$/; // 中英文正則表達式
+  if (!nameRegex.test(nameInput.value)) {
+    nameInput.setCustomValidity("請輸入正確的中英文姓名限20字內"); // 設定自訂錯誤訊息
+  } else {
+    nameInput.setCustomValidity(""); // 清除錯誤訊息
+  }
+}
+</script>
+
 <script src="../../js/custom.js"></script>
 
 <footer class="footer bg-yellow">
@@ -956,7 +1044,39 @@
     </div>
   </div>
 </footer>
+<script>
+  
+  $(function () {
+    $("#payMethod").on("change", function (e) {
+     console.log(e.target.value)
+     if(e.target.value === 'CreditCard'){
+      $("#credit-wrapper").css('display', 'block')
 
+     }else{
+      $("#credit-wrapper").css('display', 'none')
+
+     }
+    });
+  });
+  $('#card_number').on('input', function() {
+    var card_number = $(this).val().replace(/\D/g, '');
+    var numAppendChars = 0;
+    var cardFormat = 'xxxx xxxx xxxx xxxx';
+    var formattedCardNumber = '';
+
+    for (var i = 0; i < card_number.length; i++) {
+        cardFormatIndex = i + numAppendChars;
+        if (cardFormat.charAt(cardFormatIndex) !== 'x') {
+            numAppendChars++;
+            formattedCardNumber += cardFormat.charAt(cardFormatIndex) + card_number.charAt(i);
+        } else {
+            formattedCardNumber += card_number.charAt(i);
+        }
+    }
+
+    $(this).val(formattedCardNumber);
+});
+</script>
 <script src="../../js/custom.js"></script>
 
 </body>

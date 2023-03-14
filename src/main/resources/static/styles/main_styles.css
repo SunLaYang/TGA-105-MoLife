@@ -42,9 +42,6 @@ COLOR PALETTE
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900');
 
-
-
-
 /*********************************
 2. Body and some general stuff
 *********************************/
@@ -129,7 +126,7 @@ p::selection
 {
 	background: #fde0db;
 }
-h1{font-size: 72px;}
+h1{font-size: 50px;}
 h2{font-size: 40px;}
 h3{font-size: 28px;}
 h4{font-size: 24px;}
@@ -559,9 +556,13 @@ section
 {
 	display: block;
 	color: #1e1e27;
+<<<<<<< HEAD
 	font-size: 20px !important;
 	font-weight: bold !important;
+=======
+	font-size: 13px;
 	font-weight: 500;
+>>>>>>> parent of 78b010a (0313)
 	text-transform: uppercase;
 	padding: 20px;
 	-webkit-transition: color 0.3s ease;
@@ -572,7 +573,8 @@ section
 }
 .navbar_menu li a:hover
 {
-	color: #b5aec4;
+	color: #BE3F48;
+	text-decoration: none;
 }
 .navbar_user
 {
@@ -816,10 +818,15 @@ section
 }
 .logo_container a span
 {
-	color: #fe4c50;
-	
+<<<<<<< HEAD
+	color: #1e1e27;
 }
-
+.pagination{
+	justify-content: center !important;
+=======
+	color: #fe4c50;
+>>>>>>> parent of 78b010a (0313)
+}
 /*********************************
 3.7 Main Slider
 *********************************/
@@ -831,7 +838,7 @@ section
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	margin-top: 150px;
+	margin-top: 100px;
 }
 .main_slider_content
 {

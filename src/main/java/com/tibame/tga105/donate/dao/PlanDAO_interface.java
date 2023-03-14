@@ -1,7 +1,6 @@
 package com.tibame.tga105.donate.dao;
 
 import java.util.List;
-
 import com.tibame.tga105.donate.model.PlanVO;
 
 public interface PlanDAO_interface {
@@ -30,4 +29,8 @@ public interface PlanDAO_interface {
 	
 	// 8.獲取動物圖片
 	public PlanVO getAnimalPhoto(Integer planId);
+	
+	// 9.提案成功頁面
+	public PlanVO successPage(Integer memberId);
+	
 }

@@ -44,8 +44,8 @@ img.img_card:hover {
     width: 95%;
 }
 .navbar_menu li a{
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: bold !important;
+    font-size: 20px !important;
 }
 .icon:hover{
     width: 40px;
@@ -516,4 +516,23 @@ img.img_card:hover {
         margin-top: 0;
     }
 }
+}
+.likeRoom{
+    display: flex;
+    /* align-items: center; */
+
+}
+.likeRoomIcon{
+    background-image: url(/images/home/heart.svg);
+    cursor: pointer;
+}
+.likeRoomIcon:hover{
+    background-image: url(/images/home/heart-fill.svg)
+}
+.likeRoom h6{
+    font-size: 18px;
+    margin: 0;
+    color: red;
+    padding-left: 30px;
+    line-height: 1;
 }

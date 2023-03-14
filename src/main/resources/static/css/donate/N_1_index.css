@@ -142,7 +142,6 @@
 
 /* 計畫大標題 */
 .plan-title{
-    border-top: 1px solid #d8dfe7;
     color: #a7754d;
     text-align: center;
     font-weight: bold;
@@ -194,7 +193,6 @@
 
 /* 問答標題 */
 .qa-title{
-    border-top: 1px solid #d8dfe7;
     color:#808080;
     font-weight: bold;
     text-align: center;

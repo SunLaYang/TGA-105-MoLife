@@ -11,7 +11,7 @@ import com.tibame.tga105.shop.repository.AnimalTypeRepository;
 
 @Service
 @Transactional
-public class AnimalTypeService {
+public class ProductAnimalTypeService {
 
 	@Autowired
 	private AnimalTypeRepository animalTypeRepository;

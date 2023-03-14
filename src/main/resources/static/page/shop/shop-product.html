@@ -98,13 +98,13 @@
               <ul>
                 <li><a href="index.html">首頁</a></li>
                 <li>
-                  <a href="index.html"
+                  <a href="shop.html"
                     ><i class="fa fa-angle-right" aria-hidden="true"></i
                     >商品專區</a
                   >
                 </li>
                 <li class="active">
-                  <a href="index.html"
+                  <a href=""
                     ><i class="fa fa-angle-right" aria-hidden="true"></i>商品</a
                   >
                 </li>
@@ -181,7 +181,7 @@
                   ></span>
                 </div>
                 <div class="red_button add_to_cart_button">
-                  <a href="shop-cart.html">加入購物車</a>
+                  <a id="addCart" href="">加入購物車</a>
                 </div>
                 <div
                   class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
@@ -380,6 +380,35 @@
 
       $(function () {
         init();
+
+        $("#addCart").on("click", function (event) {
+          event.preventDefault();
+          let cartData = {
+            memberId: 1,
+            product: {
+              productId: productId,
+            },
+            productNumber: $("#quantity_value").text(),
+          };
+          // 商品添加到購物車
+          $.ajax({
+            url: "/productcarts",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(cartData),
+            success: function (data) {
+              if (data) {
+                alert("商品成功加入購物車!");
+              } else {
+                alert("商品已存在購物車!");
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
       });
     </script>
   </body>

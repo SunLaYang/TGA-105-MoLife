@@ -37,5 +37,10 @@ public class PaymentService {
 		}
 		return result;
 	}
+	
+	// 4.捐款成功語法
+	public List<PaymentVO> successPage(Integer memberId){
+		return dao.successPage(memberId);
+	}
 
 }

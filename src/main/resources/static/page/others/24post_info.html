@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoLife</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css}"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      th:href="@{https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css}"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+    />
+
+    <link
+      href="../../plugins/font-awesome-4.7.0/css/font-awesome.min.css"
+      th:href="@{/plugins/font-awesome-4.7.0/css/font-awesome.min.css}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/owl.carousel.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/owl.theme.default.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/OwlCarousel2-2.2.1/animate.css}"
+      href="../../plugins/OwlCarousel2-2.2.1/animate.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/plugins/themify-icons/themify-icons.css}"
+      href="../../plugins/themify-icons/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}"
+      href="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/main_styles.css}"
+      href="../../styles/main_styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/bootstrap4/bootstrap.min.css}"
+      href="../../styles/bootstrap4/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/contact_styles.css}"
+      href="../../styles/contact_styles.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      th:href="@{/styles/contact_responsive.css}"
+      href="../../styles/contact_responsive.css"
+    />
+
+    <!-- DataTables -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css"
+    />
+    <!-- Ionicons -->
+    <link
+      rel="stylesheet"
+      th:href="@{https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+    />
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"
+    />
+    <!-- iCheck -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css"
+    />
+    <!-- JQVMap -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/jqvmap/jqvmap.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/jqvmap/jqvmap.min.css"
+    />
+    <!-- Theme style -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/dist/css/adminlte.min.css}"
+      href="../../AdminLTE-3.2.0/dist/css/adminlte.min.css"
+    />
+    <!-- overlayScrollbars -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"
+    />
+    <!-- Daterange picker -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css}"
+      href="../../AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css"
+    />
+    <!-- summernote -->
+    <link
+      rel="stylesheet"
+      th:href="@{/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css}"
+      href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css"
+    />
+    
+    <link rel="stylesheet" th:href="@{/styles/room/room.css}" href="../../styles/room/room.css" />
+
+    <style>
+      .apply_btn {
+        width: 55px;
+        height: 30px;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        background-color: #eab464;
+        font-size: 14px;
+      }
+
+      ul.pagination li.paginate_button.page-item.active a.page-link {
+        background-color: #dcccbb;
+        border-color: #dcccbb;
+        color: #fff;
+      }
+
+      ul.pagination li.paginate_button.page-item a.page-link {
+        color: #646e78;
+      }
+      
+      .navbar ul li a:hover{
+         color:#fe4c50;
+      }
+    </style>
+
+    <script
+      src="https://kit.fontawesome.com/2672c0b72c.js"
+      th:src="@{https://kit.fontawesome.com/2672c0b72c.js}"
+      crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body>
+
+   <!-- Header -->
+      <header class="header trans_300">
+        <!-- Main Navigation -->
+        <div class="main_nav_container bg-yellow">
+          <div>
+            <div class="row">
+              <div class="col-lg-12 text-right">
+                <div class="logo_container">
+                  <a href="24front_page.html">
+                    <img src="../../images/home/logoMoLife.png" />
+                  </a>
+                </div>
+                <nav class="navbar">
+                  <ul class="navbar_menu">
+                    <li><a href="../room/01room.index.html">寵物旅館</a></li>
+                    <li><a href="../shop/shop.html">商品專區</a></li>
+                    <li><a href="#">寵物募款</a></li>
+                    <li><a href="24forum.index.html">寵物論壇</a></li>
+                    <li><a href="24contact.html">聯絡我們</a></li>
+                    <li><a href="24admin.index.html">管理員後台</a></li>
+                  </ul>
+                  <ul class="navbar_user">
+                    <a href="../shop/shop-cart.html"
+                      ><img class="icon" src="../../images/home/car.png"
+                    /></a>
+                    <a href="24post_info.html"
+                      ><img class="icon" src="../../images/home/ring.png"
+                    /></a>
+                    <a href="#"
+                      ><img class="icon" src="../../images/home/man.png"
+                    /></a>
+                  </ul>
+                  <div class="hamburger_container">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- content -->
+    <div class="container contact_container">
+      <div class="row">
+        <div class="col">
+          <!-- Breadcrumbs -->
+
+          <div class="breadcrumbs d-flex flex-row align-items-center">
+            <ul>
+              <li><a href="24front_page.html">首頁</a></li>
+              <li class="active">
+                <a href="#"
+                  ><i class="fa fa-angle-right" aria-hidden="true"></i
+                  >會員資料</a
+                >
+              </li>
+              <li class="active">
+                <a href="#"
+                  ><i class="fa fa-angle-right" aria-hidden="true"></i>通知信</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Main content -->
+          <section class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col--lg-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h2
+                        class="card-title"
+                        style="
+                          margin-top: 5px;
+                          font-size: 20px;
+                          font-weight: bolder;
+                          color: #646e78;
+                        "
+                      >
+                        <i class="fa-solid fa-paw" style="color: #dcccbb"></i>
+                        通知信
+                      </h2>
+
+                      <div
+                        class="card card-primary card-tabs"
+                        style="margin-top: 50px"
+                      >
+                        <div
+                          class="card-header p-0 pt-1"
+                          style="background-color: #dcccbb"
+                        >
+                          <ul
+                            class="nav nav-tabs"
+                            id="custom-tabs-one-tab"
+                            role="tablist"
+                          >
+                            <li class="nav-item">
+                              <a
+                                class="nav-link active"
+                                id="custom-tabs-one-home-tab"
+                                data-toggle="pill"
+                                href="#custom-tabs-one-home"
+                                role="tab"
+                                aria-controls="custom-tabs-one-home"
+                                aria-selected="true"
+                                >未讀</a
+                              >
+                            </li>
+                            <li class="nav-item">
+                              <a
+                                class="nav-link"
+                                id="custom-tabs-one-profile-tab"
+                                data-toggle="pill"
+                                href="#custom-tabs-one-profile"
+                                role="tab"
+                                aria-controls="custom-tabs-one-profile"
+                                aria-selected="false"
+                                >已讀</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="card-body">
+                          <div
+                            class="tab-content"
+                            id="custom-tabs-one-tabContent"
+                          >
+                            <div
+                              class="tab-pane fade show active"
+                              id="custom-tabs-one-home"
+                              role="tabpanel"
+                              aria-labelledby="custom-tabs-one-home-tab"
+                            >
+                              <div class="card-body">
+                                <table
+                                  id="example1"
+                                  class="table table-bordered table-hover"
+                                >
+                                  <thead>
+                                    <tr>
+                                      <th>通知信編號</th>
+                                      <th>標題</th>
+                                      <th>種類</th>
+                                      <th>通知時間</th>
+                                      <th>操作</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr th:each="info : ${postInfoList}" th:if="${info.infoStatus == 0}">
+                                      <td th:text="${info.infoId}"></td>
+                                      <td th:text="${info.infoTitle}"></td>
+                                      <td th:switch="${info.infoType}">
+                                        <span th:case="0">帳戶</span>
+                                        <span th:case="1">論壇</span>
+                                        <span th:case="2">商品</span>
+                                        <span th:case="3">旅館</span>
+                                        <span th:case="4">募款</span>
+                                        <span th:case="5">留言</span>
+                                      </td>
+                                      <td th:text="${#dates.format(info.infoDate,'yyyy/MM/dd')}"></td>
+                                      <td>
+                                        <div>
+                                          <a th:href="@{24post_info.check.html(infoId=${info.infoId})}">
+                                            <button
+                                              type="button"
+                                              class="apply_btn"
+                                              id="btnCheck"
+                                            >
+                                              查閱
+                                            </button></a
+                                          >
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <!-- /.card-body -->
+                            </div>
+                            <div
+                              class="tab-pane fade"
+                              id="custom-tabs-one-profile"
+                              role="tabpane1"
+                              aria-labelledby="custom-tabs-one-profile-tab"
+                            >
+                              <div class="card-body">
+                                <table
+                                  id="example2"
+                                  class="table table-bordered table-hover"
+                                >
+                                  <thead>
+                                    <tr>
+                                      <th>通知信編號</th>
+                                      <th>標題</th>
+                                      <th>內容</th>
+                                      <th>種類</th>
+                                      <th>通知時間</th>
+                                      <th>操作</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr th:each="info1 : ${postInfoList}" th:if="${info1.infoStatus == 1}">
+                                      <td th:text="${info1.infoId}"></td>
+                                      <td th:text="${info1.infoTitle}"></td>
+                                      <td th:text="${info1.content}"></td>
+                                      <td th:switch="${info1.infoType}">
+                                        <div th:case="0">帳戶</div>
+                                        <div th:case="1">論壇</div>
+                                        <div th:case="2">商品</div>
+                                        <div th:case="3">旅館</div>
+                                        <div th:case="4">募款</div>
+                                        <div th:case="5">留言</div>
+                                      </td>
+                                      <td th:text="${#dates.format(info1.infoDate,'yyyy/MM/dd')}"></td>
+                                      <td>
+                                        <div>
+                                          <a th:href="@{'/page/others/deleteInfo/' + ${info1.infoId}}">
+                                            <button
+                                              type="button"
+                                              class="apply_btn"
+                                              id="deleteInfo"
+                                            >
+                                              刪除
+                                            </button></a
+                                          >
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <!-- /.card-body -->
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+      <div class="row my-5"></div>
+
+      <footer class="bg-yellow" style="margin-top:200px;">
+        <div class="row">
+          <div class="col-lg-5">
+            <div
+              class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
+              <div class="container">
+                <ul class="footer_nav">
+                  <li><a href="#">討論區</a></li>
+                  <li><a href="24faq.html">FAQs</a></li>
+                  <li><a href="24contact.html">聯絡我們</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div
+              class="footer_social d-flex flex-row align-items-center justify-content-lg-end justify-content-center">
+              <ul>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-facebook" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-twitter" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-instagram" aria-hidden="true"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><i class="fa fa-pinterest" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="footer_nav_container">
+              <div class="container">
+                <div class="cr">
+                  ©2022 All Rights Reserverd. Made with
+                  <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                  <a href="#">Colorlib</a> &amp; distributed by
+                  <a href="24front_page.html"
+                    >Tibame TGA-105 第四組</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <script th:src="@{/js/jquery-3.2.1.min.js}" src="../../js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{/styles/bootstrap4/popper.js}" src="../../styles/bootstrap4/popper.js"></script>
+    <script th:src="@{/styles/bootstrap4/bootstrap.min.js}" src="../../styles/bootstrap4/bootstrap.min.js"></script>
+    <script th:src="@{/plugins/Isotope/isotope.pkgd.min.js}" src="../../plugins/Isotope/isotope.pkgd.min.js"></script>
+    <script th:src="@{/plugins/OwlCarousel2-2.2.1/owl.carousel.js}" src="../../plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script th:src="@{/plugins/easing/easing.js}" src="../../plugins/easing/easing.js"></script>
+
+    <script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}" src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script th:src="@{/js/contact_custom.js}" src="../../js/contact_custom.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js}"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery -->
+    <script th:src="@{/AdminLTE-3.2.0/plugins/jquery/jquery.min.js}" src="../../AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script th:src="@{/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js}" src="../../AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/jszip/jszip.min.js}" src="../../AdminLTE-3.2.0/plugins/jszip/jszip.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/pdfmake/pdfmake.min.js}" src="../../AdminLTE-3.2.0/plugins/pdfmake/pdfmake.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/pdfmake/vfs_fonts.js}" src="../../AdminLTE-3.2.0/plugins/pdfmake/vfs_fonts.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.print.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script th:src="@{/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js}" src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/AdminLTE-3.2.0/dist/js/adminlte.min.js}" src="../../AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          paging: true,
+          lengthChange: false,
+          searching: true,
+          ordering: true,
+          info: true,
+          autoWidth: false,
+          responsive: true,
+        }).buttons()
+                .container()
+                .appendTo("#example1_wrapper .col-md-6:eq(0)");
+        $("#example2").DataTable({
+          paging: true,
+          lengthChange: false,
+          searching: true,
+          ordering: true,
+          info: true,
+          autoWidth: false,
+          responsive: true,
+        }).buttons()
+                .container()
+                .appendTo("#example2_wrapper .col-md-6:eq(0)");
+      });
+    </script>
+
+  </body>
+</html>

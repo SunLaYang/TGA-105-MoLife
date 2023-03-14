@@ -66,6 +66,12 @@ public class PlanService {
 	//8.獲取動物圖片
 	public PlanVO getAnimalPhoto(Integer planId) {
 		return dao.getAnimalPhoto(planId);
-
 	}
+	
+	
+	//9.提案成功頁面
+	public PlanVO successPage(Integer memberId) {
+		return dao.successPage(memberId);
+	}
+	
 }

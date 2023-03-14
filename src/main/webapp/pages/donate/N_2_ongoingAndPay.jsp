@@ -41,10 +41,6 @@
     />
   <link rel="stylesheet" type="text/css" href="../../styles/main_styles.css" />
   <link rel="stylesheet" href="../../styles/room/room.css" />
-
-
-<link rel="stylesheet" href="../../styles/room/room.css" />
-
 </head>
 
 
@@ -324,13 +320,7 @@
 							<td> </td>
 							
 							</c:if>		
-							
-							
-							
-							<!-- <img src="AnimalPhotoServlet?planId=${result.planId}" class="img-fluid"> -->
-							
-							<!--<td><input type="button" id="update-vidoe-link-button"
-								onclick="location.href='';" value="看影片" /></td> -->
+						
 						</tr>
 					</c:forEach>
 				</c:if>
@@ -405,18 +395,6 @@ if(parseInt(input_el.value) < 1){
 }
 });
 </script>	
-	
-	
-<!-- 彈跳視窗問題-->
-<!-- 
-<script>
-  // 取得提交按钮元素
-  var submitBtn = document.getElementById("pay-btn");
-  // 在按钮上註冊點擊事件監聽器
-  submitBtn.addEventListener("click", function() {
-    alert("修改成功！");
-  });
-</script> -->
 
 
 <!-- 日期設定 -->

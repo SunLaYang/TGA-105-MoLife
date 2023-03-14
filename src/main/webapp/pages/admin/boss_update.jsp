@@ -1,13 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.tibame.tga105.admin.VO.AdminVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.tibame.tga105.admin.service.AdminService"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.tibame.tga105.mem.model.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
 <%
-//MemServlet.java (Concroller) 存入req的memVO物件 (包括幫忙取出的memVO, 也包括輸入資料錯誤時的memVO物件)
-MemVO memVO = (MemVO) request.getAttribute("memVO");
+AdminService admSvc = new AdminService();
+List<AdminVO> list = admSvc.getAll();
+pageContext.setAttribute("list", list);
 %>
-<%-- --<%=memVO == null%>--${memVO.memId}-- --%>
+<%
+AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
+%>
+
+
+
+
 
 <html lang="en">
 <head>
@@ -443,7 +453,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="min-height: 1152.551px;">
+		<div class="content-wrapper" style="min-height: 994.367px;">
 			<!-- Content Header (Page header) -->
 			<div class="content-header">
 				<div class="container-fluid">
@@ -479,99 +489,47 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 						<div class="col-md-8" style="transform: translateX(200px)">
 							<!-- general form elements -->
 							<div class="card card-primary" style="margin-bottom: 10px">
-								<div class="card-header" style="margin-bottom:%">
+								<div class="card-header">
 									<h3 class="card-title">管理員修改會員資料</h3>
 								</div>
-							<%-- 錯誤表列 --%>
+								<%-- 錯誤表列 --%>
 								<c:if test="${not empty errorMsgs}">
-									<font style="color: red">請修正以下錯誤:</font>
-									<ul>
+									<font style="color: red;margin-left:39%;">請修正以下錯誤:</font>
+									<ul style="margin-bottom:-2%;">
 										<c:forEach var="message" items="${sessionScope.errorMsgs}">
-											<li style="color: red">${message}</li>
+											<li style="color: red;margin-left:35%;">${message}</li>
 										</c:forEach>
 									</ul>
 								</c:if>
 								<!-- /.card-header -->
 								<!-- form start -->
-								<form METHOD="post" ACTION="/memberController"
-									name="updateByAdmin" enctype="multipart/form-data">
+								<form METHOD="post" ACTION="/adminController"
+									name="boss_Update" enctype="multipart/form-data">
 									<div class="card-body">
 										<div class="form-group">
-											<label for="exampleInputEmail1">會員姓氏</label> <input
-												type="TEXT" name="memLname" class="form-control"
-												id="memberLname" placeholder="MemLName"
-												value="${memVO.getMemLname()}" />
+											<label for="exampleInputEmail1">員工密碼</label> <input
+												type="TEXT" name="empPsd" class="form-control"
+												id="empPsd" placeholder="empPsd"
+												value="${sessionScope.adminVO.getEmpPsd()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputEmail1">會員名稱</label> <input
-												type="TEXT" name="memFname" class="form-control"
-												id="memberFname" placeholder="MemFName"
-												value="${memVO.getMemFname()}" />
+											<label for="exampleInputEmail1">員工名稱</label> <input
+												type="TEXT" name="empName" class="form-control"
+												id="empName" placeholder="empName"
+												value="${sessionScope.adminVO.getEmpName()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputEmail1">會員暱稱</label> <input
-												type="TEXT" name="memNickname" class="form-control"
-												id="memNickname" placeholder="memNickname"
-												value="${memVO.getMemNickname()}" />
+											<label for="exampleInputEmail1">員工信箱</label> <input
+												type="TEXT" name="empEmail" class="form-control"
+												id="empEmail" placeholder="empEmail"
+												value="${sessionScope.adminVO.getEmpEmail()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputPassword1">會員密碼</label> <input
-												type="password" name="memPsd" class="form-control"
-												id="memPsd" placeholder="memPsd"
-												value="${memVO.getMemPsd()}" />
+											<label for="exampleInputPassword1">員工頭像圖片上傳</label> <input
+												type="file" name="empPicId" id="empPicId" class="form-control"
+												 />
 										</div>
-										<div class="form-group">
-											<label for="exampleInputPassword1">確認密碼</label> <input
-												type="password" name="memPsd" class="form-control"
-												id="memPsd" placeholder="memPsd"
-												value="${memVO.getMemPsd()}" />
-										</div>
-										<div class="form-group">
-											<label for="exampleInputName1">會員手機</label> <input
-												type="text" name="memPhone" class="form-control"
-												id="memPhone" placeholder="memPhone"
-												value="${memVO.getMemPhone()}" />
-										</div>
-										<div class="form-group">
-											<label for="exampleInputName1">會員地址</label> <input
-												type="text" name="memAddress" class="form-control"
-												id="memPhone" placeholder="memPhone"
-												value="${memVO.getMemAddress()}" />
-										</div>
-										<!--                       <div class="form-group"> -->
-										<!--                         <label>員工權限</label> -->
-										<!--                         <select class="form-control"> -->
-										<!--                           <option>商城</option> -->
-										<!--                           <option>旅館</option> -->
-										<!--                           <option>全部</option> -->
-										<!--                           <option>option 4</option>
-<!--                           <option>option 5</option> -->
-	
-										<!--                         </select> -->
-										<!--                       </div> -->
-										<div class="form-group">
-											<label for="exampleInputStatus1">狀態</label>
-											 <input class="form-check-input" type="radio" name="memStatus" id= active value="1" style="transform: translateX(60px)" checked />
-											 
-											 <label	class="form-check-label" for="active" style="transform: translateX(60px)"> 啟用 </label> 
-											 
-											 <input class="form-check-input" type="radio" name="memStatus" id="deactive" value="0" style="transform: translateX(120px)" /> 
-											 
-											 <label class="form-check-label" for="deactive" style="transform: translateX(120px)"> 禁用 </label>
-										</div>
-
-										<div class="form-group">
-											<label for="exampleInputFile">會員頭像編輯</label>
-											<div class="input-group">
-												<div class="custom-file">
-													<input type="file" class="memPicId" name="memPicId"
-														id="memPicId" /> 
-<!-- 														<button type="submit"></button> -->
-												</div>
-												<div class="input-group-append">
-												</div>
-											</div>
-										</div>
+										
 										<!-- <div class="form-check">
                         <input
                           type="checkbox"
@@ -583,14 +541,14 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
                         >
                       </div> -->
 									</div>
-									<jsp:useBean id="memtSvc" scope="page"
-										class="com.tibame.tga105.mem.model.MemService" />
+									<jsp:useBean id="admtSvc" scope="page"
+										class="com.tibame.tga105.admin.service.AdminService" />
 									<!-- /.card-body -->
 
 									<div class="card-footer">
 										<a href="#"> <input type="hidden" name="action"
-											value="updateByAdmin"> <input type="hidden"
-											name="memId" value="${memVO.memId}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
+											value="updatebyEMP"> <input type="hidden"
+											name="adminId" value="${sessionScope.adminVO.getAdminId()}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
 											<!-- 											</button>  --> <input
 											class="btn btn-primary update_button" type="submit"
 											value="確認修改">

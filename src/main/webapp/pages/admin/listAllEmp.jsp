@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.tibame.tga105.mem.model.*"%>
-<%@ page import="com.tibame.tga105.mem.model.MemVO"%>
-<%@ page import="com.tibame.tga105.mem.model.MemService"%>
+<%@page import="com.tibame.tga105.admin.VO.AdminVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.tibame.tga105.admin.service.AdminService"%>
 
 
 <%
-MemService memSvc = new MemService();
-List<MemVO> list = memSvc.getAll();
+AdminService admSvc = new AdminService();
+List<AdminVO> list = admSvc.getAll();
 pageContext.setAttribute("list", list);
 %>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -613,89 +614,52 @@ input:checked+label:after {
 									<table id="example2" class="table table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>會員編號</th>
-												<th>會員姓式</th>
-												<th>會員名稱</th>
-												<th>會員暱稱</th>
-												<th>會員信箱</th>
-												<th>會員密碼</th>
-												<th>會員手機</th>
-												<th>會員地址</th>
-												<th>會員頭像</th>
-												<th>會員狀態</th>
+												<th>員工編號</th>
+												<th>員工帳號</th>
+												<th>員工密碼</th>
+												<th>員工名稱</th>
+												<th>員工頭像</th>
+												<th>員工信箱</th>
+												<th>員工權限編號</th>
+												<th>員工狀態</th>
 												<th>修改</th>
 											</tr>
+
+
 										</thead>
 										<tbody>
-<!-- 											<tr> -->
-<!-- 												<td>Trident</td> -->
-<!-- 												<td>Internet Explorer 4.0</td> -->
-<!-- 												<td>Win 95+</td> -->
-<!-- 												<td>4</td> -->
-<!-- 												<td> -->
-<!-- 													<div class="form-check form-switch"> -->
-<!-- 														<input class="form-check-input" type="checkbox" -->
-<!-- 															id="flexSwitchCheckChecked" checked /> <label -->
-<!-- 															class="form-check-label" for="flexSwitchCheckChecked"><p -->
-<!-- 																style="transform: translateX(45px)">啟用</p></label> -->
-<!-- 													</div> -->
-<!-- 												</td> -->
-<!-- 												<td> -->
-<!-- 													<div> -->
-<!-- 														<a href="#"> -->
-<!-- 															<button type="button" class="apply_btn">編輯</button> -->
-<!-- 														</a> -->
-<!-- 													</div> -->
-<!-- 												</td> -->
-<!-- 											</tr> -->
+
 
 
 											<%@ include file="page1.file"%>
-											<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>"
+											<c:forEach var="adminVO" items="${list}" begin="<%=pageIndex%>"
 												end="<%=pageIndex+rowsPerPage-1%>">
 												<tr>
-													<td>${memVO.memId}</td>
-													<td>${memVO.memLname}</td>
-													<td>${memVO.memFname}</td>
-													<td>${memVO.memNickname}</td>
-													<td>${memVO.memEmail}</td>
-													<td >${memVO.memPsd}</td>
-													<td>${memVO.memPhone}</td>
-													<td>${memVO.memAddress}</td>
-													<td>
-													<img src="/MemPicView?memId=${memVO.memId}"
-														width="200" height="200" id="mempic"></td>
-													<td>${memVO.memStatus}</td>
-
-<!-- 													<td> -->
-<!-- 														<div class="form-check form-switch"> -->
-<!-- 															<input class="form-check-input" type="checkbox" -->
-<!-- 																id="flexSwitchCheckChecked1" checked /> <label -->
-<!-- 																class="form-check-label" for="flexSwitchCheckChecked1"><p -->
-<!-- 																	style="transform: translateX(45px)">啟用</p></label> -->
-<!-- 														</div> -->
-<!-- 													</td> -->
+													<td>${adminVO.adminId}</td>
+													<td>${adminVO.empAcc}</td>
+													<td>${adminVO.empPsd}</td>
+													<td>${adminVO.empName}</td>
+													<td><img
+														src="/AdminPicView?adminId=${adminVO.adminId}"
+														width="200" height="200" id="empPicid"></td>
+													<td>${adminVO.empEmail}</td>
+													<td>${adminVO.authVO.authName}</td>
+													<td>${adminVO.empStatus}</td>
 													<td>
 														<FORM METHOD="post"
-															ACTION="/memberController"
+															ACTION="<%=request.getContextPath()%>/adminController"
 															style="margin-bottom: 0px;" enctype="multipart/form-data">
-															<input class="btn btn-primary login_button" type="submit" value="修改"> <input
-																type="hidden" name="memId" value="${memVO.memId}">
-															<input type="hidden" name="action"
-																value="getOne_For_Update_By_Admin">
+															<input type="submit" value="修改"> <input
+																type="hidden" name="adminId" value="${adminVO.adminId}">
+															<input type="hidden" name="action" value="boss_Update">
 														</FORM>
+													</td>
+
+														
 													</td>
 												</tr>
 										</tbody>
-										<!-- <tfoot>
-                        <tr>
-                          <th>Rendering engine</th>
-                          <th>Browser</th>
-                          <th>Platform(s)</th>
-                          <th>Engine version</th>
-                          <th>CSS grade</th>
-                        </tr>
-                      </tfoot> -->
+					
 										</c:forEach>
 									</table>
 									<%@ include file="page2.file"%>
@@ -713,21 +677,24 @@ input:checked+label:after {
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
+		<!-- /.content -->
+	</div>
+	<!-- /.content-wrapper -->
 
-		<footer class="main-footer">
-			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-				href="./24front_page.html">TGA105-第四組</a>.
-			</strong> All rights reserved.
-			<div class="float-right d-none d-sm-inline-block">
-				<b>Version</b> 3.2.0
-			</div>
-		</footer>
+	<footer class="main-footer">
+		<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
+			href="./24front_page.html">TGA105-第四組</a>.
+		</strong> All rights reserved.
+		<div class="float-right d-none d-sm-inline-block">
+			<b>Version</b> 3.2.0
+		</div>
+	</footer>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- /.control-sidebar -->
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Control sidebar content goes here -->
+	</aside>
+	<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
 
@@ -785,3 +752,4 @@ input:checked+label:after {
 	</script>
 </body>
 </html>
+

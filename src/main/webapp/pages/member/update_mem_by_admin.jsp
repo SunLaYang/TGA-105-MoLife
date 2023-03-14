@@ -443,7 +443,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper" style="min-height: 994.367px;">
+		<div class="content-wrapper" style="min-height: 1152.551px;">
 			<!-- Content Header (Page header) -->
 			<div class="content-header">
 				<div class="container-fluid">
@@ -479,14 +479,14 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 						<div class="col-md-8" style="transform: translateX(200px)">
 							<!-- general form elements -->
 							<div class="card card-primary" style="margin-bottom: 10px">
-								<div class="card-header">
+								<div class="card-header" style="margin-bottom:%">
 									<h3 class="card-title">管理員修改會員資料</h3>
 								</div>
-
+							<%-- 錯誤表列 --%>
 								<c:if test="${not empty errorMsgs}">
 									<font style="color: red">請修正以下錯誤:</font>
 									<ul>
-										<c:forEach var="message" items="${errorMsgs}">
+										<c:forEach var="message" items="${sessionScope.errorMsgs}">
 											<li style="color: red">${message}</li>
 										</c:forEach>
 									</ul>

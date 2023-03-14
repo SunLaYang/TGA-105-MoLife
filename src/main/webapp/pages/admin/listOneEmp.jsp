@@ -1,17 +1,18 @@
+<%@page import="com.tibame.tga105.admin.VO.AdminVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.tibame.tga105.admin.service.AdminService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.tibame.tga105.mem.model.*"%>
-<%@ page import="com.tibame.tga105.mem.model.MemVO"%>
-<%@ page import="com.tibame.tga105.mem.model.MemService"%>
-
 
 <%
-MemService memSvc = new MemService();
-List<MemVO> list = memSvc.getAll();
+AdminService admSvc = new AdminService();
+List<AdminVO> list = admSvc.getAll();
 pageContext.setAttribute("list", list);
 %>
+<%
+AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
+%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,13 +27,6 @@ pageContext.setAttribute("list", list);
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="../../AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css" />
-<!-- DataTables -->
-<link rel="stylesheet"
-	href="../../AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
-<link rel="stylesheet"
-	href="../../AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css" />
-<link rel="stylesheet"
-	href="../../AdminLTE-3.2.0/plugins/datatables-buttons/css/buttons.bootstrap4.min.css" />
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
@@ -58,110 +52,6 @@ pageContext.setAttribute("list", list);
 <link rel="stylesheet"
 	href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css" />
 
-<style>
-input[type="checkbox"] {
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-
-label {
-	cursor: pointer;
-	width: 40px;
-	height: 20px;
-	background: rgb(232, 43, 43);
-	display: block;
-	border-radius: 100px;
-	position: relative;
-	/* margin-top: -20px; */
-}
-
-label:after {
-	content: "";
-	position: absolute;
-	top: 1px;
-	left: 1px;
-	width: 18px;
-	height: 18px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-
-/* .switch-txt::before,
-      .switch-txt::after {
-        display: block;
-        color: #fff;
-        font-weight: bold;
-        box-sizing: border-box;
-      }
-      .switch-txt::before {
-        content: attr(turnOn);
-        color: #fff;
-      }
-      .switch-txt::after {
-        content: attr(turnOff);
-        color: #ccc;
-      } */
-input:checked+label {
-	background: #60f760;
-}
-
-label:active:after {
-	width: 40px;
-}
-
-input:checked+label:after {
-	left: calc(100% - 5px);
-	transform: translateX(-100%);
-}
-
-.apply_btn {
-	width: 55px;
-	height: 30px;
-	border-radius: 8px;
-	border: none;
-	color: white;
-	background-color: #007bff;
-	font-size: 14px;
-}
-
-.search {
-	border-radius: 8px;
-	box-sizing: border-box;
-	background-color: white;
-	max-width: 200px;
-	margin: 5px auto 0 auto;
-	height: auto;
-	position: relative;
-	width: 80%;
-	float: left;
-}
-
-.search-bar {
-	border-radius: 8px;
-	width: 100%;
-	height: 32px;
-	font-size: 16px;
-	border: 1px solid #007bff;
-	background-color: white;
-}
-
-.search-btn {
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-	width: 36px;
-	height: 32px;
-	background-color: #007bff;
-	color: white;
-	outline: none;
-	border: 1px solid #007bff;
-	cursor: pointer;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-</style>
 <script src="https://kit.fontawesome.com/2672c0b72c.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -183,7 +73,7 @@ input:checked+label:after {
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="./24admin.index.html" class="nav-link">首頁</a></li>
+					href="24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
@@ -566,7 +456,7 @@ input:checked+label:after {
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1 class="m-0">
-								<i class="fa-solid fa-paw" style="padding-right: 20px"></i> 會員管理
+								<i class="fa-solid fa-paw" style="padding-right: 20px"></i> 權限管理
 							</h1>
 						</div>
 						<!-- /.col -->
@@ -574,8 +464,8 @@ input:checked+label:after {
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="./24admin.index.html">首頁</a>
 								</li>
-								<li class="breadcrumb-item active">用戶管理</li>
-								<li class="breadcrumb-item active">會員管理</li>
+								<li class="breadcrumb-item active"><a
+									href="./24admin.limit.html">權限管理</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -590,127 +480,78 @@ input:checked+label:after {
 			<section class="content">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
-							<div class="card">
+						<!-- left column -->
+						<div class="col-md-8" style="transform: translateX(200px)">
+							<!-- general form elements -->
+							<div class="card card-primary">
 								<div class="card-header">
-									<h3 class="card-title" style="margin-top: 5px">會員列表</h3>
-									<a href="./24admin.add_employee.html"><button type="button"
-											class="apply_btn"
-											style="width: 80px; margin-top: 5px; float: right">
-											新增員工</button></a>
-
-									<div class="search" style="float: right; margin-right: 10px">
-										<input class="search-bar" type="text" name="search"
-											id="search" placeholder="Search" />
-										<button class="search-btn">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
+									<h3 class="card-title">員工個人資料</h3>
 								</div>
-
 								<!-- /.card-header -->
-								<div class="card-body">
-									<table id="example2" class="table table-bordered table-hover">
-										<thead>
-											<tr>
-												<th>會員編號</th>
-												<th>會員姓式</th>
-												<th>會員名稱</th>
-												<th>會員暱稱</th>
-												<th>會員信箱</th>
-												<th>會員密碼</th>
-												<th>會員手機</th>
-												<th>會員地址</th>
-												<th>會員頭像</th>
-												<th>會員狀態</th>
-												<th>修改</th>
-											</tr>
-										</thead>
-										<tbody>
-<!-- 											<tr> -->
-<!-- 												<td>Trident</td> -->
-<!-- 												<td>Internet Explorer 4.0</td> -->
-<!-- 												<td>Win 95+</td> -->
-<!-- 												<td>4</td> -->
-<!-- 												<td> -->
-<!-- 													<div class="form-check form-switch"> -->
-<!-- 														<input class="form-check-input" type="checkbox" -->
-<!-- 															id="flexSwitchCheckChecked" checked /> <label -->
-<!-- 															class="form-check-label" for="flexSwitchCheckChecked"><p -->
-<!-- 																style="transform: translateX(45px)">啟用</p></label> -->
-<!-- 													</div> -->
-<!-- 												</td> -->
-<!-- 												<td> -->
-<!-- 													<div> -->
-<!-- 														<a href="#"> -->
-<!-- 															<button type="button" class="apply_btn">編輯</button> -->
-<!-- 														</a> -->
-<!-- 													</div> -->
-<!-- 												</td> -->
-<!-- 											</tr> -->
 
+								<!-- form start -->
 
-											<%@ include file="page1.file"%>
-											<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>"
-												end="<%=pageIndex+rowsPerPage-1%>">
-												<tr>
-													<td>${memVO.memId}</td>
-													<td>${memVO.memLname}</td>
-													<td>${memVO.memFname}</td>
-													<td>${memVO.memNickname}</td>
-													<td>${memVO.memEmail}</td>
-													<td >${memVO.memPsd}</td>
-													<td>${memVO.memPhone}</td>
-													<td>${memVO.memAddress}</td>
-													<td>
-													<img src="/MemPicView?memId=${memVO.memId}"
-														width="200" height="200" id="mempic"></td>
-													<td>${memVO.memStatus}</td>
+								<div class="card-body" style="margin-left: 34%;">
+									<div class="form-group">
+										<th></th>
+										<td><img
+											src="/AdminPicView?adminId=${adminVO.adminId}"
+											width="200" height="200" id="empPicid"></td>
+									</div>
+									<div class="form-group">
+										<th>員工編號:</th>
+										<td>${adminVO.adminId}</td>
+									</div>
+									<div class="form-group">
+										<th>員工帳號:</th>
+										<td>${adminVO.empAcc}</td>
+									</div>
+									<div class="form-group">
+										<th>員工密碼:</th>
+										<td>${adminVO.empPsd}</td>
+									</div>
+									<div class="form-group">
+										<th>員工名稱:</th>
+										<td>${adminVO.empName}</td>
+									</div>
+									<div class="form-group">
+										<th>員工信箱:</th>
+										<td>${adminVO.empEmail}</td>
+									</div>
+									<div class="form-group">
+										<th></th>
+										<td>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/adminController"
+												style="margin-bottom: 0px;" enctype="multipart/form-data">
+												<input type="submit" value="修改" class="btn btn-primary"> <input
+													type="hidden" name="adminId" value="${adminVO.adminId}">
+												<input type="hidden" name="action" value="emp_update">
+											</FORM>
+										</td>
+									</div>
+									<!-- <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="exampleCheck1"
+                        />
+                        <label class="form-check-label" for="exampleCheck1"
+                          >Check me out</label
+                        >
+                      </div> -->
 
-<!-- 													<td> -->
-<!-- 														<div class="form-check form-switch"> -->
-<!-- 															<input class="form-check-input" type="checkbox" -->
-<!-- 																id="flexSwitchCheckChecked1" checked /> <label -->
-<!-- 																class="form-check-label" for="flexSwitchCheckChecked1"><p -->
-<!-- 																	style="transform: translateX(45px)">啟用</p></label> -->
-<!-- 														</div> -->
-<!-- 													</td> -->
-													<td>
-														<FORM METHOD="post"
-															ACTION="/memberController"
-															style="margin-bottom: 0px;" enctype="multipart/form-data">
-															<input class="btn btn-primary login_button" type="submit" value="修改"> <input
-																type="hidden" name="memId" value="${memVO.memId}">
-															<input type="hidden" name="action"
-																value="getOne_For_Update_By_Admin">
-														</FORM>
-													</td>
-												</tr>
-										</tbody>
-										<!-- <tfoot>
-                        <tr>
-                          <th>Rendering engine</th>
-                          <th>Browser</th>
-                          <th>Platform(s)</th>
-                          <th>Engine version</th>
-                          <th>CSS grade</th>
-                        </tr>
-                      </tfoot> -->
-										</c:forEach>
-									</table>
-									<%@ include file="page2.file"%>
 								</div>
 								<!-- /.card-body -->
+
+								
+
 							</div>
 							<!-- /.card -->
 						</div>
-						<!-- /.col -->
 					</div>
-					<!-- /.row -->
 				</div>
-				<!-- /.container-fluid -->
 			</section>
-			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
 
@@ -733,55 +574,285 @@ input:checked+label:after {
 
 	<!-- jQuery -->
 	<script src="../../AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="../../AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+		$.widget.bridge("uibutton", $.ui.button);
+	</script>
 	<!-- Bootstrap 4 -->
 	<script
 		src="../../AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<!-- DataTables  & Plugins -->
+	<!-- ChartJS -->
+	<script src="../../AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
+	<!-- Sparkline -->
+	<script src="../../AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
+	<!-- JQVMap -->
+	<script src="../../AdminLTE-3.2.0/plugins/jqvmap/jquery.vmap.min.js"></script>
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+	<!-- jQuery Knob Chart -->
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js"></script>
+	<!-- daterangepicker -->
+	<script src="../../AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
+	<!-- Tempusdominus Bootstrap 4 -->
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+	<!-- Summernote -->
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js"></script>
+	<!-- overlayScrollbars -->
 	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-	<script src="../../AdminLTE-3.2.0/plugins/jszip/jszip.min.js"></script>
-	<script src="../../AdminLTE-3.2.0/plugins/pdfmake/pdfmake.min.js"></script>
-	<script src="../../AdminLTE-3.2.0/plugins/pdfmake/vfs_fonts.js"></script>
-	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
-	<script
-		src="../../AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+		src="../../AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="../../AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+	<script src="../../AdminLTE-3.2.0/dist/js/adminlte.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<!-- <script src="../../AdminLTE-3.2.0/dist/js/demo.js"></script> -->
+	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+	<!-- <script src="../../AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script> -->
+
+	<!-- bs-custom-file-input -->
+	<script
+		src="../../AdminLTE-3.2.0/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
 	<!-- Page specific script -->
 	<script>
 		$(function() {
-			$("#example1").DataTable({
+			bsCustomFileInput.init();
+		});
+	</script>
+
+	<!-- Page specific script -->
+	<script>
+		$(function() {
+			/* ChartJS
+			 * -------
+			 * Here we will create a few charts using ChartJS
+			 */
+
+			//--------------
+			//- AREA CHART -
+			//--------------
+			// Get context with jQuery - using jQuery's .get() method.
+			var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+
+			var areaChartData = {
+				labels : [ "January", "February", "March", "April", "May",
+						"June", "July", ],
+				datasets : [ {
+					label : "Digital Goods",
+					backgroundColor : "rgba(60,141,188,0.9)",
+					borderColor : "rgba(60,141,188,0.8)",
+					pointRadius : false,
+					pointColor : "#3b8bba",
+					pointStrokeColor : "rgba(60,141,188,1)",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(60,141,188,1)",
+					data : [ 28, 48, 40, 19, 86, 27, 90 ],
+				}, {
+					label : "Electronics",
+					backgroundColor : "rgba(210, 214, 222, 1)",
+					borderColor : "rgba(210, 214, 222, 1)",
+					pointRadius : false,
+					pointColor : "rgba(210, 214, 222, 1)",
+					pointStrokeColor : "#c1c7d1",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [ 65, 59, 80, 81, 56, 55, 40 ],
+				}, ],
+			};
+
+			var areaChartOptions = {
+				maintainAspectRatio : false,
 				responsive : true,
-				lengthChange : false,
-				autoWidth : false,
-				buttons : [ "copy", "csv", "excel", "pdf", "print", "colvis" ],
-			}).buttons().container().appendTo(
-					"#example1_wrapper .col-md-6:eq(0)");
-			$("#example2").DataTable({
-				paging : true,
-				lengthChange : false,
-				searching : false,
-				ordering : true,
-				info : true,
-				autoWidth : false,
+				legend : {
+					display : false,
+				},
+				scales : {
+					xAxes : [ {
+						gridLines : {
+							display : false,
+						},
+					}, ],
+					yAxes : [ {
+						gridLines : {
+							display : false,
+						},
+					}, ],
+				},
+			};
+
+			// This will get the first returned node in the jQuery collection.
+			new Chart(areaChartCanvas, {
+				type : "line",
+				data : areaChartData,
+				options : areaChartOptions,
+			});
+
+			//-------------
+			//- LINE CHART -
+			//--------------
+			var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+			var lineChartOptions = $.extend(true, {}, areaChartOptions);
+			var lineChartData = $.extend(true, {}, areaChartData);
+			lineChartData.datasets[0].fill = false;
+			lineChartData.datasets[1].fill = false;
+			lineChartOptions.datasetFill = false;
+
+			var lineChart = new Chart(lineChartCanvas, {
+				type : "line",
+				data : lineChartData,
+				options : lineChartOptions,
+			});
+
+			//-------------
+			//- DONUT CHART -
+			//-------------
+			// Get context with jQuery - using jQuery's .get() method.
+			var donutChartCanvas = $("#donutChart").get(0).getContext("2d");
+			var donutData = {
+				labels : [ "Chrome", "IE", "FireFox", "Safari", "Opera",
+						"Navigator" ],
+				datasets : [
+						{
+							data : [ 700, 500, 400, 600, 300, 100 ],
+							backgroundColor : [ "#f56954", "#00a65a",
+									"#f39c12", "#00c0ef", "#3c8dbc", "#d2d6de", ],
+						}, ],
+			};
+			var donutOptions = {
+				maintainAspectRatio : false,
 				responsive : true,
+			};
+			//Create pie or douhnut chart
+			// You can switch between pie and douhnut using the method below.
+			new Chart(donutChartCanvas, {
+				type : "doughnut",
+				data : donutData,
+				options : donutOptions,
+			});
+
+			//   //-------------
+			//   //- PIE CHART -
+			//   //-------------
+			//   // Get context with jQuery - using jQuery's .get() method.
+			//   var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+			//   var pieData        = donutData;
+			//   var pieOptions     = {
+			//     maintainAspectRatio : false,
+			//     responsive : true,
+			//   }
+			//   //Create pie or douhnut chart
+			//   // You can switch between pie and douhnut using the method below.
+			//   new Chart(pieChartCanvas, {
+			//     type: 'pie',
+			//     data: pieData,
+			//     options: pieOptions
+			//   })
+
+			//-------------
+			//- BAR CHART -
+			//-------------
+			var barChartCanvas = $("#barChart").get(0).getContext("2d");
+			var barChartData = $.extend(true, {}, areaChartData);
+			var temp0 = areaChartData.datasets[0];
+			var temp1 = areaChartData.datasets[1];
+			barChartData.datasets[0] = temp1;
+			barChartData.datasets[1] = temp0;
+
+			var barChartOptions = {
+				responsive : true,
+				maintainAspectRatio : false,
+				datasetFill : false,
+			};
+
+			new Chart(barChartCanvas, {
+				type : "bar",
+				data : barChartData,
+				options : barChartOptions,
+			});
+
+			//---------------------
+			//- STACKED BAR CHART -
+			//---------------------
+			var stackedBarChartCanvas = $("#stackedBarChart").get(0)
+					.getContext("2d");
+			var stackedBarChartData = $.extend(true, {}, barChartData);
+
+			var stackedBarChartOptions = {
+				responsive : true,
+				maintainAspectRatio : false,
+				scales : {
+					xAxes : [ {
+						stacked : true,
+					}, ],
+					yAxes : [ {
+						stacked : true,
+					}, ],
+				},
+			};
+
+			new Chart(stackedBarChartCanvas, {
+				type : "bar",
+				data : stackedBarChartData,
+				options : stackedBarChartOptions,
 			});
 		});
+	</script>
+
+	<!-- Code injected by live-server -->
+	<script>
+		// <![CDATA[  <-- For SVG support
+		if ("WebSocket" in window) {
+			(function() {
+				function refreshCSS() {
+					var sheets = [].slice.call(document
+							.getElementsByTagName("link"));
+					var head = document.getElementsByTagName("head")[0];
+					for (var i = 0; i < sheets.length; ++i) {
+						var elem = sheets[i];
+						var parent = elem.parentElement || head;
+						parent.removeChild(elem);
+						var rel = elem.rel;
+						if ((elem.href && typeof rel != "string")
+								|| rel.length == 0
+								|| rel.toLowerCase() == "stylesheet") {
+							var url = elem.href.replace(
+									/(&|\?)_cacheOverride=\d+/, "");
+							elem.href = url
+									+ (url.indexOf("?") >= 0 ? "&" : "?")
+									+ "_cacheOverride=" + new Date().valueOf();
+						}
+						parent.appendChild(elem);
+					}
+				}
+				var protocol = window.location.protocol === "http:" ? "ws://"
+						: "wss://";
+				var address = protocol + window.location.host
+						+ window.location.pathname + "/ws";
+				var socket = new WebSocket(address);
+				socket.onmessage = function(msg) {
+					if (msg.data == "reload")
+						window.location.reload();
+					else if (msg.data == "refreshcss")
+						refreshCSS();
+				};
+				if (sessionStorage
+						&& !sessionStorage
+								.getItem("IsThisFirstTime_Log_From_LiveServer")) {
+					console.log("Live reload enabled.");
+					sessionStorage.setItem(
+							"IsThisFirstTime_Log_From_LiveServer", true);
+				}
+			})();
+		} else {
+			console
+					.error("Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.");
+		}
+		// ]]>
 	</script>
 </body>
 </html>

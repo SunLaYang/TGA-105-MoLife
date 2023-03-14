@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.tibame.tga105.admin.VO.AdminVO;
+import com.tibame.tga105.auth.AuthJDBCDAO;
 import com.tibame.tga105.auth.VO.AuthVO;
 import com.tibame.tga105.auth.dao.AuthDAOInterface;
 import com.tibame.tga105.auth.dao.impl.AuthDaoImpl;
@@ -13,8 +14,8 @@ public class AuthService {
 	private AuthDAOInterface dao;
 	
 	public AuthService() {
-//		dao = new AuthJDBCDAO();
-		dao = new AuthDaoImpl();		
+		dao = new AuthJDBCDAO();
+//		dao = new AuthDaoImpl();		
 	}
 	
 	public List<AuthVO> getAll() {

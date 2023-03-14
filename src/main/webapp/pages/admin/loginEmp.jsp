@@ -74,8 +74,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 		<div class="card">
 			<div class="card-body login-card-body">
 
-				<form METHOD="post" ACTION="/molife/adminController" name="login"
-					enctype="multipart/form-data">
+				<form METHOD="post" ACTION="/adminController" name="login">
 
 					<div class="input-group mb-3">
 						<input type="TEXT" name="empAcc" class="form-control"
@@ -91,29 +90,20 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 							<div class="input-group-text"></div>
 						</div>
 					</div>
-
 					<jsp:useBean id="admSvc" scope="page"
-						class="com.tibame.tga105.admin.service.AdminService" />
-
-					<div class="row">
-						<div class="col-8">
-							<div class="icheck-primary">
-								<!--                   <input type="checkbox" id="remember" /> -->
-								<!--                   <label for="remember"> 記住帳密 </label> -->
-							</div>
-						</div>
-					</div>
-				</form>
-
+					class="com.tibame.tga105.admin.service.AdminService" />
 				<div class="social-auth-links text-center mb-3">
 					<input type="hidden" name="action" value="login"> <input
-			type="submit" class="btn btn-primary btn-block" value="登入">
+						type="submit" class="btn btn-primary btn-block" value="登入">
 				</div>
-				<!-- /.social-auth-links -->
-
 				<p class="mb-1">
 					<a href="12emp_forgetpassword_telladmin_notification.html">忘記密碼</a>
 				</p>
+				</form>
+
+				<!-- /.social-auth-links -->
+
+				
 			</div>
 			<!-- /.login-card-body -->
 		</div>

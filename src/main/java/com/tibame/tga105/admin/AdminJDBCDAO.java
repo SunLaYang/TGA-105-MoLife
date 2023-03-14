@@ -330,13 +330,12 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 		ResultSet rs = null;
 
 		try {
-
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(LOGIN);
 
-			pstmt.setString(1, adminVO.getEmpAcc());
-			pstmt.setString(2, adminVO.getEmpPsd());
+			pstmt.setString(1, empAcc);
+			pstmt.setString(2, empPsd);
 			rs = pstmt.executeQuery();
 			
 				while (rs.next()) {

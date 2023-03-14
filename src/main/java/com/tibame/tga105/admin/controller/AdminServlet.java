@@ -347,10 +347,6 @@ public class AdminServlet extends HttpServlet {
 			} else if (!empEmail.trim().matches(empEmailReg)) {
 				errorMsgs.add("員工信箱: 請符合電子信箱格式");
 			}
-
-			else {
-				errorMsgs.add("empPicId, 員工頭像:請上傳圖片");
-			}
 			
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
 
@@ -469,6 +465,7 @@ public class AdminServlet extends HttpServlet {
 				session.setAttribute("adminVO", adminVO);
 				
 				req.setAttribute("adminVO", adminVO);
+				
 				req.setAttribute("login", true);
 
 				Cookie cookie = new Cookie("adminId", adminVO.getAdminId().toString());

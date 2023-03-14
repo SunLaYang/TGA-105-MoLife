@@ -530,7 +530,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 											<label for="exampleInputStatus1">員工狀態</label> <input
 												class="form-check-input" type="radio" name="empStatus"
 												id=deactive value="0" style="transform: translateX(60px)"
-												checked /> <label class="form-check-label" for="active"
+												 /> <label class="form-check-label" for="active"
 												style="transform: translateX(60px)"> 禁用 </label> <input
 												class="form-check-input" type="radio" name="empStatus"
 												id="active" value="1" style="transform: translateX(120px)"

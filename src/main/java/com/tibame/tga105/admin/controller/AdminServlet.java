@@ -220,7 +220,6 @@ public class AdminServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
-			Integer adminId = Integer.valueOf(req.getParameter("adminId"));
 
 			String empPsd = req.getParameter("empPsd");
 			String empPsdReg = "^[(a-zA-Z0-9_)]{3,10}$";
@@ -248,26 +247,20 @@ public class AdminServlet extends HttpServlet {
 
 
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
-			String empAuthIdReg = "^[123]+$";
-			if (empAuthId == null) {
-				errorMsgs.add("請填入員工權限編號，勿空白");
-			}else if(!empAuthId.toString().matches(empAuthIdReg)){
-				errorMsgs.add("員工權限編號只能填1~3");
-			}
+//			System.out.println(empAuthId);
 
 			Integer empStatus = Integer.valueOf(req.getParameter("empStatus"));
-			String empStatusReg = "^[01]+$";
-			if (empStatus == null) {
-				errorMsgs.add("請填入員工狀態號碼，勿空白");
-			}else if(!empStatus.toString().matches(empStatusReg)){
-				errorMsgs.add("狀態只能填入0或1");
-			}
+//			String empStatusReg = "^[01]+$";
+//			if (empStatus == null) {
+//				errorMsgs.add("請填入員工狀態號碼，勿空白");
+//			}else if(!empStatus.toString().matches(empStatusReg)){
+//				errorMsgs.add("狀態只能填入0或1");
+//			}
 
 //			AdminVO adminVO = new AdminVO();
 			
-			
+			Integer adminId = Integer.valueOf(req.getParameter("adminId"));
 			AdminService admSvc = new AdminService();
-			
 			AdminVO tempVO = admSvc.getOneEmp(adminId);
 
 			tempVO.setEmpPsd(empPsd);
@@ -285,10 +278,10 @@ public class AdminServlet extends HttpServlet {
 			tempVO.setEmpEmail(empEmail);
 			tempVO.setEmpAuthId(empAuthId);
 			tempVO.setEmpStatus(empStatus);
-			tempVO.setAdminId(adminId);
+//			tempVO.setAdminId(adminId);
 
 			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("tempVO", tempVO);
+				req.setAttribute("adminVO", tempVO);
 				String url = "/pages/admin/boss_update.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
@@ -301,7 +294,7 @@ public class AdminServlet extends HttpServlet {
 			tempVO = admSvc.updateByBoss(tempVO);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-			req.setAttribute("tempVO", tempVO);
+			req.setAttribute("adminVO", tempVO);
 			String url = "/pages/admin/listAllEmp.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);

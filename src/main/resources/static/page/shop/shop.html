@@ -612,8 +612,13 @@
 
       function init() {
         $.ajax({
-          url: "/products",
+          url: "/products/spec",
           type: "GET",
+          data: {
+            productStatus: 1,
+            animalTypeId: "",
+            categoryId: "",
+          },
           dataType: "json",
           success: function (data) {
             let list_html = "";
@@ -626,25 +631,25 @@
               });
 
               list_html += `
-                                  <div class="product-item men">
-                                    <div class="product product_filter">
-                                      <div class="product_image" style="min-height: 220px;">
-                                        <img src="/productimages/${img}" style="max-height: 100%;"/>
+                                    <div class="product-item men">
+                                      <div class="product product_filter">
+                                        <div class="product_image" style="min-height: 220px;">
+                                          <img src="/productimages/${img}" style="max-height: 100%;"/>
+                                        </div>
+                                        <div class="favorite" data-productId="${item.productId}"></div>
+                                        <div class="product_info">
+                                          <h6 class="product_name">
+                                            <a href="shop-product.html?id=${item.productId}"
+                                              >${item.productName}</a
+                                            >
+                                          </h6>
+                                          <div class="product_price">$${item.productPrice}</div>
+                                        </div>
                                       </div>
-                                      <div class="favorite" data-productId="${item.productId}"></div>
-                                      <div class="product_info">
-                                        <h6 class="product_name">
-                                          <a href="shop-product.html?id=${item.productId}"
-                                            >${item.productName}</a
-                                          >
-                                        </h6>
-                                        <div class="product_price">$${item.productPrice}</div>
+                                      <div class="red_button add_to_cart_button">
+                                        <a href="" data-productId="${item.productId}">加入購物車</a>
                                       </div>
-                                    </div>
-                                    <div class="red_button add_to_cart_button">
-                                      <a href="" data-productId="${item.productId}">加入購物車</a>
-                                    </div>
-                                  </div>`;
+                                    </div>`;
             });
             $(".product-grid").html(list_html);
             initIsotopeFiltering();

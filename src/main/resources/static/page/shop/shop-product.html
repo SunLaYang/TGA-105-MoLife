@@ -177,7 +177,7 @@
                     ><i class="fa fa-minus" aria-hidden="true"></i
                   ></span>
                   <span id="quantity_value">1</span>
-                  <span class="plus"
+                  <span class="plus" id="plus"
                     ><i class="fa fa-plus" aria-hidden="true"></i
                   ></span>
                 </div>
@@ -340,6 +340,7 @@
             $("#productDetails").text(data.productDetails);
             $(".product_price").text("$" + data.productPrice);
             $(".product_favorite").attr("data-productid", data.productId);
+            $("#quantity_value").attr("data-productqty", data.productQty);
 
             $.each(data.productImages, function (i, item) {
               switch (item.productImageType) {
@@ -447,6 +448,24 @@
               console.log(xhr);
             },
           });
+        });
+
+        // 監控數量值變化事件
+        $("#plus").on("click", function () {
+          // 轉換數字
+          let num = parseInt($("#quantity_value").text()); // 取得原始值
+          let productQty = parseInt(
+            $("#quantity_value").attr("data-productqty")
+          );
+          console.log(num);
+          console.log(productQty);
+          // 檢查qty
+          if (num > productQty) {
+            // 如果大於最大購買數量，禁止繼續操作
+            alert("已達最大購買數量！");
+            $("#quantity_value").text(productQty);
+            return false;
+          }
         });
       });
     </script>

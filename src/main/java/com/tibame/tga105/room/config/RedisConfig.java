@@ -27,13 +27,6 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
 
 		
-		
-		
-		//指定key value 的序列化方式
-//		Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-//		redisTemplate.setDefaultSerializer(jackson2JsonRedisSerializer);
-//		redisTemplate.setKeySerializer(new StringRedisSerializer());
-		
 		return redisTemplate;
 	}
 

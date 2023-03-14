@@ -124,7 +124,7 @@ th, td {
 		</div>
 	</header>
 
-	<div>
+	<div  style="margin-top: 5%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
 				<!-- 				<a href="#contact">帳號設定</a> <a href="#oreder_search">訂單查詢</a> <a -->
@@ -136,10 +136,10 @@ th, td {
 			<div class="col text-center">
 				<div class="memlistonebox">
 					<p style="font-size: 32px; margin-right: 50%; margin-bottom: 2%;">會員註冊</p>
-					<div style="margin-right: 45%;">
+					<div style="margin-right: 50%;">
 						<%-- 錯誤表列 --%>
 						<c:if test="${not empty errorMsgs}">
-							<font style="color: red">請修正以下錯誤:</font>
+							<font style="color: red; margin-left:6%;">請修正以下錯誤:</font>
 							<ul>
 								<c:forEach var="message" items="${errorMsgs}">
 									<li style="color: red">${message}</li>
@@ -154,43 +154,43 @@ th, td {
 							<tr>
 								<td>姓氏:</td>
 								<td><input type="TEXT" name="memLname" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemLname()%>" /></td>
+									value="${sessionScope.memVO.getMemLname()}" /></td>
 							</tr>
 							<tr>
 								<td>名稱:</td>
 								<td><input type="TEXT" name="memFname" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemFname()%>" /></td>
+									value="${sessionScope.memVO.getMemFname()}" /></td>
 							</tr>
 							<tr>
 								<td>暱稱:</td>
 								<td><input type="TEXT" name="memNickname" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemNickname()%>" /></td>
+									value="${sessionScope.memVO.getMemNickname()}" /></td>
 							</tr>
 							<tr>
 								<td>信箱:</td>
 								<td><input type="TEXT" name="memEmail" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemEmail()%>" /></td>
+									value="${sessionScope.memVO.getMemEmail()}" /></td>
 							</tr>
 							<tr>
 								<td>密碼:</td>
 								<td><input type="password" name="memPsd" size="30"
 									placeholder="Password"
-									value="<%=(memVO == null) ? "" : memVO.getMemPsd()%>" /></td>
+									value="${sessionScope.memVO.getMemPsd()}" /></td>
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
 								<td><input type="TEXT" name="memPsd" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemPsd()%>" /></td>
+									value="${sessionScope.memVO.getMemPsd()}" /></td>
 							</tr>
 							<tr>
 								<td>手機:</td>
 								<td><input type="TEXT" name="memPhone" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemPhone()%>" /></td>
+									value="${sessionScope.memVO.getMemPhone()}" /></td>
 							</tr>
 							<tr>
 								<td>居住地址:</td>
 								<td><input type="TEXT" name="memAddress" size="30"
-									value="<%=(memVO == null) ? "" : memVO.getMemAddress()%>" /></td>
+									value="${sessionScope.memVO.getMemAddress()}" /></td>
 							</tr>
 							<tr>
 								<td>頭像圖片上傳:</td>

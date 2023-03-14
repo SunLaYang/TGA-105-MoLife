@@ -64,8 +64,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
-					href="#" role="button"><i class="fas fa-bars"></i></a>
-				</li>
+					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
 					href="24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
@@ -77,8 +76,8 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
 				<li class="nav-item"><a class="nav-link"
-					data-widget="navbar-search" href="#" role="button">
-						<i class="fas fa-search"></i>
+					data-widget="navbar-search" href="#" role="button"> <i
+						class="fas fa-search"></i>
 				</a>
 					<div class="navbar-search-block">
 						<form class="form-inline">
@@ -202,9 +201,9 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 			<a href="./24admin.index.html" class="brand-link"> <img
 				src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
 				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-				style="opacity: 0.8" /> <span
-				class="brand-text font-weight-light" style="padding-left: 20px">MoLife<i
-					class="fa-solid fa-paw" style="padding-left: 20px"></i></span>
+				style="opacity: 0.8" /> <span class="brand-text font-weight-light"
+				style="padding-left: 20px">MoLife<i class="fa-solid fa-paw"
+					style="padding-left: 20px"></i></span>
 			</a>
 
 			<!-- Sidebar -->
@@ -491,61 +490,62 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 									</ul>
 								</c:if>
 								<!-- form start -->
-								<form METHOD="post" ACTION="/adminController"
-									name="empadd" enctype="multipart/form-data">
+								<form METHOD="post" ACTION="/adminController" name="empadd"
+									enctype="multipart/form-data">
 									<div class="card-body">
 										<div class="form-group">
-											<label for="exampleInputEmail1">員工帳號</label> 
-											<input type="TEXT" name="empAcc" value="<%=(adminVO == null) ? "" : adminVO.getEmpAcc()%>" />
+											<label for="exampleInputEmail1">員工帳號</label> <input
+												type="TEXT" name="empAcc"
+												value="${sessionScope.adminVO.getEmpAcc()}" />
+
 										</div>
 										<div class="form-group">
-											<label for="exampleInputPassword1">員工密碼</label>
-											 <input type="password" name="empPsd" value="<%=(adminVO == null) ? "" : adminVO.getEmpPsd()%>" />
+											<label for="exampleInputPassword1">員工密碼</label> <input
+												type="password" name="empPsd"
+												value="${sessionScope.adminVO.getEmpPsd()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputName1">員工名稱</label> 
-											<input type="TEXT" name="empName" 
-					value="<%=(adminVO == null) ? "" : adminVO.getEmpName()%>" />
+											<label for="exampleInputName1">員工名稱</label> <input
+												type="TEXT" name="empName"
+												value="${sessionScope.adminVO.getEmpName()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputName1">員工信箱</label> 
-											<input type="TEXT" name="empEmail" size="45"
-					value="<%=(adminVO == null) ? "" : adminVO.getEmpEmail()%>" />
-										</div>										
+											<label for="exampleInputName1">員工信箱</label> <input
+												type="TEXT" name="empEmail" size="45"
+												value="${sessionScope.adminVO.getEmpEmail()}" />
+										</div>
 										<div class="form-group">
-											<label>員工權限</label> 
-											<select size="1" name="empAuthId">
+											<label>員工權限</label> <select size="1" name="empAuthId">
 												<option value="1">商城
-						<option value="2">旅館
-						<option value="3">全部
-												<!-- <option>option 4</option>
+												<option value="2">旅館
+												<option value="3">全部
+													<!-- <option>option 4</option>
                           <option>option 5</option> -->
 											</select>
 										</div>
-										
-										
-										
+
+
+
 										<div class="form-group">
-											<label for="exampleInputStatus1">員工狀態</label>
-											 <input class="form-check-input" type="radio" name="empStatus" id= deactive value="0" style="transform: translateX(60px)" checked />
-											 
-											 <label	class="form-check-label" for="active" style="transform: translateX(60px)"> 禁用 </label> 
-											 
-											 <input class="form-check-input" type="radio" name="memStatus" id="deactive" value="1" style="transform: translateX(120px)" /> 
-											 
-											 <label class="form-check-label" for="deactive" style="transform: translateX(120px)"> 啟用 </label>
+											<label for="exampleInputStatus1">員工狀態</label> <input
+												class="form-check-input" type="radio" name="empStatus"
+												id=deactive value="0" style="transform: translateX(60px)"
+												checked /> <label class="form-check-label" for="active"
+												style="transform: translateX(60px)"> 禁用 </label> <input
+												class="form-check-input" type="radio" name="empStatus"
+												id="active" value="1" style="transform: translateX(120px)"
+												checked /> <label class="form-check-label" for="active"
+												style="transform: translateX(120px)"> 啟用 </label>
 										</div>
 
 										<div class="form-group">
 											<label for="exampleInputFile">上傳員工大頭貼</label>
 											<div class="input-group">
 												<div class="custom-file">
-													<input type="file" name="empPicId" id="empPicId" /> <label
-														class="custom-file-label" for="exampleInputFile">選擇檔案</label>
+													<input type="file" name="empPicId" id="empPicId" />
 												</div>
 											</div>
-										</div>
-										<!-- <div class="form-check">
+											<!-- <div class="form-check">
                         <input
                           type="checkbox"
                           class="form-check-input"
@@ -555,18 +555,18 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
                           >Check me out</label
                         >
                       </div> -->
-                      
-                      				<jsp:useBean id="admSvc" scope="page"
-				class="com.tibame.tga105.admin.service.AdminService" />
-									</div>
-									<!-- /.card-body -->
 
-									<div class="card-footer">
-										<a href="#">
-											<input type="hidden" name="action" value="insert">
-											 <input	type="submit" class="btn btn-primary" value="確認新增">
-										</a>
-									</div>
+											<jsp:useBean id="admSvc" scope="page"
+												class="com.tibame.tga105.admin.service.AdminService" />
+										</div>
+										<!-- /.card-body -->
+
+										<div class="card-footer">
+											<a href="#"> <input type="hidden" name="action"
+												value="insert"> <input type="submit"
+												class="btn btn-primary" value="確認新增">
+											</a>
+										</div>
 								</form>
 							</div>
 							<!-- /.card -->
@@ -578,8 +578,8 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 		<!-- /.content-wrapper -->
 
 		<footer class="main-footer">
-			<strong>MoLife <i class="fa-solid fa-paw"></i>
-				&copy; 2022 <a href="./24front_page.html">TGA105-第四組</a>.
+			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
+				href="./24front_page.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

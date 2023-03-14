@@ -10,27 +10,40 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "product_order_item")
 public class ProductOrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_item_id")
-    private Integer orderItemId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "order_item_id")
+	private Integer orderItemId;
+	
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_id", nullable = false)
+	private ProductOrder productOrder;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id", nullable = false)
-    private ProductOrder productOrder;
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = false)
+	private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+	@Column(name = "product_number")
+	private Integer productNumber;
 
-    @Column(name = "product_number")
-    private Integer productNumber;
+	@Column(name = "product_price")
+	private Integer productPrice;
 
-    @Column(name = "product_price")
-    private Integer productPrice;
+	public ProductOrderItem() {
+	}
+
+	public ProductOrderItem(Product product, Integer productNumber, Integer productPrice) {
+		super();
+		this.product = product;
+		this.productNumber = productNumber;
+		this.productPrice = productPrice;
+	}
 
 	public Integer getOrderItemId() {
 		return orderItemId;

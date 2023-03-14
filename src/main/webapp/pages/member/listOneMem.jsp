@@ -136,7 +136,7 @@ th, td {
     </div>
   </header>
 	
-	<div>
+	<div style="margin-top:8%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
 				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a href="#oreder_search" style="margin-bottom: 10%;">訂單查詢</a> <a
@@ -187,10 +187,10 @@ th, td {
 						<tr>
 							<td>會員註冊時間</td>
 							<td>${memVO.registrationDate}</td>
-							<!--               <tr> -->
-							<!--                 <td>會員檢舉</td> -->
-							<%--                 <td>${memVO.postSuspended}</td> --%>
-							<!--               </tr> -->
+<!-- 							              <tr> -->
+<!-- 							                <td>會員檢舉</td> -->
+<%-- 							                <td>${memVO.postSuspended}</td> --%>
+<!-- 							              </tr> -->
 						<tr>
 							<td></td>
 							<td>

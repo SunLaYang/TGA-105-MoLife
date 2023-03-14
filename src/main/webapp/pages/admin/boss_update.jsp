@@ -1,13 +1,24 @@
 <%@page import="com.tibame.tga105.admin.VO.AdminVO"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.tibame.tga105.admin.service.AdminService"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 
+<%
+AdminService admSvc = new AdminService();
+List<AdminVO> list = admSvc.getAll();
+pageContext.setAttribute("list", list);
+%>
 <%
 AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 %>
 
 
-<!DOCTYPE html>
+
+
+
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -442,14 +453,15 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
+		<div class="content-wrapper" style="min-height: 994.367px;">
 			<!-- Content Header (Page header) -->
 			<div class="content-header">
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1 class="m-0">
-								<i class="fa-solid fa-paw" style="padding-right: 20px"></i> 權限管理
+								<i class="fa-solid fa-paw" style="padding-right: 20px"></i>
+								會員資料編輯
 							</h1>
 						</div>
 						<!-- /.col -->
@@ -458,7 +470,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 								<li class="breadcrumb-item"><a href="./24admin.index.html">首頁</a>
 								</li>
 								<li class="breadcrumb-item active"><a
-									href="./24admin.limit.html">權限管理</a></li>
+									href="./24admin.limit.html">會員資料編輯</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -476,76 +488,49 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						<!-- left column -->
 						<div class="col-md-8" style="transform: translateX(200px)">
 							<!-- general form elements -->
-							<div class="card card-primary">
+							<div class="card card-primary" style="margin-bottom: 10px">
 								<div class="card-header">
-									<h3 class="card-title">新增員工</h3>
+									<h3 class="card-title">管理員修改會員資料</h3>
 								</div>
-								<!-- /.card-header -->
+								<%-- 錯誤表列 --%>
 								<c:if test="${not empty errorMsgs}">
-									<font style="color: red">請修正以下錯誤:</font>
-									<ul>
-										<c:forEach var="message" items="${errorMsgs}">
-											<li style="color: red">${message}</li>
+									<font style="color: red;margin-left:39%;">請修正以下錯誤:</font>
+									<ul style="margin-bottom:-2%;">
+										<c:forEach var="message" items="${sessionScope.errorMsgs}">
+											<li style="color: red;margin-left:35%;">${message}</li>
 										</c:forEach>
 									</ul>
 								</c:if>
+								<!-- /.card-header -->
 								<!-- form start -->
-								<form METHOD="post" ACTION="/adminController" name="empadd"
-									enctype="multipart/form-data">
+								<form METHOD="post" ACTION="/adminController"
+									name="boss_Update" enctype="multipart/form-data">
 									<div class="card-body">
 										<div class="form-group">
-											<label for="exampleInputEmail1">員工帳號</label> <input
-												type="TEXT" name="empAcc"
-												value="${sessionScope.adminVO.getEmpAcc()}" />
-
-										</div>
-										<div class="form-group">
-											<label for="exampleInputPassword1">員工密碼</label> <input
-												type="password" name="empPsd"
+											<label for="exampleInputEmail1">員工密碼</label> <input
+												type="TEXT" name="empPsd" class="form-control"
+												id="empPsd" placeholder="empPsd"
 												value="${sessionScope.adminVO.getEmpPsd()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputName1">員工名稱</label> <input
-												type="TEXT" name="empName"
+											<label for="exampleInputEmail1">員工名稱</label> <input
+												type="TEXT" name="empName" class="form-control"
+												id="empName" placeholder="empName"
 												value="${sessionScope.adminVO.getEmpName()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputName1">員工信箱</label> <input
-												type="TEXT" name="empEmail" size="45"
+											<label for="exampleInputEmail1">員工信箱</label> <input
+												type="TEXT" name="empEmail" class="form-control"
+												id="empEmail" placeholder="empEmail"
 												value="${sessionScope.adminVO.getEmpEmail()}" />
 										</div>
 										<div class="form-group">
-											<label>員工權限</label> <select size="1" name="empAuthId">
-												<option value="1">商城
-												<option value="2">旅館
-												<option value="3">全部
-													<!-- <option>option 4</option>
-                          <option>option 5</option> -->
-											</select>
+											<label for="exampleInputPassword1">員工頭像圖片上傳</label> <input
+												type="file" name="empPicId" id="empPicId" class="form-control"
+												 />
 										</div>
-
-
-
-										<div class="form-group">
-											<label for="exampleInputStatus1">員工狀態</label> <input
-												class="form-check-input" type="radio" name="empStatus"
-												id=deactive value="0" style="transform: translateX(60px)"
-												checked /> <label class="form-check-label" for="active"
-												style="transform: translateX(60px)"> 禁用 </label> <input
-												class="form-check-input" type="radio" name="empStatus"
-												id="active" value="1" style="transform: translateX(120px)"
-												checked /> <label class="form-check-label" for="active"
-												style="transform: translateX(120px)"> 啟用 </label>
-										</div>
-
-										<div class="form-group">
-											<label for="exampleInputFile">上傳員工大頭貼</label>
-											<div class="input-group">
-												<div class="custom-file">
-													<input type="file" name="empPicId" id="empPicId" />
-												</div>
-											</div>
-											<!-- <div class="form-check">
+										
+										<!-- <div class="form-check">
                         <input
                           type="checkbox"
                           class="form-check-input"
@@ -555,18 +540,20 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
                           >Check me out</label
                         >
                       </div> -->
+									</div>
+									<jsp:useBean id="admtSvc" scope="page"
+										class="com.tibame.tga105.admin.service.AdminService" />
+									<!-- /.card-body -->
 
-											<jsp:useBean id="admSvc" scope="page"
-												class="com.tibame.tga105.admin.service.AdminService" />
-										</div>
-										<!-- /.card-body -->
-
-										<div class="card-footer">
-											<a href="#"> <input type="hidden" name="action"
-												value="insert"> <input type="submit"
-												class="btn btn-primary" value="確認新增">
-											</a>
-										</div>
+									<div class="card-footer">
+										<a href="#"> <input type="hidden" name="action"
+											value="updatebyEMP"> <input type="hidden"
+											name="adminId" value="${sessionScope.adminVO.getAdminId()}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
+											<!-- 											</button>  --> <input
+											class="btn btn-primary update_button" type="submit"
+											value="確認修改">
+										</a>
+									</div>
 								</form>
 							</div>
 							<!-- /.card -->

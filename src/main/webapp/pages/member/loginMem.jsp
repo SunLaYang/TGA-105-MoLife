@@ -10,7 +10,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO"); //MemServlet.java (Concroll
 
 <%-- <% memVO memVO = (memVO) request.getAttribute("memVO");%>> --%>
 
---<%=memVO == null%>--${memVO.memId}--
+<%-- --<%=memVO == null%>--${memVO.memId}-- --%>
 
 
 <!DOCTYPE html>
@@ -59,65 +59,52 @@ div.btn_click {
 	margin-bottom: 20px;
 }
 </style>
-<link
-      rel="stylesheet"
-      type="text/css"
-      href="../../styles/bootstrap4/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../styles/main_styles.css"
-    />
-    <link rel="stylesheet" href="../../styles/room/room.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../styles/bootstrap4/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../styles/main_styles.css" />
+<link rel="stylesheet" href="../../styles/room/room.css" />
 </head>
 
 <body>
 	<!-- Header -->
-	 <header class="header trans_300">
-    <!-- Main Navigation -->
-    <div class="main_nav_container bg-yellow">
-      <div>
-        <div class="row">
-          <div class="col-lg-12 text-right">
-            <div class="logo_container">
-              <a href="../../page/front_page.html">
-                <img src="../../images/home/logoMoLife.png" />
-              </a>
-            </div>
-            <nav class="navbar">
-              <ul class="navbar_menu">
-                <li>
-                  <a href="./01room.index.html">寵物旅館</a>
-                </li>
-                <li><a href="#">商品專區</a></li>
-                <li><a href="#">寵物募款</a></li>
-                <li><a href="#">寵物論壇</a></li>
-                <li>
-                  <a href="#">聯絡我們</a>
-                </li>
-                <li><a href="../../page/index.html">管理員後台</a></li>
-              </ul>
-              <ul class="navbar_user">
-                <a href="#"
-                  ><img class="icon" src="../../images/home/car.png"
-                /></a>
-                <a href="#"
-                  ><img class="icon" src="../../images/home/ring.png"
-                /></a>
-                <a href="#"
-                  ><img class="icon" src="../../images/home/man.png"
-                /></a>
-              </ul>
-              <div class="hamburger_container">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+	<header class="header trans_300">
+		<!-- Main Navigation -->
+		<div class="main_nav_container bg-yellow">
+			<div>
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<div class="logo_container">
+							<a href="../../page/front_page.html"> <img
+								src="../../images/home/logoMoLife.png" />
+							</a>
+						</div>
+						<nav class="navbar">
+							<ul class="navbar_menu">
+								<li><a href="./01room.index.html">寵物旅館</a></li>
+								<li><a href="#">商品專區</a></li>
+								<li><a href="#">寵物募款</a></li>
+								<li><a href="#">寵物論壇</a></li>
+								<li><a href="#">聯絡我們</a></li>
+								<li><a href="../../page/index.html">管理員後台</a></li>
+							</ul>
+							<ul class="navbar_user">
+								<a href="#"><img class="icon"
+									src="../../images/home/car.png" /></a>
+								<a href="#"><img class="icon"
+									src="../../images/home/ring.png" /></a>
+								<a href="#"><img class="icon"
+									src="../../images/home/man.png" /></a>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
 
 
 
@@ -127,7 +114,7 @@ div.btn_click {
 	text-center">
 			<p class="login-box-msg">會員登入</p>
 		</div>
-		<div style= "margin-left:40%">
+		<div style="margin-left: 40%">
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
 				<ul>
@@ -137,8 +124,7 @@ div.btn_click {
 				</ul>
 			</c:if>
 		</div>
-		<form METHOD="post" ACTION="/memberController" name="login"
-			enctype="multipart/form-data">
+		<form METHOD="post" ACTION="/memberController" name="login">
 			<div class="col text-center">
 				<div class="mail.text">
 					<label for="exampleInputEmail1" style="color: #8d98a7;">信箱</label>
@@ -166,7 +152,7 @@ div.btn_click {
 		</div>
 
 
-			<li><a href='listAllMem.jsp'>List</a> all Member. <br> <br></li>
+		<li><a href='listAllMem.jsp'>List</a> all Member. <br> <br></li>
 
 	</div>
 	</form>

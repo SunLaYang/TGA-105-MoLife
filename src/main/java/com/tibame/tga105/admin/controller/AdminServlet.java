@@ -40,7 +40,7 @@ public class AdminServlet extends HttpServlet {
 		if ("getOne_For_Display".equals(action)) {
 
 			List<String> erroMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", erroMsgs);
+			req.getSession().setAttribute("errorMsgs", erroMsgs);
 
 //			1.接收請求參數
 			String str = req.getParameter("adminId");
@@ -100,7 +100,7 @@ public class AdminServlet extends HttpServlet {
 			AdminVO adminVO = admSvc.getOneEmp(adminId);
 			// 查詢完成，轉交
 
-			req.getSession().setAttribute("adminVO", adminVO);
+			req.setAttribute("adminVO", adminVO);
 			String url = "/pages/admin/emp_update.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -135,16 +135,16 @@ public class AdminServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
 			Integer adminId = Integer.valueOf(req.getParameter("adminId").trim());
 
 			String empPsd = req.getParameter("empPsd");
 			String empPsdReg = "^[(a-zA-Z0-9_)]{3,10}$";
 			if (empPsd == null || empPsd.trim().length() == 0) {
-				errorMsgs.add("會員密碼: 請勿空白");
+				errorMsgs.add("員工密碼: 請勿空白");
 			} else if (!empPsd.trim().matches(empPsdReg)) {
-				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於3至10個字以內");
+				errorMsgs.add("員工密碼請使用英文與數字之組合，長度介於3至10個字以內");
 			}
 
 			String empName = req.getParameter("empName");
@@ -187,11 +187,11 @@ public class AdminServlet extends HttpServlet {
 				tempVO.setEmpPicId(empPicId);
 				in.close();
 			} 
-			tempVO.setAdminId(adminId);
+//			tempVO.setAdminId(adminId);
 
 			if (!errorMsgs.isEmpty()) {
-				req.getSession().setAttribute("tempVO", tempVO);
-				String url = "/pages/admin/admin/emp_update.jsp";
+				req.setAttribute("adminVO", tempVO);
+				String url = "/pages/admin/emp_update.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
 				res.sendRedirect(url);
@@ -288,7 +288,7 @@ public class AdminServlet extends HttpServlet {
 			tempVO.setAdminId(adminId);
 
 			if (!errorMsgs.isEmpty()) {
-				req.getSession().setAttribute("tempVO", tempVO);
+				req.setAttribute("tempVO", tempVO);
 				String url = "/pages/admin/boss_update.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
@@ -301,7 +301,7 @@ public class AdminServlet extends HttpServlet {
 			tempVO = admSvc.updateByBoss(tempVO);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-			req.getSession().setAttribute("tempVO", tempVO);
+			req.setAttribute("tempVO", tempVO);
 			String url = "/pages/admin/listAllEmp.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -347,10 +347,6 @@ public class AdminServlet extends HttpServlet {
 			} else if (!empEmail.trim().matches(empEmailReg)) {
 				errorMsgs.add("員工信箱: 請符合電子信箱格式");
 			}
-
-			else {
-				errorMsgs.add("empPicId, 員工頭像:請上傳圖片");
-			}
 			
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
 
@@ -373,6 +369,7 @@ public class AdminServlet extends HttpServlet {
 			} 
 			adminVO.setEmpAuthId(empAuthId);
 			adminVO.setEmpStatus(empStatus);
+			req.getSession().setAttribute("adminVO", adminVO);
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("adminVO", adminVO);
@@ -388,7 +385,7 @@ public class AdminServlet extends HttpServlet {
 			AdminService admSvc = new AdminService();
 			adminVO = admSvc.addAdmin(adminVO);
 
-			req.getSession().setAttribute("success", "新增會員成功");
+			req.setAttribute("success", "新增會員成功");
 			String url = "/pages/admin/listAllEmp.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -467,8 +464,9 @@ public class AdminServlet extends HttpServlet {
 				}
 				session.setAttribute("adminVO", adminVO);
 				
-				req.getSession().setAttribute("adminVO", adminVO);
-				req.getSession().setAttribute("login", true);
+				req.setAttribute("adminVO", adminVO);
+				
+				req.setAttribute("login", true);
 
 				Cookie cookie = new Cookie("adminId", adminVO.getAdminId().toString());
 				Cookie cookie2 = new Cookie("memberName", adminVO.getEmpName());
@@ -482,7 +480,7 @@ public class AdminServlet extends HttpServlet {
 			
 			
 			
-			req.getSession().setAttribute("adminVO", adminVO);
+			req.setAttribute("adminVO", adminVO);
 			String url = "/pages/admin/listOneEmp.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);

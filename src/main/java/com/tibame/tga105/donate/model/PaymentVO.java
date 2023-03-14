@@ -6,7 +6,6 @@ public class PaymentVO {
 	private Integer paymentId;
 	private Integer planId;
 	private Integer memeberId;
-	private Integer planStatusId;
 	private Timestamp paymentDate;
 	private Integer paymentAmount;
 	private PlanVO planVO;
@@ -47,12 +46,6 @@ public class PaymentVO {
 	public void setMemeberId(Integer memeberId) {
 		this.memeberId = memeberId;
 	}
-	public Integer getPlanStatusId() {
-		return planStatusId;
-	}
-	public void setPlanStatusId(Integer planStatusId) {
-		this.planStatusId = planStatusId;
-	}
 	public Timestamp getPaymentDate() {
 		return paymentDate;
 	}
@@ -69,7 +62,7 @@ public class PaymentVO {
 	@Override
 	public String toString() {
 		return "PaymentVO [paymentId=" + paymentId + ", planId=" + planId + ", memeberId=" + memeberId
-				+ ", planStatusId=" + planStatusId + ", paymentDate=" + paymentDate + ", paymentAmount=" + paymentAmount
+				+", paymentDate=" + paymentDate + ", paymentAmount=" + paymentAmount
 				+ "]";
 	}
 	

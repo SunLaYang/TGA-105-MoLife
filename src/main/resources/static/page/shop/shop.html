@@ -528,6 +528,7 @@
     <script src="../../js/categories_custom.js"></script>
 
     <script>
+      let memberId = 1;
       function initIsotopeFiltering() {
         var sortTypes = $(".type_sorting_btn");
         var sortNums = $(".num_sorting_btn");
@@ -629,7 +630,7 @@
                                       <div class="product_image" style="min-height: 220px;">
                                         <img src="/productimages/${img}" style="max-height: 100%;"/>
                                       </div>
-                                      <div class="favorite"></div>
+                                      <div class="favorite" data-productId="${item.productId}"></div>
                                       <div class="product_info">
                                         <h6 class="product_name">
                                           <a href="shop-product.html?id=${item.productId}"
@@ -664,7 +665,7 @@
             event.preventDefault();
             let productId = $(this).data("productid");
             let cartData = {
-              memberId: 1,
+              memberId: memberId,
               product: {
                 productId: productId,
               },
@@ -690,6 +691,34 @@
             });
           }
         );
+
+        $(".product-grid").on("click", ".favorite", function () {
+          let productId = $(this).data("productid");
+          let favoriteData = {
+            memberId: memberId,
+            product: {
+              productId: productId,
+            },
+          };
+          // 商品加入收藏
+          $.ajax({
+            url: "/productcollections",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(favoriteData),
+            success: function (data) {
+              if (data) {
+                alert("商品成功加入收藏!");
+              } else {
+                alert("商品已移除收藏!");
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
       });
     </script>
   </body>

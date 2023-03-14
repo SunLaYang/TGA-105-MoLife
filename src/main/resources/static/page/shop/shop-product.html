@@ -327,6 +327,7 @@
       let image1 = null;
       let image2 = null;
       let image3 = null;
+      let memberId = 1;
 
       function init() {
         $.ajax({
@@ -337,6 +338,8 @@
             $("#productName").text(data.productName);
             $("#productDetails").text(data.productDetails);
             $(".product_price").text("$" + data.productPrice);
+            $(".product_favorite").attr("data-productid", data.productId);
+
             $.each(data.productImages, function (i, item) {
               switch (item.productImageType) {
                 case 0:
@@ -402,6 +405,41 @@
               } else {
                 alert("商品已存在購物車!");
               }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
+
+        let favorite = 0;
+        $(".product_favorite").on("click", function () {
+          let productId = $(this).data("productid");
+          let favoriteData = {
+            memberId: memberId,
+            product: {
+              productId: productId,
+            },
+          };
+          if (favorite == 1) return;
+          // 商品加入收藏
+          $.ajax({
+            url: "/productcollections",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(favoriteData),
+            success: function (data) {
+              if (data) {
+                alert("商品成功加入收藏!");
+              } else {
+                alert("商品已移除收藏!");
+                if (favorite == 0) {
+                  favorite++;
+                  $(".product_favorite").click();
+                }
+              }
+              favorite += 2;
             },
             error: function (xhr, textStatus, errorThrown) {
               console.log("error");

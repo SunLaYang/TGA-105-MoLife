@@ -8,32 +8,27 @@ import com.tibame.tga105.room.dto.RoomorderRequest;
 import com.tibame.tga105.room.model.RoomorderVO;
 
 public interface RoomorderService {
-	
-	Integer countOrder(RoomderQueryParams roomderQueryParams);
-	
-	List<RoomorderVO> getRoomorders(RoomderQueryParams roomderQueryParams);
-	
-	RoomorderVO getRoomorderById(Integer roomOrderId);
-	
-//	List<RoomorderVO> getRoomorderByMemberId(Integer memberId);
-	
-	Integer createRoomorder(RoomorderRequest roomorderRequest);
-	
-	void updateRoomorder(Integer roomOrderId, RoomorderRequest roomorderRequest);
-	
-	//取消訂單專用
-	void updateRoomorderForCancel(Integer roomOrderId, RoomorderRequest roomorderRequest);
-	
-	void deleteRoomOrder(Integer roomOrderId);
-	
-	//=============================
-	List<Map<String, Object>> getRoomorderPages(RoomorderVO roomorderVO);
-	
-	List<Map<String, Object>> getRoomorderByMemberId(RoomorderVO roomorderVO, Integer memberId);
-	
-	List<Map<String, Object>> getRoomorderDate(Integer roomTypeId);
-	
-	
 
+	Integer countOrder(RoomderQueryParams roomderQueryParams);
+
+	List<RoomorderVO> getRoomorders(RoomderQueryParams roomderQueryParams);
+
+	RoomorderVO getRoomorderById(Integer roomOrderId);
+
+	Integer createRoomorder(RoomorderRequest roomorderRequest);
+
+	void updateRoomorder(Integer roomOrderId, RoomorderRequest roomorderRequest);
+
+	// 取消訂單專用
+	void updateRoomorderForCancel(Integer roomOrderId, RoomorderRequest roomorderRequest);
+
+	void deleteRoomOrder(Integer roomOrderId);
+
+	// =============================
+	List<Map<String, Object>> getRoomorderPages(RoomorderVO roomorderVO);
+
+	List<Map<String, Object>> getRoomorderByMemberId(RoomorderVO roomorderVO, Integer memberId);
+
+	List<Map<String, Object>> getRoomorderDate(Integer roomTypeId);
 
 }

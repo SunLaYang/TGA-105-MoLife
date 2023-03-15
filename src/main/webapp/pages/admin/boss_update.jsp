@@ -490,7 +490,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 							<!-- general form elements -->
 							<div class="card card-primary" style="margin-bottom: 10px">
 								<div class="card-header">
-									<h3 class="card-title">管理員修改會員資料</h3>
+									<h3 class="card-title">老闆修改員工資料</h3>
 								</div>
 								<%-- 錯誤表列 --%>
 								<c:if test="${not empty errorMsgs}">
@@ -510,24 +510,49 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 											<label for="exampleInputEmail1">員工密碼</label> <input
 												type="TEXT" name="empPsd" class="form-control"
 												id="empPsd" placeholder="empPsd"
-												value="${sessionScope.adminVO.getEmpPsd()}" />
+												value="${adminVO.getEmpPsd()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">員工名稱</label> <input
 												type="TEXT" name="empName" class="form-control"
 												id="empName" placeholder="empName"
-												value="${sessionScope.adminVO.getEmpName()}" />
+												value="${adminVO.getEmpName()}" />
 										</div>
 										<div class="form-group">
 											<label for="exampleInputEmail1">員工信箱</label> <input
 												type="TEXT" name="empEmail" class="form-control"
 												id="empEmail" placeholder="empEmail"
-												value="${sessionScope.adminVO.getEmpEmail()}" />
+												value="${adminVO.getEmpEmail()}" />
 										</div>
 										<div class="form-group">
-											<label for="exampleInputPassword1">員工頭像圖片上傳</label> <input
-												type="file" name="empPicId" id="empPicId" class="form-control"
-												 />
+											<label for="exampleInputEmail1">員工權限</label>
+											 <select size="1" name="empAuthId"  >
+												<option value="1">商城
+												<option value="2" selected>旅館
+												<option value="3">全部
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputPassword1">員工狀態</label>
+											
+											 <input
+												class="form-check-input" type="radio" name="empStatus"
+												id=deactive value="0" style="transform: translateX(60px)"
+												 /> 
+												<label class="form-check-label" for="active"
+												style="transform: translateX(60px)"> 禁用 </label>
+												
+												 <input
+												class="form-check-input" type="radio" name="empStatus"
+												id="active" value="1" style="transform: translateX(120px)"
+												 /> <label class="form-check-label" for="active"
+												style="transform: translateX(120px)"> 啟用 </label>
+												 
+												 
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">員工頭像圖片上傳</label>
+											 <input type="file" name="empPicId" id="empPicId" />
 										</div>
 										
 										<!-- <div class="form-check">
@@ -547,8 +572,8 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 
 									<div class="card-footer">
 										<a href="#"> <input type="hidden" name="action"
-											value="updatebyEMP"> <input type="hidden"
-											name="adminId" value="${sessionScope.adminVO.getAdminId()}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
+											value="updatebyBoss"> <input type="hidden"
+											name="adminId" value="${adminVO.getAdminId()}"> <!-- 											<button type="submit" class="btn btn-primary">新增並儲存 -->
 											<!-- 											</button>  --> <input
 											class="btn btn-primary update_button" type="submit"
 											value="確認修改">
@@ -637,6 +662,11 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 	<!-- Page specific script -->
 	<script>
 		$(function() {
+			console.log(`${adminVO.getEmpAuthId()}`)
+			$("select").find(`option[value=${adminVO.getEmpAuthId()}]`).attr("selected", true);
+			
+			console.log(`${adminVO.getEmpStatus()}`)
+			$(`.form-check-input[value=${adminVO.getEmpStatus()}]`).attr("checked", true);	
 			/* ChartJS
 			 * -------
 			 * Here we will create a few charts using ChartJS

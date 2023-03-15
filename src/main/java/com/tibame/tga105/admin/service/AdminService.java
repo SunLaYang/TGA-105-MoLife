@@ -51,7 +51,7 @@ public class AdminService {
 	
 	public AdminVO updateByBoss(AdminVO tempVO) {
 		
-		this.dao.empedit(tempVO);
+		this.dao.bossedit(tempVO);
 		return tempVO;
 	}
 	

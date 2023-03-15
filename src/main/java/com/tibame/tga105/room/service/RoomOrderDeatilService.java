@@ -8,6 +8,4 @@ public interface RoomOrderDeatilService {
 	
 	List<RoomOrderDeatilVo> getOrderDeatils();
 	
-//	RoomOrderDeatilVo getOrderDetailsByMemID(Integer memberId);
-
 }

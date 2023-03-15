@@ -18,7 +18,7 @@ public class RoomLikeController {
 	  	@Autowired
 	    private RoomLikeRepository roomLikeRepo;
 	    
-	  	//按讚
+	  	//========房型按讚===============
 	    @GetMapping("/room/like")
 	    public ResponseEntity<String> likeRoom(@RequestParam("memberId") String memberId, 
 	                                           @RequestParam("roomName") String roomName) {
@@ -32,13 +32,13 @@ public class RoomLikeController {
 	        }
 	    }
 	    
-	    //查讚數
+	    //========查詢讚數===========
 	    @GetMapping("/room/like/count")
 	    public long getRoomLikeCount(@RequestParam("roomName") String roomName) {
 	        return roomLikeRepo.getRoomLikeCount(roomName);
 	    }
 	    
-	    //取消按讚
+	    //========取消按讚===========
 	    @DeleteMapping("/room/like")
 	    public ResponseEntity<String> deleteLikedRoom(@RequestParam("memberId") String memberId,
 	                                                   @RequestParam("roomName") String roomName) {

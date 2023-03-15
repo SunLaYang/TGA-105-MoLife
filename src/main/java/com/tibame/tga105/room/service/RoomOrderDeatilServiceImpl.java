@@ -17,19 +17,7 @@ public class RoomOrderDeatilServiceImpl implements RoomOrderDeatilService{
 	@Override
 	public List<RoomOrderDeatilVo> getOrderDeatils() {
 		return roomOrderDeatlDao.getOrderDeatils();
-	}
-
-//	@Override
-//	public RoomOrderDeatilVo getOrderDetailsByMemID(Integer memberId) {
-//		//分別取得兩張表的數據
-//		RoomOrderDeatilVo roomOrderDeatilVo = roomOrderDeatlDao.getOrderDetailsByMemID(memberId);
-//		
-//		List<RoomorderVO> roomorderList = roomOrderDeatlDao.getOrderByOrderId(memberId);
-//		
-//		return null;
-//	}
-//	
-	
+	}	
 
 	
 }

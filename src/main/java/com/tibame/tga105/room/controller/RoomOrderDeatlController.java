@@ -19,6 +19,7 @@ public class RoomOrderDeatlController {
 	@Autowired
 	private RoomOrderDeatilService roomOrderDeatilService;
 	
+	//============查詢訂單明細=============
 	@GetMapping("/orderDeatils")
 	public ResponseEntity<List<RoomOrderDeatilVo>> getOrdersDetail(){
 		
@@ -26,22 +27,6 @@ public class RoomOrderDeatlController {
 		return ResponseEntity.status(HttpStatus.OK).body(roomOrderDeatilList);
 		
 	} 
-	
-//	//查詢會員訂單詳細
-//	@GetMapping("/orderDeatils/{memberId}")
-//	public ResponseEntity<RoomOrderDeatilVo> getOrderDetailsByMemID(@PathVariable Integer memberId){
-//		
-//		RoomOrderDeatilVo roomOrderDeatilVo = roomOrderDeatilService.getOrderDetailsByMemID(memberId);
-//		
-//		if(roomOrderDeatilVo != null) {
-//			
-//			return ResponseEntity.status(HttpStatus.OK).body(memberId);
-//			
-//		}else {
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//		}
-		
-		
-//	}
+
 
 }

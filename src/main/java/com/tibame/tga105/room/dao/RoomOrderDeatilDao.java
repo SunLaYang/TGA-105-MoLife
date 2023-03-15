@@ -8,6 +8,5 @@ public interface RoomOrderDeatilDao {
 
 	List<RoomOrderDeatilVo> getOrderDeatils();
 	
-//	RoomOrderDeatilVo getOrderDetailsByMemID(Integer memberId);
 	
 }

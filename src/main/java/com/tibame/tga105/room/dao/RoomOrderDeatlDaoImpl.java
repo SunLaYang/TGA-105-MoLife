@@ -25,14 +25,5 @@ public class RoomOrderDeatlDaoImpl implements RoomOrderDeatilDao{
 		return roomOrderDeatilList;
 	}
 
-//	@Override
-//	public RoomOrderDeatilVo getOrderDetailsByMemID(Integer memberId) {
-//		String sql = "SELECT roomorder_detail_id, room_type_id, roomorder_id FROM room_order_detail WHERE";
-//
-//		return null;
-//	}
-//	
-	
-
 
 }

@@ -37,9 +37,9 @@ public class RoomorderController {
 
 	// ==============後台訂單頁面join查詢實作分頁=================
 	@GetMapping("/getOrderpage")
-//	public ResponseEntity<List<Map<String, Object>>> getorderPage() {
 
-	public ResponseEntity<Page<RoomorderVO>> getorderPage(@RequestParam(required = false) String search, // 中文字查詢
+	public ResponseEntity<Page<RoomorderVO>> getorderPage(
+			@RequestParam(required = false) String search, // 中文字查詢
 			@RequestParam(required = false) Integer searchStatus, // 根據入住狀態查詢
 			@RequestParam(defaultValue = "room_check_date") String orderBy, // 根據什麼欄位排序
 			@RequestParam(defaultValue = "desc") String sort,
@@ -59,7 +59,6 @@ public class RoomorderController {
 
 		List<Map<String, Object>> roomorderList1 = roomorderService.getRoomorderPages(roomorderVO);
 
-
 		Integer total = roomorderService.countOrder(roomderQueryParams);
 
 		Page<RoomorderVO> page = new Page<RoomorderVO>();
@@ -73,7 +72,8 @@ public class RoomorderController {
 
 	// =========查詢全部訂單==========
 	@GetMapping("/roomorders") // 代表非必填項目
-	public ResponseEntity<Page<RoomorderVO>> getRoomorder(@RequestParam(required = false) String search, // 中文字查詢
+	public ResponseEntity<Page<RoomorderVO>> getRoomorder(
+			@RequestParam(required = false) String search, // 中文字查詢
 			@RequestParam(required = false) Integer searchStatus, // 根據入住狀態查詢
 			@RequestParam(defaultValue = "room_check_date") String orderBy, // 根據什麼欄位排序
 			@RequestParam(defaultValue = "desc") String sort,

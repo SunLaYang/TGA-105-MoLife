@@ -16,7 +16,7 @@ import com.tibame.tga105.room.model.PetroomVo;
 @Component
 public class PetroomServiceImpl implements PetroomService{
 	
-	//噴出log資訊 制式化寫法
+	//噴出log資訊的制式化寫法
 	 private final static Logger log = LoggerFactory.getLogger(PetroomServiceImpl.class);
 	
 	@Autowired

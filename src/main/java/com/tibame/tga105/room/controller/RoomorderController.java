@@ -35,7 +35,7 @@ public class RoomorderController {
 	@Autowired
 	private RoomorderService roomorderService;
 
-	// ==============後台訂單頁面join查詢 需做分頁=================
+	// ==============後台訂單頁面join查詢實作分頁=================
 	@GetMapping("/getOrderpage")
 //	public ResponseEntity<List<Map<String, Object>>> getorderPage() {
 
@@ -59,7 +59,6 @@ public class RoomorderController {
 
 		List<Map<String, Object>> roomorderList1 = roomorderService.getRoomorderPages(roomorderVO);
 
-//		List<RoomorderVO> roomorderList = roomorderService.getRoomorderPages(roomorderVO);
 
 		Integer total = roomorderService.countOrder(roomderQueryParams);
 
@@ -184,7 +183,7 @@ public class RoomorderController {
 
 	}
 
-	// ==============================取消訂單專用================
+	// ==================取消訂單專用================
 	@PutMapping("/roomordersCancel/{roomOrderId}")
 	public ResponseEntity<RoomorderVO> updateRoomorderForCancel(@PathVariable Integer roomOrderId,
 			@RequestBody @Valid RoomorderRequest roomorderRequest) {

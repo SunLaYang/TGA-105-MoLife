@@ -18,7 +18,7 @@ public class ProductService {
 	private ProductRepository productRepository;
 
 	public List<Product> selectAll() {
-		List<Product> products = productRepository.findAll();
+		List<Product> products = productRepository.findAll(Sort.by("productCreateDate").descending());
 		return products;
 	}
 

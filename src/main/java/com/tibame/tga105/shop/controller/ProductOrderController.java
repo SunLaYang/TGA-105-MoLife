@@ -30,6 +30,10 @@ public class ProductOrderController {
 		return OrderService.findId(id);
 	}
 
+	@GetMapping
+	public List<ProductOrder> selectAll() {
+		return OrderService.findAll();
+	}
 
 	@PostMapping
 	public boolean insert(@RequestBody ProductOrder productOrder) {

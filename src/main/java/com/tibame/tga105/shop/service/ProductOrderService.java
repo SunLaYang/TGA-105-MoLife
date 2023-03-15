@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +23,13 @@ public class ProductOrderService {
 
 	@Autowired
 	private ProductCartService cartService;
+	
+	public List<ProductOrder> findAll() {
+		return orderRepository.findAll(Sort.by("orderDate").descending());
+	}
 
 	public List<ProductOrder> findByMemberId(Integer id) {
-		return orderRepository.findByMemberId(id);
+		return orderRepository.findByMemberId(id, Sort.by("orderDate").descending());
 	}
 
 	public ProductOrder findId(Integer id) {

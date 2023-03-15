@@ -55,11 +55,11 @@ public class ProductOrderRepositoryTest {
 	}
 
 //	@Test
-	void testSelectProductOrder() {
-		List<ProductOrder> productOrders = productOrderRepository.findByMemberId(1);
-		assertNotNull(productOrders);
-		System.out.println(productOrders);
-	}
+//	void testSelectProductOrder() {
+//		List<ProductOrder> productOrders = productOrderRepository.findByMemberId(1);
+//		assertNotNull(productOrders);
+//		System.out.println(productOrders);
+//	}
 	
 	@Test
 	void testDeleteProductOrder() {

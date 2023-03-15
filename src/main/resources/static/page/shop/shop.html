@@ -525,29 +525,6 @@
       const urlParams = new URLSearchParams(window.location.search);
       const categoryId = urlParams.get("categoryId");
       const animalTypeId = urlParams.get("animalTypeId");
-      const angleDoubleRight =
-        '<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>';
-
-      if (categoryId) {
-        $(".sidebar_categories li").removeClass("active");
-        $(".sidebar_categories li a span").remove();
-        $(
-          ".sidebar_categories li a[href='shop.html?categoryId=" +
-            categoryId +
-            "']"
-        )
-          .parent()
-          .addClass("active")
-          .children("a")
-          .prepend(angleDoubleRight);
-      }
-
-      if (animalTypeId) {
-        let petType = $(
-          "#animal-type-list li[data-animalTypeId='" + animalTypeId + "'] span"
-        ).text();
-        $("#animal-type-span").text(petType);
-      }
 
       function initIsotopeFiltering() {
         var sortTypes = $(".type_sorting_btn");
@@ -630,6 +607,32 @@
       }
 
       function init() {
+        const angleDoubleRight =
+          '<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>';
+
+        if (categoryId) {
+          $(".sidebar_categories li").removeClass("active");
+          $(".sidebar_categories li a span").remove();
+          $(
+            ".sidebar_categories li a[href='shop.html?categoryId=" +
+              categoryId +
+              "']"
+          )
+            .parent()
+            .addClass("active")
+            .children("a")
+            .prepend(angleDoubleRight);
+        }
+
+        if (animalTypeId) {
+          let petType = $(
+            "#animal-type-list li[data-animalTypeId='" +
+              animalTypeId +
+              "'] span"
+          ).text();
+          $("#animal-type-span").text(petType);
+        }
+
         $.ajax({
           url: "/products/spec",
           type: "GET",

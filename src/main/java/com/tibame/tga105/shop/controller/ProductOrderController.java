@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tibame.tga105.shop.domain.ProductOrder;
+import com.tibame.tga105.shop.dto.ProductOrderDTO;
 import com.tibame.tga105.shop.service.ProductOrderService;
 
 @RestController
@@ -21,7 +22,7 @@ public class ProductOrderController {
 	private ProductOrderService OrderService;
 
 	@GetMapping("/{id}/orders")
-	public List<ProductOrder> selectByMemberId(@PathVariable Integer id) {
+	public List<ProductOrderDTO> selectByMemberId(@PathVariable Integer id) {
 		return OrderService.findByMemberId(id);
 	}
 

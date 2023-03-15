@@ -13,6 +13,7 @@ import com.tibame.tga105.shop.domain.Product;
 import com.tibame.tga105.shop.domain.ProductCart;
 import com.tibame.tga105.shop.domain.ProductOrder;
 import com.tibame.tga105.shop.domain.ProductOrderItem;
+import com.tibame.tga105.shop.dto.ProductOrderDTO;
 import com.tibame.tga105.shop.repository.ProductOrderRepository;
 
 @Service
@@ -23,13 +24,21 @@ public class ProductOrderService {
 
 	@Autowired
 	private ProductCartService cartService;
-	
+
 	public List<ProductOrder> findAll() {
 		return orderRepository.findAll(Sort.by("orderDate").descending());
 	}
 
-	public List<ProductOrder> findByMemberId(Integer id) {
-		return orderRepository.findByMemberId(id, Sort.by("orderDate").descending());
+	public List<ProductOrderDTO> findByMemberId(Integer id) {
+		List<ProductOrder> orders = orderRepository.findByMemberId(id, Sort.by("orderDate").descending());
+		return orders.stream().map(order -> {
+			ProductOrderDTO dto = new ProductOrderDTO();
+			dto.setOrderId(order.getOrderId());
+			dto.setOrderDate(order.getOrderDate());
+			dto.setTotal(order.getItems().stream().mapToInt(item -> item.getProductPrice()).sum());
+			dto.setOrderStatus(order.getOrderStatus());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	public ProductOrder findId(Integer id) {
@@ -41,32 +50,29 @@ public class ProductOrderService {
 	}
 
 	public boolean save(ProductOrder productOrder) {
-	    if (productOrder != null && productOrder.getMemberId() != null) {
-	        List<ProductCart> pc = cartService.findByMemberId(productOrder.getMemberId());
-	        if (pc != null) {
-	            List<ProductOrderItem> items = pc.stream()
-	                    .map(cart -> {
-	                        Product product = cart.getProduct();
-	                        int productNumber = cart.getProductNumber();
-	                        int totalPrice = product.getProductPrice() * productNumber;
-	                        try {
-								product.reduceStock(productNumber);
-							} catch (Exception e) {
-								e.printStackTrace();
-								throw new RuntimeException("商品庫存不足", e);
-							}
-	                        return new ProductOrderItem(product, productNumber, totalPrice);
-	                    })
-	                    .collect(Collectors.toList());
-	            items.forEach(productOrder::addOrderItem);
-	            orderRepository.save(productOrder);
-	            cartService.deleteByMemberId(productOrder.getMemberId());
-	            return true;
-	        }
-	    }
-	    return false;
+		if (productOrder != null && productOrder.getMemberId() != null) {
+			List<ProductCart> pc = cartService.findByMemberId(productOrder.getMemberId());
+			if (pc != null) {
+				List<ProductOrderItem> items = pc.stream().map(cart -> {
+					Product product = cart.getProduct();
+					int productNumber = cart.getProductNumber();
+					int totalPrice = product.getProductPrice() * productNumber;
+					try {
+						product.reduceStock(productNumber);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException("商品庫存不足", e);
+					}
+					return new ProductOrderItem(product, productNumber, totalPrice);
+				}).collect(Collectors.toList());
+				items.forEach(productOrder::addOrderItem);
+				orderRepository.save(productOrder);
+				cartService.deleteByMemberId(productOrder.getMemberId());
+				return true;
+			}
+		}
+		return false;
 	}
-
 
 	public boolean update(ProductOrder productOrder) {
 		if (productOrder != null) {

@@ -61,14 +61,18 @@ public class ProductOrderRepositoryTest {
 		System.out.println(productOrders);
 	}
 	
-//	@Test
+	@Test
 	void testDeleteProductOrder() {
 		ProductOrder productOrder = new ProductOrder();
-		productOrder.setOrderId(7);
+		productOrder.setOrderId(12);
+		productOrderRepository.delete(productOrder);
+		productOrder.setOrderId(13);
+		productOrderRepository.delete(productOrder);
+		productOrder.setOrderId(14);
 		productOrderRepository.delete(productOrder);
 	}
 	
-	@Test
+//	@Test
 	void testUpdateProductOrder() {
 		Optional<ProductOrder> optional = productOrderRepository.findById(6);
 		if (optional.isPresent()) {

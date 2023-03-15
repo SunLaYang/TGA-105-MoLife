@@ -230,7 +230,7 @@
           <div class="col-3 mt-3">
             <h4 id="total"></h4>
             <div class="red_button add_to_cart_button">
-              <a href="#">去買單</a>
+              <a href="" id="checkout">去買單</a>
             </div>
           </div>
         </div>
@@ -366,8 +366,8 @@
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
     <script>
+      let memberId = 1;
       function init() {
-        let memberId = 1;
         $.ajax({
           url: "/productcarts/" + memberId,
           type: "GET",
@@ -577,6 +577,26 @@
               alert("刪除錯誤");
               console.log("error");
               console.log(jqXHR);
+            },
+          });
+        });
+
+        $("#checkout").on("click", function (e) {
+          e.preventDefault();
+          $.ajax({
+            url: "/productcarts/" + memberId,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+              if (data.length === 0) {
+                alert("購物車為空!~");
+              } else {
+                window.location.href = "/page/shop/shop-checkout.html";
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
             },
           });
         });

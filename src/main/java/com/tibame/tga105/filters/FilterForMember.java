@@ -14,9 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = {"/pages/member/listOneMem.jsp",
-		"/pages/member/update_mem_input.jsp"}
-		)
-public class Filter1 implements Filter {
+		"/pages/member/update_mem_input.jsp",
+		"/page/shop/shop-cart.html",
+		"/page/shop/shop-collection.html",
+		"/page/shop/shop-orders.html",
+		"/pages/donate/N_3_proposal.jsp",
+		"/pages/donate/N_4-1_memberCenter",
+		"/pages/donate/N_4-2_updateStatus.jsp",
+		"/page/others/24post_info.html",
+		"/page/others/24forum.index.html"}
+)
+public class FilterForMember implements Filter {
 	
 	private FilterConfig config;
 

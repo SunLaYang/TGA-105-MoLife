@@ -132,6 +132,7 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 			pstmt.setInt(7, adminVO.getAdminId());
 
 			pstmt.executeUpdate();
+			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("讀不到資料庫driver"+e.getMessage());	
 			// 處理 任何 driver 錯誤

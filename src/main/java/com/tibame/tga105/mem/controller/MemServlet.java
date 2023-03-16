@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 
 import com.tibame.tga105.mem.model.MemService;
 import com.tibame.tga105.mem.model.MemVO;
+import com.tibame.tga105.mem.model.PsdResetMailService;
 
 @WebServlet("/memberController")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024)
@@ -34,6 +35,10 @@ public class MemServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+
+		/*
+		 * 查詢一筆會員
+		 */
 
 		if ("member_View".equals(action)) {
 
@@ -82,6 +87,10 @@ public class MemServlet extends HttpServlet {
 		}
 		/******************************************************************************************/
 
+		/*
+		 * 會員在檢視自己資料的頁面，按下修改，會進來這
+		 */
+
 		if ("getOne_For_Update".equals(action)) {// 來自listAllMem.jsp 或ListOMem.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -104,6 +113,11 @@ public class MemServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+
+		/*
+		 * 會員編輯自己的資料
+		 */
+
 		if ("update".equals(action)) {
 
 			HttpSession session = req.getSession();
@@ -237,6 +251,10 @@ public class MemServlet extends HttpServlet {
 
 		/******************************************************************************************/
 
+		/*
+		 * 在檢視所有會員的頁面，按下修改按鈕時會進來這
+		 */
+
 		if ("getOne_For_Update_By_Admin".equals(action)) {// 來自listAllMem.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -258,6 +276,11 @@ public class MemServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+
+		/*
+		 * 管理員修改會員資料
+		 */
+
 		if ("updateByAdmin".equals(action)) {
 
 			HttpSession session = req.getSession();
@@ -365,6 +388,10 @@ public class MemServlet extends HttpServlet {
 
 		/******************************************************************************************/
 
+		/*
+		 * 會員註冊
+		 */
+
 		if ("insert".equals(action)) { // 來自memadd.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -460,7 +487,7 @@ public class MemServlet extends HttpServlet {
 			}
 
 			memVO.setRegistrationDate(registrationDate);
-			
+
 			req.getSession().setAttribute("memVO", memVO);
 
 			if (!errorMsgs.isEmpty()) {
@@ -484,6 +511,10 @@ public class MemServlet extends HttpServlet {
 
 		/******************************************************************************************/
 
+		/*
+		 * 刪除會員
+		 */
+
 		if ("delete".equals(action)) { // 來自listAllMem.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -505,6 +536,10 @@ public class MemServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+
+		/*
+		 * 會員登入
+		 */
 
 		if ("login".equals(action)) {// 來自loginMem.jsp
 
@@ -578,12 +613,100 @@ public class MemServlet extends HttpServlet {
 			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/listOneMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
-			MemVO tempVO =(MemVO) session.getAttribute("memVO");
-//			System.out.println(tempVO.getMemNickname());
+			MemVO tempVO = (MemVO) session.getAttribute("memVO");
+			System.out.println(tempVO.getMemNickname());
 //			successView.forward(req, res);
-		
+
 			res.sendRedirect(url);
 
+		}
+
+		/*
+		 * 會員填寫重設密碼的驗證信箱
+		 */
+
+		if ("confirmEmail".equals(action)) {
+
+			List<String> erroMsgs = new LinkedList<String>();
+			req.getSession().setAttribute("errorMsgs", erroMsgs);
+
+//				1.接收請求參數
+			String memEmail = req.getParameter("memEmail");
+			if (memEmail == null || (memEmail.trim()).length() == 0) {
+				erroMsgs.add("請輸入信箱");
+			}
+			if (!erroMsgs.isEmpty()) {
+				String url = "/pages/member/memResetPsd01.jsp";
+//				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
+//				failureView.forward(req, res);
+				res.sendRedirect(url);
+				return;
+			}
+
+			MemService memSvc = new MemService();
+			MemVO tempVO = new MemVO();
+			tempVO.setMemEmail(memEmail);
+			tempVO = memSvc.checkmail(memEmail);
+
+			if (tempVO == null) {
+				erroMsgs.add("此信箱未註冊");
+			}
+			if (!erroMsgs.isEmpty()) {
+				String url = "/pages/member/memResetPsd01.jsp";
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+				return;
+			}
+
+			PsdResetMailService mailSvc = new PsdResetMailService();
+			mailSvc.sendMail(memEmail);
+
+			String url = "/pages/member/memResetPsd02.jsp";
+			res.sendRedirect(url);
+
+		}
+
+		/*
+		 * 會員重設密碼
+		 */
+
+		if ("ResetPsdFromEmail".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.getSession().setAttribute("errorMsgs", errorMsgs);
+
+			String memPsd = req.getParameter("memPsd");
+			String memPsdReg = "^[(a-zA-Z0-9_)]{6,16}$";
+			if (memPsd == null || memPsd.trim().length() == 0) {
+				errorMsgs.add("會員密碼: 請勿空白");
+			} else if (!memPsd.trim().matches(memPsdReg)) {
+				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+
+			String memEmail = req.getParameter("memEmail");
+			System.out.println("memEmail="+memEmail);
+			MemService memSvc = new MemService();
+			MemVO tempVO = memSvc.getMemFromEmail(memEmail);
+
+			tempVO.setMemPsd(memPsd);
+			
+			if (!errorMsgs.isEmpty()) {
+				req.setAttribute("memVO", tempVO);
+				String url = "/pages/member/memResetPsd03.jsp";
+				res.sendRedirect(url);
+				System.out.println(errorMsgs);
+				return;
+			}
+
+			/*************************** 2.開始修改資料 *****************************************/
+			tempVO = memSvc.updateMemByAdmin(tempVO);
+
+			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+			req.setAttribute("memVO", tempVO);
+			String url = "/pages/member/loginMem.jsp";
+			res.sendRedirect(url);
+
+		
 		}
 
 	}

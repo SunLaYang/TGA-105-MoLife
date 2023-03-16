@@ -39,6 +39,8 @@ public class MemJNDIDAO implements MemDAO_interface {
 
 	private static final String LOGIN = "SELECT * FROM member where member_email=? and member_password=?";
 
+	private static final String FINDBYEMAIL = "SELECT * FROM member where member_email=?";
+
 	public void insert(MemVO memVO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -321,4 +323,63 @@ public class MemJNDIDAO implements MemDAO_interface {
 		}
 		
 	}
+	
+	@Override
+	public MemVO findByEmail(String member_email) {
+		MemVO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FINDBYEMAIL);
+			pstmt.setString(1, member_email);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				memVO = new MemVO();
+				memVO.setMemId(rs.getInt("MEMBER_ID"));
+				memVO.setMemEmail(rs.getString("MEMBER_EMAIL"));
+				memVO.setMemPsd(rs.getString("MEMBER_PASSWORD"));
+				memVO.setMemLname(rs.getString("MEMBER_LAST_NAME"));
+				memVO.setMemFname(rs.getString("MEMBER_FIRST_NAME"));
+				memVO.setMemNickname(rs.getString("MEMBER_NICKNAME"));
+				memVO.setMemPhone(rs.getString("MEMBER_PHONE"));
+				memVO.setMemAddress(rs.getString("MEMBER_ADDRESS"));
+				memVO.setMemPicId(rs.getBytes("MEMBER_PICTURE_ID"));
+				memVO.setRegistrationDate(rs.getTimestamp("REGISTRATION_DATE"));
+				memVO.setLastEditDate(rs.getTimestamp("LAST_EDIT_DATE"));
+				memVO.setLastOnlineDate(rs.getTimestamp("LAST_ONLINE_DATE"));
+				memVO.setLastPostDate(rs.getTimestamp("LAST_POST_DATE"));
+				memVO.setMemStatus(Integer.valueOf(rs.getInt("MEMBER_STATUS")));
+				memVO.setPostSuspended(Integer.valueOf(rs.getInt("POST_SUSPENDED")));
+				memVO.setPostReportedNum(Integer.valueOf(rs.getInt("POST_REPORTED_NUM")));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occurred. " + e.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memVO;
+	}
+	
 }

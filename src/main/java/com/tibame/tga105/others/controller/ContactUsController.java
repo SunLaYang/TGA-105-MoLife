@@ -99,7 +99,7 @@ public class ContactUsController {
             javaMailSender.send(message);
         }else {
         	postInfo = new PostInfo();
-            postInfo.setMemberId(contactUs.getMemberId());
+            postInfo.setMemberId(2);
             postInfo.setAdminId(1);
             postInfo.setInfoTitle("聯絡我們");
             postInfo.setContent(contactUs.getResponse());

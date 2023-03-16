@@ -53,4 +53,8 @@ public class ProductCartService {
 		}
 		return false;
 	}
+	
+	public void deleteByMemberId (Integer id) {
+		productCartRepository.deleteByMemberId(id);
+	}
 }

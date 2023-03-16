@@ -57,7 +57,7 @@
                     <a href="./01room.index.html">寵物旅館</a>
                   </li>
                   <li><a href="#">商品專區</a></li>
-                  <li><a href="#">寵物募款</a></li>
+                  <li><a href="<%=request.getContextPath()%>/pages/donate/N_1_index">寵物募款</a></li>
                   <li><a href="#">寵物論壇</a></li>
                   <li>
                     <a href="#">聯絡我們</a>
@@ -65,15 +65,9 @@
                   <li><a href="../../page/index.html">管理員後台</a></li><!-- ?? -->
                 </ul>
                 <ul class="navbar_user">
-                  <a href="#"
-                    ><img class="icon" src="../../images/home/car.png"
-                  /></a>
-                  <a href="#"
-                    ><img class="icon" src="../../images/home/ring.png"
-                  /></a>
-                  <a href="#"
-                    ><img class="icon" src="../../images/home/man.png"
-                  /></a>
+                  <a href="#"><img class="icon" src="../../images/home/car.png"/></a>
+                  <a href="#"><img class="icon" src="../../images/home/ring.png"/></a>
+                  <a href="#"><img class="icon" src="../../images/home/man.png"/></a>
                 </ul>
                 <div class="hamburger_container">
                   <i class="fa fa-bars" aria-hidden="true"></i>
@@ -127,7 +121,7 @@
  <div class="container1">
   <ol class="breadcrumb" style="background-color:transparent;">
     <li class="breadcrumb-item"><a href="###" style="color:black;">首頁</a></li>
-    <li class="breadcrumb-item"><a href="N_1_index" style="color:black;">寵物募款</a></li>
+    <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/pages/donate/N_1_index" style="color:black;">寵物募款</a></li>
     <li class="breadcrumb-item active" aria-current="page" style="color:#A7754D; text-decoration: underline;">我要提案募款</li>
   </ol>
   </div>
@@ -170,7 +164,7 @@
             <div class="form-group">
               <label for="plan_name">募款計畫名稱</label>
               <span  style="color:red">${errors.planName}</span>
-              <input type="text" name="planName" value="${param.planName}" class="form-control">
+              <input type="text" name="planName" value="${param.planName}" class="form-control" style="color:black !important;">
               
             </div>
 
@@ -190,31 +184,31 @@
             <div class="form-group">
               <label for="address">所在地址</label>
               <span style="color:red">${errors.address}</span>
-              <input type="text" id="address" name="address" class="form-control">
+              <input type="text" id="address" name="address" class="form-control" style="color:black !important;">
             </div>
             
             <div class="form-group">
               <label for="reason">募款原因描述</label>
                <span style="color:red">${errors.reason}</span>
-              <textarea id="reason" class="form-control" name="reason" rows="4"></textarea>
+              <textarea id="reason" class="form-control" name="reason" rows="4" style="color:black !important;"></textarea>
             </div>
             
             <div class="form-group">
               <label for="donate_days">募款所需天數</label>
               <span style="color:red">${errors.donateDays}</span>
-              <input type="text" name="donateDays" class="form-control"  style="width: 200px;">
+              <input type="text" name="donateDays" class="form-control"  style="width: 200px; color:black !important;">
             </div>
 
             <div class="form-group">
               <label for="donate_goal">募款所需金額</label>
                <span style="color:red">${errors.donateGoal}</span>
-              <input type="text" name="donateGoal" class="form-control"  style="width: 200px;" >
+              <input type="text" name="donateGoal" class="form-control"  style="width: 200px; color:black !important;">
             </div>
             
             <div class="form-group">
               <label for="animal_video_link">Youtube影片連結</label>
                <span style="color:red">${errors.animalVideoLink}</span>
-              <input type="url" name="animalVideoLink" class="form-control" placeholder="https://www.youtube.com/">
+              <input type="url" name="animalVideoLink" class="form-control" placeholder="https://www.youtube.com/" style="color:black !important;">
             </div>
 
             <div class="form-group">
@@ -234,52 +228,6 @@
   </div> 
 </form>
 
-
-<!-- 彈跳視窗-->  
-<script>
-var submitBtn = document.getElementById("proposal-submit");
-submitBtn.addEventListener("click", function() {
-  // 在這裡加入修改邏輯，如果修改成功就顯示訊息，否則留在同一頁面
-  if (isProposalUpdatedSuccessfully()) {
-	  console.log("修改成功！");
-    alert("修改成功！");
-  } else {
-    // 如果修改失敗，就留在同一頁面，不需要顯示訊息
-    location.reload();
-  }
-});
-
-function isProposalUpdatedSuccessfully() {
-  // 在這裡檢查修改是否成功，如果成功就回傳 true，否則回傳 false
-  var inputs = document.getElementsByClassName("form-control");
-//迭代所有的 input 欄位，如果有任何一個欄位沒有值，就假設修改失敗
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].getElementsByClassName("form-control")[0].value === "") {
-      return false;
-      console.log("修改失敗");
-    }
-  }
-  // 如果所有的 input 欄位都有值，就假設修改成功
-  return true;
-}
-
-
-</script>
-
-
-
-
-
-
- <!--  
-<script>
-  // 取得提交按钮元素
-  var submitBtn = document.getElementById("proposal-submit");
-  // 在按钮上註冊點擊事件監聽器
-  submitBtn.addEventListener("click", function() {
-    alert("修改成功！");
-  });
-</script> --> 
 
 
 <!-- 照片選擇JS -->

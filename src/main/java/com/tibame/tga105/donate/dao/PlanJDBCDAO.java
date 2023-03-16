@@ -120,7 +120,7 @@ public class PlanJDBCDAO implements PlanDAO_interface {
 			+ "	)\r\n"
 			+ "WHERE A.member_id= ?    \r\n"
 			+ "GROUP BY plan_id\r\n"
-			+ "ORDER BY proposal_date DESC;";
+			+ "ORDER BY plan_id DESC;";
 	@Override
 	public List<PlanVO> findBymemberId(Integer memberId) {
 
@@ -206,7 +206,7 @@ public class PlanJDBCDAO implements PlanDAO_interface {
 			+ "FROM plan AS P\r\n"
 			+ "INNER JOIN plan_status AS PS\r\n"
 			+ "ON P.plan_status_id = PS.plan_status_id \r\n"
-			+ "order by proposal_date DESC;";
+			+ "order by plan_id DESC;";
 	@Override
 	public List<PlanVO> getallForAdmin() {
 
@@ -281,11 +281,19 @@ public class PlanJDBCDAO implements PlanDAO_interface {
 
 
 	// 7.後臺修改頁面-顯示計畫內容
-	private static final String GET_OnePlan_ForAdmin_STMT = "SELECT plan_id, animal_photo, proposal_date, plan_name, animal_type_id, address, reason, donate_days, donate_goal, animal_video_link FROM molife.plan WHERE plan_id=?;";
+	private static final String GET_OnePlan_ForAdmin_STMT = 
+			"SELECT P.plan_id, P.animal_photo, P.proposal_date, P.plan_name, P.address, P.reason, P.donate_days, P.donate_goal, P.animal_video_link, animal_type\r\n"
+			+ "FROM plan P \r\n"
+			+ " JOIN animal_type A\r\n"
+			+ " ON P.animal_type_id = A.animal_type_id\r\n"
+			+ "WHERE plan_id=?;";
+	
 	@Override
 	public PlanVO getOnePlanForAdmin(Integer planId) {
 
 		PlanVO result = null;
+		AnimalTypeVO animalTypeVO = null;
+		
 		if (planId!=null) {
 			ResultSet rs = null;
 			try (
@@ -295,17 +303,22 @@ public class PlanJDBCDAO implements PlanDAO_interface {
 				pstmt.setInt(1, planId);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
+					
 					result = new PlanVO();
 					result.setPlanId(rs.getInt("plan_id"));
 					result.setAnimalPhoto(rs.getBytes("animal_photo"));
 					result.setProposalDate(rs.getDate("proposal_date"));
 					result.setPlanName(rs.getString("plan_name"));
-					result.setAnimalTypeId(rs.getInt("animal_type_id"));
 					result.setAddress(rs.getString("address"));
 					result.setReason(rs.getString("reason"));
 					result.setDonateDays(rs.getInt("donate_days"));
 					result.setDonateGoal(rs.getInt("donate_goal"));
 					result.setAnimalVideoLink(rs.getString("animal_video_link"));
+					
+					animalTypeVO = new AnimalTypeVO();
+					animalTypeVO.setAnimalType(rs.getString("animal_type"));
+					
+					result.setAnimalTypeVO(animalTypeVO);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -355,6 +368,46 @@ public class PlanJDBCDAO implements PlanDAO_interface {
 				}
 		}
 		return result;
+	}
+	
+	
+	// 9.提案成功頁面
+	private static final String SUCCESS_STMT = 
+			"SELECT plan_id, plan_name\r\n"
+			+ "FROM plan\r\n"
+			+ "WHERE member_id=?\r\n"
+			+ "ORDER BY plan_id DESC\r\n"
+			+ "LIMIT 1;";
+	@Override
+	public PlanVO successPage(Integer memberId) {
+		PlanVO result = null;
+		
+		if (memberId!=null) {
+			ResultSet rs = null;
+			try (
+				Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(SUCCESS_STMT);) {
+
+				pstmt.setInt(1, memberId);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					result = new PlanVO();
+					result.setPlanId(rs.getInt("plan_id"));
+					result.setPlanName(rs.getString("plan_name"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+			}
+		}
+		 return result;
 	}
 
 //	public PlanVO getAnimalPhotoById(Integer planId) throws SQLException {

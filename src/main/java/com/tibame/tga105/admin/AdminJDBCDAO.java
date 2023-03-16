@@ -15,7 +15,7 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/molife?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";	
+	String passwd = "123456";	
 	
 	private static final String INSERT_STMT = "INSERT INTO admin (employee_account, employee_password, employee_name, employee_picture_id, employee_email, employee_auth_id, employee_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM admin order by admin_id";
@@ -132,6 +132,7 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 			pstmt.setInt(7, adminVO.getAdminId());
 
 			pstmt.executeUpdate();
+			
 		}catch (ClassNotFoundException e) {
 			throw new RuntimeException("讀不到資料庫driver"+e.getMessage());	
 			// 處理 任何 driver 錯誤
@@ -330,13 +331,12 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 		ResultSet rs = null;
 
 		try {
-
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(LOGIN);
 
-			pstmt.setString(1, adminVO.getEmpAcc());
-			pstmt.setString(2, adminVO.getEmpPsd());
+			pstmt.setString(1, empAcc);
+			pstmt.setString(2, empPsd);
 			rs = pstmt.executeQuery();
 			
 				while (rs.next()) {

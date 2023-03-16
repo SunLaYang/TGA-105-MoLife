@@ -76,80 +76,69 @@ th, td {
 	color: #646e78;
 }
 </style>
-<link
-      rel="stylesheet"
-      type="text/css"
-      href="../../styles/bootstrap4/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../styles/main_styles.css"
-    />
-    <link rel="stylesheet" href="../../styles/room/room.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../styles/bootstrap4/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../../styles/main_styles.css" />
+<link rel="stylesheet" href="../../styles/room/room.css" />
 </head>
 
 <body>
 	<!-- Header -->
-	 <header class="header trans_300">
-    <!-- Main Navigation -->
-    <div class="main_nav_container bg-yellow">
-      <div>
-        <div class="row">
-          <div class="col-lg-12 text-right">
-            <div class="logo_container">
-              <a href="../../page/front_page.html">
-                <img src="../../images/home/logoMoLife.png" />
-              </a>
-            </div>
-            <nav class="navbar">
-              <ul class="navbar_menu">
-                <li>
-                  <a href="./01room.index.html">寵物旅館</a>
-                </li>
-                <li><a href="#">商品專區</a></li>
-                <li><a href="#">寵物募款</a></li>
-                <li><a href="#">寵物論壇</a></li>
-                <li>
-                  <a href="#">聯絡我們</a>
-                </li>
-                <li><a href="../../page/index.html">管理員後台</a></li>
-              </ul>
-              <ul class="navbar_user">
-                <a href="#"
-                  ><img class="icon" src="../../images/home/car.png"
-                /></a>
-                <a href="#"
-                  ><img class="icon" src="../../images/home/ring.png"
-                /></a>
-                <a href="#"
-                  ><img class="icon" src="../../images/home/man.png"
-                /></a>
-              </ul>
-              <div class="hamburger_container">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-	
-	<div>
+	<header class="header trans_300">
+		<!-- Main Navigation -->
+		<div class="main_nav_container bg-yellow">
+			<div>
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<div class="logo_container">
+							<a href="../../page/front_page.html"> <img
+								src="../../images/home/logoMoLife.png" />
+							</a>
+						</div>
+						<nav class="navbar">
+							<ul class="navbar_menu">
+								<li><a href="/page/room/01room.index.html">寵物旅館</a></li>
+								<li><a href="/page/shop/shop.html">商品專區</a></li>
+								<li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+								<li><a href="/page/others/24forum.index.html">寵物論壇</a></li>
+								<li><a href="/page/others/24contact.html">聯絡我們</a></li>
+								<li><a href="../../page/index.html">管理員後台</a></li>
+							</ul>
+							<ul class="navbar_user">
+								<a href="/page/shop/shop-cart.html"><img class="icon"
+									src="../../images/home/car.png" /></a>
+								<a href="#"><img class="icon"
+									src="../../images/home/ring.png" /></a>
+								<a href="/pages/member/llistOneMem.jsp"><img class="icon"
+									src="../../images/home/man.png" /></a>
+							</ul>
+							<div class="hamburger_container">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div style="margin-top: 8%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
-				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a href="#oreder_search" style="margin-bottom: 10%;">訂單查詢</a> <a
-					href="#goodsadd" style="margin-bottom: 10%;">商品收藏</a> <a href="#roomadd" style="margin-bottom: 10%;">房型收藏</a> <a
-					href="#sponsoradd" style="margin-bottom: 10%;">募資收藏</a> <a href="#notifymailbox" style="margin-bottom: 10%;">通知信箱</a>
+				<a href="#/pages/member/llistOneMem.jsp" style="margin-bottom: 10%;">帳號設定</a> <a
+					href="/page/shop/shop-orders.html" style="margin-bottom: 10%;">訂單查詢</a> <a
+					href="/page/shop/shop-collection.html" style="margin-bottom: 10%;">商品收藏</a> <a
+					href="/page/room/01myOrder.html" style="margin-bottom: 10%;">房型訂單明細</a> <a
+					href="/pages/donate/N_4-1_memberCenter" style="margin-bottom: 10%;">募款管理</a> 
 			</div>
 			<div class="col text-center">
 				<div class="memlistonebox">
 					<table>
 						<tr>
 							<td>會員頭像</td>
-							<td><img src="/MemPicView?memId=${memVO.memId}"
-								width="200" height="200" id="mempic" /></td>
+							<td><img src="/MemPicView?memId=${memVO.memId}" width="200"
+								height="200" id="mempic" /></td>
 						</tr>
 						<tr>
 							<td>會員編號</td>
@@ -187,15 +176,14 @@ th, td {
 						<tr>
 							<td>會員註冊時間</td>
 							<td>${memVO.registrationDate}</td>
-							<!--               <tr> -->
-							<!--                 <td>會員檢舉</td> -->
-							<%--                 <td>${memVO.postSuspended}</td> --%>
-							<!--               </tr> -->
+							<!-- 							              <tr> -->
+							<!-- 							                <td>會員檢舉</td> -->
+							<%-- 							                <td>${memVO.postSuspended}</td> --%>
+							<!-- 							              </tr> -->
 						<tr>
 							<td></td>
 							<td>
-								<FORM METHOD="post"
-									ACTION="/memberController"
+								<FORM METHOD="post" ACTION="/memberController"
 									style="margin-bottom: 0px" enctype="multipart/form-data">
 									<input class="btn btn-primary edit_button" type="submit"
 										value="修改"
@@ -217,13 +205,13 @@ th, td {
 	<footer class="footer bg-yellow">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
+							<div class="col-lg-6">
 					<div
 						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
-							<li><a href="#">討論區</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">聯絡我們</a></li>
+							<li><a href="/page/others/24forum.index.html">討論區</a></li>
+							<li><a href="/page/others/24faq.html">FAQs</a></li>
+							<li><a href="/page/others/24contact.html">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

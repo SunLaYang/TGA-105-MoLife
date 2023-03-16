@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +21,9 @@ public class ProductCartController {
 	@Autowired
 	private ProductCartService productCartService;
 
-	@GetMapping()
-	public List<ProductCart> select() {
-		Integer id = 1;
-		return productCartService.findByMemberId(id);
+	@GetMapping("/{memberId}")
+	public List<ProductCart> select(@PathVariable Integer memberId) {
+	    return productCartService.findByMemberId(memberId);
 	}
 
 	@PostMapping

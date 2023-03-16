@@ -34,3 +34,4 @@ build/
 
 ### app properties ###
 src/main/resources/application.properties
+src/main/webapp/WEB-INF/web.xml

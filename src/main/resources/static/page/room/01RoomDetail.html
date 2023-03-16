@@ -131,7 +131,7 @@
                 <li>
                   <a href="#">聯絡我們</a>
                 </li>
-                <li><a href="../../page/index.html">管理員後台</a></li>
+                <li><a href="/page/room/01RoomOrder.admin.html">管理員後台</a></li>
               </ul>
               <ul class="navbar_user">
                 <a href="#"
@@ -140,7 +140,7 @@
                 <a href="#"
                   ><img class="icon" src="../../images/home/ring.png"
                 /></a>
-                <a href="#"
+                <a href="/page/room/01myOrder.html"
                   ><img class="icon" src="../../images/home/man.png"
                 /></a>
               </ul>
@@ -198,6 +198,8 @@
           </div>
           <div class="detail_price">
           </div>
+          <p></p>
+          <div class="detail_petcount" style="color:#FE4C50; font-weight: bold;font-size: 20px;">可容納寵物數量為: </div>
           
           <div class="product_color">
             <span>設備詳情:</span>
@@ -482,7 +484,8 @@
             
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">姓名</label>
-              <input type="text" class="form-control" id="payerName" name="payerName" />
+              <input type="text" class="form-control" id="payerName" name="payerName" maxlength="50" oninput="checkName()" required/>
+              <div class="invalid-feedback">請輸入50個字符以內的中英文字符，並且不能有符號!</div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">電話</label>
@@ -826,7 +829,7 @@
 
       });
       
-
+     
       $.ajax({
         type: "GET",
         // url: `http://localhost:8081/petrooms/${id}`,
@@ -847,6 +850,9 @@
         $("#pet").attr("max", data.petNumber);
         console.log(data.roomName);
         roomName = data.roomName;
+        let petNumber = data.petNumber;
+        $(".detail_petcount").append(`<span>${petNumber}</span>`);
+
         // var yyyy = new Date().getFullYear();
         $.ajax({
           type: "GET",
@@ -872,7 +878,6 @@
   </script>
   <script>
     var yyyy = new Date().getFullYear();
-    // var tommorrow = new Date().getDate() + 1;
     var holiday = [];
     console.log(holiday)
 
@@ -942,6 +947,7 @@
       }
     });
 
+    //=========按讚===============
     $(document).on("click", "#likeRoom", function () {
       $.ajax({
         type: "GET",
@@ -988,6 +994,19 @@
           this.setCustomValidity('');
       }
   });
+</script>
+
+<!-- 輸入姓名判斷 -->
+<script>
+  function checkName() {
+  const nameInput = document.getElementById("payerName");
+  const nameRegex = /^[\u4e00-\u9fa5a-zA-Z]{1,20}$/; // 中英文正則表達式
+  if (!nameRegex.test(nameInput.value)) {
+    nameInput.setCustomValidity("請輸入正確的中英文姓名限20字內"); // 設定自訂錯誤訊息
+  } else {
+    nameInput.setCustomValidity(""); // 清除錯誤訊息
+  }
+}
 </script>
 
 <script src="../../js/custom.js"></script>

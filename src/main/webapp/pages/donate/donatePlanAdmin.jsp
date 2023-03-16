@@ -199,10 +199,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="../../images/front_page/dog.jpg" class="img-circle elevation-2" alt="User Image" />
+            <img src="../../css/donate/donate_pic/ru.jpg" class="img-circle elevation-2" alt="User Image" />
           </div>
           <div class="info">
-            <a href="#" class="d-block">Linda Lee</a>
+            <a href="#" class="d-block">Nicole Chu</a>
           </div>
         </div>
 
@@ -542,7 +542,7 @@
                   <th style="width: 10%">提案會員編號</th> 
                   <th style="width: 10%">計畫進度</th>
                   <th style="width: 10%">管理員備註</th>
-                  <th style="width: 10%">修改進度</th>
+                  <th style="width: 10%">變更進度</th>
                 </tr>
               </thead>
 
@@ -562,7 +562,7 @@
                   		<form METHOD="post" ACTION="<%=request.getContextPath()%>/pages/donate/AdminUpdateServlet">
                   	 		<input type="hidden" value="${planVO.planId}" name="id">
                   	 		<input type="hidden" name="adminAction" value="confirmPlan">
-                  	 		<input type="submit" class="btn btn-primary btn-sm" value="修改">
+                  	 		<input type="submit" class="btn btn-primary btn-sm" value="編輯">
                      	</form>
                   		</td>
                   	 	

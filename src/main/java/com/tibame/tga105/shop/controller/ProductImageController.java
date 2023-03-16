@@ -1,13 +1,8 @@
 package com.tibame.tga105.shop.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
-import javax.imageio.ImageIO;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,58 +14,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tibame.tga105.shop.service.ProductImageService;
+
 @RestController
 @RequestMapping("/productimages")
 public class ProductImageController {
 
+	@Autowired
+	private ProductImageService productImageService;
+
 	@GetMapping("/{imageName}")
-	public ResponseEntity<byte[]> select(@PathVariable String imageName) {
-		if (imageName == null) {
+	public ResponseEntity<byte[]> select(@PathVariable String imageName) throws IOException {
+		if (imageName == null)
 			return ResponseEntity.notFound().build();
-		}
-		try {
-			// 讀取圖像檔案
-			File imageFile = new File("C:\\MoLife\\image\\" + imageName);
-			BufferedImage image = ImageIO.read(imageFile);
 
-			// 將圖像資料轉換成byte陣列
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ImageIO.write(image, "jpeg", baos);
-			byte[] imageData = baos.toByteArray();
+		byte[] imageData = productImageService.getImage(imageName);
 
-			// 設定回傳的內容類型為image/jpeg
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.IMAGE_JPEG);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_JPEG);
 
-			// 回傳ResponseEntity
-			return new ResponseEntity<byte[]>(imageData, headers, HttpStatus.OK);
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-		}
+		return new ResponseEntity<byte[]>(imageData, headers, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public String insert(MultipartFile image) {
-		if (image != null) {
-			String originaName = image.getOriginalFilename();
-			String suffix = originaName.substring(originaName.lastIndexOf("."));
-			// UUID
-			String imageName = UUID.randomUUID().toString() + suffix;
+	public String insert(MultipartFile image) throws IOException {
+		if (image != null)
+			return productImageService.saveImage(image);
 
-			File dir = new File("C:\\MoLife\\image");
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
-
-			try {
-				image.transferTo(new File(dir, imageName));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return imageName;
-		}
 		return null;
 	}
+
 }

@@ -336,13 +336,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/shop/admin.productlist.html"
+                      class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>商品管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a
+                      href="/page/shop/admin.productorder.html"
+                      class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>訂單管理</p>
                     </a>
@@ -757,6 +761,7 @@
                 responsive: true,
                 lengthChange: true,
                 autoWidth: false,
+                order: [7, "desc"], // 預設升序排序
                 // buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
               })
               .buttons()

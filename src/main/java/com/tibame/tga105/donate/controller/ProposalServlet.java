@@ -86,11 +86,8 @@ public class ProposalServlet extends HttpServlet {
 		}
 		
 		String reason = req.getParameter("reason");
-		String reasonReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]+$";
 		if (reason == null || reason.trim().length() ==0) {
 			errors.put("reason", "請勿空白");
-		} else if ( !(reason.trim().matches(reasonReg)) ) {
-			errors.put("reason", "只能輸入中文、英文、數字");
 		}
 	
 		Integer donateDays = null;
@@ -190,9 +187,9 @@ public class ProposalServlet extends HttpServlet {
 		bean.setMemberId(memberId);
 		planService.addPlan(bean);	
 		
-		// 新增完成 回首頁
+		// 新增完成 跳轉成功頁面
 		System.out.println("新增完成");
-		res.sendRedirect(req.getContextPath()+"/pages/donate/N_1_index");
+		res.sendRedirect(req.getContextPath()+"/pages/donate/N_7_proposalSuccess");
 		
 	}
 	

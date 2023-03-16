@@ -61,6 +61,13 @@ public class Product {
 
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ProductImage> productImages = new ArrayList<>();
+	
+	public void reduceStock(int quantity) throws Exception {
+        if (productQty < quantity) {
+            throw new RuntimeException("Stock is not enough");
+        }
+        productQty -= quantity;
+    }
 
 	public List<ProductImage> getProductImages() {
 		return productImages;

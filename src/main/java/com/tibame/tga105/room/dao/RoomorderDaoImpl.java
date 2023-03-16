@@ -214,7 +214,7 @@ public class RoomorderDaoImpl implements RoomorderDao {
 		return total;
 	}
 
-	// 提煉上面的sql拼接語句方法，只有在這個class內會用到的話 要用private 因為實際工作中希望更好的管理程式的使用範圍
+	// 濃縮的sql拼接語句方法，只有在這個class內會用到的話 要用private 因為實際工作中希望更好的管理程式的使用範圍
 	private String addFilteringSql(String sql, Map<String, Object> map, RoomderQueryParams roomderQueryParams) {
 
 		// 用付款人姓名查詢(沒有傳值近來就不會有下列判斷)

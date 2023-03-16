@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "product_image")
 public class ProductImage {
@@ -23,13 +25,18 @@ public class ProductImage {
 
 	@Column(name = "product_image")
 	private String productImage;
-
+	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Product getProduct() {
+		return product;
 	}
 
 	public Integer getProductImageId() {

@@ -8,6 +8,8 @@ public interface MemDAO_interface {
   void insert(MemVO paramMemVO);
   
   void update(MemVO paramMemVO);
+
+  void updateByAdmin(MemVO paramMemVO);
   
   void delete(Integer paramInteger);
   
@@ -17,6 +19,8 @@ public interface MemDAO_interface {
   
   MemVO login(String memEmail, String memPsd);
   
-  void updateByAdmin(MemVO paramMemVO);
+  
+  MemVO findByEmail(String paramString);
+  
   
 }

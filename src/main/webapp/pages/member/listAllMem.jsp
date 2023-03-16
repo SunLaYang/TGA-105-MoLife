@@ -623,7 +623,6 @@ input:checked+label:after {
 												<th>會員地址</th>
 												<th>會員頭像</th>
 												<th>會員狀態</th>
-<!-- 												<th>會員狀態</th> -->
 												<th>修改</th>
 											</tr>
 										</thead>
@@ -663,7 +662,8 @@ input:checked+label:after {
 													<td >${memVO.memPsd}</td>
 													<td>${memVO.memPhone}</td>
 													<td>${memVO.memAddress}</td>
-													<td><img src="/MemPicView?memId=${memVO.memId}"
+													<td>
+													<img src="/MemPicView?memId=${memVO.memId}"
 														width="200" height="200" id="mempic"></td>
 													<td>${memVO.memStatus}</td>
 

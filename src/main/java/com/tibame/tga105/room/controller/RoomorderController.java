@@ -3,10 +3,12 @@ package com.tibame.tga105.room.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tibame.tga105.mem.model.MemVO;
 import com.tibame.tga105.room.dto.RoomderQueryParams;
 import com.tibame.tga105.room.dto.RoomorderRequest;
 import com.tibame.tga105.room.model.RoomorderVO;
@@ -35,11 +38,12 @@ public class RoomorderController {
 	@Autowired
 	private RoomorderService roomorderService;
 
-	// ==============後台訂單頁面join查詢 需做分頁=================
-	@GetMapping("/getOrderpage")
-//	public ResponseEntity<List<Map<String, Object>>> getorderPage() {
 
-	public ResponseEntity<Page<RoomorderVO>> getorderPage(@RequestParam(required = false) String search, // 中文字查詢
+	// ==============後台訂單頁面join查詢實作分頁=================
+	@GetMapping("/getOrderpage")
+
+	public ResponseEntity<Page<RoomorderVO>> getorderPage(
+			@RequestParam(required = false) String search, // 中文字查詢
 			@RequestParam(required = false) Integer searchStatus, // 根據入住狀態查詢
 			@RequestParam(defaultValue = "room_check_date") String orderBy, // 根據什麼欄位排序
 			@RequestParam(defaultValue = "desc") String sort,
@@ -59,8 +63,6 @@ public class RoomorderController {
 
 		List<Map<String, Object>> roomorderList1 = roomorderService.getRoomorderPages(roomorderVO);
 
-//		List<RoomorderVO> roomorderList = roomorderService.getRoomorderPages(roomorderVO);
-
 		Integer total = roomorderService.countOrder(roomderQueryParams);
 
 		Page<RoomorderVO> page = new Page<RoomorderVO>();
@@ -74,7 +76,8 @@ public class RoomorderController {
 
 	// =========查詢全部訂單==========
 	@GetMapping("/roomorders") // 代表非必填項目
-	public ResponseEntity<Page<RoomorderVO>> getRoomorder(@RequestParam(required = false) String search, // 中文字查詢
+	public ResponseEntity<Page<RoomorderVO>> getRoomorder(
+			@RequestParam(required = false) String search, // 中文字查詢
 			@RequestParam(required = false) Integer searchStatus, // 根據入住狀態查詢
 			@RequestParam(defaultValue = "room_check_date") String orderBy, // 根據什麼欄位排序
 			@RequestParam(defaultValue = "desc") String sort,
@@ -148,6 +151,27 @@ public class RoomorderController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(roomorderList);
 	}
+	
+	//=============測試session==============
+//	@GetMapping("/roomorderDetial")
+//	public ResponseEntity<List<Map<String, Object>>> getOrderDetailsByMemID(HttpSession session) {
+//
+//		MemVO memVO = (MemVO) session.getAttribute("memVO");
+//		
+//		Integer memberId = memVO.getMemId();
+//		
+//		System.out.println("===========" + memberId);
+//
+//
+//		RoomorderVO roomorderVO = new RoomorderVO();
+//
+//		List<Map<String, Object>> roomorderList = roomorderService.getRoomorderByMemberId(roomorderVO, memberId);
+//
+//		System.out.println("=============" + roomorderList + "=======================");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(roomorderList);
+//	}
+
 
 	// ====================新增訂單================================
 
@@ -184,7 +208,7 @@ public class RoomorderController {
 
 	}
 
-	// ==============================取消訂單專用================
+	// ==================取消訂單專用================
 	@PutMapping("/roomordersCancel/{roomOrderId}")
 	public ResponseEntity<RoomorderVO> updateRoomorderForCancel(@PathVariable Integer roomOrderId,
 			@RequestBody @Valid RoomorderRequest roomorderRequest) {
@@ -213,5 +237,6 @@ public class RoomorderController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
 	}
+	
 
 }

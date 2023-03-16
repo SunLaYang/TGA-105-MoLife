@@ -19,14 +19,9 @@ public class RoomkeepController {
 	private RedisTemplate<String, Object> redisTemplate;
 	
 	@PostMapping("/favorites/{key}/{value}")
-//	public ResponseEntity<?> addFavorites(@RequestParam("memberId") String memberId,
-//										@RequestParam("roomName") String roomName){
+
 		public ResponseEntity<?> addFavorites(@PathVariable("key")String memberId,@PathVariable("value")String roomName){
 		
-//		System.out.println(memberId);
-		
-//		String key = "favorites" + memberId;
-//		redisTemplate.opsForSet().add(key, roomName);
 		redisTemplate.opsForValue().set(memberId, roomName);
 		
 		return ResponseEntity.ok().build();
@@ -49,15 +44,6 @@ public class RoomkeepController {
 		return ResponseEntity.ok().build();
 	}
 	
-//	@PostMapping("/redis/set/{key}/{value}")
-//	public Object set(@PathVariable("key")String key,@PathVariable("value")String value) {
-//		redisTemplate.opsForValue().set(key, value);
-//		return "set success";
-//	}
-//	public void set(@RequestBody RoomKeepVo roomKeepVo ) throws JsonProcessingException {
-//		ObjectMapper objectMapper = new ObjectMapper();
-//	    String json = objectMapper.writeValueAsString(roomKeepVo);
-//	    redisTemplate.opsForValue().set("roomKeepVo", json);
-//	}
+
 
 }

@@ -29,7 +29,7 @@ public class PetroomController {
 	@Autowired
 	private PetroomService petroomService;
 
-	// 新增房型
+	// =============新增房型===========
 	@PostMapping("/petrooms/createroom")
 		public PetroomVo createPetroom(
 				@RequestBody @Valid PetroomRequest petroomRequest) throws IOException {
@@ -54,7 +54,7 @@ public class PetroomController {
 		return petroomVo;
 	}
 
-	// 修改房型
+	//===========修改房型=================
 	@PutMapping("/petrooms/{roomTypeId}")
 	public ResponseEntity<PetroomVo> updatePetroom(@PathVariable Integer roomTypeId,
 			@RequestBody @Valid PetroomRequest petroomRequest) {
@@ -82,7 +82,7 @@ public class PetroomController {
 		return ResponseEntity.status(HttpStatus.OK).body(updatePetroom);
 	}
 
-	// 查詢所有房型
+	// ================查詢所有房型==============
 	@GetMapping("/petrooms")
 	public ResponseEntity<List<PetroomVo>> getPetrooms() {
 		
@@ -92,7 +92,7 @@ public class PetroomController {
 
 	}
 
-	// 查詢單筆房型詳細
+	// =============查詢單筆房型詳細===================
 	@GetMapping("/petrooms/{roomTypeId}")
 	public ResponseEntity<PetroomVo> getPetroom(@PathVariable Integer roomTypeId) {
 
@@ -106,7 +106,7 @@ public class PetroomController {
 
 	}
 
-	// 查詢房型圖片
+	// =================查詢單張房型圖片=============
 	@GetMapping("/image1/{roomTypeId}")
 	public void showImg(@PathVariable Integer roomTypeId, HttpServletResponse res, PetroomVo petroomVo)
 			throws IOException {

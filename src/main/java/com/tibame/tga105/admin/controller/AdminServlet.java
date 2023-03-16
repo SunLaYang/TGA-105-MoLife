@@ -37,6 +37,10 @@ public class AdminServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
+		/*
+		 * 查詢單一員工
+		 */
+
 		if ("getOne_For_Display".equals(action)) {
 
 			List<String> erroMsgs = new LinkedList<String>();
@@ -87,7 +91,11 @@ public class AdminServlet extends HttpServlet {
 		}
 		/******************************************************************************************/
 
-		if ("emp_update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
+		/*
+		 * 員工要編輯自己的資料
+		 */
+
+		if ("emp_update".equals(action)) {// //來自ListOneMem.jsp的請求
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -109,6 +117,13 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 老闆要編輯員工資料
+		 */
+
+		
 		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
@@ -130,21 +145,28 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 會員正在編輯自己的資料
+		 */
+
+		
 		if ("updatebyEMP".equals(action)) {
 
 			HttpSession session = req.getSession();
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
 			Integer adminId = Integer.valueOf(req.getParameter("adminId").trim());
 
 			String empPsd = req.getParameter("empPsd");
 			String empPsdReg = "^[(a-zA-Z0-9_)]{3,10}$";
 			if (empPsd == null || empPsd.trim().length() == 0) {
-				errorMsgs.add("會員密碼: 請勿空白");
+				errorMsgs.add("員工密碼: 請勿空白");
 			} else if (!empPsd.trim().matches(empPsdReg)) {
-				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於3至10個字以內");
+				errorMsgs.add("員工密碼請使用英文與數字之組合，長度介於3至10個字以內");
 			}
 
 			String empName = req.getParameter("empName");
@@ -187,11 +209,11 @@ public class AdminServlet extends HttpServlet {
 				tempVO.setEmpPicId(empPicId);
 				in.close();
 			} 
-			tempVO.setAdminId(adminId);
+//			tempVO.setAdminId(adminId);
 
 			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("tempVO", tempVO);
-				String url = "/pages/admin/admin/emp_update.jsp";
+				req.setAttribute("adminVO", tempVO);
+				String url = "/pages/admin/emp_update.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
 				res.sendRedirect(url);
@@ -213,6 +235,11 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+
+		/*
+		 * 老闆正在編輯自己的資料
+		 */
+
 		if ("updatebyBoss".equals(action)) {
 			
 			HttpSession session = req.getSession();
@@ -220,7 +247,6 @@ public class AdminServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
-			Integer adminId = Integer.valueOf(req.getParameter("adminId"));
 
 			String empPsd = req.getParameter("empPsd");
 			String empPsdReg = "^[(a-zA-Z0-9_)]{3,10}$";
@@ -248,26 +274,20 @@ public class AdminServlet extends HttpServlet {
 
 
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
-			String empAuthIdReg = "^[123]+$";
-			if (empAuthId == null) {
-				errorMsgs.add("請填入員工權限編號，勿空白");
-			}else if(!empAuthId.toString().matches(empAuthIdReg)){
-				errorMsgs.add("員工權限編號只能填1~3");
-			}
+//			System.out.println(empAuthId);
 
 			Integer empStatus = Integer.valueOf(req.getParameter("empStatus"));
-			String empStatusReg = "^[01]+$";
-			if (empStatus == null) {
-				errorMsgs.add("請填入員工狀態號碼，勿空白");
-			}else if(!empStatus.toString().matches(empStatusReg)){
-				errorMsgs.add("狀態只能填入0或1");
-			}
+//			String empStatusReg = "^[01]+$";
+//			if (empStatus == null) {
+//				errorMsgs.add("請填入員工狀態號碼，勿空白");
+//			}else if(!empStatus.toString().matches(empStatusReg)){
+//				errorMsgs.add("狀態只能填入0或1");
+//			}
 
 //			AdminVO adminVO = new AdminVO();
 			
-			
+			Integer adminId = Integer.valueOf(req.getParameter("adminId"));
 			AdminService admSvc = new AdminService();
-			
 			AdminVO tempVO = admSvc.getOneEmp(adminId);
 
 			tempVO.setEmpPsd(empPsd);
@@ -285,10 +305,10 @@ public class AdminServlet extends HttpServlet {
 			tempVO.setEmpEmail(empEmail);
 			tempVO.setEmpAuthId(empAuthId);
 			tempVO.setEmpStatus(empStatus);
-			tempVO.setAdminId(adminId);
+//			tempVO.setAdminId(adminId);
 
 			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("tempVO", tempVO);
+				req.setAttribute("adminVO", tempVO);
 				String url = "/pages/admin/boss_update.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher(url);
 //				failureView.forward(req, res);
@@ -301,7 +321,7 @@ public class AdminServlet extends HttpServlet {
 			tempVO = admSvc.updateByBoss(tempVO);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-			req.setAttribute("tempVO", tempVO);
+			req.setAttribute("adminVO", tempVO);
 			String url = "/pages/admin/listAllEmp.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
 //			successView.forward(req, res);
@@ -310,6 +330,13 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 新增員工
+		 */
+
+		
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -346,10 +373,6 @@ public class AdminServlet extends HttpServlet {
 				errorMsgs.add("員工信箱: 請勿空白");
 			} else if (!empEmail.trim().matches(empEmailReg)) {
 				errorMsgs.add("員工信箱: 請符合電子信箱格式");
-			}
-
-			else {
-				errorMsgs.add("empPicId, 員工頭像:請上傳圖片");
 			}
 			
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
@@ -398,6 +421,10 @@ public class AdminServlet extends HttpServlet {
 
 		/******************************************************************************************/
 
+		/*
+		 * 刪除員工
+		 */
+
 		if ("delete".equals(action)) { // 來自listAllAdmin.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -415,7 +442,13 @@ public class AdminServlet extends HttpServlet {
 		}
 		
 		/******************************************************************************************/
+		
 
+		/*
+		 * 員工登入
+		 */
+
+		
 		if ("login".equals(action)) {// 來自loginEmp.jsp
 
 			List<String> erroMsgs = new LinkedList<String>();
@@ -469,6 +502,7 @@ public class AdminServlet extends HttpServlet {
 				session.setAttribute("adminVO", adminVO);
 				
 				req.setAttribute("adminVO", adminVO);
+				
 				req.setAttribute("login", true);
 
 				Cookie cookie = new Cookie("adminId", adminVO.getAdminId().toString());

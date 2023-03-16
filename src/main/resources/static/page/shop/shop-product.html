@@ -55,21 +55,22 @@
             <div class="row">
               <div class="col-lg-12 text-right">
                 <div class="logo_container">
-                  <a href="../frontEnd/front_page.html">
+                  <a href="/page/others/24front_page.html">
                     <img src="../../images/home/logoMoLife.png" />
                   </a>
                 </div>
                 <nav class="navbar">
                   <ul class="navbar_menu">
-                    <li><a href="#">寵物旅館</a></li>
-                    <li><a href="#">商品專區</a></li>
-                    <li><a href="#">寵物募款</a></li>
-                    <li><a href="#">寵物論壇</a></li>
-                    <li><a href="../chatRoom/contact.html">聯絡我們</a></li>
-                    <li><a href="#">管理員後台</a></li>
+                    <li><a href="/page/room/01room.index.html">寵物旅館</a></li>
+                    <li><a href="/page/shop/shop.html">商品專區</a></li>
+                    <li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+                    <li>
+                      <a href="/page/others/24forum.index.html">寵物論壇</a>
+                    </li>
+                    <li><a href="/page/others/24contact.html">聯絡我們</a></li>
                   </ul>
                   <ul class="navbar_user">
-                    <a href="#"
+                    <a href="/page/shop/shop-cart.html"
                       ><img class="icon" src="../../images/home/car.png"
                     /></a>
                     <a href="#"
@@ -96,9 +97,9 @@
 
             <div class="breadcrumbs d-flex flex-row align-items-center">
               <ul>
-                <li><a href="index.html">首頁</a></li>
+                <li><a href="/page/others/24front_page.html">首頁</a></li>
                 <li>
-                  <a href="shop.html"
+                  <a href="/page/shop/shop.html"
                     ><i class="fa fa-angle-right" aria-hidden="true"></i
                     >商品專區</a
                   >
@@ -176,7 +177,7 @@
                     ><i class="fa fa-minus" aria-hidden="true"></i
                   ></span>
                   <span id="quantity_value">1</span>
-                  <span class="plus"
+                  <span class="plus" id="plus"
                     ><i class="fa fa-plus" aria-hidden="true"></i
                   ></span>
                 </div>
@@ -327,6 +328,7 @@
       let image1 = null;
       let image2 = null;
       let image3 = null;
+      let memberId = 1;
 
       function init() {
         $.ajax({
@@ -337,6 +339,9 @@
             $("#productName").text(data.productName);
             $("#productDetails").text(data.productDetails);
             $(".product_price").text("$" + data.productPrice);
+            $(".product_favorite").attr("data-productid", data.productId);
+            $("#quantity_value").attr("data-productqty", data.productQty);
+
             $.each(data.productImages, function (i, item) {
               switch (item.productImageType) {
                 case 0:
@@ -408,6 +413,59 @@
               console.log(xhr);
             },
           });
+        });
+
+        let favorite = 0;
+        $(".product_favorite").on("click", function () {
+          let productId = $(this).data("productid");
+          let favoriteData = {
+            memberId: memberId,
+            product: {
+              productId: productId,
+            },
+          };
+          if (favorite == 1) return;
+          // 商品加入收藏
+          $.ajax({
+            url: "/productcollections",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(favoriteData),
+            success: function (data) {
+              if (data) {
+                alert("商品成功加入收藏!");
+              } else {
+                alert("商品已移除收藏!");
+                if (favorite == 0) {
+                  favorite++;
+                  $(".product_favorite").click();
+                }
+              }
+              favorite += 2;
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
+
+        // 監控數量值變化事件
+        $("#plus").on("click", function () {
+          // 轉換數字
+          let num = parseInt($("#quantity_value").text()); // 取得原始值
+          let productQty = parseInt(
+            $("#quantity_value").attr("data-productqty")
+          );
+          console.log(num);
+          console.log(productQty);
+          // 檢查qty
+          if (num > productQty) {
+            // 如果大於最大購買數量，禁止繼續操作
+            alert("已達最大購買數量！");
+            $("#quantity_value").text(productQty);
+            return false;
+          }
         });
       });
     </script>

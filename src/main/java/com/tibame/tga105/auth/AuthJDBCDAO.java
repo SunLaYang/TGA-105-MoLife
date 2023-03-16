@@ -18,7 +18,7 @@ public class AuthJDBCDAO implements AuthDAOInterface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/molife?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";	
+	String passwd = "123456";	
 
 	private static final String INSERT_STMT = "INSERT INTO auth (auth_name) VALUES(?)";
 	private static final String GET_ALL_STMT = "SELECT employee_auth_id , auth_name FROM auth";

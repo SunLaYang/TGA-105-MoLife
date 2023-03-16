@@ -46,6 +46,18 @@
       .quantity_selector {
         height: 30px;
       }
+
+      .image-container {
+        width: 50px;
+        height: 50px;
+        overflow: hidden; /* 隱藏溢出的內容 */
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 填充剪裁適應容器 */
+      }
     </style>
   </head>
 
@@ -60,21 +72,22 @@
             <div class="row">
               <div class="col-lg-12 text-right">
                 <div class="logo_container">
-                  <a href="../frontEnd/front_page.html">
+                  <a href="/page/others/24front_page.html">
                     <img src="../../images/home/logoMoLife.png" />
                   </a>
                 </div>
                 <nav class="navbar">
                   <ul class="navbar_menu">
-                    <li><a href="#">寵物旅館</a></li>
-                    <li><a href="#">商品專區</a></li>
-                    <li><a href="#">寵物募款</a></li>
-                    <li><a href="#">寵物論壇</a></li>
-                    <li><a href="../chatRoom/contact.html">聯絡我們</a></li>
-                    <li><a href="#">管理員後台</a></li>
+                    <li><a href="/page/room/01room.index.html">寵物旅館</a></li>
+                    <li><a href="/page/shop/shop.html">商品專區</a></li>
+                    <li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+                    <li>
+                      <a href="/page/others/24forum.index.html">寵物論壇</a>
+                    </li>
+                    <li><a href="/page/others/24contact.html">聯絡我們</a></li>
                   </ul>
                   <ul class="navbar_user">
-                    <a href="#"
+                    <a href="/page/shop/shop-cart.html"
                       ><img class="icon" src="../../images/home/car.png"
                     /></a>
                     <a href="#"
@@ -101,15 +114,15 @@
 
             <div class="breadcrumbs d-flex flex-row align-items-center">
               <ul>
-                <li><a href="index.html">首頁</a></li>
+                <li><a href="/page/others/24front_page.html">首頁</a></li>
                 <li>
-                  <a href="index.html"
+                  <a href="/page/shop/shop.html"
                     ><i class="fa fa-angle-right" aria-hidden="true"></i
                     >商品專區</a
                   >
                 </li>
                 <li class="active">
-                  <a href="index.html"
+                  <a href="/page/shop/shop-collection.html"
                     ><i class="fa fa-angle-right" aria-hidden="true"></i
                     >商品收藏</a
                   >
@@ -134,7 +147,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!-- <tr>
                   <td class="align-middle">
                     <div class="image-container">
                       <img src="/productimages/${img}" alt="product image" />
@@ -146,7 +159,7 @@
                   <td>$900</td>
                   <td><a href="" class="text-primary">加入購物車</a></td>
                   <td><a href="" class="text-danger">刪除</a></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -156,7 +169,7 @@
           <div class="col-9"></div>
           <div class="col-3 mt-3">
             <div class="red_button add_to_cart_button">
-              <a href="#">繼續購物</a>
+              <a href="/page/shop/shop.html">繼續購物</a>
             </div>
           </div>
         </div>
@@ -291,5 +304,107 @@
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
+    <script>
+      let memberId = 1;
+      function init() {
+        $.ajax({
+          url: "/productcollections/" + memberId,
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            let list_html = "";
+            $.each(data, function (i, item) {
+              let img = "";
+              $.each(item.product.productImages, function (i, unit) {
+                if (unit.productImageType == 0 && unit.productImage != null) {
+                  img = unit.productImage;
+                }
+              });
+
+              list_html += `
+              <tr>
+                  <td class="align-middle">
+                    <div class="image-container">
+                      <img src="/productimages/${img}" alt="product image" />
+                    </div>
+                  </td>
+                  <th scope="row">
+                    ${item.product.productName}
+                  </th>
+                  <td>$900</td>
+                  <td><a id="addCart" class="text-primary" data-productId="${item.product.productId}">加入購物車</a></td>
+                  <td><a id="deleteProduct" class="text-danger" data-collectionId="${item.collectionId}">刪除</a></td>
+                </tr>`;
+            });
+            $("tbody").html(list_html);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log("error");
+            console.log(xhr);
+          },
+        });
+      }
+
+      $(function () {
+        init();
+
+        $("tbody").on("click", "#addCart", function () {
+          let productId = $(this).data("productid");
+          let cartData = {
+            memberId: memberId,
+            product: {
+              productId: productId,
+            },
+            productNumber: 1,
+          };
+          // 商品添加到購物車
+          $.ajax({
+            url: "/productcarts",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(cartData),
+            success: function (data) {
+              if (data) {
+                alert("商品成功加入購物車!");
+              } else {
+                alert("商品已存在購物車!");
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
+
+        $("tbody").on("click", "#deleteProduct", function () {
+          let data = {
+            collectionId: $(this).data("collectionid"),
+          };
+          let currentRow = $(this).closest("tr"); // 找到當前行元素
+          $.ajax({
+            type: "DELETE",
+            url: "/productcollections",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (data) {
+              // 成功處理響應
+              if (data) {
+                currentRow.remove(); // 刪除整個父元素
+                alert("刪除成功");
+              } else {
+                alert("刪除失敗");
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              // 處理錯誤
+              alert("刪除錯誤");
+              console.log("error");
+              console.log(jqXHR);
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>

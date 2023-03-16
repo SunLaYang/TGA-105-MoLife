@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tibame.tga105.shop.domain.Product;
@@ -30,15 +31,20 @@ public class ProductController {
 		return productService.selectId(id);
 	}
 
+	@GetMapping("/spec")
+	public List<Product> selectSpec(@RequestParam(required = false) Integer productStatus,
+			@RequestParam(required = false) Integer animalTypeId, @RequestParam(required = false) Integer categoryId) {
+		return productService.findSpecification(productStatus, animalTypeId, categoryId);
+	}
+
 	@PostMapping
-	public boolean insert(@RequestBody Product product) {	
+	public boolean insert(@RequestBody Product product) {
 		return productService.insert(product);
 	}
-	
+
 	@PutMapping
 	public boolean update(@RequestBody Product product) {
 		return productService.update(product);
 	}
-	
 
 }

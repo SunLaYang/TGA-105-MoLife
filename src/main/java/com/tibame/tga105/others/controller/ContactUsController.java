@@ -78,7 +78,12 @@ public class ContactUsController {
 //         }    
 //      }
 
-        contactUs1.setMemberId(2);
+        if(contactUs.getName().equals("耿鬼")) {
+        	contactUs1.setMemberId(2);
+        }else {
+        	contactUs1.setMemberId(null);
+        }
+        
         contactUs1.setChatTitle(contactUs.getChatTitle());
         contactUs1.setChatContent(contactUs.getChatContent());
         contactUs1.setCreateTime(new Date());

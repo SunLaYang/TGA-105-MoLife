@@ -135,96 +135,7 @@
                   <th class="py-4 text-sm border-0">處理</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- <tr>
-                  <th class="ps-4 py-5 align-middle"># 4</th>
-                  <td class="py-5 align-middle">2022/1/25</td>
-                  <td class="py-5 align-middle">$1000</td>
-                  <td class="py-5 align-middle">
-                    <span class="badge text-danger">待出貨</span>
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >查看</a
-                    >
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >取消</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <th class="ps-4 py-5 align-middle"># 3</th>
-                  <td class="py-5 align-middle">2022/1/15</td>
-                  <td class="py-5 align-middle">$1000</td>
-                  <td class="py-5 align-middle">
-                    <span class="badge text-primary">已出貨</span>
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >查看</a
-                    >
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >取消</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <th class="ps-4 py-5 align-middle"># 2</th>
-                  <td class="py-5 align-middle">2022/1/9</td>
-                  <td class="py-5 align-middle">$1000</td>
-                  <td class="py-5 align-middle">
-                    <span class="badge text-success">已完成</span>
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >查看</a
-                    >
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >取消</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <th class="ps-4 py-5 align-middle"># 1</th>
-                  <td class="py-5 align-middle">2022/1/1</td>
-                  <td class="py-5 align-middle">$1000</td>
-                  <td class="py-5 align-middle">
-                    <span class="badge text-secondary">已取消</span>
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >查看</a
-                    >
-                  </td>
-                  <td class="py-5 align-middle">
-                    <a
-                      class="btn btn-outline-dark btn-sm"
-                      href="customer-order.html"
-                      >取消</a
-                    >
-                  </td>
-                </tr> -->
-              </tbody>
+              <tbody></tbody>
             </table>
           </div>
         </div>
@@ -394,7 +305,9 @@
               list_html += `
                 <tr>
                   <th class="ps-4 py-5 align-middle"># ${item.orderId}</th>
-                  <td class="py-5 align-middle">2022/1/25</td>
+                  <td class="py-5 align-middle">${new Date(
+                    item.orderDate
+                  ).toLocaleDateString()}</td>
                   <td class="py-5 align-middle">$${item.total}</td>
                   <td class="py-5 align-middle">
                     <span class="badge ${statusColor}">${statusName}</span>

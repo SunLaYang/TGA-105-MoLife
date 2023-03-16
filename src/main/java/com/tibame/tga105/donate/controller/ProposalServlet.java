@@ -86,11 +86,8 @@ public class ProposalServlet extends HttpServlet {
 		}
 		
 		String reason = req.getParameter("reason");
-		String reasonReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]+$";
 		if (reason == null || reason.trim().length() ==0) {
 			errors.put("reason", "請勿空白");
-		} else if ( !(reason.trim().matches(reasonReg)) ) {
-			errors.put("reason", "只能輸入中文、英文、數字");
 		}
 	
 		Integer donateDays = null;

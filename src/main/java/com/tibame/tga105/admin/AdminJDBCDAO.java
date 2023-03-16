@@ -15,7 +15,7 @@ public class AdminJDBCDAO implements AdminDAOInterface{
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/molife?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";	
+	String passwd = "123456";	
 	
 	private static final String INSERT_STMT = "INSERT INTO admin (employee_account, employee_password, employee_name, employee_picture_id, employee_email, employee_auth_id, employee_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT * FROM admin order by admin_id";

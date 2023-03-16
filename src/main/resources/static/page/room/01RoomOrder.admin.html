@@ -603,7 +603,7 @@
               data: null,
               render: function (data, type, row, meta) {
                 if (data.room_order_status === 0) {
-                  return "<div>未入住</div>";
+                  return '<div style="color: red;">未入住</div>';
                 } else if (data.room_order_status === 1) {
                   return "<div>Check In</div>";
                 } else {

@@ -42,6 +42,11 @@ public class MemService {
 	public MemVO getOneMem(Integer memId) {
 		return this.dao.findByPrimaryKey(memId);
 	}
+	
+	public MemVO getMemFromEmail(String memEmail) {
+		return this.dao.findByEmail(memEmail);
+	}
+	
 
 	public List<MemVO> getAll() {
 		return this.dao.getAll();
@@ -60,6 +65,13 @@ public class MemService {
 				return false;
 		}
 		return true;
+	}
+	
+	public MemVO checkmail(String memEmail) {
+		if (!checkValue(memEmail)) {
+			return null;
+		}
+		return this.dao.findByEmail(memEmail);
 	}
 	
 	

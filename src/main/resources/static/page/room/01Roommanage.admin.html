@@ -597,9 +597,9 @@
               data: null,
               render: function (data, type, row, meta) {
                 if (data.roomStatus) {
-                  return "<div>上架中</div>";
+                  return '<div class="text-success">上架中</div>';
                 } else {
-                  return "<div>清潔中</div>";
+                  return '<div class="text-danger">清潔中</div>';
                 }
               },
             },

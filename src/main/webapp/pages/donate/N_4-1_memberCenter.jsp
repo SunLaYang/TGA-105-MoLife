@@ -55,7 +55,7 @@
                     <a href="./01room.index.html">寵物旅館</a>
                   </li>
                   <li><a href="#">商品專區</a></li>
-                  <li><a href="#">寵物募款</a></li>
+                  <li><a href="<%=request.getContextPath()%>/pages/donate/N_1_index">寵物募款</a></li>
                   <li><a href="#">寵物論壇</a></li>
                   <li>
                     <a href="#">聯絡我們</a>

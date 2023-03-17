@@ -101,17 +101,17 @@ th, td {
 							<ul class="navbar_menu">
 								<li><a href="/page/room/01room.index.html">寵物旅館</a></li>
 								<li><a href="/page/shop/shop.html">商品專區</a></li>
-								<li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+								<li><a href="/pages/donate/N_1_index.jsp">寵物募款</a></li>
 								<li><a href="/page/others/24forum.index.html">寵物論壇</a></li>
 								<li><a href="/page/others/24contact.html">聯絡我們</a></li>
-								<li><a href="../../page/index.html">管理員後台</a></li>
+								<li><a href="/page/others/24admin.index.html">管理員後台</a></li>
 							</ul>
 							<ul class="navbar_user">
 								<a href="/page/shop/shop-cart.html"><img class="icon"
 									src="../../images/home/car.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/page/others/24post_info.html"><img class="icon"
 									src="../../images/home/ring.png" /></a>
-								<a href="/pages/member/llistOneMem.jsp"><img class="icon"
+								<a href="/pages/member/listOneMem.jsp"><img class="icon"
 									src="../../images/home/man.png" /></a>
 							</ul>
 							<div class="hamburger_container">

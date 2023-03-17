@@ -103,14 +103,14 @@ th, td {
 								<li><a href="/pages/donate/N_1_index">寵物募款</a></li>
 								<li><a href="/page/others/24forum.index.html">寵物論壇</a></li>
 								<li><a href="/page/others/24contact.html">聯絡我們</a></li>
-								<li><a href="../../page/index.html">管理員後台</a></li>
+								<li><a href="/page/others/24admin.index.html">管理員後台</a></li>
 							</ul>
 							<ul class="navbar_user">
 								<a href="/page/shop/shop-cart.html"><img class="icon"
 									src="../../images/home/car.png" /></a>
 								<a href="#"><img class="icon"
 									src="../../images/home/ring.png" /></a>
-								<a href="/pages/member/llistOneMem.jsp"><img class="icon"
+								<a href="/pages/member/listOneMem.jsp"><img class="icon"
 									src="../../images/home/man.png" /></a>
 							</ul>
 							<div class="hamburger_container">
@@ -126,7 +126,7 @@ th, td {
 	<div style="margin-top: 8%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
-				<a href="#/pages/member/llistOneMem.jsp" style="margin-bottom: 10%;">帳號設定</a> <a
+				<a href="/pages/member/listOneMem.jsp" style="margin-bottom: 10%;">帳號設定</a> <a
 					href="/page/shop/shop-orders.html" style="margin-bottom: 10%;">訂單查詢</a> <a
 					href="/page/shop/shop-collection.html" style="margin-bottom: 10%;">商品收藏</a> <a
 					href="/page/room/01myOrder.html" style="margin-bottom: 10%;">房型訂單明細</a> <a

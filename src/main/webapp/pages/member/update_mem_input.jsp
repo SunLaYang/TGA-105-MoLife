@@ -99,19 +99,19 @@ th, td {
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="./01room.index.html">寵物旅館</a></li>
-								<li><a href="#">商品專區</a></li>
-								<li><a href="#">寵物募款</a></li>
-								<li><a href="#">寵物論壇</a></li>
-								<li><a href="#">聯絡我們</a></li>
-								<li><a href="../../page/index.html">管理員後台</a></li>
+								<li><a href="/page/room/01room.index.html">寵物旅館</a></li>
+								<li><a href="/page/shop/shop.html">商品專區</a></li>
+								<li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+								<li><a href="/page/others/24forum.index.html">寵物論壇</a></li>
+								<li><a href="/page/others/24contact.html">聯絡我們</a></li>
+								<li><a href="/page/others/24admin.index.html">管理員後台</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<a href="#"><img class="icon"
+								<a href="/page/shop/shop-cart.html"><img class="icon"
 									src="../../images/home/car.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/page/others/24post_info.html"><img class="icon"
 									src="../../images/home/ring.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/pages/member/listOneMem.jsp"><img class="icon"
 									src="../../images/home/man.png" /></a>
 							</ul>
 							<div class="hamburger_container">
@@ -127,12 +127,11 @@ th, td {
 	<div style="margin-top:8%;">
 		<div style="display: flex; flex-direction: row">
 			<div class="sidenav">
-				<a href="#contact" style="margin-bottom: 10%;">帳號設定</a> <a
-					href="#oreder_search" style="margin-bottom: 10%;">訂單查詢</a> <a
-					href="#goodsadd" style="margin-bottom: 10%;">商品收藏</a> <a
-					href="#roomadd" style="margin-bottom: 10%;">房型收藏</a> <a
-					href="#sponsoradd" style="margin-bottom: 10%;">募資收藏</a> <a
-					href="#notifymailbox" style="margin-bottom: 10%;">通知信箱</a>
+				<a href="/pages/member/listOneMem.jsp" style="margin-bottom: 10%;">帳號設定</a> <a
+					href="/page/shop/shop-orders.html" style="margin-bottom: 10%;">訂單查詢</a> <a
+					href="/page/shop/shop-collection.html" style="margin-bottom: 10%;">商品收藏</a> <a
+					href="/page/room/01myOrder.html" style="margin-bottom: 10%;">房型訂單明細</a> <a
+					href="/pages/donate/N_4-1_memberCenter" style="margin-bottom: 10%;">募款管理</a> 
 			</div>
 
 
@@ -223,9 +222,9 @@ th, td {
 					<div
 						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
-							<li><a href="#">討論區</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">聯絡我們</a></li>
+							<li><a href="/page/others/24forum.index.html">討論區</a></li>
+							<li><a href="/page/others/24faq.html">FAQs</a></li>
+							<li><a href="/page/others/24contact.html">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

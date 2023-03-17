@@ -97,7 +97,6 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						type="submit" class="btn btn-primary btn-block" value="登入">
 				</div>
 				<p class="mb-1">
-					<a href="12emp_forgetpassword_telladmin_notification.html">忘記密碼</a>
 				</p>
 				</form>
 

@@ -43,7 +43,7 @@
 //    	
 //    	AdminVO tempVO = (AdminVO) session.getAttribute("adminVO");
 //    	
-//    	if (session.getAttribute("adminVO") == null && !(tempVO.getEmpAuthId() == 3)) {
+//    	if (!(tempVO.getEmpAuthId() == 3)) {
 //    	 
 //   		res.sendRedirect("/page/others/24admin.index.html");
 //    		

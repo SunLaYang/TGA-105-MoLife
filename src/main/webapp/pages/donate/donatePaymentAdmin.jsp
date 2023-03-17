@@ -89,7 +89,7 @@
             ></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <a href="./index.html" class="nav-link">首頁</a>
+            <a href="<%=request.getContextPath()%>/page/others/24admin.index.html" class="nav-link">首頁</a>
           </li>
           <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -236,7 +236,7 @@
       <!-- Main Sidebar Container -->
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="./index.html" class="brand-link">
+        <a href="<%=request.getContextPath()%>/page/others/24admin.index.html" class="brand-link">
           <img
             src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
             alt="AdminLTE Logo"
@@ -292,7 +292,7 @@
               <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+                <a href="<%=request.getContextPath()%>" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     用戶管理
@@ -301,19 +301,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link active">
+                    <a href="<%=request.getContextPath()%>/pages/admin/listOneEmp.jsp" class="nav-link active">
                       <i class="far fa-circle nav-icon"></i>
                       <p>帳戶管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/pages/member/listAllMem.jsp" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>會員管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./admin.limit.html" class="nav-link">
+                    <a href="<%=request.getContextPath()%>/pages/admin/listAllEmp.jsp" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>權限管理</p>
                     </a>
@@ -322,7 +322,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="nav-icon fas fa-copy"></i>
                   <p>
                     商城後台管理
@@ -332,13 +332,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/page/shop/admin.productlist.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>商品管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/page/shop/admin.productorder.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>訂單管理</p>
                     </a>
@@ -383,7 +383,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<%=request.getContextPath()%>" class="nav-link">
                   <i class="nav-icon fas fa-chart-pie"></i>
                   <p>
                     旅館後台管理
@@ -392,21 +392,15 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/page/room/01Roommanage.admin.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>房型管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/page/room/01RoomOrder.admin.html" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>訂單管理</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>評價管理</p>
                     </a>
                   </li>
                   <!-- <li class="nav-item">
@@ -419,7 +413,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="..." class="nav-link">
+                <a href="<%=request.getContextPath()%>/page/others/24admin.news.html" class="nav-link">
                   <i class="nav-icon fas fa-th"></i>
                   <p>
                     前台頁面管理
@@ -429,7 +423,7 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="nav-icon fas fa-tree"></i>
                   <p>
                     募款後台管理
@@ -438,13 +432,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/pages/donate/donatePlanAdmin" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>提案募款紀錄</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="<%=request.getContextPath()%>/pages/donate/donatePaymentAdmin" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>捐款紀錄查詢</p>
                     </a>
@@ -489,43 +483,17 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<%=request.getContextPath()%>/page/others/24admin.forum.html" class="nav-link">
                   <i class="nav-icon fas fa-edit"></i>
                   <p>
                     論壇後台管理
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>文章管理</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>版面管理</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>公告管理</p>
-                    </a>
-                  </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
-                </ul>
               </li>
 
               <li class="nav-item">
-                <a href="./admin.chatroom.html" class="nav-link">
+                <a href="<%=request.getContextPath()%>/page/others/24admin.chatroom.html" class="nav-link">
                   <i class="nav-icon fas fa-table"></i>
                   <p>
                     聊天室管理
@@ -556,7 +524,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item">
-                    <a href="./index.html">首頁</a>
+                    <a href="<%=request.getContextPath()%>/page/others/24admin.index.html">首頁</a>
                   </li>
                   <!-- <li class="breadcrumb-item active">Dashboard v1</li> -->
                 </ol>

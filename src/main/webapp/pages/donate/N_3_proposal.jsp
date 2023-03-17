@@ -42,32 +42,32 @@
  <!-- Header -->
   <header class="header trans_300">
     <!-- Main Navigation -->
-      <div class="main_nav_container bg-yellow">
+      <div class="main_nav_container" style="background-color: #EAB464">
         <div>
           <div class="row">
             <div class="col-lg-12 text-right">
               <div class="logo_container">
-                <a href="../../page/front_page.html"> <!-- ?? -->
+                <a href="<%=request.getContextPath()%>/page/others/24front_page.html">
                   <img src="../../images/home/logoMoLife.png" />
                 </a>
               </div>
               <nav class="navbar">
                 <ul class="navbar_menu">
                   <li>
-                    <a href="./01room.index.html">寵物旅館</a>
+                    <a href="<%=request.getContextPath()%>/page/room/01room.index.html">寵物旅館</a>
                   </li>
-                  <li><a href="#">商品專區</a></li>
+                  <li><a href="<%=request.getContextPath()%>/page/shop/shop.html">商品專區</a></li>
                   <li><a href="<%=request.getContextPath()%>/pages/donate/N_1_index">寵物募款</a></li>
-                  <li><a href="#">寵物論壇</a></li>
+                   <li><a href="<%=request.getContextPath()%>/page/others/24forum.index.html">寵物論壇</a></li>
                   <li>
-                    <a href="#">聯絡我們</a>
+                    <a href="<%=request.getContextPath()%>/page/others/24contact.html">聯絡我們</a>
                   </li>
-                  <li><a href="../../page/index.html">管理員後台</a></li><!-- ?? -->
+                  <li><a href="<%=request.getContextPath()%>/page/others/24admin.index.html">管理員後台</a></li>
                 </ul>
                 <ul class="navbar_user">
-                  <a href="#"><img class="icon" src="../../images/home/car.png"/></a>
-                  <a href="#"><img class="icon" src="../../images/home/ring.png"/></a>
-                  <a href="#"><img class="icon" src="../../images/home/man.png"/></a>
+                  <li> <a href="<%=request.getContextPath()%>/page/shop/shop-cart.html"><img class="icon" src="../../images/home/car.png"/></a>  </li>
+                  <li> <a href="<%=request.getContextPath()%>/page/others/24post_info.html"><img class="icon" src="../../images/home/ring.png"/></a> </li>
+                  <li> <a href="<%=request.getContextPath()%>/pages/member/listOneMem.jsp"><img class="icon" src="../../images/home/man.png"/></a>  </li>
                 </ul>
                 <div class="hamburger_container">
                   <i class="fa fa-bars" aria-hidden="true"></i>
@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-</header>
+  </header>
 <br>
 <br>
 <br>
@@ -120,7 +120,7 @@
 <div class="path">
  <div class="container1">
   <ol class="breadcrumb" style="background-color:transparent;">
-    <li class="breadcrumb-item"><a href="###" style="color:black;">首頁</a></li>
+    <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/page/others/24front_page.html" style="color:black;">首頁</a></li>
     <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/pages/donate/N_1_index" style="color:black;">寵物募款</a></li>
     <li class="breadcrumb-item active" aria-current="page" style="color:#A7754D; text-decoration: underline;">我要提案募款</li>
   </ol>
@@ -250,8 +250,8 @@ var p_file_el = document.getElementById("p_file");
 						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
 							<li><a href="#">討論區</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">聯絡我們</a></li>
+							<li><a href="<%=request.getContextPath()%>/page/others/24faq.html">FAQs</a></li>
+							<li><a href="<%=request.getContextPath()%>/page/others/24contact.html">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

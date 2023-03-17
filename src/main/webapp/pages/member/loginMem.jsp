@@ -118,7 +118,7 @@ div.btn_click {
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
 				<ul>
-					<c:forEach var="message" items="${errorMsgs}">
+					<c:forEach var="message" items="${sessionScope.errorMsgs}">
 						<li style="color: red">${message}</li>
 					</c:forEach>
 				</ul>

@@ -184,7 +184,7 @@ input:checked+label:after {
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="./24admin.index.html" class="nav-link">首頁</a></li>
+					href="/page/others/24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
@@ -314,9 +314,10 @@ input:checked+label:after {
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
+		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="./24admin.index.html" class="brand-link"> <img
+			<a href="/page/others/24admin.index.html" class="brand-link"> <img
 				src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
 				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 				style="opacity: 0.8" /> <span class="brand-text font-weight-light"
@@ -329,11 +330,11 @@ input:checked+label:after {
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="../../images/front_page/dog.jpg"
+						<img src="/AdminPicView?adminId=${adminVO.adminId}"
 							class="img-circle elevation-2" alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Linda Lee</a>
+						<a href="/pages/admin/listOneEmp.jsp" class="d-block">${adminVO.empName}</a>
 					</div>
 				</div>
 
@@ -364,16 +365,16 @@ input:checked+label:after {
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link active">
-										<i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="/pages/admin/listOneEmp.jsp"
+									class="nav-link "> <i class="far fa-circle nav-icon"></i>
 										<p>帳戶管理</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="/pages/member/listAllMem.jsp"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>會員管理</p>
 								</a></li>
-								<li class="nav-item"><a href="./24admin.limit.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="/pages/admin/listAllEmp.jsp"
+									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
 										<p>權限管理</p>
 								</a></li>
 							</ul></li>
@@ -386,12 +387,14 @@ input:checked+label:after {
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="/page/shop/admin.productlist.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
 										<p>商品管理</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="/page/shop/admin.productorder.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
 										<p>訂單管理</p>
 								</a></li>
 								<!-- <li class="nav-item">
@@ -432,25 +435,26 @@ input:checked+label:after {
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-chart-pie"></i>
+						<li class="nav-item">
+						<a href="#" class="nav-link"> 
+							<iclass="nav-icon fas fa-chart-pie"></i>
 								<p>
 									旅館後台管理 <i class="right fas fa-angle-left"></i>
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item">
+								<a href="/page/room/01RoomOrder.admin.html" class="nav-link">
+								 <i	class="far fa-circle nav-icon"></i>
 										<p>房型管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								</a>
+								</li>
+								<li class="nav-item">
+								<a href="/page/room/01Roommanage.admin.html" class="nav-link">
+								 <i	class="far fa-circle nav-icon"></i>
 										<p>訂單管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>評價管理</p>
-								</a></li>
+								</a>
+								</li>
 								<!-- <li class="nav-item">
                 <a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -459,7 +463,7 @@ input:checked+label:after {
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="./24admin.news.html"
+						<li class="nav-item"><a href="/page/others/24admin.news.html"
 							class="nav-link"> <i class="nav-icon fas fa-th"></i>
 								<p>
 									前台頁面管理 <span class="right badge badge-danger">New</span>
@@ -473,11 +477,11 @@ input:checked+label:after {
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
+								<li class="nav-item"><a href="/pages/donate/donatePlanAdmin" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>提案募款紀錄</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
+								<li class="nav-item"><a href="/pages/donate/donatePaymentAdmin" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>捐款紀錄查詢</p>
 								</a></li>
@@ -519,34 +523,15 @@ input:checked+label:after {
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
+						<li class="nav-item"><a href="/page/others/24admin.forum.html" class="nav-link"> <i
 								class="nav-icon fas fa-edit"></i>
 								<p>
 									論壇後台管理 <i class="fas fa-angle-left right"></i>
 								</p>
 						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./24admin.forum.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>文章管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>版面管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>公告管理</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
-							</ul></li>
+							</li>
 
-						<li class="nav-item"><a href="./24admin.chatroom.html"
+						<li class="nav-item"><a href="/page/others/24admin.chatroom.html"
 							class="nav-link"> <i class="nav-icon fas fa-table"></i>
 								<p>
 									留言管理 <span class="right badge badge-danger">New</span>
@@ -567,16 +552,16 @@ input:checked+label:after {
 					<div class="row mb-2">
 						<div class="col-sm-6">
 							<h1 class="m-0">
-								<i class="fa-solid fa-paw" style="padding-right: 20px"></i> 會員管理
+								<i class="fa-solid fa-paw" style="padding-right: 20px"></i> 員工列表
 							</h1>
 						</div>
 						<!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="./24admin.index.html">首頁</a>
+								<li class="breadcrumb-item"><a href="/page/others/24admin.index.html">首頁</a>
 								</li>
-								<li class="breadcrumb-item active">用戶管理</li>
-								<li class="breadcrumb-item active">會員管理</li>
+								<li class="breadcrumb-item active"><a
+									href="/pages/admin/listAllEmp.jsp">員工管理</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -594,19 +579,19 @@ input:checked+label:after {
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h3 class="card-title" style="margin-top: 5px">會員列表</h3>
-									<a href="./24admin.add_employee.html"><button type="button"
+									<h3 class="card-title" style="margin-top: 5px">員工列表</h3>
+									<a href="/pages/admin/addEmp.jsp"><button type="button"
 											class="apply_btn"
 											style="width: 80px; margin-top: 5px; float: right">
 											新增員工</button></a>
 
-									<div class="search" style="float: right; margin-right: 10px">
-										<input class="search-bar" type="text" name="search"
-											id="search" placeholder="Search" />
-										<button class="search-btn">
-											<i class="fas fa-search"></i>
-										</button>
-									</div>
+<!-- 									<div class="search" style="float: right; margin-right: 10px"> -->
+<!-- 										<input class="search-bar" type="text" name="search" -->
+<!-- 											id="search" placeholder="Search" /> -->
+<!-- 										<button class="search-btn"> -->
+<!-- 											<i class="fas fa-search"></i> -->
+<!-- 										</button> -->
+<!-- 									</div> -->
 								</div>
 
 								<!-- /.card-header -->
@@ -649,7 +634,7 @@ input:checked+label:after {
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/adminController"
 															style="margin-bottom: 0px;" enctype="multipart/form-data">
-															<input type="submit" value="修改"> <input
+															<input type="submit" class="apply_btn" value="修改"> <input
 																type="hidden" name="adminId" value="${adminVO.adminId}">
 															<input type="hidden" name="action" value="boss_Update">
 														</FORM>
@@ -682,13 +667,13 @@ input:checked+label:after {
 	<!-- /.content-wrapper -->
 
 	<footer class="main-footer">
-		<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-			href="./24front_page.html">TGA105-第四組</a>.
-		</strong> All rights reserved.
-		<div class="float-right d-none d-sm-inline-block">
-			<b>Version</b> 3.2.0
-		</div>
-	</footer>
+			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
+				href="/page/others/24admin.index.html">TGA105-第四組</a>.
+			</strong> All rights reserved.
+			<div class="float-right d-none d-sm-inline-block">
+				<b>Version</b> 3.2.0
+			</div>
+		</footer>
 
 	<!-- Control Sidebar -->
 	<aside class="control-sidebar control-sidebar-dark">

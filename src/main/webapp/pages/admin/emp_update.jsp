@@ -207,10 +207,9 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="./24admin.index.html" class="brand-link"> <img
+			<a href="/page/others/24admin.index.html" class="brand-link"> <img
 				src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
 				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
 				style="opacity: 0.8" /> <span class="brand-text font-weight-light"
@@ -455,7 +454,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 								<li class="breadcrumb-item"><a href="/page/others/24admin.index.html">首頁</a>
 								</li>
 								<li class="breadcrumb-item active"><a
-									href="./24admin.limit.html">員工編輯自身帳號</a></li>
+									href="/pages/admin/emp_update.jsp">員工編輯自身帳號</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -475,7 +474,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 							<!-- general form elements -->
 							<div class="card card-primary" style="margin-bottom: 10px">
 								<div class="card-header">
-									<h3 class="card-title">管理員修改會員資料</h3>
+									<h3 class="card-title">員工編輯自身帳號</h3>
 								</div>
 
 								<c:if test="${not empty errorMsgs}">
@@ -551,7 +550,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 
 		<footer class="main-footer">
 			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-				href="./24front_page.html">TGA105-第四組</a>.
+				href="/page/others/24admin.index.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

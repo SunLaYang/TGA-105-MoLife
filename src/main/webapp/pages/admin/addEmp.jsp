@@ -247,7 +247,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						</a>
 							<ul class="nav nav-treeview">
 								<li class="nav-item"><a href="/pages/admin/listOneEmp.jsp"
-									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>帳戶管理</p>
 								</a></li>
 								<li class="nav-item"><a href="/pages/member/listAllMem.jsp"
@@ -255,7 +255,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 										<p>會員管理</p>
 								</a></li>
 								<li class="nav-item"><a href="/pages/admin/listAllEmp.jsp"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
+									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
 										<p>權限管理</p>
 								</a></li>
 							</ul></li>
@@ -563,7 +563,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 
 		<footer class="main-footer">
 			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-				href="/page/others/24front_page.html">TGA105-第四組</a>.
+				href="/page/others/24admin.index.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

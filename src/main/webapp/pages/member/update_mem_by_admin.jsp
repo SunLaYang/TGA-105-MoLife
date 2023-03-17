@@ -67,7 +67,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="24admin.index.html" class="nav-link">首頁</a></li>
+					href="/page/others/24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
@@ -197,250 +197,234 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
-		<aside class="main-sidebar sidebar-dark-primary elevation-4">
-			<!-- Brand Logo -->
-			<a href="./24admin.index.html" class="brand-link"> <img
-				src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
-				alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-				style="opacity: 0.8" /> <span class="brand-text font-weight-light"
-				style="padding-left: 20px">MoLife<i class="fa-solid fa-paw"
-					style="padding-left: 20px"></i></span>
-			</a>
+			<aside class="main-sidebar sidebar-dark-primary elevation-4">
+				<!-- Brand Logo -->
+				<a href="/page/others/24admin.index.html" class="brand-link"> <img
+					src="../../AdminLTE-3.2.0/dist/img/AdminLTELogo.png"
+					alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+					style="opacity: 0.8" /> <span class="brand-text font-weight-light"
+					style="padding-left: 20px">MoLife<i class="fa-solid fa-paw"
+						style="padding-left: 20px"></i></span>
+				</a>
 
-			<!-- Sidebar -->
-			<div class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img src="../../images/front_page/dog.jpg"
-							class="img-circle elevation-2" alt="User Image" />
-					</div>
-					<div class="info">
-						<a href="#" class="d-block">Linda Lee</a>
-					</div>
-				</div>
-
-				<!-- SidebarSearch Form -->
-				<div class="form-inline">
-					<div class="input-group" data-widget="sidebar-search">
-						<input class="form-control form-control-sidebar" type="search"
-							placeholder="Search" aria-label="Search" />
-						<div class="input-group-append">
-							<button class="btn btn-sidebar">
-								<i class="fas fa-search fa-fw"></i>
-							</button>
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<!-- Sidebar user panel (optional) -->
+					<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+						<div class="image">
+							<img src="/AdminPicView?adminId=${adminVO.adminId}"
+								class="img-circle elevation-2" alt="User Image" />
+						</div>
+						<div class="info">
+							<a href="/pages/admin/listOneEmp.jsp" class="d-block">${adminVO.empName}</a>
 						</div>
 					</div>
+
+					<!-- SidebarSearch Form -->
+					<div class="form-inline">
+						<div class="input-group" data-widget="sidebar-search">
+							<input class="form-control form-control-sidebar" type="search"
+								placeholder="Search" aria-label="Search" />
+							<div class="input-group-append">
+								<button class="btn btn-sidebar">
+									<i class="fas fa-search fa-fw"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Sidebar Menu -->
+					<nav class="mt-2">
+						<ul class="nav nav-pills nav-sidebar flex-column"
+							data-widget="treeview" role="menu" data-accordion="false">
+							<!-- Add icons to the links using the .nav-icon class
+				   with font-awesome or any other icon font library -->
+							<li class="nav-item menu-open"><a href="#"
+								class="nav-link active"> <i
+									class="nav-icon fas fa-tachometer-alt"></i>
+									<p>
+										用戶管理 <i class="right fas fa-angle-left"></i>
+									</p>
+							</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item"><a href="/pages/admin/listOneEmp.jsp"
+										class="nav-link"> <i class="far fa-circle nav-icon"></i>
+											<p>帳戶管理</p>
+									</a></li>
+									<li class="nav-item"><a href="/pages/member/listAllMem.jsp"
+										class="nav-link active"> <i class="far fa-circle nav-icon"></i>
+											<p>會員管理</p>
+									</a></li>
+									<li class="nav-item"><a href="/pages/admin/listAllEmp.jsp"
+										class="nav-link"> <i class="far fa-circle nav-icon"></i>
+											<p>權限管理</p>
+									</a></li>
+								</ul></li>
+
+							<li class="nav-item"><a href="#" class="nav-link"> <i
+									class="nav-icon fas fa-copy"></i>
+									<p>
+										商城後台管理 <i class="fas fa-angle-left right"></i> <span
+											class="badge badge-info right">6</span>
+									</p>
+							</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item"><a
+										href="/page/shop/admin.productlist.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>商品管理</p>
+									</a></li>
+									<li class="nav-item"><a
+										href="/page/shop/admin.productorder.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>訂單管理</p>
+									</a></li>
+									<!-- <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/boxed.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Boxed</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Fixed Sidebar</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar-custom.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Fixed Sidebar <small>+ Custom Area</small></p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/fixed-topnav.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Fixed Navbar</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/fixed-footer.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Fixed Footer</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/layout/collapsed-sidebar.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Collapsed Sidebar</p>
+					</a>
+				  </li> -->
+								</ul></li>
+
+							<li class="nav-item">
+							<a href="#" class="nav-link"> 
+								<iclass="nav-icon fas fa-chart-pie"></i>
+									<p>
+										旅館後台管理 <i class="right fas fa-angle-left"></i>
+									</p>
+							</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+									<a href="/page/room/01RoomOrder.admin.html" class="nav-link">
+									 <i	class="far fa-circle nav-icon"></i>
+											<p>房型管理</p>
+									</a>
+									</li>
+									<li class="nav-item">
+									<a href="/page/room/01Roommanage.admin.html" class="nav-link">
+									 <i	class="far fa-circle nav-icon"></i>
+											<p>訂單管理</p>
+									</a>
+									</li>
+									<!-- <li class="nav-item">
+					<a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>uPlot</p>
+					</a>
+				  </li> -->
+								</ul></li>
+
+							<li class="nav-item"><a href="/page/others/24admin.news.html"
+								class="nav-link"> <i class="nav-icon fas fa-th"></i>
+									<p>
+										前台頁面管理 <span class="right badge badge-danger">New</span>
+									</p>
+							</a></li>
+
+							<li class="nav-item"><a href="#" class="nav-link"> <i
+									class="nav-icon fas fa-tree"></i>
+									<p>
+										募款後台管理 <i class="fas fa-angle-left right"></i>
+									</p>
+							</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item"><a href="/pages/donate/donatePlanAdmin" class="nav-link"> <i
+											class="far fa-circle nav-icon"></i>
+											<p>提案募款紀錄</p>
+									</a></li>
+									<li class="nav-item"><a href="/pages/donate/donatePaymentAdmin" class="nav-link"> <i
+											class="far fa-circle nav-icon"></i>
+											<p>捐款紀錄查詢</p>
+									</a></li>
+									<!-- <li class="nav-item">
+						<a href="..." class="nav-link">
+						  <i class="far fa-circle nav-icon"></i>
+						  <p>Buttons</p>
+						</a>
+					  </li> -->
+									<!-- <li class="nav-item">
+					<a href="..." class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Sliders</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="..." class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Modals & Alerts</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="..." class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Navbar & Tabs</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="..." class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Timeline</p>
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a href="..." class="nav-link">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p>Ribbons</p>
+					</a>
+				  </li> -->
+								</ul></li>
+
+							<li class="nav-item"><a href="/page/others/24admin.forum.html" class="nav-link"> <i
+									class="nav-icon fas fa-edit"></i>
+									<p>
+										論壇後台管理 <i class="fas fa-angle-left right"></i>
+									</p>
+							</a>
+								</li>
+
+							<li class="nav-item"><a href="/page/others/24admin.chatroom.html"
+								class="nav-link"> <i class="nav-icon fas fa-table"></i>
+									<p>
+										留言管理 <span class="right badge badge-danger">New</span>
+									</p>
+							</a></li>
+						</ul>
+					</nav>
+					<!-- /.sidebar-menu -->
 				</div>
-
-				<!-- Sidebar Menu -->
-				<nav class="mt-2">
-					<ul class="nav nav-pills nav-sidebar flex-column"
-						data-widget="treeview" role="menu" data-accordion="false">
-						<!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-						<li class="nav-item menu-open"><a href="#"
-							class="nav-link active"> <i
-								class="nav-icon fas fa-tachometer-alt"></i>
-								<p>
-									用戶管理 <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link active">
-										<i class="far fa-circle nav-icon"></i>
-										<p>帳戶管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>會員管理</p>
-								</a></li>
-								<li class="nav-item"><a href="./24admin.limit.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>權限管理</p>
-								</a></li>
-							</ul></li>
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-copy"></i>
-								<p>
-									商城後台管理 <i class="fas fa-angle-left right"></i> <span
-										class="badge badge-info right">6</span>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>商品管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>訂單管理</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li> -->
-							</ul></li>
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-chart-pie"></i>
-								<p>
-									旅館後台管理 <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>房型管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>訂單管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>評價管理</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li> -->
-							</ul></li>
-
-						<li class="nav-item"><a href="./24admin.news.html"
-							class="nav-link"> <i class="nav-icon fas fa-th"></i>
-								<p>
-									前台頁面管理 <span class="right badge badge-danger">New</span>
-								</p>
-						</a></li>
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-tree"></i>
-								<p>
-									募款後台管理 <i class="fas fa-angle-left right"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>提案募款紀錄</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>捐款紀錄查詢</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Buttons</p>
-                    </a>
-                  </li> -->
-								<!-- <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ribbons</p>
-                </a>
-              </li> -->
-							</ul></li>
-
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-edit"></i>
-								<p>
-									論壇後台管理 <i class="fas fa-angle-left right"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./24admin.forum.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>文章管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>版面管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>公告管理</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
-							</ul></li>
-
-						<li class="nav-item"><a href="./24admin.chatroom.html"
-							class="nav-link"> <i class="nav-icon fas fa-table"></i>
-								<p>
-									留言管理 <span class="right badge badge-danger">New</span>
-								</p>
-						</a></li>
-					</ul>
-				</nav>
-				<!-- /.sidebar-menu -->
-			</div>
-			<!-- /.sidebar -->
-		</aside>
+				<!-- /.sidebar -->
+			</aside>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper" style="min-height: 1152.551px;">
@@ -451,16 +435,16 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 						<div class="col-sm-6">
 							<h1 class="m-0">
 								<i class="fa-solid fa-paw" style="padding-right: 20px"></i>
-								會員資料編輯
+								管理員編輯會員資料
 							</h1>
 						</div>
 						<!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="./24admin.index.html">首頁</a>
+								<li class="breadcrumb-item"><a href="/page/others/24admin.index.html">首頁</a>
 								</li>
 								<li class="breadcrumb-item active"><a
-									href="./24admin.limit.html">會員資料編輯</a></li>
+									href="/pages/member/listAllMem.jsp">會員列表</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->
@@ -608,7 +592,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 
 		<footer class="main-footer">
 			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-				href="./24front_page.html">TGA105-第四組</a>.
+				href="/page/others/24admin.index.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

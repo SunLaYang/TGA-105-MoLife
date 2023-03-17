@@ -1,5 +1,8 @@
 package com.tibame.tga105.others.controller;
 
+import java.io.PrintWriter;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Controller;
@@ -59,7 +62,22 @@ public class NewsController {
 
     //後台編輯最新消息
     @PostMapping("/update")
-    public String updateNews(News news){
+    public String updateNews(News news, HttpServletResponse response){
+    	
+    	try {
+    		if(news.getNewsTitle().isBlank() || news.getNewsContent().isBlank()) {
+    			response.setContentType("text/html;charset=utf-8");
+            	PrintWriter writer = response.getWriter();
+            	String msg = "alert('標題/內容不可為空!');history.go(-1)";
+            	writer.print("<script type='text/javascript'>" + msg + "</script>");
+            	writer.flush();
+            	writer.close();
+    		}
+    		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
         newsService.updateById(news.getNewsId(), news);
         return "redirect:/page/others/24admin.news.html";
     }

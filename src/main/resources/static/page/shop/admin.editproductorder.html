@@ -632,7 +632,7 @@
               <div class="row">
                 <!-- accepted payments column -->
                 <div class="col-6">
-                  <div class="mt-5 mx-2" id="statusdiv"></div>
+                  <div class="mt-5" id="statusdiv"></div>
                 </div>
                 <!-- /.col -->
                 <div class="col-6">
@@ -736,23 +736,43 @@
                 statusColor = "text-danger";
                 statusName = "待出貨";
                 $("#statusdiv").html(
-                  `<button type="button" class="btn btn-primary" id="statusbutton" data-orderid="${data.orderId}" data-orderstatus="${data.orderStatus}">出貨</button>`
+                  `<button
+                      type="button"
+                      class="btn btn-primary"
+                      id="previous">返回</button>
+                  <button type="button" class="btn btn-primary" id="statusbutton" data-orderid="${data.orderId}" data-orderstatus="${data.orderStatus}">出貨</button>`
                 );
                 break;
               case 1:
                 statusColor = "text-primary";
                 statusName = "已出貨";
                 $("#statusdiv").html(
-                  `<button type="button" class="btn btn-primary" id="statusbutton" data-orderid="${data.orderId}" data-orderstatus="${data.orderStatus}">完成訂單</button>`
+                  `<button
+                      type="button"
+                      class="btn btn-primary"
+                      id="previous">返回</button>
+                  <button type="button" class="btn btn-primary" id="statusbutton" data-orderid="${data.orderId}" data-orderstatus="${data.orderStatus}">完成訂單</button>`
                 );
                 break;
               case 2:
                 statusColor = "text-success";
                 statusName = "已完成";
+                $("#statusdiv").html(
+                  `<button
+                      type="button"
+                      class="btn btn-primary"
+                      id="previous">返回</button>`
+                );
                 break;
               case 3:
                 statusColor = "text-secondary";
                 statusName = "已取消";
+                $("#statusdiv").html(
+                  `<button
+                      type="button"
+                      class="btn btn-primary"
+                      id="previous">返回</button>`
+                );
                 break;
             }
 
@@ -799,6 +819,10 @@
       $(function () {
         init();
         bsCustomFileInput.init();
+
+        $("#statusdiv").on("click", "#previous", function () {
+          window.location.href = "/page/shop/admin.productorder.html";
+        });
 
         $("#statusdiv").on("click", "#statusbutton", function () {
           let orderId = $(this).data("orderid");

@@ -45,6 +45,18 @@
     <script
       src="https://kit.fontawesome.com/2672c0b72c.js"
       crossorigin="anonymous"></script>
+    <style>
+      .image-container {
+        height: 220px;
+        overflow: hidden; /* 隱藏溢出的內容 */
+      }
+
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 填充剪裁適應容器 */
+      }
+    </style>
   </head>
 
   <body>
@@ -237,111 +249,7 @@
 
                     <!-- Product Grid -->
 
-                    <div class="product-grid">
-                      <!-- Product 1 -->
-
-                      <!-- <div class="product-item women">
-                        <div class="product product_filter">
-                          <div class="product_image">
-                            <img
-                              src="../../images/front_page/front.dog_food.jpg"
-                              alt="" />
-                          </div>
-                          <div class="favorite"></div>
-                          <div class="product_info">
-                            <h6 class="product_name">
-                              <a href="shop-product.html"
-                                >Kirkland Signature Chicken & Rice Dry Dog Food
-                                12 kg</a
-                              >
-                            </h6>
-                            <div class="product_price">$900</div>
-                          </div>
-                        </div>
-                        <div class="red_button add_to_cart_button">
-                          <a href="#">add to cart</a>
-                        </div>
-                      </div> -->
-
-                      <!-- Product 2 -->
-
-                      <!-- <div class="product-item women">
-                        <div class="product product_filter">
-                          <div class="product_image">
-                            <img
-                              src="../../images/front_page/front.dog_food.jpg"
-                              alt="" />
-                          </div>
-                          <div class="favorite"></div>
-                          <div
-                            class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center">
-                            <span>new</span>
-                          </div>
-                          <div class="product_info">
-                            <h6 class="product_name">
-                              <a href="shop-product.html"
-                                >Kirkland Signature Chicken & Rice Dry Dog Food
-                                12 kg</a
-                              >
-                            </h6>
-                            <div class="product_price">$900</div>
-                          </div>
-                        </div>
-                        <div class="red_button add_to_cart_button">
-                          <a href="#">add to cart</a>
-                        </div>
-                      </div> -->
-
-                      <!-- Product 3 -->
-
-                      <!-- <div class="product-item women">
-                        <div class="product product_filter">
-                          <div class="product_image">
-                            <img
-                              src="../../images/front_page/front.dog_food.jpg"
-                              alt="" />
-                          </div>
-                          <div class="favorite"></div>
-                          <div class="product_info">
-                            <h6 class="product_name">
-                              <a href="shop-product.html"
-                                >Kirkland Signature Chicken & Rice Dry Dog Food
-                                12 kg</a
-                              >
-                            </h6>
-                            <div class="product_price">$900</div>
-                          </div>
-                        </div>
-                        <div class="red_button add_to_cart_button">
-                          <a href="#">add to cart</a>
-                        </div>
-                      </div> -->
-
-                      <!-- Product 4 -->
-
-                      <!-- <div class="product-item women">
-                        <div class="product product_filter">
-                          <div class="product_image">
-                            <img
-                              src="../../images/front_page/front.dog_food.jpg"
-                              alt="" />
-                          </div>
-                          <div class="favorite"></div>
-                          <div class="product_info">
-                            <h6 class="product_name">
-                              <a href="shop-product.html"
-                                >Kirkland Signature Chicken & Rice Dry Dog Food
-                                12 kg</a
-                              >
-                            </h6>
-                            <div class="product_price">$900</div>
-                          </div>
-                        </div>
-                        <div class="red_button add_to_cart_button">
-                          <a href="#">add to cart</a>
-                        </div>
-                      </div> -->
-                    </div>
+                    <div class="product-grid"></div>
 
                     <div
                       class="product_sorting_container product_sorting_container_bottom clearfix">
@@ -655,8 +563,8 @@
               list_html += `
                                     <div class="product-item men">
                                       <div class="product product_filter">
-                                        <div class="product_image" style="min-height: 220px;">
-                                          <img src="/productimages/${img}" style="max-height: 100%;"/>
+                                        <div class="product_image image-container">
+                                          <img src="/productimages/${img}" class="image-container"/>
                                         </div>
                                         <div class="favorite" data-productId="${item.productId}"></div>
                                         <div class="product_info">

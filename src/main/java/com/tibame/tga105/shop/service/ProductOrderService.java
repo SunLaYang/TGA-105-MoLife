@@ -52,7 +52,7 @@ public class ProductOrderService {
 	public boolean save(ProductOrder productOrder) {
 		if (productOrder != null && productOrder.getMemberId() != null) {
 			List<ProductCart> pc = cartService.findByMemberId(productOrder.getMemberId());
-			if (pc != null) {
+			if (pc != null && pc.size() != 0) {
 				List<ProductOrderItem> items = pc.stream().map(cart -> {
 					Product product = cart.getProduct();
 					int productNumber = cart.getProductNumber();

@@ -57,7 +57,7 @@
                     <a href="./01room.index.html">寵物旅館</a>
                   </li>
                   <li><a href="#">商品專區</a></li>
-                  <li><a href="#">寵物募款</a></li>
+                  <li><a href="<%=request.getContextPath()%>/pages/donate/N_1_index">寵物募款</a></li>
                   <li><a href="#">寵物論壇</a></li>
                   <li>
                     <a href="#">聯絡我們</a>
@@ -96,7 +96,7 @@
  <div class="container1">
   <ol class="breadcrumb" style="background-color:transparent;">
     <li class="breadcrumb-item"><a href="###" style="color:black;">首頁</a></li>
-    <li class="breadcrumb-item"><a href="/pages/donate/N_1_index" style="color:black;">寵物募款</a></li>
+    <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/pages/donate/N_1_index" style="color:black;">寵物募款</a></li>
   </ol>
   </div>
 </div>

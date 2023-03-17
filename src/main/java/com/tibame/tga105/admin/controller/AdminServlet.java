@@ -37,6 +37,10 @@ public class AdminServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
+		/*
+		 * 查詢單一員工
+		 */
+
 		if ("getOne_For_Display".equals(action)) {
 
 			List<String> erroMsgs = new LinkedList<String>();
@@ -87,7 +91,11 @@ public class AdminServlet extends HttpServlet {
 		}
 		/******************************************************************************************/
 
-		if ("emp_update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
+		/*
+		 * 員工要編輯自己的資料
+		 */
+
+		if ("emp_update".equals(action)) {// //來自ListOneMem.jsp的請求
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -109,6 +117,13 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 老闆要編輯員工資料
+		 */
+
+		
 		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
@@ -130,6 +145,13 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 會員正在編輯自己的資料
+		 */
+
+		
 		if ("updatebyEMP".equals(action)) {
 
 			HttpSession session = req.getSession();
@@ -213,6 +235,11 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+
+		/*
+		 * 老闆正在編輯自己的資料
+		 */
+
 		if ("updatebyBoss".equals(action)) {
 			
 			HttpSession session = req.getSession();
@@ -303,6 +330,13 @@ public class AdminServlet extends HttpServlet {
 		}
 
 		/******************************************************************************************/
+		
+
+		/*
+		 * 新增員工
+		 */
+
+		
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -387,6 +421,10 @@ public class AdminServlet extends HttpServlet {
 
 		/******************************************************************************************/
 
+		/*
+		 * 刪除員工
+		 */
+
 		if ("delete".equals(action)) { // 來自listAllAdmin.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -404,7 +442,13 @@ public class AdminServlet extends HttpServlet {
 		}
 		
 		/******************************************************************************************/
+		
 
+		/*
+		 * 員工登入
+		 */
+
+		
 		if ("login".equals(action)) {// 來自loginEmp.jsp
 
 			List<String> erroMsgs = new LinkedList<String>();

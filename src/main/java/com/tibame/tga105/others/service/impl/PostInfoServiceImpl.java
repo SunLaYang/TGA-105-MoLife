@@ -20,7 +20,6 @@ public class PostInfoServiceImpl implements PostInfoService {
         return postInfoRepository.save(postInfo);
     }
 
-
     @Override
     public List<PostInfo> readInfo() {
         return postInfoRepository.findAll();

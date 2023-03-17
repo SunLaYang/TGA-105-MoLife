@@ -49,17 +49,19 @@ public class ForumReportController {
     }
 
     //前台新增檢舉
-    @PostMapping("/addReport")
-    public ForumReport addReport(Forum forum){
-        ForumReport forumReport = new ForumReport();
-        forumReport.setAdminId(null);
-        forumReport.setForumArticleNo(forum.getForumNo());
-        forumReport.setMemberId(forum.getMemberId());
-        forumReport.setForumArticleReportReasonNo(forumReport.getForumArticleReportReasonNo());
+    @RequestMapping("/addReport")
+    public String addReport(ForumReport forumReport){
+        forumReport = new ForumReport();
+        forumReport.setForumArticleNo(6);
+        forumReport.setMemberId(6);
+        forumReport.setForumTitle("[急問]有沒有人可以幫忙代養2個月，每個月給3萬酬勞");
+        forumReport.setForumContent("因為近期需要出差2個月的緣故,我家的瑪爾濟斯沒有人照顧,所以希望可以找個人幫忙! 請留下匯款帳號及電話方便之後聯絡好心人及匯款~拜託了!!!");
+        forumReport.setForumArticleReportReasonNo(0);
         forumReport.setForumArticleReportTime(new Date());
         forumReport.setForumArticleReportStatus(0);
         forumReport.setForumArticleStatus(0);
-        return forumReportService.createReport(forumReport);
+        forumReportService.createReport(forumReport);
+        return "24forum.index";
     }
 
     //後台論壇管理檢舉成立
@@ -72,16 +74,11 @@ public class ForumReportController {
         postInfo.setMemberId(1);
         postInfo.setAdminId(1);
         postInfo.setInfoTitle("寵物論壇");
-
-        postInfo.setContent("您的文章因違反規定被檢舉,已下架您的文章!");
-
         postInfo.setContent("親愛的會員您好!您的文章因違反規定而被檢舉,已下架您的文章!");
-
         postInfo.setInfoDate(new Date());
         postInfo.setInfoStatus(0);
         postInfo.setInfoType(1);
         postInfoService.createInfo(postInfo);
-
 
         return "redirect:/page/others/24admin.forum.html";
     }

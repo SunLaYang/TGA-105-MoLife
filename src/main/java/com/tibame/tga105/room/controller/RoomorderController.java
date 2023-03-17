@@ -3,10 +3,12 @@ package com.tibame.tga105.room.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tibame.tga105.mem.model.MemVO;
 import com.tibame.tga105.room.dto.RoomderQueryParams;
 import com.tibame.tga105.room.dto.RoomorderRequest;
 import com.tibame.tga105.room.model.RoomorderVO;
@@ -34,6 +37,7 @@ public class RoomorderController {
 
 	@Autowired
 	private RoomorderService roomorderService;
+
 
 	// ==============後台訂單頁面join查詢實作分頁=================
 	@GetMapping("/getOrderpage")
@@ -147,6 +151,27 @@ public class RoomorderController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(roomorderList);
 	}
+	
+	//=============測試session==============
+//	@GetMapping("/roomorderDetial")
+//	public ResponseEntity<List<Map<String, Object>>> getOrderDetailsByMemID(HttpSession session) {
+//
+//		MemVO memVO = (MemVO) session.getAttribute("memVO");
+//		
+//		Integer memberId = memVO.getMemId();
+//		
+//		System.out.println("===========" + memberId);
+//
+//
+//		RoomorderVO roomorderVO = new RoomorderVO();
+//
+//		List<Map<String, Object>> roomorderList = roomorderService.getRoomorderByMemberId(roomorderVO, memberId);
+//
+//		System.out.println("=============" + roomorderList + "=======================");
+//
+//		return ResponseEntity.status(HttpStatus.OK).body(roomorderList);
+//	}
+
 
 	// ====================新增訂單================================
 
@@ -212,5 +237,6 @@ public class RoomorderController {
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
 	}
+	
 
 }

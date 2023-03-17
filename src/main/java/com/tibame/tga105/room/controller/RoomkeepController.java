@@ -43,7 +43,5 @@ public class RoomkeepController {
 		redisTemplate.opsForSet().add(key, roomName);
 		return ResponseEntity.ok().build();
 	}
-	
-
 
 }

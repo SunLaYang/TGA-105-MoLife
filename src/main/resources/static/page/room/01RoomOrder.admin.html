@@ -482,7 +482,7 @@
                           <th>入住日期</th>
                           <th>退房日期</th>
                           <th>訂單金額</th>
-                          <th>評價內容</th>
+                          <th>訂單詳情</th>
                           <th>入住狀態</th>
                           <th>操作</th>
                         </tr>
@@ -605,7 +605,7 @@
                 if (data.room_order_status === 0) {
                   return '<div style="color: red;">未入住</div>';
                 } else if (data.room_order_status === 1) {
-                  return "<div>Check In</div>";
+                  return '<div style="color: #0d6efd;">Check In</div>';
                 } else {
                   return "<div>Check Out</div>";
                 }

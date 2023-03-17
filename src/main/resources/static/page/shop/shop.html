@@ -109,7 +109,7 @@
               </ul>
             </div>
 
-            <!-- Sidebar -->
+            <!-- 商品分類 -->
 
             <div class="sidebar">
               <div class="sidebar_section">
@@ -118,7 +118,7 @@
                 </div>
                 <ul class="sidebar_categories">
                   <li class="active">
-                    <a href="#"
+                    <a href="shop.html"
                       ><span
                         ><i
                           class="fa fa-angle-double-right"
@@ -126,11 +126,30 @@
                       >全部商品</a
                     >
                   </li>
-                  <li><a href="#">寵物飼料</a></li>
-                  <li><a href="#">寵物罐頭</a></li>
-                  <li><a href="#">寵物零食</a></li>
-                  <li><a href="#">寵物用品</a></li>
-                  <li><a href="#">寵物玩具</a></li>
+                  <li><a href="shop.html?categoryId=1">寵物飼料</a></li>
+                  <li><a href="shop.html?categoryId=2">寵物罐頭</a></li>
+                  <li><a href="shop.html?categoryId=3">寵物零食</a></li>
+                  <li><a href="shop.html?categoryId=4">寵物用品</a></li>
+                  <li><a href="shop.html?categoryId=5">寵物玩具</a></li>
+                </ul>
+              </div>
+
+              <!-- 寵物種類 -->
+              <div class="sidebar_section">
+                <div class="sidebar_title">
+                  <h5>寵物種類</h5>
+                </div>
+                <ul class="product_sorting">
+                  <li>
+                    <span id="animal-type-span">寵物種類</span>
+                    <i class="fa fa-angle-down"></i>
+                    <ul id="animal-type-list">
+                      <li data-animalTypeId="1"><span>狗</span></li>
+                      <li data-animalTypeId="2"><span>貓</span></li>
+                      <li data-animalTypeId="3"><span>兔子</span></li>
+                      <li data-animalTypeId="4"><span>鼠</span></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
@@ -148,34 +167,6 @@
                 </p>
                 <div id="slider-range"></div>
                 <div class="filter_button"><span>篩選</span></div>
-              </div>
-
-              <!-- Sizes -->
-              <div class="sidebar_section">
-                <div class="sidebar_title">
-                  <h5>寵物種類</h5>
-                </div>
-                <ul class="checkboxes">
-                  <li>
-                    <i class="fa fa-square-o" aria-hidden="true"></i
-                    ><span>狗</span>
-                  </li>
-                  <li>
-                    <i class="fa fa-square-o" aria-hidden="true"></i
-                    ><span>貓</span>
-                  </li>
-                  <li>
-                    <i class="fa fa-square-o" aria-hidden="true"></i
-                    ><span>鼠</span>
-                  </li>
-                  <li>
-                    <i class="fa fa-square-o" aria-hidden="true"></i
-                    ><span>其它</span>
-                  </li>
-                </ul>
-                <div class="filter_button mt-0">
-                  <span>篩選</span>
-                </div>
               </div>
             </div>
 
@@ -529,7 +520,12 @@
     <script src="../../js/categories_custom.js"></script>
 
     <script>
+      // 取得urlParams
       let memberId = 1;
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryId = urlParams.get("categoryId");
+      const animalTypeId = urlParams.get("animalTypeId");
+
       function initIsotopeFiltering() {
         var sortTypes = $(".type_sorting_btn");
         var sortNums = $(".num_sorting_btn");
@@ -611,13 +607,39 @@
       }
 
       function init() {
+        const angleDoubleRight =
+          '<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>';
+
+        if (categoryId) {
+          $(".sidebar_categories li").removeClass("active");
+          $(".sidebar_categories li a span").remove();
+          $(
+            ".sidebar_categories li a[href='shop.html?categoryId=" +
+              categoryId +
+              "']"
+          )
+            .parent()
+            .addClass("active")
+            .children("a")
+            .prepend(angleDoubleRight);
+        }
+
+        if (animalTypeId) {
+          let petType = $(
+            "#animal-type-list li[data-animalTypeId='" +
+              animalTypeId +
+              "'] span"
+          ).text();
+          $("#animal-type-span").text(petType);
+        }
+
         $.ajax({
           url: "/products/spec",
           type: "GET",
           data: {
             productStatus: 1,
-            animalTypeId: "",
-            categoryId: "",
+            animalTypeId: animalTypeId,
+            categoryId: categoryId,
           },
           dataType: "json",
           success: function (data) {
@@ -724,6 +746,16 @@
               console.log(xhr);
             },
           });
+        });
+
+        $("#animal-type-list li").click(function () {
+          var animalTypeId = $(this).data("animaltypeid");
+          categoryId == null ? (category = "") : (category = categoryId);
+          window.location.href =
+            "shop.html?categoryId=" +
+            category +
+            "&animalTypeId=" +
+            animalTypeId;
         });
       });
     </script>

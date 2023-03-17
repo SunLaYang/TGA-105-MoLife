@@ -25,9 +25,9 @@ public class ProductOrder {
 
 	@Column(name = "member_id")
 	private Integer memberId;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "order_date",insertable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@Column(name = "order_date",insertable = false, updatable = false)
 	private Date orderDate;
 
 	@Column(name = "order_status")

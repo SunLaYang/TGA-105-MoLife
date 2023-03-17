@@ -46,6 +46,10 @@
       label > span {
         color: #dd2222;
       }
+
+      .form-control {
+        color: #222;
+      }
     </style>
   </head>
 
@@ -132,7 +136,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput1"
+                    id="receiver"
                     placeholder="Enter ..." />
                 </div>
                 <div class="mb-3">
@@ -142,7 +146,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput1"
+                    id="mobile"
                     placeholder="Enter ..." />
                 </div>
                 <div class="mb-3">
@@ -152,7 +156,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleFormControlInput1"
+                    id="address"
                     placeholder="Enter ..." />
                 </div>
                 <div class="mb-3">
@@ -161,7 +165,7 @@
                   >
                   <textarea
                     class="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="message"
                     rows="3"></textarea>
                 </div>
               </div>
@@ -170,30 +174,24 @@
                   <h4 class="card-header">訂單內容</h4>
                   <div class="card-body">
                     <h5 class="card-title ml-3">商品</h5>
-                    <ul class="list-group list-group-flush">
-                      <li
+                    <ul id="cart" class="list-group list-group-flush">
+                      <!-- <li
                         class="list-group-item d-flex justify-content-between align-items-center">
-                        Kirkland Signature Chicken & Rice Dry Dog Food 12
-                        kg<span>$900</span>
+                        Kirkland Signature Chicken
+                        <span>1&nbsp;&nbsp;$900</span>
                       </li>
                       <li
                         class="list-group-item d-flex justify-content-between align-items-center">
-                        Kirkland Signature Chicken & Rice Dry Dog Food 12
-                        kg<span>$900</span>
-                      </li>
-                      <li
-                        class="list-group-item d-flex justify-content-between align-items-center">
-                        Kirkland Signature Chicken & Rice Dry Dog Food 12
-                        kg<span>$900</span>
-                      </li>
+                        Kirkland Signature
+                        <span>2&nbsp;&nbsp;$1000</span>
+                      </li> -->
                     </ul>
                     <div class="card-body">
                       <h5
-                        class="card-title my-2 d-flex flex-row-reverse bd-highlight">
-                        總金額: $2700
-                      </h5>
+                        id="total"
+                        class="card-title my-2 d-flex flex-row-reverse bd-highlight"></h5>
                       <div class="red_button add_to_cart_button mx-auto">
-                        <a href="#">下訂單</a>
+                        <a id="order" href="">下訂單</a>
                       </div>
                     </div>
                   </div>
@@ -333,5 +331,74 @@
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/single_custom.js"></script>
+    <script>
+      let memberId = 1;
+      function init() {
+        $.ajax({
+          url: "/productcarts/" + memberId,
+          type: "GET",
+          dataType: "json",
+          success: function (data) {
+            let list_html = "";
+            let total = 0;
+            $.each(data, function (i, item) {
+              list_html += `
+                      <li
+                        class="list-group-item d-flex justify-content-between align-items-center">
+                        ${item.product.productName}
+                        <span>
+                          ${item.productNumber}&nbsp;&nbsp;
+                          $${
+                            item.product.productPrice * item.productNumber
+                          }</span>
+                      </li>`;
+              total += item.product.productPrice * item.productNumber;
+            });
+            $("#cart").html(list_html);
+            $("#total").text("總金額: $" + total);
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            console.log("error");
+            console.log(xhr);
+          },
+        });
+      }
+
+      $(function () {
+        init();
+
+        $("#order").on("click", function (e) {
+          e.preventDefault();
+          let formData = {
+            memberId: memberId,
+            orderStatus: 0,
+            orderReceiver: $.trim($("#receiver").val()),
+            orderAddress: $.trim($("#address").val()),
+            orderMobile: $.trim($("#mobile").val()),
+            orderMessage: $.trim($("#message").val()),
+          };
+
+          $.ajax({
+            type: "POST",
+            url: "/productorders",
+            contentType: "application/json",
+            data: JSON.stringify(formData),
+            success: function (data) {
+              if (data) {
+                alert("訂購成功!");
+                window.location.href = "/page/shop/shop-orders.html";
+              } else {
+                alert("訂購失敗!");
+              }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              alert("格式輸入錯誤!");
+              console.log("error");
+              console.log(xhr);
+            },
+          });
+        });
+      });
+    </script>
   </body>
 </html>

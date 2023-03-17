@@ -26,6 +26,7 @@
       rel="stylesheet"
       type="text/css"
     />
+    
     <link
       rel="stylesheet"
       type="text/css"
@@ -56,12 +57,6 @@
       href="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.css"
     />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      th:href="@{/styles/main_styles.css}"
-      href="../../styles/main_styles.css"
-    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -147,6 +142,12 @@
       href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css"
     />
     
+    <script
+      src="https://kit.fontawesome.com/2672c0b72c.js"
+      th:src="@{https://kit.fontawesome.com/2672c0b72c.js}"
+      crossorigin="anonymous"
+    ></script>
+    
     <link rel="stylesheet" th:href="@{/styles/room/room.css}" href="../../styles/room/room.css" />
 
     <style>
@@ -175,16 +176,9 @@
       }
     </style>
 
-    <script
-      src="https://kit.fontawesome.com/2672c0b72c.js"
-      th:src="@{https://kit.fontawesome.com/2672c0b72c.js}"
-      crossorigin="anonymous"
-    ></script>
-
   </head>
   <body>
-
-   <!-- Header -->
+    <!-- Header -->
       <header class="header trans_300">
         <!-- Main Navigation -->
         <div class="main_nav_container bg-yellow">
@@ -200,7 +194,7 @@
                   <ul class="navbar_menu">
                     <li><a href="../room/01room.index.html">寵物旅館</a></li>
                     <li><a href="../shop/shop.html">商品專區</a></li>
-                    <li><a href="#">寵物募款</a></li>
+                    <li><a href="/pages/donate/N_1_index.jsp">寵物募款</a></li>
                     <li><a href="24forum.index.html">寵物論壇</a></li>
                     <li><a href="24contact.html">聯絡我們</a></li>
                     <li><a href="24admin.index.html">管理員後台</a></li>
@@ -212,7 +206,7 @@
                     <a href="24post_info.html"
                       ><img class="icon" src="../../images/home/ring.png"
                     /></a>
-                    <a href="#"
+                    <a href="/pages/member/llistOneMem.jsp"
                       ><img class="icon" src="../../images/home/man.png"
                     /></a>
                   </ul>
@@ -432,7 +426,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- Footer -->
       <div class="row my-5"></div>
 

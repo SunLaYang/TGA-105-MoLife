@@ -77,7 +77,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					href="24admin.index.html" class="nav-link">首頁</a></li>
+					href="/page/others/24admin.index.html" class="nav-link">首頁</a></li>
 				<!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
@@ -207,6 +207,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 		<!-- /.navbar -->
 
 		<!-- Main Sidebar Container -->
+		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a href="./24admin.index.html" class="brand-link"> <img
@@ -222,11 +223,11 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 					<div class="image">
-						<img src="../../images/front_page/dog.jpg"
+						<img src="/AdminPicView?adminId=${adminVO.adminId}"
 							class="img-circle elevation-2" alt="User Image" />
 					</div>
 					<div class="info">
-						<a href="#" class="d-block">Linda Lee</a>
+						<a href="/pages/admin/listOneEmp.jsp" class="d-block">${adminVO.empName}</a>
 					</div>
 				</div>
 
@@ -257,15 +258,15 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link active">
-										<i class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="/pages/admin/listOneEmp.jsp"
+									class="nav-link active"> <i class="far fa-circle nav-icon"></i>
 										<p>帳戶管理</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a href="/pages/member/listAllMem.jsp"
+									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>會員管理</p>
 								</a></li>
-								<li class="nav-item"><a href="./24admin.limit.html"
+								<li class="nav-item"><a href="/pages/admin/listAllEmp.jsp"
 									class="nav-link"> <i class="far fa-circle nav-icon"></i>
 										<p>權限管理</p>
 								</a></li>
@@ -279,12 +280,14 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="/page/shop/admin.productlist.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
 										<p>商品管理</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item"><a
+									href="/page/shop/admin.productorder.html" class="nav-link">
+										<i class="far fa-circle nav-icon"></i>
 										<p>訂單管理</p>
 								</a></li>
 								<!-- <li class="nav-item">
@@ -325,25 +328,26 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
-								class="nav-icon fas fa-chart-pie"></i>
+						<li class="nav-item">
+						<a href="#" class="nav-link"> 
+							<iclass="nav-icon fas fa-chart-pie"></i>
 								<p>
 									旅館後台管理 <i class="right fas fa-angle-left"></i>
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								<li class="nav-item">
+								<a href="/page/room/01RoomOrder.admin.html" class="nav-link">
+								 <i	class="far fa-circle nav-icon"></i>
 										<p>房型管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
+								</a>
+								</li>
+								<li class="nav-item">
+								<a href="/page/room/01Roommanage.admin.html" class="nav-link">
+								 <i	class="far fa-circle nav-icon"></i>
 										<p>訂單管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>評價管理</p>
-								</a></li>
+								</a>
+								</li>
 								<!-- <li class="nav-item">
                 <a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -352,7 +356,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="./24admin.news.html"
+						<li class="nav-item"><a href="/page/others/24admin.news.html"
 							class="nav-link"> <i class="nav-icon fas fa-th"></i>
 								<p>
 									前台頁面管理 <span class="right badge badge-danger">New</span>
@@ -366,11 +370,11 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="..." class="nav-link"> <i
+								<li class="nav-item"><a href="/pages/donate/donatePlanAdmin" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>提案募款紀錄</p>
 								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
+								<li class="nav-item"><a href="/pages/donate/donatePaymentAdmin" class="nav-link"> <i
 										class="far fa-circle nav-icon"></i>
 										<p>捐款紀錄查詢</p>
 								</a></li>
@@ -412,34 +416,15 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
               </li> -->
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link"> <i
+						<li class="nav-item"><a href="/page/others/24admin.forum.html" class="nav-link"> <i
 								class="nav-icon fas fa-edit"></i>
 								<p>
 									論壇後台管理 <i class="fas fa-angle-left right"></i>
 								</p>
 						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a href="./24admin.forum.html"
-									class="nav-link"> <i class="far fa-circle nav-icon"></i>
-										<p>文章管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>版面管理</p>
-								</a></li>
-								<li class="nav-item"><a href="..." class="nav-link"> <i
-										class="far fa-circle nav-icon"></i>
-										<p>公告管理</p>
-								</a></li>
-								<!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
-							</ul></li>
+							</li>
 
-						<li class="nav-item"><a href="./24admin.chatroom.html"
+						<li class="nav-item"><a href="/page/others/24admin.chatroom.html"
 							class="nav-link"> <i class="nav-icon fas fa-table"></i>
 								<p>
 									留言管理 <span class="right badge badge-danger">New</span>
@@ -461,16 +446,16 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						<div class="col-sm-6">
 							<h1 class="m-0">
 								<i class="fa-solid fa-paw" style="padding-right: 20px"></i>
-								會員資料編輯
+								員工編輯自身帳號
 							</h1>
 						</div>
 						<!-- /.col -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="./24admin.index.html">首頁</a>
+								<li class="breadcrumb-item"><a href="/page/others/24admin.index.html">首頁</a>
 								</li>
 								<li class="breadcrumb-item active"><a
-									href="./24admin.limit.html">會員資料編輯</a></li>
+									href="./24admin.limit.html">員工編輯自身帳號</a></li>
 							</ol>
 						</div>
 						<!-- /.col -->

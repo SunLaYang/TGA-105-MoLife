@@ -68,9 +68,9 @@
                   <li><a href="<%=request.getContextPath()%>/page/others/24admin.index.html">管理員後台</a></li>
                 </ul>
                 <ul class="navbar_user">
-                  <li> <a href="#"><img class="icon" src="../../images/home/car.png"/></a>  </li>
-                  <li> <a href="#"><img class="icon" src="../../images/home/ring.png"/></a> </li>
-                  <li> <a href="#"><img class="icon" src="../../images/home/man.png"/></a>  </li>
+                  <li> <a href="<%=request.getContextPath()%>/page/shop/shop-cart.html"><img class="icon" src="../../images/home/car.png"/></a>  </li>
+                  <li> <a href="<%=request.getContextPath()%>/page/others/24post_info.html"><img class="icon" src="../../images/home/ring.png"/></a> </li>
+                  <li> <a href="<%=request.getContextPath()%>/pages/member/listOneMem.jsp"><img class="icon" src="../../images/home/man.png"/></a>  </li>
                 </ul>
                 <div class="hamburger_container">
                   <i class="fa fa-bars" aria-hidden="true"></i>
@@ -123,7 +123,7 @@
 <div class="path">
  <div class="container1">
   <ol class="breadcrumb" style="background-color:transparent;">
-    <li class="breadcrumb-item"><a href="###" style="color:black;">首頁</a></li>
+    <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/page/others/24front_page.html" style="color:black;">首頁</a></li>
     <li class="breadcrumb-item active" aria-current="page" style="color:#A7754D; text-decoration: underline;">寵物募款</li>
   </ol>
   </div>
@@ -281,8 +281,8 @@
 						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
 							<li><a href="#">討論區</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">聯絡我們</a></li>
+							<li><a href="<%=request.getContextPath()%>/page/others/24faq.html">FAQs</a></li>
+							<li><a href="<%=request.getContextPath()%>/page/others/24contact.html">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

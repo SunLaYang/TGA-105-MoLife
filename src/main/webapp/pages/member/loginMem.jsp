@@ -81,19 +81,19 @@ div.btn_click {
 						</div>
 						<nav class="navbar">
 							<ul class="navbar_menu">
-								<li><a href="./01room.index.html">寵物旅館</a></li>
-								<li><a href="#">商品專區</a></li>
-								<li><a href="#">寵物募款</a></li>
-								<li><a href="#">寵物論壇</a></li>
-								<li><a href="#">聯絡我們</a></li>
-								<li><a href="../../page/index.html">管理員後台</a></li>
+								<li><a href="/page/room/01room.index.html">寵物旅館</a></li>
+								<li><a href="/page/shop/shop.html">商品專區</a></li>
+								<li><a href="/pages/donate/N_1_index">寵物募款</a></li>
+								<li><a href="/page/others/24forum.index.html">寵物論壇</a></li>
+								<li><a href="/page/others/24contact.html">聯絡我們</a></li>
+								<li><a href="/page/others/24admin.index.html">管理員後台</a></li>
 							</ul>
 							<ul class="navbar_user">
-								<a href="#"><img class="icon"
+								<a href="/page/shop/shop-cart.html"><img class="icon"
 									src="../../images/home/car.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/page/others/24post_info.html"><img class="icon"
 									src="../../images/home/ring.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/pages/member/listOneMem.jsp"><img class="icon"
 									src="../../images/home/man.png" /></a>
 							</ul>
 							<div class="hamburger_container">
@@ -140,7 +140,7 @@ div.btn_click {
 				class="com.tibame.tga105.mem.model.MemService" />
 
 			<div class="btn_click col text-center">
-				<a href="" style="color: #EAB464; margin-right: 50px">忘記密碼</a><a
+				<a href="/pages/member/memResetPsd01.jsp" style="color: #EAB464; margin-right: 50px">忘記密碼</a><a
 					href="addMem.jsp" style="color: #EAB464">我要註冊</a>
 			</div>
 	</div>
@@ -152,7 +152,6 @@ div.btn_click {
 		</div>
 
 
-		<li><a href='listAllMem.jsp'>List</a> all Member. <br> <br></li>
 
 	</div>
 	</form>
@@ -173,9 +172,9 @@ div.btn_click {
 					<div
 						class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
 						<ul class="footer_nav">
-							<li><a href="#">討論區</a></li>
-							<li><a href="#">FAQs</a></li>
-							<li><a href="contact.html">聯絡我們</a></li>
+							<li><a href="/page/others/24forum.index.html">討論區</a></li>
+							<li><a href="/page/others/24faq.html">FAQs</a></li>
+							<li><a href="/page/others/24contact.html">聯絡我們</a></li>
 						</ul>
 					</div>
 				</div>

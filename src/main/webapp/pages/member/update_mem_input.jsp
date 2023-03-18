@@ -93,7 +93,7 @@ th, td {
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="../../page/front_page.html"> <img
+							<a href="/page/others/24front_page.html"> <img
 								src="../../images/home/logoMoLife.png" />
 							</a>
 						</div>

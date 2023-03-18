@@ -39,6 +39,7 @@ public class MemServlet extends HttpServlet {
 		/*
 		 * 查詢一筆會員
 		 */
+		
 
 		if ("member_View".equals(action)) {
 
@@ -395,6 +396,7 @@ public class MemServlet extends HttpServlet {
 		if ("insert".equals(action)) { // 來自memadd.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
+			MemService memSvc = new MemService();
 
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
@@ -429,6 +431,9 @@ public class MemServlet extends HttpServlet {
 			} else if (!memEmail.trim().matches(memEmailReg)) {
 				errorMsgs.add("會員信箱: 請符合電子信箱格式");
 			}
+			if (memSvc.getMemFromEmail(memEmail)!=null) {
+				errorMsgs.add("此帳號已被註冊!");
+			}
 
 			String memPsd = req.getParameter("memPsd");
 			String memPsdReg = "^[(a-zA-Z0-9_)]{6,16}$";
@@ -436,6 +441,18 @@ public class MemServlet extends HttpServlet {
 				errorMsgs.add("會員密碼: 請勿空白");
 			} else if (!memPsd.trim().matches(memPsdReg)) {
 				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+			
+			String memPsd2 = req.getParameter("memPsd2");
+			String memPsd2Reg = "^[(a-zA-Z0-9_)]{6,16}$";
+			if (memPsd2 == null || memPsd.trim().length() == 0) {
+				errorMsgs.add("會員密碼: 請勿空白");
+			} else if (!memPsd2.trim().matches(memPsdReg)) {
+				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+			
+			if (!memPsd.equals(memPsd2)) {
+				errorMsgs.add("會員密碼不一致，請重新輸入");
 			}
 
 			String memPhone = req.getParameter("memPhone");
@@ -468,7 +485,6 @@ public class MemServlet extends HttpServlet {
 			// Integer memId = Integer.valueOf(req.getParameter("memId").trim());
 
 			MemVO memVO = new MemVO();
-
 			memVO.setMemEmail(memEmail);
 			memVO.setMemPsd(memPsd);
 
@@ -487,9 +503,19 @@ public class MemServlet extends HttpServlet {
 			}
 
 			memVO.setRegistrationDate(registrationDate);
+			memVO.setMemStatus(1);
+			memVO.setPostSuspended(0);
+			memVO.setPostReportedNum(0);
 
 			req.getSession().setAttribute("memVO", memVO);
-
+			
+		
+			
+//			memEmail = memSvc.insertCheck(memEmail);
+//			if (!(memVO == null)) {
+//				
+//			}		
+			
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", memVO);
 				String url = "/pages/member/addMem.jsp";
@@ -498,10 +524,8 @@ public class MemServlet extends HttpServlet {
 				res.sendRedirect(url);
 				return;
 			}
-
-			MemService memSvc = new MemService();
 			memVO = memSvc.addMem(memVO);
-
+			
 			req.setAttribute("success", "-(註冊成功)");
 			String url = "/pages/member/loginMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -543,16 +567,16 @@ public class MemServlet extends HttpServlet {
 
 		if ("login".equals(action)) {// 來自loginMem.jsp
 
-			List<String> erroMsgs = new LinkedList<String>();
-			req.getSession().setAttribute("errorMsgs", erroMsgs);
+			List<String> errorMsgs = new LinkedList<String>();
+			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
 //				1.接收請求參數
 			String memEmail = req.getParameter("memEmail");
 			String memPsd = req.getParameter("memPsd");
 			if (memEmail == null || (memEmail.trim()).length() == 0) {
-				erroMsgs.add("請輸入會員帳號");
+				errorMsgs.add("請輸入會員帳號");
 			}
-			if (!erroMsgs.isEmpty()) {
+			if (!errorMsgs.isEmpty()) {
 				String url = "/pages/member/loginMem.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
 //				failureView.forward(req, res);
@@ -560,9 +584,9 @@ public class MemServlet extends HttpServlet {
 				return;
 			}
 			if (memPsd == null || (memPsd.trim()).length() == 0) {
-				erroMsgs.add("請輸入密碼");
+				errorMsgs.add("請輸入密碼");
 			}
-			if (!erroMsgs.isEmpty()) {
+			if (!errorMsgs.isEmpty()) {
 				String url = "/pages/member/loginMem.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
 //				failureView.forward(req, res);
@@ -580,12 +604,11 @@ public class MemServlet extends HttpServlet {
 			memVO = memSvc.login(memEmail, memPsd);
 			HttpSession session = req.getSession();
 
-			if (memEmail == null) {
-				erroMsgs.add("帳號不存在");
-			} else if (memPsd == null) {
-				erroMsgs.add("不輸入密碼也想登入喔");
+			if (memVO == null) {
+				errorMsgs.add("帳號或密碼錯誤!");
 			}
-			if (!erroMsgs.isEmpty()) {
+			
+			if (!errorMsgs.isEmpty()) {
 				String url = "/pages/member/loginMem.jsp";
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
 				failureView.forward(req, res);
@@ -600,14 +623,14 @@ public class MemServlet extends HttpServlet {
 
 				req.setAttribute("login", true);
 
-				Cookie cookie = new Cookie("memberId", memVO.getMemId().toString());
-				Cookie cookie2 = new Cookie("memberNickName", memVO.getMemNickname());
-				cookie.setMaxAge(7 * 24 * 60 * 60);
-				cookie2.setMaxAge(7 * 24 * 60 * 60);
-				cookie.setPath("/");
-				cookie2.setPath("/");
-				res.addCookie(cookie);
-				res.addCookie(cookie2);
+//				Cookie cookie = new Cookie("memberId", memVO.getMemId().toString());
+//				Cookie cookie2 = new Cookie("memberNickName", memVO.getMemNickname());
+//				cookie.setMaxAge(7 * 24 * 60 * 60);
+//				cookie2.setMaxAge(7 * 24 * 60 * 60);
+//				cookie.setPath("/");
+//				cookie2.setPath("/");
+//				res.addCookie(cookie);
+//				res.addCookie(cookie2);
 			}
 
 			req.setAttribute("memVO", memVO);
@@ -626,6 +649,7 @@ public class MemServlet extends HttpServlet {
 		 */
 
 		if ("confirmEmail".equals(action)) {
+			MemService memSvc = new MemService();
 
 			List<String> erroMsgs = new LinkedList<String>();
 			req.getSession().setAttribute("errorMsgs", erroMsgs);
@@ -635,6 +659,9 @@ public class MemServlet extends HttpServlet {
 			if (memEmail == null || (memEmail.trim()).length() == 0) {
 				erroMsgs.add("請輸入信箱");
 			}
+			if (memSvc.getMemFromEmail(memEmail)==null) {
+				erroMsgs.add("此信箱未註冊");
+			}
 			if (!erroMsgs.isEmpty()) {
 				String url = "/pages/member/memResetPsd01.jsp";
 //				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
@@ -643,14 +670,6 @@ public class MemServlet extends HttpServlet {
 				return;
 			}
 
-			MemService memSvc = new MemService();
-			MemVO tempVO = new MemVO();
-			tempVO.setMemEmail(memEmail);
-			tempVO = memSvc.checkmail(memEmail);
-
-			if (tempVO == null) {
-				erroMsgs.add("此信箱未註冊");
-			}
 			if (!erroMsgs.isEmpty()) {
 				String url = "/pages/member/memResetPsd01.jsp";
 				RequestDispatcher failureView = req.getRequestDispatcher(url);
@@ -708,7 +727,25 @@ public class MemServlet extends HttpServlet {
 
 		
 		}
+		
+		/*
+		 * 刪除會員
+		 */
 
+		if ("logout".equals(action)) { // 來自listAllMem.jsp
+			
+			HttpSession session = req.getSession();
+			
+			session.invalidate();
+
+//				刪除完成，準備轉接
+			String url = "/page/others/24front_page.html";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+
+		}
+
+		/******************************************************************************************/
 	}
 
 }

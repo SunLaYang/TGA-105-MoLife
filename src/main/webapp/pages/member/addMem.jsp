@@ -93,7 +93,7 @@ th, td {
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="../../page/front_page.html"> <img
+							<a href="/page/others/24front_page.html"> <img
 								src="../../images/home/logoMoLife.png" />
 							</a>
 						</div>
@@ -175,12 +175,12 @@ th, td {
 								<td>密碼:</td>
 								<td><input type="password" name="memPsd" size="30"
 									placeholder="Password"
-									value="${sessionScope.memVO.getMemPsd()}" /></td>
+									 /></td>
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
-									value="${sessionScope.memVO.getMemPsd()}" /></td>
+								<td><input type="password" name="memPsd2" size="30"
+									/></td>
 							</tr>
 							<tr>
 								<td>手機:</td>

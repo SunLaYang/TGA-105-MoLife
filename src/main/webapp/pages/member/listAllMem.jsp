@@ -700,7 +700,7 @@ input:checked+label:after {
 
 		<footer class="main-footer">
 			<strong>MoLife <i class="fa-solid fa-paw"></i> &copy; 2022 <a
-				href="/page/others/24admin.index.html">TGA105-第四組</a>.
+				href="/page/others/24front_page.html">TGA105-第四組</a>.
 			</strong> All rights reserved.
 			<div class="float-right d-none d-sm-inline-block">
 				<b>Version</b> 3.2.0

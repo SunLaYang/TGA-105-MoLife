@@ -145,27 +145,13 @@
           </div>
 
         <div class="card-body">
-          
-            <div class="form-group">
-              <label for="proposal_date">日期</label>
-              <input type="date" id="proposal_date" class="form-control" name="proposalDate" style="color:black !important;">
-                <script>
-                  $(document).ready(function () {
-                  var time = new Date();
-                  var day = ("0" + time.getDate()).slice(-2);
-                  var month = ("0" + (time.getMonth() + 1)).slice(-2);
-                var today = time.getFullYear() + "-" + (month) + "-" + (day);
-                $('#proposal_date').val(today);
-                })
-                </script>
-            </div>
-
-
+        
+            <input type="hidden" id="proposal_date" class="form-control" name="proposalDate" style="color:black !important;">
+       
             <div class="form-group">
               <label for="plan_name">募款計畫名稱</label>
               <span  style="color:red">${errors.planName}</span>
               <input type="text" name="planName" value="${param.planName}" class="form-control" style="color:black !important;">
-              
             </div>
 
             <div class="form-group">
@@ -228,6 +214,38 @@
   </div> 
 </form>
 
+
+<!-- 新設定 -->
+<script>
+  function getCurrentDate() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    var day = now.getDate();
+    var formattedDate = year + '-' + addZeroPadding(month) + '-' + addZeroPadding(day);
+    return formattedDate;
+  }
+
+  function addZeroPadding(num) {
+    return (num < 10 ? '0' + num : num);
+  }
+
+  document.getElementById("proposal_date").value = getCurrentDate();
+</script>
+
+
+
+
+<!-- 舊的日期設定 -->
+<script>
+  $(document).ready(function () {
+  var time = new Date();
+   var day = ("0" + time.getDate()).slice(-2);
+    var month = ("0" + (time.getMonth() + 1)).slice(-2);
+     var today = time.getFullYear() + "-" + (month) + "-" + (day);
+     $('#proposal_date').val(today);
+      })
+</script>
 
 
 <!-- 照片選擇JS -->

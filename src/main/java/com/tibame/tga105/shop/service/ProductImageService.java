@@ -26,7 +26,13 @@ public class ProductImageService {
 	private RedisTemplate<String, byte[]> redisTemplate;
 
 	public byte[] getImage(String imageName) throws IOException {
-		byte[] imageBytes = redisTemplate.opsForValue().get(imageName);
+		byte[] imageBytes = null;
+
+		try {
+			imageBytes = redisTemplate.opsForValue().get(imageName);
+		} catch (Exception e) {
+			// Redis 連線失敗時，imageBytes 維持 null
+		}
 
 		if (imageBytes == null) {
 			File imageFile = new File(imageDirectory + imageName);
@@ -36,8 +42,13 @@ public class ProductImageService {
 			ImageIO.write(image, "jpeg", baos);
 			imageBytes = baos.toByteArray();
 
-			redisTemplate.opsForValue().set(imageName, imageBytes);
+			try {
+				redisTemplate.opsForValue().set(imageName, imageBytes);
+			} catch (Exception e) {
+				// Redis 連線失敗時，不做任何事情
+			}
 		}
+
 		return imageBytes;
 	}
 

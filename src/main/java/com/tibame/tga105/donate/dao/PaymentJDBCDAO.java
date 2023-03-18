@@ -160,7 +160,7 @@ public class PaymentJDBCDAO implements PaymentDAO_interface {
 			"SELECT payment_id, payment_date, payment_amount\r\n"
 			+ "FROM molife.payment\r\n"
 			+ "WHERE member_id=?\r\n"
-			+ "ORDER BY plan_id DESC\r\n"
+			+ "ORDER BY payment_id DESC\r\n"
 			+ "LIMIT 1;";
 	public List<PaymentVO> successPage(Integer memberId) {
 		List<PaymentVO> list = null;

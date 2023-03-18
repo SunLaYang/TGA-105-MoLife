@@ -800,6 +800,10 @@
     <!-- <script src="../../AdminLTE-3.2.0/dist/js/demo.js"></script> -->
     <!-- Page specific script -->
     <script>
+      let image1 = "";
+      let image2 = "";
+      let image3 = "";
+
       function init() {
         $.ajax({
           url: "/categorys",
@@ -840,19 +844,40 @@
         init();
 
         $("#previous").click(function () {
-          window.location.href = "admin.productlist.html";
+          window.location.href = "/page/shop/admin.productlist.html";
         });
 
         $("#productForm").submit(function (event) {
           event.preventDefault(); // 防止表單提交
+          let productName = $.trim($("input[name=productName]").val());
+          let productDetails = $.trim($("textarea[name=productDetails]").val());
+          let productPrice = $("input[name=productPrice]").val();
+          let productQty = $("input[name=productQty]").val();
+          let productStatus = $("#productStatus").val();
+          let animalTypeId = $("#animalTypeId").val();
+          let categoryId = $("#categoryId").val();
+          if (
+            productName === "" ||
+            productDetails === "" ||
+            productPrice === "" ||
+            productQty === "" ||
+            image1 === "" ||
+            image2 === "" ||
+            image3 === ""
+          ) {
+            // 若有任一變數為空值，則顯示錯誤訊息
+            alert("輸入資料不完整，請確認所有欄位都已填寫。");
+            return;
+          }
+
           let formData = {
-            productName: $("input[name=productName]").val().trim(),
-            productDetails: $("textarea[name=productDetails]").val().trim(),
-            productPrice: $("input[name=productPrice]").val(),
-            productQty: $("input[name=productQty]").val(),
-            productStatus: $("#productStatus").val(),
-            animalTypeId: $("#animalTypeId").val(),
-            categoryId: $("#categoryId").val(),
+            productName: productName,
+            productDetails: productDetails,
+            productPrice: productPrice,
+            productQty: productQty,
+            productStatus: productStatus,
+            animalTypeId: animalTypeId,
+            categoryId: categoryId,
             productImages: [
               {
                 productImageType: 0,
@@ -877,7 +902,7 @@
             success: function (data) {
               // 成功處理響應
               alert("新增成功");
-              window.location.href = "admin.productlist.html";
+              window.location.href = "/page/shop/admin.productlist.html";
             },
             error: function (jqXHR, textStatus, errorThrown) {
               // 處理錯誤

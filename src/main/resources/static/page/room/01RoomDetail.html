@@ -952,7 +952,7 @@
       $.ajax({
         type: "GET",
         // url: `http://localhost:8081/room/like?roomName=${roomName}&memberId=${4}`,
-        url: `/room/like?roomName=${roomName}&memberId=${4}`,
+        url: `/room/like?roomName=${roomName}&memberId=${7}`,
         dataType: "json",
         encode: true
       }).done(function (data) {
@@ -960,6 +960,21 @@
           type: "success",
           title: "按讚成功~",
         });
+       // 更新讚數
+    $.ajax({
+      type: "GET",
+      // url: `http://localhost:8081/room/like/count?roomName=${roomName}`,
+      url: `/room/like/count?roomName=${roomName}`,
+      dataType: "json",
+      encode: true
+    }).done(function (data) {
+      console.log(data);
+      console.log(123);
+
+      $(".likeText").text(data); // 更新讚數
+    }).fail(function (error) {
+      console.log(error);
+    });
       }).fail(function (error) {
         console.log(error);
         swal({

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +61,21 @@ public class ProposalServlet extends HttpServlet {
 		
 
 		// 1. get parameter and valid
-		Date proposalDate = java.sql.Date.valueOf(req.getParameter("proposalDate"));	
+//		Date proposalDate = java.sql.Date.valueOf(req.getParameter("proposalDate"));
+		String dateStr = req.getParameter("proposalDate");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date proposalDate = null;
+		// 如果 paymentDate 不為 null，則
+		if (dateStr != null) {
+		  try {
+		    java.util.Date parsedDate = sdf.parse(dateStr);
+		    proposalDate = new java.sql.Date(parsedDate.getTime());
+		  } catch (ParseException e) {
+		    e.printStackTrace();
+		    System.out.println(e);
+		  }
+		}
+		
 		
 		Integer animalTypeId = null;
 		String animalId = req.getParameter("animalTypeId");
@@ -106,7 +122,6 @@ public class ProposalServlet extends HttpServlet {
 			}
 		}
 		
-		
 		Integer donateGoal = null;
 		String goal = req.getParameter("donateGoal");
 		if ( goal==null || goal.trim().length()==0 ) {
@@ -124,9 +139,10 @@ public class ProposalServlet extends HttpServlet {
 			
 		}
 		
-		String animalVideoLink = req.getParameter("animalVideoLink");
+		String animalVideoLink = null;
+		animalVideoLink = req.getParameter("animalVideoLink");
 		String videoReg = "^https://www.youtube.com/.*" ;
-		if ( !(animalVideoLink.matches(videoReg)) ) {
+		if ( animalVideoLink!=null && !(animalVideoLink.matches(videoReg)) ) {
 			errors.put("animalVideoLink", "請輸入youtube連結");
 		}
 		

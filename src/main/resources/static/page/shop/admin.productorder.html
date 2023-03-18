@@ -742,6 +742,15 @@
                       </tr>`;
             });
             $("tbody").html(list_html);
+
+            // 定義自定義排序方法
+            jQuery.fn.dataTable.ext.type.order["custom_sort-pre"] = function (
+              value
+            ) {
+              let order = ["待出貨", "已出貨", "已完成", "已取消"];
+              let index = order.indexOf(value);
+              return index === -1 ? Infinity : index;
+            };
             // 初始化 DataTables
             $("#example1")
               .DataTable({
@@ -749,7 +758,7 @@
                 lengthChange: true,
                 autoWidth: false,
                 order: [
-                  [6, "desc"],
+                  [6, "asc"],
                   [4, "desc"],
                 ], // 預設升序排序
                 columnDefs: [
@@ -758,19 +767,6 @@
                     type: "custom_sort", // 使用自定義排序
                   },
                 ],
-                // 自定義排序方法
-                sort: function (a, b) {
-                  let order = ["待出貨", "已出貨", "已完成", "已取消"];
-                  let aIndex = order.indexOf(a);
-                  let bIndex = order.indexOf(b);
-                  if (aIndex === -1) {
-                    return 1; // 如果 a 不在 order 中，將 a 排在 b 前面
-                  }
-                  if (bIndex === -1) {
-                    return -1; // 如果 b 不在 order 中，將 b 排在 a 前面
-                  }
-                  return aIndex - bIndex;
-                },
                 // buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
               })
               .buttons()

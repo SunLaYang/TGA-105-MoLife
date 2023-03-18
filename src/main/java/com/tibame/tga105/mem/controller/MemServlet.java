@@ -613,8 +613,8 @@ public class MemServlet extends HttpServlet {
 			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/listOneMem.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url);
-			MemVO tempVO = (MemVO) session.getAttribute("memVO");
-			System.out.println(tempVO.getMemNickname());
+//			MemVO tempVO = (MemVO) session.getAttribute("memVO");
+//			System.out.println(tempVO.getMemNickname());
 //			successView.forward(req, res);
 
 			res.sendRedirect(url);

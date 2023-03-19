@@ -87,10 +87,10 @@
                     <a href="/page/shop/shop-cart.html"
                       ><img class="icon" src="../../images/home/car.png"
                     /></a>
-                    <a href="#"
+                    <a href="/page/others/24post_info.html"
                       ><img class="icon" src="../../images/home/ring.png"
                     /></a>
-                    <a href="#"
+                    <a href="/pages/member/listOneMem.jsp"
                       ><img class="icon" src="../../images/home/man.png"
                     /></a>
                   </ul>
@@ -442,13 +442,14 @@
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/categories_custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
 
     <script>
       // 取得urlParams
-      let memberId = 1;
       const urlParams = new URLSearchParams(window.location.search);
       const categoryId = urlParams.get("categoryId");
       const animalTypeId = urlParams.get("animalTypeId");
+      let memberId = Cookies.get("memberId");
 
       function initIsotopeFiltering() {
         var sortTypes = $(".type_sorting_btn");
@@ -628,6 +629,10 @@
           ".add_to_cart_button a",
           function (event) {
             event.preventDefault();
+            if (!memberId) {
+              alert("請先登入在進行操作");
+              return;
+            }
             let productId = $(this).data("productid");
             let cartData = {
               memberId: memberId,
@@ -658,6 +663,11 @@
         );
 
         $(".product-grid").on("click", ".favorite", function () {
+          if (!memberId) {
+            alert("請先登入在進行操作");
+            return;
+          }
+
           let productId = $(this).data("productid");
           let favoriteData = {
             memberId: memberId,

@@ -174,13 +174,13 @@ th, td {
 							<tr>
 								<td>密碼:</td>
 								<td><input type="password" name="memPsd" size="30"
-									placeholder="Password"
+									placeholder="密碼"
 									 /></td>
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
 								<td><input type="password" name="memPsd2" size="30"
-									/></td>
+									placeholder="確認密碼"/></td>
 							</tr>
 							<tr>
 								<td>手機:</td>

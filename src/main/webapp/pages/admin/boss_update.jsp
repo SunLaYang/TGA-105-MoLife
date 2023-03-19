@@ -220,15 +220,15 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 			<!-- Sidebar -->
 			<div class="sidebar">
 				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-					<div class="image">
-						<img src="/AdminPicView?adminId=${adminVO.adminId}"
-							class="img-circle elevation-2" alt="User Image" />
-					</div>
-					<div class="info">
-						<a href="/pages/admin/listOneEmp.jsp" class="d-block">${adminVO.empName}</a>
-					</div>
-				</div>
+<!-- 				<div class="user-panel mt-3 pb-3 mb-3 d-flex"> -->
+<!-- 					<div class="image"> -->
+<%-- 						<img src="/AdminPicView?adminId=${adminVO.adminId}" --%>
+<!-- 							class="img-circle elevation-2" alt="User Image" /> -->
+<!-- 					</div> -->
+<!-- 					<div class="info"> -->
+<%-- 						<a href="/pages/admin/listOneEmp.jsp" class="d-block">${adminVO.empName}</a> --%>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 				<!-- SidebarSearch Form -->
 				<div class="form-inline">

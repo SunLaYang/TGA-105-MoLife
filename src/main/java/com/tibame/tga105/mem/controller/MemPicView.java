@@ -43,17 +43,12 @@ public class MemPicView extends HttpServlet {
 			out.close();
 		} else {
 //			res.sendError(HttpServletResponse.SC_NOT_FOUND);
-//			InputStream in = getServletContext().getResourceAsStream("\\images\\front_page\\dog.jpg");
-			Resource resource = new ClassPathResource("\\static\\images\\front_page\\dog.jpg");
+			Resource resource = new ClassPathResource("\\static\\images\\defaultPicforIcon\\noImg.png");
 			String defaultPicPath = resource.getFile().getPath();
 			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(defaultPicPath)));
 			byte[] defaultPic = bis.readAllBytes();
 			out.write(defaultPic);
 
-//			byte[] b = new byte[in.available()];
-//			in.read(b);
-//			out.write(b);
-//			in.close(); // 兩種錯誤圖片可以用同一張
 			bis.close();
 
 		}

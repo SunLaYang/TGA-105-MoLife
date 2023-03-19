@@ -176,7 +176,7 @@ th, td {
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
+								<td><input type="TEXT" name="memPsd2" size="30"
 									type="password" placeholder="Password"
 									value="${sessionScope.memVO.getMemPsd()}" /></td>
 							</tr>

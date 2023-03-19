@@ -162,10 +162,6 @@ th, td {
 							<td>${memVO.memEmail}</td>
 						</tr>
 						<tr>
-							<td>會員密碼</td>
-							<td>${memVO.memPsd}</td>
-						</tr>
-						<tr>
 							<td>會員手機</td>
 							<td>${memVO.memPhone}</td>
 						</tr>
@@ -194,7 +190,7 @@ th, td {
 								</FORM>
 								
 								<FORM METHOD="get" ACTION="/memberController"
-									style="margin-bottom: 0px" enctype="multipart/form-data">
+									style="margin-bottom: 0px">
 									<input class="btn btn-primary edit_button" type="submit"
 										value="登出"
 										style="background-color: #a7754d; padding: 12px 50px; margin-bottom: 4%;" ;

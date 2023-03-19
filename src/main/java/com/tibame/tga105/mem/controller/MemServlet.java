@@ -107,9 +107,6 @@ public class MemServlet extends HttpServlet {
 
 			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/update_mem_input.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			MemVO tempVO =(MemVO) session.getAttribute("memVO");
-//			successView.forward(req, res);
 			res.sendRedirect(url);
 		}
 
@@ -160,6 +157,19 @@ public class MemServlet extends HttpServlet {
 			} else if (!memPsd.trim().matches(memPsdReg)) {
 				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
 			}
+			
+			String memPsd2 = req.getParameter("memPsd2");
+			String memPsd2Reg = "^[(a-zA-Z0-9_)]{6,16}$";
+			if (memPsd2 == null || memPsd.trim().length() == 0) {
+				errorMsgs.add("會員密碼: 請勿空白");
+			} else if (!memPsd2.trim().matches(memPsdReg)) {
+				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+			
+			if (!memPsd.equals(memPsd2)) {
+				errorMsgs.add("會員密碼不一致，請重新輸入");
+			}
+			
 
 			String memPhone = req.getParameter("memPhone");
 			String memPhoneReg = "^09[0-9]{8}$";
@@ -170,20 +180,8 @@ public class MemServlet extends HttpServlet {
 			}
 
 			String memAddress = req.getParameter("memAddress");
-//			java.sql.Timestamp lastEditDate = null;
-//			java.sql.Timestamp lastOnlineDate = null;
-//			java.sql.Timestamp lastPostDate = null;
-//			Integer memStatus = 0;
-//			Integer postSuspended = 0;
-//			Integer postReportedNum = 0;
-
-			// 會員頭像上傳
-//			else {
-//				errorMsgs.add("memPicId,會員頭像:請上傳圖片");
-//			}
 
 			MemVO tempVO = (MemVO) session.getAttribute("memVO");
-//			System.out.println(tempVO.getPostSuspended());
 			tempVO.setMemLname(memLname);
 			tempVO.setMemFname(memFname);
 			tempVO.setMemNickname(memNickname);
@@ -199,28 +197,6 @@ public class MemServlet extends HttpServlet {
 				in.close();
 			}
 
-//			javax.servlet.http.Part part = req.getPart("memPicId");
-//			String picName = part.getSubmittedFileName();
-//			
-//			System.out.println(picName);
-//			System.out.println(picName=="");
-//			
-
-//			MemVO memVO = new MemVO();
-//			memVO.setMemLname(memLname);
-//			memVO.setMemFname(memFname);
-//			memVO.setMemNickname(memNickname);
-//			memVO.setMemPsd(memPsd);
-//			memVO.setMemPhone(memPhone);
-//			memVO.setMemAddress(memAddress);
-//			memVO.setMemPicId(memPicId);
-//			memVO.setLastEditDate(lastEditDate);
-//			memVO.setLastOnlineDate(lastOnlineDate);
-//			memVO.setLastPostDate(lastPostDate);
-//			memVO.setMemStatus(memStatus);
-//			memVO.setPostSuspended(postSuspended);
-//			memVO.setPostReportedNum(postReportedNum);
-//			memVO.setMemId(memId);
 
 			// Send the user back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
@@ -239,11 +215,8 @@ public class MemServlet extends HttpServlet {
 			tempVO = memSvc.updateMem(tempVO);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
-//			req.setAttribute("memVO", tempVO);
 			req.setAttribute("memVO", tempVO);
 			String url = "/pages/member/listOneMem.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
 			res.sendRedirect(url);
 
 		}
@@ -287,10 +260,7 @@ public class MemServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 
 			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
-
-//			Integer memId = Integer.valueOf(req.getParameter("memId").trim());
 
 			String memLname = req.getParameter("memLname");
 			System.out.println(req.getParameter(memLname));
@@ -323,6 +293,18 @@ public class MemServlet extends HttpServlet {
 				errorMsgs.add("會員密碼: 請勿空白");
 			} else if (!memPsd.trim().matches(memPsdReg)) {
 				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+			
+			String memPsd2 = req.getParameter("memPsd2");
+			String memPsd2Reg = "^[(a-zA-Z0-9_)]{6,16}$";
+			if (memPsd2 == null || memPsd.trim().length() == 0) {
+				errorMsgs.add("會員密碼: 請勿空白");
+			} else if (!memPsd2.trim().matches(memPsdReg)) {
+				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
+			}
+			
+			if (!memPsd.equals(memPsd2)) {
+				errorMsgs.add("會員密碼不一致，請重新輸入");
 			}
 
 			String memPhone = req.getParameter("memPhone");
@@ -368,9 +350,9 @@ public class MemServlet extends HttpServlet {
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", tempVO);
 				String url = "/pages/member/update_mem_by_admin.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher(url);
-//				failureView.forward(req, res);
-				res.sendRedirect(url);
+				RequestDispatcher failureView = req.getRequestDispatcher(url);
+				failureView.forward(req, res);
+//				res.sendRedirect(url);
 				System.out.println(errorMsgs);
 				return;
 			}
@@ -379,11 +361,10 @@ public class MemServlet extends HttpServlet {
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("memVO", tempVO);
-//			req.setAttribute("memVO", tempVO);
 			String url = "/pages/member/listAllMem.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
-			res.sendRedirect(url);
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+//			res.sendRedirect(url);
 
 		}
 
@@ -466,23 +447,6 @@ public class MemServlet extends HttpServlet {
 			String memAddress = req.getParameter("memAddress");
 			java.sql.Timestamp registrationDate = new Timestamp(System.currentTimeMillis());
 
-//			// 會員頭像上傳
-//			InputStream in = req.getPart("memPicId").getInputStream();
-//			byte[] memPicId = null;
-//			if (in.available() != 0) {
-//				memPicId = new byte[in.available()];
-//				in.read(memPicId);
-//				in.close();
-//			} 
-//			else {
-//				errorMsgs.add("memPicId,會員頭像:請上傳圖片");
-//			}
-
-//				
-//				req.getPart("memPicId").write(getServletContext().getRealPath("/images_uploaded")+"file.gif");
-//							
-
-			// Integer memId = Integer.valueOf(req.getParameter("memId").trim());
 
 			MemVO memVO = new MemVO();
 			memVO.setMemEmail(memEmail);
@@ -509,18 +473,10 @@ public class MemServlet extends HttpServlet {
 
 			req.getSession().setAttribute("memVO", memVO);
 			
-		
-			
-//			memEmail = memSvc.insertCheck(memEmail);
-//			if (!(memVO == null)) {
-//				
-//			}		
 			
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", memVO);
 				String url = "/pages/member/addMem.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/addMem.jsp");
-//				failureView.forward(req, res);
 				res.sendRedirect(url);
 				return;
 			}
@@ -528,8 +484,6 @@ public class MemServlet extends HttpServlet {
 			
 			req.setAttribute("success", "-(註冊成功)");
 			String url = "/pages/member/loginMem.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
 			res.sendRedirect(url);
 		}
 
@@ -578,8 +532,6 @@ public class MemServlet extends HttpServlet {
 			}
 			if (!errorMsgs.isEmpty()) {
 				String url = "/pages/member/loginMem.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
-//				failureView.forward(req, res);
 				res.sendRedirect(url);
 				return;
 			}
@@ -588,8 +540,6 @@ public class MemServlet extends HttpServlet {
 			}
 			if (!errorMsgs.isEmpty()) {
 				String url = "/pages/member/loginMem.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
-//				failureView.forward(req, res);
 				res.sendRedirect(url);
 				return;
 			}
@@ -623,23 +573,10 @@ public class MemServlet extends HttpServlet {
 
 				req.setAttribute("login", true);
 
-//				Cookie cookie = new Cookie("memberId", memVO.getMemId().toString());
-//				Cookie cookie2 = new Cookie("memberNickName", memVO.getMemNickname());
-//				cookie.setMaxAge(7 * 24 * 60 * 60);
-//				cookie2.setMaxAge(7 * 24 * 60 * 60);
-//				cookie.setPath("/");
-//				cookie2.setPath("/");
-//				res.addCookie(cookie);
-//				res.addCookie(cookie2);
 			}
 
 			req.setAttribute("memVO", memVO);
 			String url = "/pages/member/listOneMem.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			MemVO tempVO = (MemVO) session.getAttribute("memVO");
-//			System.out.println(tempVO.getMemNickname());
-//			successView.forward(req, res);
-
 			res.sendRedirect(url);
 
 		}
@@ -664,8 +601,6 @@ public class MemServlet extends HttpServlet {
 			}
 			if (!erroMsgs.isEmpty()) {
 				String url = "/pages/member/memResetPsd01.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher("/pages/member/loginMem.jsp");
-//				failureView.forward(req, res);
 				res.sendRedirect(url);
 				return;
 			}
@@ -728,11 +663,12 @@ public class MemServlet extends HttpServlet {
 		
 		}
 		
+		/******************************************************************************************/
 		/*
-		 * 刪除會員
+		 * 登出會員
 		 */
 
-		if ("logout".equals(action)) { // 來自listAllMem.jsp
+		if ("logout".equals(action)) { // 來自listOneMem.jsp
 			
 			HttpSession session = req.getSession();
 			

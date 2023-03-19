@@ -506,7 +506,7 @@ MemVO memVO = (MemVO) request.getAttribute("memVO");
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">確認密碼</label> <input
-												type="password" name="memPsd" class="form-control"
+												type="password" name="memPsd2" class="form-control"
 												id="memPsd" placeholder="memPsd"
 												value="${memVO.getMemPsd()}" />
 										</div>

@@ -604,6 +604,8 @@
   </div>
 
   <!-- Modal_end -->
+  <!-- 取得cookie -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
 
   <script>
 
@@ -642,8 +644,11 @@
         new_roomCheckOutDate = `${roomCheckOutDate[2]}-${roomCheckOutDate[0]}-${roomCheckOutDate[1]}`
         console.log(new_roomCheckOutDate)
 
+        // let memberId = Cookies.get("memberId");
+
         var formData2 = {
-          memberId: '3',
+          // memberId: memberId,
+          memberId: "3",
           roomTypeId: id,
           totalOfPet: $("input[name=pet]").val(),
           roomCheckInDate: new_roomCheckInDate,
@@ -668,10 +673,7 @@
           encode: true
         }).done(function (data) {
           console.log(data)
-          // swal({
-          //   type: "success",
-          //   title: "預定成功~",
-          // });
+      
 
           swal({
               type: "success",

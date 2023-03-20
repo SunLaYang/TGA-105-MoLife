@@ -37,7 +37,9 @@ public class AdminDaoImpl implements AdminDAOInterface {
 	private static final String EMPUPDATE = "UPDATE admin set employee_password = ?, employee_name = ?,  employee_picture_id = ?, employee_email= ? where admin_id = ?";
 	private static final String BOSSUPDATE = "UPDATE admin set employee_password = ?, employee_name = ?,  employee_picture_id = ?, employee_email= ?, employee_auth_id=?, employee_status=? where admin_id = ?";
 	private static final String LOGIN = "SELECT * FROM admin where employee_account = ? and employee_password = ?";
+	private static final String FINDBYEMPACC = "SELECT * FROM admin where employee_account = ?";
 
+	
 	@Override
 	public void insert(AdminVO adminVO) {
 
@@ -343,6 +345,64 @@ public class AdminDaoImpl implements AdminDAOInterface {
 				adminVO.setEmpStatus(rs.getInt("employee_status"));
 			}
 
+		} catch (SQLException se) {
+			throw new RuntimeException("發生資料庫錯誤." + se.getMessage());
+			// 清理 JDBC 資源
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return adminVO;
+	}
+
+	@Override
+	public AdminVO findByAcc(String employee_account) {
+
+		AdminVO adminVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(FINDBYEMPACC);
+			pstmt.setString(1, employee_account);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// adminVo = Domain objects
+				adminVO = new AdminVO();
+				adminVO.setAdminId(rs.getInt("admin_id"));
+				adminVO.setEmpAcc(rs.getString("employee_account"));
+				adminVO.setEmpPsd(rs.getString("employee_password"));
+				adminVO.setEmpName(rs.getString("employee_name"));
+				adminVO.setEmpPicId(rs.getBytes("employee_picture_id"));
+				adminVO.setEmpEmail(rs.getString("employee_email"));
+				adminVO.setEmpAuthId(rs.getInt("employee_auth_id"));
+				adminVO.setEmpStatus(rs.getInt("employee_status"));
+
+			}
+			// 處理所有的driver錯誤
 		} catch (SQLException se) {
 			throw new RuntimeException("發生資料庫錯誤." + se.getMessage());
 			// 清理 JDBC 資源

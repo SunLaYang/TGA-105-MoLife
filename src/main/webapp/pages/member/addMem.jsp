@@ -93,7 +93,7 @@ th, td {
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="../../page/front_page.html"> <img
+							<a href="/page/others/24front_page.html"> <img
 								src="../../images/home/logoMoLife.png" />
 							</a>
 						</div>
@@ -141,7 +141,7 @@ th, td {
 						<c:if test="${not empty errorMsgs}">
 							<font style="color: red; margin-left:6%;">請修正以下錯誤:</font>
 							<ul>
-								<c:forEach var="message" items="${errorMsgs}">
+								<c:forEach var="message" items="${sessionScope.errorMsgs}">
 									<li style="color: red">${message}</li>
 								</c:forEach>
 							</ul>
@@ -174,13 +174,13 @@ th, td {
 							<tr>
 								<td>密碼:</td>
 								<td><input type="password" name="memPsd" size="30"
-									placeholder="Password"
-									value="${sessionScope.memVO.getMemPsd()}" /></td>
+									placeholder="密碼"
+									 /></td>
 							</tr>
 							<tr>
 								<td>確認密碼:</td>
-								<td><input type="TEXT" name="memPsd" size="30"
-									value="${sessionScope.memVO.getMemPsd()}" /></td>
+								<td><input type="password" name="memPsd2" size="30"
+									placeholder="確認密碼"/></td>
 							</tr>
 							<tr>
 								<td>手機:</td>

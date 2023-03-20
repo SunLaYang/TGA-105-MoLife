@@ -419,7 +419,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						</a>
 							</li>
 
-						<li class="nav-item"><a href="/page/others/24admin.chatroom.html"
+						<li class="nav-item"><a href="page/others/24admin.chatroom.html"
 							class="nav-link"> <i class="nav-icon fas fa-table"></i>
 								<p>
 									留言管理 <span class="right badge badge-danger">New</span>
@@ -505,13 +505,23 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 										<th></th>
 										<td>
 											<FORM METHOD="post"
-												ACTION="<%=request.getContextPath()%>/adminController"
+												ACTION="/adminController"
 												style="margin-bottom: 0px;" enctype="multipart/form-data">
 												<input type="submit" value="修改" class="btn btn-primary">
 												<input type="hidden" name="adminId"
 													value="${adminVO.adminId}"> <input type="hidden"
 													name="action" value="emp_update">
 											</FORM>
+											
+											<FORM METHOD="get" ACTION="/adminController"
+									style="margin-bottom: 0px">
+									<input class="btn btn-primary edit_button" type="submit"
+										value="登出"	style=" margin-top: 3%;" />
+									<input type="hidden" name="memId" value="${adminVO.adminId}" /> <input
+										type="hidden" name="action" value="logout" />
+								</FORM>
+											
+											
 										</td>
 									</div>
 									<!-- <div class="form-check">

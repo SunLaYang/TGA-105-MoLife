@@ -12,5 +12,7 @@ public interface AdminDAOInterface {
 	public AdminVO findByPrimaryKey(Integer adminId);
 	public List<AdminVO> getAll();	
 	public AdminVO login(String empAcc, String empPsd);
+	
+	AdminVO findByAcc(String empAcc);
 
 }

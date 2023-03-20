@@ -184,18 +184,6 @@ public class AdminServlet extends HttpServlet {
 			} else if (!empEmail.trim().matches(empEmailReg)) {
 				errorMsgs.add("員工信箱: 請符合電子信箱格式");
 			}
-
-//			InputStream in = req.getPart("enpPicId").getInputStream();
-//			byte[] empPicId = null;
-//			if (in.available() != 0) {
-//				empPicId = new byte[in.available()];
-//				in.read(empPicId);
-//				in.close();
-//			} else {
-//				errorMsgs.add("empPicId, 員工頭像:請上傳圖片");
-//			}
-
-//			AdminVO adminVO = new AdminVO();
 			
 			AdminVO tempVO = (AdminVO) session.getAttribute("adminVO");
 			tempVO.setEmpPsd(empPsd);
@@ -340,6 +328,7 @@ public class AdminServlet extends HttpServlet {
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
+			AdminService admSvc = new AdminService();
 			
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
 
@@ -349,6 +338,9 @@ public class AdminServlet extends HttpServlet {
 				errorMsgs.add("員工帳號 : 請勿空白");
 			} else if (!empAcc.trim().matches(empAccReg)) {
 				errorMsgs.add("員工帳號請使用Emp001~Emp999之間的組合");
+			}
+			if (admSvc.getEmpFromAcc(empAcc)!=null) {
+				errorMsgs.add("此員工帳號已被註冊!");
 			}
 
 			String empPsd = req.getParameter("empPsd");
@@ -409,7 +401,7 @@ public class AdminServlet extends HttpServlet {
 			}
 
 			/*************************** 2.開始修改資料 *****************************************/
-			AdminService admSvc = new AdminService();
+			
 			adminVO = admSvc.addAdmin(adminVO);
 
 			req.setAttribute("success", "新增會員成功");
@@ -453,6 +445,7 @@ public class AdminServlet extends HttpServlet {
 
 			List<String> erroMsgs = new LinkedList<String>();
 			req.getSession().setAttribute("errorMsgs", erroMsgs);
+			
 
 //			1.接收請求參數
 			String empacc = req.getParameter("empAcc");
@@ -461,20 +454,19 @@ public class AdminServlet extends HttpServlet {
 				erroMsgs.add("請輸入員工帳號");
 			}
 			if (!erroMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/pages/admin/loginEmp.jsp");
-				failureView.forward(req, res);
+				String url = "/pages/admin/loginEmp.jsp";
+				res.sendRedirect(url);
 				return;
 			}
 			if (emppsd == null || (emppsd.trim()).length() == 0) {
 				erroMsgs.add("請輸入密碼");
 			}
 			if (!erroMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/pages/admin/loginEmp.jsp");
-				failureView.forward(req, res);
+				String url = "/pages/admin/loginEmp.jsp";
+				res.sendRedirect(url);
 				return;
 			}
 
-//			AdminVO adminVO = ;
 
 			/******************************************************************************************/
 			AdminService admSvc = new AdminService();
@@ -484,10 +476,8 @@ public class AdminServlet extends HttpServlet {
 			adminVO = admSvc.login(empacc,emppsd);
 			HttpSession session =req.getSession();
 			
-			if (empacc == null) {
-				erroMsgs.add("帳號不存在");
-			}else if (emppsd == null) {
-				erroMsgs.add("請輸入密碼");
+			if (adminVO == null) {
+				erroMsgs.add("帳號或密碼錯誤");
 			}
 			if (!erroMsgs.isEmpty()) {
 				RequestDispatcher failureView = req.getRequestDispatcher("/pages/admin/loginEmp.jsp");
@@ -500,31 +490,34 @@ public class AdminServlet extends HttpServlet {
 					req.changeSessionId();// 產生新的sessionId
 				}
 				session.setAttribute("adminVO", adminVO);
-				
-				req.setAttribute("adminVO", adminVO);
-				
 				req.setAttribute("login", true);
-
-				Cookie cookie = new Cookie("adminId", adminVO.getAdminId().toString());
-				Cookie cookie2 = new Cookie("memberName", adminVO.getEmpName());
-				cookie.setMaxAge(7 * 24 * 60 * 60);
-				cookie2.setMaxAge(7 * 24 * 60 * 60);
-				cookie.setPath("/");
-				cookie2.setPath("/");
-				res.addCookie(cookie);
-				res.addCookie(cookie2);
 			}
-			
-			
 			
 			req.setAttribute("adminVO", adminVO);
 			String url = "/pages/admin/listOneEmp.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
-
 			res.sendRedirect(url);
 		}
+		
+		/******************************************************************************************/
+		/*
+		 * 登出會員
+		 */
 
+		if ("logout".equals(action)) { // 來自listOneEmp.jsp
+			
+			HttpSession session = req.getSession();
+			
+			session.invalidate();
+
+//				刪除完成，準備轉接
+			String url = "/pages/admin/loginEmp.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+
+		}
+
+		/******************************************************************************************/
+		
 	}
 
 }

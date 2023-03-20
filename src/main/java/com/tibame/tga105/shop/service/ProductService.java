@@ -40,6 +40,8 @@ public class ProductService {
         if (categoryId != null) {
             spec = spec.and((root, query, cb) -> cb.equal(root.get("categoryId"), categoryId));
         }
+        spec = spec.and((root, query, cb) -> cb.greaterThan(root.get("productQty"), 0));
+        
         Sort sort = Sort.by(Sort.Direction.DESC, "productCreateDate");
         return productRepository.findAll(spec, sort);
     }

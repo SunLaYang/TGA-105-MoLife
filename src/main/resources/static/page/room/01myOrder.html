@@ -273,7 +273,9 @@
     var id = ary3[1];
     console.log(id)
   }
+ 
 </script>
+
 <!-- 網址取參數_end -->
 
 <!-- API_start -->
@@ -367,12 +369,12 @@
     if (data.order_status) {
       if (data.room_order_status && data.room_order_status !== 0) {
         // 如果回傳資料中有 room_order_status，且其值不為 0，就修改取消訂單按鈕的文字內容為「已入住」
-        return '<h6>訂單已成立</h6>';
+        return '<h6 style="color: green;">訂單已成立</h6>';
       } else {
         return '<button type="button" class="btn btn-outline-warning btn-cancel-order">取消訂單</button>';
       }
     } else {
-      return '<h6>已取消</h6>';
+      return '<h6 style="color: red;">已取消</h6>';
     }
   }
 },

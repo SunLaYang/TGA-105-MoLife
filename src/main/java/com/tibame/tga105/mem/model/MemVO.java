@@ -2,6 +2,7 @@ package com.tibame.tga105.mem.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 public class MemVO implements Serializable {
   private Integer memId;
@@ -164,5 +165,16 @@ public class MemVO implements Serializable {
   public void setPostReportedNum(Integer postReportedNum) {
     this.postReportedNum = postReportedNum;
   }
+
+@Override
+public String toString() {
+	return "MemVO [memId=" + memId + ", memEmail=" + memEmail + ", memPsd=" + memPsd + ", memLname=" + memLname
+			+ ", memFname=" + memFname + ", memNickname=" + memNickname + ", memPhone=" + memPhone + ", memAddress="
+			+ memAddress + ", memPicId=" + Arrays.toString(memPicId) + ", registrationDate=" + registrationDate
+			+ ", lastEditDate=" + lastEditDate + ", lastOnlineDate=" + lastOnlineDate + ", lastPostDate=" + lastPostDate
+			+ ", memStatus=" + memStatus + ", postSuspended=" + postSuspended + ", postReportedNum=" + postReportedNum
+			+ "]";
+}
+  
 }
 

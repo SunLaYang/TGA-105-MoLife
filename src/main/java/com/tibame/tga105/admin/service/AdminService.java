@@ -16,20 +16,6 @@ public class AdminService {
 //		dao = new AdminDaoImpl();
 	}
 	
-//	public AdminVO addAdmin(AdminVO ) {
-//		
-//		AdminVO adminVO = new AdminVO();
-//		adminVO.setEmpAcc(empAcc);
-//		adminVO.setEmpPsd(empPsd);
-//		adminVO.setEmpName(empName);
-//		adminVO.setEmpPicId(empPicId);
-//		adminVO.setEmpEmail(empEmail);
-//		adminVO.setEmpAuthId(empAuthId);
-//		adminVO.setEmpStatus(empStatus);
-//		dao.insert(adminVO);		
-//		
-//		return adminVO;
-//	}
 	
 	//預留給 Struts 2 或 Spring MVC 用
 	public AdminVO addAdmin(AdminVO adminVO) {
@@ -69,22 +55,15 @@ public class AdminService {
 	public AdminVO getOneEmp(Integer adminId) {
 		return dao.findByPrimaryKey(adminId);
 	}
-
-	public AdminVO login(String empAcc, String empPsd) {
-		if (!checkValue(empAcc) || !checkValue(empPsd)) {
-			System.out.println("帳號或密碼錯誤");
-			return null;
-		}
-		return dao.login(empAcc, empPsd);
-		
+	
+	public AdminVO getEmpFromAcc(String empAcc) {
+		return this.dao.findByAcc(empAcc);
 	}
 	
-	private boolean checkValue(String value) {
-		if (value == null || Objects.equals(value, "")) {
-				System.out.println(value);
-				return false;
-		}
-		return true;
+
+	public AdminVO login(String empAcc, String empPsd) {
+		return dao.login(empAcc, empPsd);
+		
 	}
 		
 	public List<AdminVO> getAll(){

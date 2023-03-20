@@ -1,5 +1,8 @@
 package com.tibame.tga105.admin.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.tibame.tga105.admin.VO.AdminVO;
 import com.tibame.tga105.admin.service.AdminService;
@@ -30,8 +36,26 @@ public class AdminPicView extends HttpServlet{
 		
 		AdminService admSvc = new AdminService();
 		AdminVO adminVO = admSvc.getOneEmp(adminId);
-		out.write(adminVO.getEmpPicId());
-		out.close();
+		
+		
+		if (adminVO.getEmpPicId() != null) {
+			
+			out.write(adminVO.getEmpPicId());
+			out.close();
+		}else {
+			
+//			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+			Resource resource = new ClassPathResource("\\static\\images\\defaultPicforIcon\\noImg.png");
+			String defaultPicPath = resource.getFile().getPath();
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(defaultPicPath)));
+			byte[] defaultPic = bis.readAllBytes();
+			out.write(defaultPic);
+
+			bis.close();
+		}
+		
+		
+		
 		
 		
 	}

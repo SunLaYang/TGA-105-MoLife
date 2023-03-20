@@ -363,9 +363,7 @@ public class MemServlet extends HttpServlet {
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("memVO", tempVO);
 			String url = "/pages/member/listAllMem.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
-//			res.sendRedirect(url);
+			res.sendRedirect(url);
 
 		}
 
@@ -509,8 +507,7 @@ public class MemServlet extends HttpServlet {
 
 //				刪除完成，準備轉接
 			String url = "/pages/member/listAllMem.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+			res.sendRedirect(url);
 
 		}
 
@@ -614,15 +611,16 @@ public class MemServlet extends HttpServlet {
 				return;
 			}
 
-			if (!erroMsgs.isEmpty()) {
-				String url = "/pages/member/memResetPsd01.jsp";
-				RequestDispatcher failureView = req.getRequestDispatcher(url);
-				failureView.forward(req, res);
-				return;
-			}
+//			if (!erroMsgs.isEmpty()) {
+//				String url = "/pages/member/memResetPsd01.jsp";
+//				RequestDispatcher failureView = req.getRequestDispatcher(url);
+//				failureView.forward(req, res);
+//				return;
+//			}
 
 			PsdResetMailService mailSvc = new PsdResetMailService();
 			mailSvc.sendMail(memEmail);
+			req.getSession().setAttribute("memEmail", memEmail);
 
 			String url = "/pages/member/memResetPsd02.jsp";
 			res.sendRedirect(url);
@@ -637,6 +635,8 @@ public class MemServlet extends HttpServlet {
 
 			List<String> errorMsgs = new LinkedList<String>();
 			req.getSession().setAttribute("errorMsgs", errorMsgs);
+			
+			String memEmail = req.getParameter("memEmail");
 
 			String memPsd = req.getParameter("memPsd");
 			String memPsdReg = "^[(a-zA-Z0-9_)]{6,16}$";
@@ -645,13 +645,23 @@ public class MemServlet extends HttpServlet {
 			} else if (!memPsd.trim().matches(memPsdReg)) {
 				errorMsgs.add("會員密碼請使用英文與數字之組合，長度介於6至16個字以內");
 			}
+			if ((req.getSession().getAttribute("memEmail")) == null) {
+				errorMsgs.add("此頁面已經過期，請回登入頁面，重新點選忘記密碼按鈕");
+			}
 
-			String memEmail = req.getParameter("memEmail");
+			
 			System.out.println("memEmail="+memEmail);
 			MemService memSvc = new MemService();
 			MemVO tempVO = memSvc.getMemFromEmail(memEmail);
 
-			tempVO.setMemPsd(memPsd);
+			
+			if (tempVO==null) {
+				errorMsgs.add("請回登入頁面，重新點選忘記密碼按鈕");
+			}else {
+				tempVO.setMemPsd(memPsd);
+				
+			}
+			
 			
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", tempVO);
@@ -694,14 +704,10 @@ public class MemServlet extends HttpServlet {
 					}
 				}
 			}
-			
-			
-			
 
 //				刪除完成，準備轉接
-			String url = "/page/others/24front_page.html";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+			String url = "/pages/member/loginMem.jsp";
+			res.sendRedirect(url);
 
 		}
 

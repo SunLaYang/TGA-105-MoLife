@@ -79,7 +79,7 @@ public class ContactUsController {
 //      }
 
         if(contactUs.getName().equals("耿鬼")) {
-        	contactUs1.setMemberId(2);
+        	contactUs1.setMemberId(7);
         }else {
         	contactUs1.setMemberId(null);
         }
@@ -104,7 +104,7 @@ public class ContactUsController {
             javaMailSender.send(message);
         }else {
         	postInfo = new PostInfo();
-            postInfo.setMemberId(2);
+            postInfo.setMemberId(7);
             postInfo.setAdminId(1);
             postInfo.setInfoTitle("聯絡我們");
             postInfo.setContent(contactUs.getResponse());

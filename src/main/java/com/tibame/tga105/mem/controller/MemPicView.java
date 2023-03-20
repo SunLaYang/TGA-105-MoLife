@@ -1,6 +1,10 @@
 package com.tibame.tga105.mem.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -9,8 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import com.tibame.tga105.mem.model.MemService;
 import com.tibame.tga105.mem.model.MemVO;
+
+
 
 @WebServlet("/MemPicView")
 public class MemPicView extends HttpServlet {
@@ -28,8 +37,21 @@ public class MemPicView extends HttpServlet {
 
 		MemService memSvc = new MemService();
 		MemVO memVO = memSvc.getOneMem(memId);
-		out.write(memVO.getMemPicId());
-		out.close();
+
+		if (memVO.getMemPicId() != null) {
+			out.write(memVO.getMemPicId());
+			out.close();
+		} else {
+//			res.sendError(HttpServletResponse.SC_NOT_FOUND);
+			Resource resource = new ClassPathResource("\\static\\images\\defaultPicforIcon\\noImg.png");
+			String defaultPicPath = resource.getFile().getPath();
+			BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(defaultPicPath)));
+			byte[] defaultPic = bis.readAllBytes();
+			out.write(defaultPic);
+
+			bis.close();
+
+		}
 
 //		PrintWriter out = res.getWriter();
 //		out.print("123");

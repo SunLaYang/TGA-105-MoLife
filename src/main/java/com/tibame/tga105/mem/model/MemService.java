@@ -16,11 +16,13 @@ public class MemService {
 		
 	};
 
-	public MemVO addMem(MemVO memVO) {			
-		memVO.setMemStatus(1);
-		memVO.setPostSuspended(0);
-		memVO.setPostReportedNum(0);
+	public MemVO addMem(MemVO memVO) {	
+		System.out.println("1"+memVO);
+//		memVO.setMemStatus(1);
+//		memVO.setPostSuspended(0);
+//		memVO.setPostReportedNum(0);
 		this.dao.insert(memVO);
+		System.out.println("2"+memVO);
 		return memVO;
 	}
 
@@ -53,25 +55,7 @@ public class MemService {
 	}
 	
 	public MemVO login(String memEmail, String memPsd) {
-		if (!checkValue(memEmail)||!checkValue(memPsd)) {
-			return null;
-		}		
 		return dao.login(memEmail, memPsd);
-	}
-	
-	private boolean checkValue(String value) {
-		if (value == null || Objects.equals(value, "")) {
-				System.out.println(value);
-				return false;
-		}
-		return true;
-	}
-	
-	public MemVO checkmail(String memEmail) {
-		if (!checkValue(memEmail)) {
-			return null;
-		}
-		return this.dao.findByEmail(memEmail);
 	}
 	
 	

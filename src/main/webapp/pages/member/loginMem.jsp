@@ -75,7 +75,7 @@ div.btn_click {
 				<div class="row">
 					<div class="col-lg-12 text-right">
 						<div class="logo_container">
-							<a href="../../page/front_page.html"> <img
+							<a href="/page/others/24front_page.html"> <img
 								src="../../images/home/logoMoLife.png" />
 							</a>
 						</div>
@@ -118,7 +118,7 @@ div.btn_click {
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
 				<ul>
-					<c:forEach var="message" items="${errorMsgs}">
+					<c:forEach var="message" items="${sessionScope.errorMsgs}">
 						<li style="color: red">${message}</li>
 					</c:forEach>
 				</ul>

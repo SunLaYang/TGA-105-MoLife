@@ -27,13 +27,10 @@ public class FilterForMember implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-//		System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 
 		if (session.getAttribute("memVO") == null) {
-//			System.out.println("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
 			res.sendRedirect("/pages/member/loginMem.jsp");
 		} else {
-//			System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
 			chain.doFilter(request, response);
 			
 		}

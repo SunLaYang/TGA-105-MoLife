@@ -3,6 +3,7 @@ package com.tibame.tga105.mem.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -570,13 +571,21 @@ public class MemServlet extends HttpServlet {
 					req.changeSessionId();// 產生新的sessionId
 				}
 				session.setAttribute("memVO", memVO);
+//	            MemVO tempVO = (MemVO) session.getAttribute("memVO");
+//	            System.out.println(tempVO.getMemNickname()); 
 
 				req.setAttribute("login", true);
+				
+				Cookie cookie = new Cookie("memId", memVO.getMemId().toString());
+				cookie.setMaxAge(7 * 24 * 60 * 60);
+				cookie.setPath("/");
+				res.addCookie(cookie);
+				
 
 			}
 
 			req.setAttribute("memVO", memVO);
-			String url = "/pages/member/listOneMem.jsp";
+			String url = "/page/others/24front_page.html";
 			res.sendRedirect(url);
 
 		}
@@ -673,6 +682,21 @@ public class MemServlet extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			session.invalidate();
+			
+			Cookie[] cookies= req.getCookies();
+			if (cookies!=null) {
+				for(Cookie cookie : cookies) {
+					if (cookie.getName().equals("memId")) {
+						cookie.setValue("");
+						cookie.setMaxAge(0);
+						cookie.setPath("/");
+						res.addCookie(cookie);
+					}
+				}
+			}
+			
+			
+			
 
 //				刪除完成，準備轉接
 			String url = "/page/others/24front_page.html";

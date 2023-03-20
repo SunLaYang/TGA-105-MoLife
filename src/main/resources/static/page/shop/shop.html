@@ -87,10 +87,10 @@
                     <a href="/page/shop/shop-cart.html"
                       ><img class="icon" src="../../images/home/car.png"
                     /></a>
-                    <a href="#"
+                    <a href="/page/others/24post_info.html"
                       ><img class="icon" src="../../images/home/ring.png"
                     /></a>
-                    <a href="#"
+                    <a href="/pages/member/listOneMem.jsp"
                       ><img class="icon" src="../../images/home/man.png"
                     /></a>
                   </ul>
@@ -216,7 +216,7 @@
                             </li>
                           </ul>
                         </li>
-                        <li>
+                        <!-- <li>
                           <span>Show</span>
                           <span class="num_sorting_text">6</span>
                           <i class="fa fa-angle-down"></i>
@@ -225,25 +225,41 @@
                             <li class="num_sorting_btn"><span>12</span></li>
                             <li class="num_sorting_btn"><span>24</span></li>
                           </ul>
-                        </li>
+                        </li> -->
                       </ul>
                       <div class="pages d-flex flex-row align-items-center">
-                        <div class="page_current">
-                          <span>1</span>
-                          <ul class="page_selection">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                        <div>
+                          <ul class="product_sorting">
+                            <li>
+                              <span>功能選單</span>
+                              <span class="num_sorting_text"></span>
+                              <i class="fa fa-angle-down"></i>
+                              <ul class="page_selection">
+                                <li class="num_sorting_btn">
+                                  <a href="/page/shop/shop-cart.html">購物車</a>
+                                </li>
+                                <li class="num_sorting_btn">
+                                  <a href="/page/shop/shop-collection.html"
+                                    >商品收藏</a
+                                  >
+                                </li>
+                                <li class="num_sorting_btn">
+                                  <a href="/page/shop/shop-orders.html"
+                                    >查看訂單</a
+                                  >
+                                </li>
+                              </ul>
+                            </li>
                           </ul>
                         </div>
-                        <div class="page_total"><span>of</span> 3</div>
+                        <!-- <div class="page_total"><span>of</span> 3</div>
                         <div id="next_page" class="page_next">
                           <a href="#"
                             ><i
                               class="fa fa-long-arrow-right"
                               aria-hidden="true"></i
                           ></a>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
 
@@ -251,7 +267,7 @@
 
                     <div class="product-grid"></div>
 
-                    <div
+                    <!-- <div
                       class="product_sorting_container product_sorting_container_bottom clearfix">
                       <ul class="product_sorting">
                         <li>
@@ -287,7 +303,7 @@
                           ></a>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -426,13 +442,14 @@
     <script src="../../plugins/easing/easing.js"></script>
     <script src="../../plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="../../js/categories_custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.0/dist/js.cookie.min.js"></script>
 
     <script>
       // 取得urlParams
-      let memberId = 1;
       const urlParams = new URLSearchParams(window.location.search);
       const categoryId = urlParams.get("categoryId");
       const animalTypeId = urlParams.get("animalTypeId");
+      let memberId = Cookies.get("memberId");
 
       function initIsotopeFiltering() {
         var sortTypes = $(".type_sorting_btn");
@@ -559,6 +576,18 @@
                   img = unit.productImage;
                 }
               });
+              // 取得今天的日期
+              const today = new Date();
+              // 計算兩天前的日期
+              const twoDaysAgo = new Date();
+              twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+              // 取得商品的創建日期
+              const productCreateDate = new Date(item.productCreateDate);
+              // 商品的創建日期在兩天之內
+              let newicon = "";
+              if (productCreateDate >= twoDaysAgo) {
+                newicon = `<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>`;
+              }
 
               list_html += `
                                     <div class="product-item men">
@@ -567,6 +596,7 @@
                                           <img src="/productimages/${img}" class="image-container"/>
                                         </div>
                                         <div class="favorite" data-productId="${item.productId}"></div>
+                                        ${newicon}
                                         <div class="product_info">
                                           <h6 class="product_name">
                                             <a href="shop-product.html?id=${item.productId}"
@@ -599,6 +629,10 @@
           ".add_to_cart_button a",
           function (event) {
             event.preventDefault();
+            if (!memberId) {
+              alert("請先登入在進行操作");
+              return;
+            }
             let productId = $(this).data("productid");
             let cartData = {
               memberId: memberId,
@@ -629,6 +663,11 @@
         );
 
         $(".product-grid").on("click", ".favorite", function () {
+          if (!memberId) {
+            alert("請先登入在進行操作");
+            return;
+          }
+
           let productId = $(this).data("productid");
           let favoriteData = {
             memberId: memberId,

@@ -115,7 +115,7 @@ div.btn_click {
 		<div style="margin-left: 40%">
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
-				<ul>
+				<ul style="margin-left: -35%;margin-right: 31%;margin-bottom: 7%;margin-top: 3%;">
 					<c:forEach var="message" items="${errorMsgs}">
 						<li style="color: red">${message}</li>
 					</c:forEach>

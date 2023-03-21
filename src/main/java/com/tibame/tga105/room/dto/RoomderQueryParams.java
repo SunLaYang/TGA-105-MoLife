@@ -1,22 +1,20 @@
 package com.tibame.tga105.room.dto;
 
 public class RoomderQueryParams {
-	
-	//透過付款人收尋訂單
+
+	// 透過付款人收尋訂單
 	private String search;
-	
-	//透過入住狀態收尋
+
+	// 透過入住狀態收尋
 	private Integer searchStatus;
-	
+
 	private String orderBy;
-	
+
 	private String sort;
-	
-	 private Integer limit;
-	 
-	 private Integer offset;
-	 
-	 
+
+	private Integer limit;
+
+	private Integer offset;
 
 	public Integer getLimit() {
 		return limit;
@@ -65,6 +63,5 @@ public class RoomderQueryParams {
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-	
-	
+
 }

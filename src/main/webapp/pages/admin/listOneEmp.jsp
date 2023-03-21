@@ -419,7 +419,7 @@ AdminVO adminVO = (AdminVO) request.getAttribute("adminVO");
 						</a>
 							</li>
 
-						<li class="nav-item"><a href="page/others/24admin.chatroom.html"
+						<li class="nav-item"><a href="/page/others/24admin.chatroom.html"
 							class="nav-link"> <i class="nav-icon fas fa-table"></i>
 								<p>
 									留言管理 <span class="right badge badge-danger">New</span>

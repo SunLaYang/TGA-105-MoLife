@@ -247,7 +247,6 @@ public class MemServlet extends HttpServlet {
 			String url = "/pages/member/update_mem_by_admin.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
-//			res.sendRedirect(url);
 		}
 
 		/******************************************************************************************/

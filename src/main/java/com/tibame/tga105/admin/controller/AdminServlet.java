@@ -122,7 +122,7 @@ public class AdminServlet extends HttpServlet {
 		 */
 
 		
-		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
+		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -137,9 +137,8 @@ public class AdminServlet extends HttpServlet {
 
 			req.setAttribute("adminVO", adminVO);
 			String url = "/pages/admin/boss_update.jsp";
-			res.sendRedirect(url);
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
 
 		}
 

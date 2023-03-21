@@ -108,7 +108,7 @@ th, td {
 							<ul class="navbar_user">
 								<a href="/page/shop/shop-cart.html"><img class="icon"
 									src="../../images/home/car.png" /></a>
-								<a href="#"><img class="icon"
+								<a href="/page/others/24post_info.html"><img class="icon"
 									src="../../images/home/ring.png" /></a>
 								<a href="/pages/member/listOneMem.jsp"><img class="icon"
 									src="../../images/home/man.png" /></a>

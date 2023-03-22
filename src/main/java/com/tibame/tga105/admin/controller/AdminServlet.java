@@ -373,7 +373,6 @@ public class AdminServlet extends HttpServlet {
 			} 
 			adminVO.setEmpAuthId(empAuthId);
 			adminVO.setEmpStatus(empStatus);
-			req.getSession().setAttribute("adminVO", adminVO);
 
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("adminVO", adminVO);

@@ -25,7 +25,7 @@ public class PsdResetMailService {
 				   props.put("mail.smtp.port", "465");
 
 			     final String myGmail = "tree74859@gmail.com";
-			     final String myGmail_password = "vftqbancavjigdyn";
+			     final String myGmail_password = "pjsxfwxttvykgkpf";
 			     
 			     
 				   Session session = Session.getInstance(props, new Authenticator() {

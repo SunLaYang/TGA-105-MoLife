@@ -110,8 +110,6 @@ public class AdminServlet extends HttpServlet {
 
 			req.setAttribute("adminVO", adminVO);
 			String url = "/pages/admin/emp_update.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
 			res.sendRedirect(url);
 
 		}
@@ -124,7 +122,7 @@ public class AdminServlet extends HttpServlet {
 		 */
 
 		
-		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp 或ListOneMem.jsp的請求
+		if ("boss_Update".equals(action)) {// //來自listAllMem.jsp
 
 			Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -262,17 +260,8 @@ public class AdminServlet extends HttpServlet {
 
 
 			Integer empAuthId = Integer.valueOf(req.getParameter("empAuthId"));
-//			System.out.println(empAuthId);
 
 			Integer empStatus = Integer.valueOf(req.getParameter("empStatus"));
-//			String empStatusReg = "^[01]+$";
-//			if (empStatus == null) {
-//				errorMsgs.add("請填入員工狀態號碼，勿空白");
-//			}else if(!empStatus.toString().matches(empStatusReg)){
-//				errorMsgs.add("狀態只能填入0或1");
-//			}
-
-//			AdminVO adminVO = new AdminVO();
 			
 			Integer adminId = Integer.valueOf(req.getParameter("adminId"));
 			AdminService admSvc = new AdminService();
@@ -298,8 +287,6 @@ public class AdminServlet extends HttpServlet {
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("adminVO", tempVO);
 				String url = "/pages/admin/boss_update.jsp";
-//				RequestDispatcher failureView = req.getRequestDispatcher(url);
-//				failureView.forward(req, res);
 				res.sendRedirect(url);
 				System.out.println(errorMsgs);
 				return;
@@ -311,8 +298,6 @@ public class AdminServlet extends HttpServlet {
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("adminVO", tempVO);
 			String url = "/pages/admin/listAllEmp.jsp";
-//			RequestDispatcher successView = req.getRequestDispatcher(url);
-//			successView.forward(req, res);
 			res.sendRedirect(url);
 
 		}
@@ -429,8 +414,9 @@ public class AdminServlet extends HttpServlet {
 			admSvc.deleteEmp(adminId);
 
 			String url = "/pages/admin/listAllEmp.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+			res.sendRedirect(url);
+//			RequestDispatcher successView = req.getRequestDispatcher(url);
+//			successView.forward(req, res);
 		}
 		
 		/******************************************************************************************/
@@ -480,8 +466,8 @@ public class AdminServlet extends HttpServlet {
 				erroMsgs.add("帳號或密碼錯誤");
 			}
 			if (!erroMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/pages/admin/loginEmp.jsp");
-				failureView.forward(req, res);
+				String url = "/pages/admin/loginEmp.jsp";
+				res.sendRedirect(url);
 				return;
 			}
 			
@@ -511,9 +497,7 @@ public class AdminServlet extends HttpServlet {
 
 //				刪除完成，準備轉接
 			String url = "/pages/admin/loginEmp.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
-
+			res.sendRedirect(url);
 		}
 
 		/******************************************************************************************/

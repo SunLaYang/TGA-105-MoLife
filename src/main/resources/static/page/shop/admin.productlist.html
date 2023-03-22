@@ -61,24 +61,10 @@
     <link
       rel="stylesheet"
       href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css" />
-
+    <link rel="stylesheet" href="../../styles/shop/productlist.css" />
     <script
       src="https://kit.fontawesome.com/2672c0b72c.js"
       crossorigin="anonymous"></script>
-
-    <style>
-      .image-container {
-        width: 80px;
-        height: 80px;
-        overflow: hidden; /* 隱藏溢出的內容 */
-      }
-
-      .image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* 填充剪裁適應容器 */
-      }
-    </style>
   </head>
 
   <body class="hold-transition sidebar-mini layout-fixed">
@@ -147,100 +133,11 @@
           </li>
 
           <!-- Messages Dropdown Menu -->
-          <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item"> -->
-          <!-- Message Start -->
-          <!-- <div class="media">
-              <img src="../../AdminLTE-3.2.0/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div> -->
-          <!-- Message End -->
-          <!-- </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li> -->
-          <!-- Notifications Dropdown Menu -->
-          <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li> -->
           <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
               <i class="fas fa-expand-arrows-alt"></i>
             </a>
           </li>
-          <!-- <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li> -->
         </ul>
       </nav>
       <!-- /.navbar -->
@@ -306,19 +203,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="/pages/admin/listOneEmp.jsp" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>帳戶管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="..." class="nav-link">
+                    <a href="/pages/member/listAllMem.jsp" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>會員管理</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="./24admin.limit.html" class="nav-link">
+                    <a href="/pages/admin/listAllEmp.jsp" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>權限管理</p>
                     </a>
@@ -348,42 +245,6 @@
                       <p>訂單管理</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -415,12 +276,6 @@
                       <p>評價管理</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>uPlot</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -441,53 +296,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="/pages/donate/AdminServlet" class="nav-link">
+                    <a href="/pages/donate/donatePlanAdmin" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>提案募款紀錄</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="/pages/donate/AdminServlet" class="nav-link">
+                    <a href="/pages/donate/donatePaymentAdmin" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>捐款紀錄查詢</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                    <a href="..." class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Buttons</p>
-                    </a>
-                  </li> -->
-                  <!-- <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="..." class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ribbons</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -515,12 +334,6 @@
                       <p>公告管理</p>
                     </a>
                   </li>
-                  <!-- <li class="nav-item">
-                <a href="../../AdminLTE-3.2.0/pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
-                </a>
-              </li> -->
                 </ul>
               </li>
 
@@ -696,93 +509,6 @@
     <!-- <script src="../../AdminLTE-3.2.0/dist/js/demo.js"></script> -->
     <!-- Page specific script -->
 
-    <script>
-      function init() {
-        $.ajax({
-          url: "/products",
-          type: "GET",
-          dataType: "json",
-          success: function (data) {
-            let list_html = "";
-            $.each(data, function (i, item) {
-              let productStatus = "";
-              let statusColor = "";
-              if (item.productStatus == 0) {
-                productStatus = "未上架";
-                statusColor = "text-secondary";
-              } else {
-                productStatus = "上架中";
-                statusColor = "text-success";
-              }
-
-              let img = "";
-              $.each(item.productImages, function (i, unit) {
-                if (unit.productImageType == 0 && unit.productImage != null) {
-                  img = unit.productImage;
-                }
-              });
-
-              list_html += `
-          <tr>
-            <td class="align-middle">
-              <div class="image-container">
-                <img src="/productimages/${img}" alt="product image">
-              </div>
-            </td>
-            <td class="align-middle">
-                  ${item.productName}
-            </td>
-            <td class="align-middle">
-              ${item.productDetails}
-            </td>
-            <td class="align-middle">${item.productPrice}</td>
-            <td class="align-middle">${item.productQty}</td>
-            <td class="align-middle">${item.animalType.animalType}</td>
-            <td class="align-middle">${item.category.categoryName}</td>
-            <td class="align-middle">${new Date(
-              item.productCreateDate
-            ).toLocaleDateString()}</td>
-            <td class="align-middle ${statusColor}">${productStatus}</td>
-            <td class="align-middle">
-                      <a href="admin.editproduct.html?id=${
-                        item.productId
-                      }" class="text-danger"
-                        ><span
-                          class="material-symbols-outlined align-middle">
-                          select_check_box </span
-                        ><span class="align-middle">編輯</span></a
-                      >
-                    </td>
-          </tr>`;
-            });
-            $("tbody").html(list_html);
-            // 初始化 DataTables
-            $("#example1")
-              .DataTable({
-                responsive: true,
-                lengthChange: true,
-                autoWidth: false,
-                order: [7, "desc"], // 預設升序排序
-                // buttons: ["copy", "csv", "excel", "pdf", "print", "colvis"],
-              })
-              .buttons()
-              .container()
-              .appendTo("#example1_wrapper .col-md-6:eq(0)");
-          },
-          error: function (xhr, textStatus, errorThrown) {
-            console.log("error");
-            console.log(xhr);
-          },
-        });
-      }
-
-      $(function () {
-        init();
-
-        $(".btn-primary").click(function () {
-          window.location.href = "admin.addproduct.html";
-        });
-      });
-    </script>
+    <script src="../../js/shop/productlist.js"></script>
   </body>
 </html>
